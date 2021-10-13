@@ -1,0 +1,658 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC02602711E3A30033D364 /* AppDelegate.swift */; };
+		DBBC026A2711E3AF0033D364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC02692711E3AF0033D364 /* Assets.xcassets */; };
+		DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC026B2711E3AF0033D364 /* LaunchScreen.storyboard */; };
+		DBBC027C2711E4B40033D364 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC027A2711E4B40033D364 /* RegistrationViewController.swift */; };
+		DBBC027D2711E4B40033D364 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBBC027B2711E4B40033D364 /* RegistrationViewController.xib */; };
+		DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC02802711EBC00033D364 /* RegistrationTableViewCell.swift */; };
+		DBBC02832711EBC00033D364 /* RegistrationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBBC02812711EBC00033D364 /* RegistrationTableViewCell.xib */; };
+		DBC7AAB527127D77002EB696 /* OTPVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAB327127D77002EB696 /* OTPVerificationViewController.swift */; };
+		DBC7AAB627127D77002EB696 /* OTPVerificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAB427127D77002EB696 /* OTPVerificationViewController.xib */; };
+		DBC7AABD27127F51002EB696 /* ActivationSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AABB27127F51002EB696 /* ActivationSuccessViewController.swift */; };
+		DBC7AABE27127F51002EB696 /* ActivationSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AABC27127F51002EB696 /* ActivationSuccessViewController.xib */; };
+		DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAC22712850A002EB696 /* ServerInformationViewController.swift */; };
+		DBC7AAC52712850A002EB696 /* ServerInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAC32712850A002EB696 /* ServerInformationViewController.xib */; };
+		DBC7AACA271312CF002EB696 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAC8271312CF002EB696 /* LoginViewController.swift */; };
+		DBC7AACB271312CF002EB696 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAC9271312CF002EB696 /* LoginViewController.xib */; };
+		DBC7AAD8271317AA002EB696 /* ServerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAD6271317AA002EB696 /* ServerListViewController.swift */; };
+		DBC7AAD9271317AA002EB696 /* ServerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAD7271317AA002EB696 /* ServerListViewController.xib */; };
+		DBC7AADD2713189F002EB696 /* ServerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AADB2713189F002EB696 /* ServerListTableViewCell.swift */; };
+		DBC7AADE2713189F002EB696 /* ServerListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AADC2713189F002EB696 /* ServerListTableViewCell.xib */; };
+		DBC7AAE32713212B002EB696 /* NodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAE12713212B002EB696 /* NodeTableViewCell.swift */; };
+		DBC7AAE42713212B002EB696 /* NodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAE22713212B002EB696 /* NodeTableViewCell.xib */; };
+		DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAE72713213C002EB696 /* NodeViewController.swift */; };
+		DBC7AAEA2713213C002EB696 /* NodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAE82713213C002EB696 /* NodeViewController.xib */; };
+		DBC7AAEE271328F0002EB696 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAEC271328F0002EB696 /* LaunchViewController.swift */; };
+		DBC7AAEF271328F0002EB696 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAED271328F0002EB696 /* LaunchViewController.xib */; };
+		DBC7AAF727147B07002EB696 /* CPUListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAF527147B07002EB696 /* CPUListViewController.swift */; };
+		DBC7AAF827147B07002EB696 /* CPUListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAF627147B07002EB696 /* CPUListViewController.xib */; };
+		DBC7AAFC27147B7D002EB696 /* StatusListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAFA27147B7D002EB696 /* StatusListTableViewCell.swift */; };
+		DBC7AAFD27147B7D002EB696 /* StatusListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAFB27147B7D002EB696 /* StatusListTableViewCell.xib */; };
+		DBC7AB0227148921002EB696 /* IPUListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB0027148921002EB696 /* IPUListViewController.swift */; };
+		DBC7AB0327148921002EB696 /* IPUListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB0127148921002EB696 /* IPUListViewController.xib */; };
+		DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB0F27148A40002EB696 /* DiskListViewController.swift */; };
+		DBC7AB1227148A40002EB696 /* DiskListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB1027148A40002EB696 /* DiskListViewController.xib */; };
+		DBC7AB1727148AE3002EB696 /* ProcessListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB1527148AE3002EB696 /* ProcessListViewController.swift */; };
+		DBC7AB1827148AE3002EB696 /* ProcessListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB1627148AE3002EB696 /* ProcessListViewController.xib */; };
+		DBC7AB1E27148E7C002EB696 /* CPUDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB1C27148E7C002EB696 /* CPUDetailViewController.swift */; };
+		DBC7AB1F27148E7C002EB696 /* CPUDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB1D27148E7C002EB696 /* CPUDetailViewController.xib */; };
+		DBC7AB2427148EB6002EB696 /* StatusDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB2227148EB6002EB696 /* StatusDetailTableViewCell.swift */; };
+		DBC7AB2527148EB6002EB696 /* StatusDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB2327148EB6002EB696 /* StatusDetailTableViewCell.xib */; };
+		DBC7AB2A27149342002EB696 /* IPUDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB2827149342002EB696 /* IPUDetailViewController.swift */; };
+		DBC7AB2B27149342002EB696 /* IPUDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB2927149342002EB696 /* IPUDetailViewController.xib */; };
+		DBC7AB3127149382002EB696 /* DiskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB2F27149382002EB696 /* DiskDetailViewController.swift */; };
+		DBC7AB3227149382002EB696 /* DiskDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB3027149382002EB696 /* DiskDetailViewController.xib */; };
+		DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB37271493C9002EB696 /* ProcessDetailViewController.swift */; };
+		DBC7AB3A271493C9002EB696 /* ProcessDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB38271493C9002EB696 /* ProcessDetailViewController.xib */; };
+		DBC7AB5027173AD9002EB696 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB4F27173AD9002EB696 /* OTPTextField.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DBBC025D2711E3A30033D364 /* NS2GO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NS2GO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBBC02602711E3A30033D364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DBBC02692711E3AF0033D364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DBBC026C2711E3AF0033D364 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DBBC026E2711E3AF0033D364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBBC027A2711E4B40033D364 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		DBBC027B2711E4B40033D364 /* RegistrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
+		DBBC02802711EBC00033D364 /* RegistrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewCell.swift; sourceTree = "<group>"; };
+		DBBC02812711EBC00033D364 /* RegistrationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationTableViewCell.xib; sourceTree = "<group>"; };
+		DBC7AAB327127D77002EB696 /* OTPVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationViewController.swift; sourceTree = "<group>"; };
+		DBC7AAB427127D77002EB696 /* OTPVerificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTPVerificationViewController.xib; sourceTree = "<group>"; };
+		DBC7AABB27127F51002EB696 /* ActivationSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationSuccessViewController.swift; sourceTree = "<group>"; };
+		DBC7AABC27127F51002EB696 /* ActivationSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivationSuccessViewController.xib; sourceTree = "<group>"; };
+		DBC7AAC22712850A002EB696 /* ServerInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerInformationViewController.swift; sourceTree = "<group>"; };
+		DBC7AAC32712850A002EB696 /* ServerInformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServerInformationViewController.xib; sourceTree = "<group>"; };
+		DBC7AAC8271312CF002EB696 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DBC7AAC9271312CF002EB696 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		DBC7AAD6271317AA002EB696 /* ServerListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerListViewController.swift; sourceTree = "<group>"; };
+		DBC7AAD7271317AA002EB696 /* ServerListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerListViewController.xib; sourceTree = "<group>"; };
+		DBC7AADB2713189F002EB696 /* ServerListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListTableViewCell.swift; sourceTree = "<group>"; };
+		DBC7AADC2713189F002EB696 /* ServerListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServerListTableViewCell.xib; sourceTree = "<group>"; };
+		DBC7AAE12713212B002EB696 /* NodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTableViewCell.swift; sourceTree = "<group>"; };
+		DBC7AAE22713212B002EB696 /* NodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeTableViewCell.xib; sourceTree = "<group>"; };
+		DBC7AAE72713213C002EB696 /* NodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
+		DBC7AAE82713213C002EB696 /* NodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeViewController.xib; sourceTree = "<group>"; };
+		DBC7AAEC271328F0002EB696 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		DBC7AAED271328F0002EB696 /* LaunchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
+		DBC7AAF527147B07002EB696 /* CPUListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUListViewController.swift; sourceTree = "<group>"; };
+		DBC7AAF627147B07002EB696 /* CPUListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CPUListViewController.xib; sourceTree = "<group>"; };
+		DBC7AAFA27147B7D002EB696 /* StatusListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusListTableViewCell.swift; sourceTree = "<group>"; };
+		DBC7AAFB27147B7D002EB696 /* StatusListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusListTableViewCell.xib; sourceTree = "<group>"; };
+		DBC7AB0027148921002EB696 /* IPUListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPUListViewController.swift; sourceTree = "<group>"; };
+		DBC7AB0127148921002EB696 /* IPUListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IPUListViewController.xib; sourceTree = "<group>"; };
+		DBC7AB0F27148A40002EB696 /* DiskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskListViewController.swift; sourceTree = "<group>"; };
+		DBC7AB1027148A40002EB696 /* DiskListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiskListViewController.xib; sourceTree = "<group>"; };
+		DBC7AB1527148AE3002EB696 /* ProcessListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessListViewController.swift; sourceTree = "<group>"; };
+		DBC7AB1627148AE3002EB696 /* ProcessListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProcessListViewController.xib; sourceTree = "<group>"; };
+		DBC7AB1C27148E7C002EB696 /* CPUDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUDetailViewController.swift; sourceTree = "<group>"; };
+		DBC7AB1D27148E7C002EB696 /* CPUDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CPUDetailViewController.xib; sourceTree = "<group>"; };
+		DBC7AB2227148EB6002EB696 /* StatusDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailTableViewCell.swift; sourceTree = "<group>"; };
+		DBC7AB2327148EB6002EB696 /* StatusDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusDetailTableViewCell.xib; sourceTree = "<group>"; };
+		DBC7AB2827149342002EB696 /* IPUDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPUDetailViewController.swift; sourceTree = "<group>"; };
+		DBC7AB2927149342002EB696 /* IPUDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IPUDetailViewController.xib; sourceTree = "<group>"; };
+		DBC7AB2F27149382002EB696 /* DiskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskDetailViewController.swift; sourceTree = "<group>"; };
+		DBC7AB3027149382002EB696 /* DiskDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiskDetailViewController.xib; sourceTree = "<group>"; };
+		DBC7AB37271493C9002EB696 /* ProcessDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessDetailViewController.swift; sourceTree = "<group>"; };
+		DBC7AB38271493C9002EB696 /* ProcessDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProcessDetailViewController.xib; sourceTree = "<group>"; };
+		DBC7AB4F27173AD9002EB696 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DBBC025A2711E3A30033D364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DBBC02542711E3A30033D364 = {
+			isa = PBXGroup;
+			children = (
+				DBBC025F2711E3A30033D364 /* NS2GO */,
+				DBBC025E2711E3A30033D364 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DBBC025E2711E3A30033D364 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC025D2711E3A30033D364 /* NS2GO.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DBBC025F2711E3A30033D364 /* NS2GO */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB4E27173ACD002EB696 /* View */,
+				DBBC02762711E4830033D364 /* Screen */,
+				DBBC02602711E3A30033D364 /* AppDelegate.swift */,
+				DBBC02692711E3AF0033D364 /* Assets.xcassets */,
+				DBBC026B2711E3AF0033D364 /* LaunchScreen.storyboard */,
+				DBBC026E2711E3AF0033D364 /* Info.plist */,
+			);
+			path = NS2GO;
+			sourceTree = "<group>";
+		};
+		DBBC02762711E4830033D364 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AACD27131755002EB696 /* Main */,
+				DBC7AAB927127F32002EB696 /* Onboarding */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		DBBC02772711E48D0033D364 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				DBBC027A2711E4B40033D364 /* RegistrationViewController.swift */,
+				DBBC027B2711E4B40033D364 /* RegistrationViewController.xib */,
+				DBBC02802711EBC00033D364 /* RegistrationTableViewCell.swift */,
+				DBBC02812711EBC00033D364 /* RegistrationTableViewCell.xib */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		DBBC02782711E4950033D364 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AAEC271328F0002EB696 /* LaunchViewController.swift */,
+				DBC7AAED271328F0002EB696 /* LaunchViewController.xib */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		DBBC02792711E49C0033D364 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AAC8271312CF002EB696 /* LoginViewController.swift */,
+				DBC7AAC9271312CF002EB696 /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DBC7AAB227127CCF002EB696 /* OTPVerification */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AAB327127D77002EB696 /* OTPVerificationViewController.swift */,
+				DBC7AAB427127D77002EB696 /* OTPVerificationViewController.xib */,
+			);
+			path = OTPVerification;
+			sourceTree = "<group>";
+		};
+		DBC7AAB927127F32002EB696 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AAC1271284F8002EB696 /* ServerInformation */,
+				DBC7AABA27127F3D002EB696 /* ActivationSuccess */,
+				DBC7AAB227127CCF002EB696 /* OTPVerification */,
+				DBBC02792711E49C0033D364 /* Login */,
+				DBBC02782711E4950033D364 /* Launch */,
+				DBBC02772711E48D0033D364 /* Registration */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		DBC7AABA27127F3D002EB696 /* ActivationSuccess */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AABB27127F51002EB696 /* ActivationSuccessViewController.swift */,
+				DBC7AABC27127F51002EB696 /* ActivationSuccessViewController.xib */,
+			);
+			path = ActivationSuccess;
+			sourceTree = "<group>";
+		};
+		DBC7AAC1271284F8002EB696 /* ServerInformation */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AAC22712850A002EB696 /* ServerInformationViewController.swift */,
+				DBC7AAC32712850A002EB696 /* ServerInformationViewController.xib */,
+			);
+			path = ServerInformation;
+			sourceTree = "<group>";
+		};
+		DBC7AACD27131755002EB696 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB35271493B7002EB696 /* ProcessDetail */,
+				DBC7AB2E27149377002EB696 /* DiskDetail */,
+				DBC7AB2727149333002EB696 /* ListDetail */,
+				DBC7AB1B27148E69002EB696 /* CPUDetail */,
+				DBC7AB1427148A7A002EB696 /* ProcessList */,
+				DBC7AB062714897D002EB696 /* DiskList */,
+				DBC7AAFF27148910002EB696 /* IPUList */,
+				DBC7AAF427147AED002EB696 /* CPUList */,
+				DBC7AAE0271320F4002EB696 /* Node */,
+				DBC7AAD5271317AA002EB696 /* ServerList */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DBC7AAD5271317AA002EB696 /* ServerList */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AAD6271317AA002EB696 /* ServerListViewController.swift */,
+				DBC7AAD7271317AA002EB696 /* ServerListViewController.xib */,
+				DBC7AADB2713189F002EB696 /* ServerListTableViewCell.swift */,
+				DBC7AADC2713189F002EB696 /* ServerListTableViewCell.xib */,
+			);
+			path = ServerList;
+			sourceTree = "<group>";
+		};
+		DBC7AAE0271320F4002EB696 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AAE12713212B002EB696 /* NodeTableViewCell.swift */,
+				DBC7AAE22713212B002EB696 /* NodeTableViewCell.xib */,
+				DBC7AAE72713213C002EB696 /* NodeViewController.swift */,
+				DBC7AAE82713213C002EB696 /* NodeViewController.xib */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		DBC7AAF427147AED002EB696 /* CPUList */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AAF527147B07002EB696 /* CPUListViewController.swift */,
+				DBC7AAF627147B07002EB696 /* CPUListViewController.xib */,
+				DBC7AAFA27147B7D002EB696 /* StatusListTableViewCell.swift */,
+				DBC7AAFB27147B7D002EB696 /* StatusListTableViewCell.xib */,
+			);
+			path = CPUList;
+			sourceTree = "<group>";
+		};
+		DBC7AAFF27148910002EB696 /* IPUList */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB0027148921002EB696 /* IPUListViewController.swift */,
+				DBC7AB0127148921002EB696 /* IPUListViewController.xib */,
+			);
+			path = IPUList;
+			sourceTree = "<group>";
+		};
+		DBC7AB062714897D002EB696 /* DiskList */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB0F27148A40002EB696 /* DiskListViewController.swift */,
+				DBC7AB1027148A40002EB696 /* DiskListViewController.xib */,
+			);
+			path = DiskList;
+			sourceTree = "<group>";
+		};
+		DBC7AB1427148A7A002EB696 /* ProcessList */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB1527148AE3002EB696 /* ProcessListViewController.swift */,
+				DBC7AB1627148AE3002EB696 /* ProcessListViewController.xib */,
+			);
+			path = ProcessList;
+			sourceTree = "<group>";
+		};
+		DBC7AB1B27148E69002EB696 /* CPUDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB1C27148E7C002EB696 /* CPUDetailViewController.swift */,
+				DBC7AB1D27148E7C002EB696 /* CPUDetailViewController.xib */,
+				DBC7AB2227148EB6002EB696 /* StatusDetailTableViewCell.swift */,
+				DBC7AB2327148EB6002EB696 /* StatusDetailTableViewCell.xib */,
+			);
+			path = CPUDetail;
+			sourceTree = "<group>";
+		};
+		DBC7AB2727149333002EB696 /* ListDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB2827149342002EB696 /* IPUDetailViewController.swift */,
+				DBC7AB2927149342002EB696 /* IPUDetailViewController.xib */,
+			);
+			path = ListDetail;
+			sourceTree = "<group>";
+		};
+		DBC7AB2E27149377002EB696 /* DiskDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB2F27149382002EB696 /* DiskDetailViewController.swift */,
+				DBC7AB3027149382002EB696 /* DiskDetailViewController.xib */,
+			);
+			path = DiskDetail;
+			sourceTree = "<group>";
+		};
+		DBC7AB35271493B7002EB696 /* ProcessDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB37271493C9002EB696 /* ProcessDetailViewController.swift */,
+				DBC7AB38271493C9002EB696 /* ProcessDetailViewController.xib */,
+			);
+			path = ProcessDetail;
+			sourceTree = "<group>";
+		};
+		DBC7AB4E27173ACD002EB696 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB4F27173AD9002EB696 /* OTPTextField.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DBBC025C2711E3A30033D364 /* NS2GO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBBC02712711E3AF0033D364 /* Build configuration list for PBXNativeTarget "NS2GO" */;
+			buildPhases = (
+				DBBC02592711E3A30033D364 /* Sources */,
+				DBBC025A2711E3A30033D364 /* Frameworks */,
+				DBBC025B2711E3A30033D364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NS2GO;
+			productName = NS2GO;
+			productReference = DBBC025D2711E3A30033D364 /* NS2GO.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DBBC02552711E3A30033D364 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					DBBC025C2711E3A30033D364 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = DBBC02582711E3A30033D364 /* Build configuration list for PBXProject "NS2GO" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DBBC02542711E3A30033D364;
+			productRefGroup = DBBC025E2711E3A30033D364 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DBBC025C2711E3A30033D364 /* NS2GO */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DBBC025B2711E3A30033D364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBC7AB2527148EB6002EB696 /* StatusDetailTableViewCell.xib in Resources */,
+				DBC7AB1F27148E7C002EB696 /* CPUDetailViewController.xib in Resources */,
+				DBC7AACB271312CF002EB696 /* LoginViewController.xib in Resources */,
+				DBC7AAEF271328F0002EB696 /* LaunchViewController.xib in Resources */,
+				DBC7AABE27127F51002EB696 /* ActivationSuccessViewController.xib in Resources */,
+				DBC7AB0327148921002EB696 /* IPUListViewController.xib in Resources */,
+				DBBC02832711EBC00033D364 /* RegistrationTableViewCell.xib in Resources */,
+				DBC7AAD9271317AA002EB696 /* ServerListViewController.xib in Resources */,
+				DBC7AB2B27149342002EB696 /* IPUDetailViewController.xib in Resources */,
+				DBC7AB3A271493C9002EB696 /* ProcessDetailViewController.xib in Resources */,
+				DBC7AAEA2713213C002EB696 /* NodeViewController.xib in Resources */,
+				DBC7AB3227149382002EB696 /* DiskDetailViewController.xib in Resources */,
+				DBBC027D2711E4B40033D364 /* RegistrationViewController.xib in Resources */,
+				DBC7AAF827147B07002EB696 /* CPUListViewController.xib in Resources */,
+				DBC7AAE42713212B002EB696 /* NodeTableViewCell.xib in Resources */,
+				DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */,
+				DBC7AAFD27147B7D002EB696 /* StatusListTableViewCell.xib in Resources */,
+				DBC7AB1827148AE3002EB696 /* ProcessListViewController.xib in Resources */,
+				DBC7AB1227148A40002EB696 /* DiskListViewController.xib in Resources */,
+				DBC7AADE2713189F002EB696 /* ServerListTableViewCell.xib in Resources */,
+				DBC7AAB627127D77002EB696 /* OTPVerificationViewController.xib in Resources */,
+				DBBC026A2711E3AF0033D364 /* Assets.xcassets in Resources */,
+				DBC7AAC52712850A002EB696 /* ServerInformationViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DBBC02592711E3A30033D364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBC7AACA271312CF002EB696 /* LoginViewController.swift in Sources */,
+				DBC7AB3127149382002EB696 /* DiskDetailViewController.swift in Sources */,
+				DBC7AAE32713212B002EB696 /* NodeTableViewCell.swift in Sources */,
+				DBC7AABD27127F51002EB696 /* ActivationSuccessViewController.swift in Sources */,
+				DBBC027C2711E4B40033D364 /* RegistrationViewController.swift in Sources */,
+				DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */,
+				DBC7AAD8271317AA002EB696 /* ServerListViewController.swift in Sources */,
+				DBC7AB1E27148E7C002EB696 /* CPUDetailViewController.swift in Sources */,
+				DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */,
+				DBC7AB1727148AE3002EB696 /* ProcessListViewController.swift in Sources */,
+				DBC7AB2427148EB6002EB696 /* StatusDetailTableViewCell.swift in Sources */,
+				DBC7AAFC27147B7D002EB696 /* StatusListTableViewCell.swift in Sources */,
+				DBC7AAEE271328F0002EB696 /* LaunchViewController.swift in Sources */,
+				DBC7AB5027173AD9002EB696 /* OTPTextField.swift in Sources */,
+				DBC7AB0227148921002EB696 /* IPUListViewController.swift in Sources */,
+				DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */,
+				DBC7AAF727147B07002EB696 /* CPUListViewController.swift in Sources */,
+				DBC7AADD2713189F002EB696 /* ServerListTableViewCell.swift in Sources */,
+				DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */,
+				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
+				DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */,
+				DBC7AAB527127D77002EB696 /* OTPVerificationViewController.swift in Sources */,
+				DBC7AB2A27149342002EB696 /* IPUDetailViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DBBC026B2711E3AF0033D364 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBBC026C2711E3AF0033D364 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DBBC026F2711E3AF0033D364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DBBC02702711E3AF0033D364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DBBC02722711E3AF0033D364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P8B979NUW2;
+				INFOPLIST_FILE = NS2GO/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mrhoo.NS2GO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DBBC02732711E3AF0033D364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P8B979NUW2;
+				INFOPLIST_FILE = NS2GO/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mrhoo.NS2GO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DBBC02582711E3A30033D364 /* Build configuration list for PBXProject "NS2GO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBBC026F2711E3AF0033D364 /* Debug */,
+				DBBC02702711E3AF0033D364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBBC02712711E3AF0033D364 /* Build configuration list for PBXNativeTarget "NS2GO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBBC02722711E3AF0033D364 /* Debug */,
+				DBBC02732711E3AF0033D364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DBBC02552711E3A30033D364 /* Project object */;
+}

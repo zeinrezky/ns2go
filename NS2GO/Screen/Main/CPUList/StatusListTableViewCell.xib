@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatusListTableViewCell" rowHeight="40" id="KGk-i7-Jjw" customClass="StatusListTableViewCell" customModule="NS2GO" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TlR-dO-Ai4">
+                        <rect key="frame" x="40" y="16" width="12" height="12"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="QuK-ly-Awf"/>
+                            <constraint firstAttribute="width" secondItem="TlR-dO-Ai4" secondAttribute="height" id="fE4-Mo-sUQ"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzf-38-jSi">
+                        <rect key="frame" x="64" y="14.5" width="216" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bzf-38-jSi" firstAttribute="centerY" secondItem="TlR-dO-Ai4" secondAttribute="centerY" id="YCm-3d-Zbd"/>
+                    <constraint firstItem="TlR-dO-Ai4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dCf-ab-4xw"/>
+                    <constraint firstItem="bzf-38-jSi" firstAttribute="leading" secondItem="TlR-dO-Ai4" secondAttribute="trailing" constant="12" id="dYL-92-zr5"/>
+                    <constraint firstAttribute="trailing" secondItem="bzf-38-jSi" secondAttribute="trailing" constant="40" id="m5i-Lh-fVm"/>
+                    <constraint firstItem="TlR-dO-Ai4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="yJi-Z3-SfD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="statusIndicatorView" destination="TlR-dO-Ai4" id="Nqr-7g-njW"/>
+                <outlet property="statusLabel" destination="bzf-38-jSi" id="xk8-WP-SbC"/>
+            </connections>
+            <point key="canvasLocation" x="-19" y="90"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
