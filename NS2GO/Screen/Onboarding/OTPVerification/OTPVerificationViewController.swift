@@ -12,12 +12,19 @@ class OTPVerificationViewController: UIViewController {
 	var onSuccessVerification: (() -> Void)?
 	
 	@IBOutlet weak var otpStackView: UIStackView!
+	@IBOutlet weak var continueButton: UIButton!
 	
 	private var otpTextFields: [OTPTextField] = []
+	
+	
+	@IBAction func continueButtonTapped(_ sender: Any) {
+		presentActivationSuccess()
+	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupTextFields()
+		continueButton.layer.cornerRadius = 4
     }
 	
 	private func presentActivationSuccess() {

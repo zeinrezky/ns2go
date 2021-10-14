@@ -22,7 +22,10 @@ class ActivationSuccessViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		setupView()
     }
+	
+	private func setupView() {
+		continueButton.layer.cornerRadius = 4
+	}
 }

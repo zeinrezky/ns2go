@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OTPVerificationViewController" customModule="NS2GO" customModuleProvider="target">
             <connections>
+                <outlet property="continueButton" destination="ScK-rG-QPs" id="BkD-to-iY2"/>
                 <outlet property="otpStackView" destination="1FO-g3-tGi" id="NY4-d0-UQa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="o0h-fh-x0v">
-                    <rect key="frame" x="0.0" y="40" width="375" height="198.5"/>
+                    <rect key="frame" x="0.0" y="40" width="375" height="254.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3m-pw-w5c">
                             <rect key="frame" x="118.5" y="0.0" width="138" height="21.5"/>
@@ -57,10 +58,26 @@
                                 <color key="titleColor" red="0.32549019610000002" green="0.49803921569999998" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScK-rG-QPs">
+                            <rect key="frame" x="40" y="210.5" width="295" height="44"/>
+                            <color key="backgroundColor" red="0.32549019610000002" green="0.49803921569999998" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="3ad-ih-2FW"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="CONTINUE">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="continueButtonTapped:" destination="-1" eventType="touchUpInside" id="LON-HP-Cmp"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="1FO-g3-tGi" firstAttribute="leading" secondItem="o0h-fh-x0v" secondAttribute="leading" constant="40" id="Iwr-38-1jA"/>
                         <constraint firstAttribute="trailing" secondItem="1FO-g3-tGi" secondAttribute="trailing" constant="40" id="L6l-8c-Sez"/>
+                        <constraint firstAttribute="trailing" secondItem="ScK-rG-QPs" secondAttribute="trailing" constant="40" id="mFS-B8-m8e"/>
+                        <constraint firstItem="ScK-rG-QPs" firstAttribute="leading" secondItem="o0h-fh-x0v" secondAttribute="leading" constant="40" id="nfj-ya-mVh"/>
                     </constraints>
                 </stackView>
             </subviews>

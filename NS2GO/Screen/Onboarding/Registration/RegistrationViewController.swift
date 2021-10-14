@@ -13,8 +13,17 @@ class RegistrationViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var footerView: UIView!
 	@IBOutlet weak var checkboxView: UIView!
-	
 	@IBOutlet weak var continueButton: UIButton!
+	
+	private var isTnCChecked: Bool = false {
+		didSet {
+			if isTnCChecked {
+				checkTnC()
+			} else {
+				uncheckTnC()
+			}
+		}
+	}
 	
 	@IBAction func continueButtonTapped(_ sender: Any) {
 		let inputOTPVC = OTPVerificationViewController()
@@ -30,7 +39,7 @@ class RegistrationViewController: UIViewController {
 	
 	
 	@IBAction func tncButtonTapped(_ sender: Any) {
-		
+		isTnCChecked = !isTnCChecked
 	}
 	
 	private let cells: [[RegistrationTableViewCell.CellType]] = [
@@ -54,8 +63,9 @@ class RegistrationViewController: UIViewController {
 	
 	private func setupView() {
 		setupTableView()
-		setupCheckboxView()
+		uncheckTnC()
 		continueButton.layer.cornerRadius = 4
+		checkboxView.isUserInteractionEnabled = false
 	}
 	
 	private func setupTableView() {
@@ -64,11 +74,31 @@ class RegistrationViewController: UIViewController {
 		tableView.tableHeaderView = headerView
 		tableView.tableFooterView = footerView
 		tableView.separatorStyle = .none
+		tableView.backgroundColor = .white
 		tableView.register(UINib(nibName: RegistrationTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RegistrationTableViewCell.identifier)
 	}
 	
-	private func setupCheckboxView() {
+	private func checkTnC() {
+		let blueColor = UIColor(red: 83.0/255.0, green: 127.0/255.0, blue: 227.0/255.0, alpha: 1)
+		checkboxView.layer.borderColor = blueColor.cgColor
+		checkboxView.backgroundColor = blueColor
+		let width = checkboxView.frame.width
 		
+		let insideStrokeLayer = CAShapeLayer()
+		insideStrokeLayer.accessibilityLabel = "insideStroke"
+		insideStrokeLayer.path = UIBezierPath(roundedRect: CGRect(x: 1, y: 1, width: width - 2, height: width - 2), cornerRadius: 0).cgPath
+		insideStrokeLayer.strokeColor = UIColor.white.cgColor
+		insideStrokeLayer.borderWidth = 3
+		insideStrokeLayer.fillColor = UIColor.clear.cgColor
+		checkboxView.layer.addSublayer(insideStrokeLayer)
+	}
+	
+	private func uncheckTnC() {
+		checkboxView.layer.borderWidth = 1
+		checkboxView.layer.borderColor = UIColor.black.cgColor
+		checkboxView.backgroundColor = .white
+		
+		checkboxView.layer.sublayers?.removeAll(where: {$0.accessibilityLabel == "insideStroke"})
 	}
 
 	private func pushToServerInfo() {
@@ -108,8 +138,8 @@ extension RegistrationViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		if section == 1 {
-			let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
-			let label = UILabel(frame: CGRect(x: 0, y: 50, width: tableView.frame.width, height: 20))
+			let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+			let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 20))
 			label.text = "Company Information"
 			label.textAlignment = .center
 			label.textColor = .darkGray
@@ -121,9 +151,21 @@ extension RegistrationViewController: UITableViewDataSource {
 		return nil
 	}
 	
+	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+		return UIView()
+	}
+	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		if section == 1 {
-			return 100.0
+			return 40.0
+		}
+		
+		return 0
+	}
+	
+	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		if section == 0 {
+			return 60.0
 		}
 		
 		return 0

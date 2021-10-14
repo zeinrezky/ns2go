@@ -11,7 +11,6 @@ class RegistrationTableViewCell: UITableViewCell {
 	
 	static let identifier: String = "RegistrationTableViewCell"
 	
-	
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var textFieldContainer: UIView!
 	@IBOutlet weak var inputTextField: UITextField!

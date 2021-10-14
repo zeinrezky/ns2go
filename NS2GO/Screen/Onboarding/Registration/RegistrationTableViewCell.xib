@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PjG-Y2-gUv">
-                        <rect key="frame" x="60" y="8" width="294" height="78"/>
+                        <rect key="frame" x="40" y="8" width="334" height="78"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVe-J8-Wi5">
-                                <rect key="frame" x="0.0" y="0.0" width="294" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="334" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="GHU-Hd-sdF"/>
                                 </constraints>
@@ -30,10 +30,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Do-We-sFD">
-                                <rect key="frame" x="0.0" y="28" width="294" height="50"/>
+                                <rect key="frame" x="0.0" y="28" width="334" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c5t-Cj-5Hg">
-                                        <rect key="frame" x="8" y="8" width="278" height="34"/>
+                                        <rect key="frame" x="8" y="8" width="318" height="34"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -54,8 +54,8 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="PjG-Y2-gUv" secondAttribute="bottom" constant="8" id="4t6-fU-YuY"/>
                     <constraint firstItem="PjG-Y2-gUv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="IOe-8j-b0d"/>
-                    <constraint firstAttribute="trailing" secondItem="PjG-Y2-gUv" secondAttribute="trailing" constant="60" id="LG1-vt-Umq"/>
-                    <constraint firstItem="PjG-Y2-gUv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="dSw-4D-DPo"/>
+                    <constraint firstAttribute="trailing" secondItem="PjG-Y2-gUv" secondAttribute="trailing" constant="40" id="LG1-vt-Umq"/>
+                    <constraint firstItem="PjG-Y2-gUv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="dSw-4D-DPo"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

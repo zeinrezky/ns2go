@@ -15,7 +15,6 @@ class ServerInformationViewController: UIViewController {
 	@IBOutlet weak var portTextField: UITextField!
 	@IBOutlet weak var saveButton: UIButton!
 	
-	
 	@IBAction func saveButtonTapped(_ sender: Any) {
 		let loginVC = LoginViewController()
 		DispatchQueue.main.async { [weak self] in
@@ -25,12 +24,17 @@ class ServerInformationViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		setupTextFieldContanier()
+		setupView()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
+	}
+	
+	private func setupView() {
+		saveButton.layer.cornerRadius = 4
+		setupTextFieldContanier()
 	}
 	
 	private func setupNavigationBar() {
