@@ -17,6 +17,16 @@ class CPUListViewController: UIViewController {
 		setupTableView()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupNavigationBar()
+	}
+ 
+	private func setupNavigationBar() {
+		self.setupDefaultNavigationBar()
+		self.title = "CPU"
+	}
+	
 	private func setupTableView() {
 		tableView.delegate = self
 		tableView.dataSource = self

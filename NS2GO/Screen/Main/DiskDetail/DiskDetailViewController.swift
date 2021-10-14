@@ -16,6 +16,16 @@ class DiskDetailViewController: UIViewController {
 		setupTableView()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupNavigationBar()
+	}
+ 
+	private func setupNavigationBar() {
+		self.setupDefaultNavigationBar()
+		self.title = "Disk"
+	}
+	
 	private func setupTableView() {
 		tableView.delegate = self
 		tableView.dataSource = self

@@ -30,7 +30,23 @@ class LoginViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		setupTextFieldContanier()
+		
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupNavigationBar()
+	}
+	
+	private func setupNavigationBar() {
+		self.setupDefaultNavigationBar()
+	}
+	
+	private func setupTextFieldContanier() {
+		textFieldContainers.forEach { [weak self] (view) in
+			view.layer.borderColor = UIColor.darkGray.cgColor
+			view.layer.borderWidth = 1
+		}
+	}
 }

@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="l5V-HR-nsd">
-                    <rect key="frame" x="40" y="84" width="334" height="402.5"/>
+                    <rect key="frame" x="40" y="64" width="334" height="402.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NonStop Server Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2g-Nf-rLl">
                             <rect key="frame" x="0.0" y="0.0" width="334" height="21.5"/>
@@ -121,7 +121,7 @@
             <constraints>
                 <constraint firstItem="l5V-HR-nsd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="35N-Jx-sc9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="l5V-HR-nsd" secondAttribute="trailing" constant="40" id="6F9-T5-tve"/>
-                <constraint firstItem="l5V-HR-nsd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="mrC-dF-iTu"/>
+                <constraint firstItem="l5V-HR-nsd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="mrC-dF-iTu"/>
             </constraints>
             <point key="canvasLocation" x="-74" y="66"/>
         </view>

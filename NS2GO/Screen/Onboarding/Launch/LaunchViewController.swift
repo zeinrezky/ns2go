@@ -13,22 +13,22 @@ class LaunchViewController: UIViewController {
 	
 	@IBAction func startButtonTapped(_ sender: Any) {
 		let register = RegistrationViewController()
-		let navVC = UINavigationController(rootViewController: register)
-		
-		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-			  let window = appDelegate.window else {
-			return
-		}
-		
-		DispatchQueue.main.async { [weak self] in
-			window.rootViewController = navVC
-		}
+		self.navigationController?.pushViewController(register, animated: true)
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		configureView()
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupNavigationBar()
+	}
+	
+	private func setupNavigationBar() {
+		self.setupDefaultNavigationBar()
+	}
 	
 	private func configureView() {
 		startButton.layer.cornerRadius = 4

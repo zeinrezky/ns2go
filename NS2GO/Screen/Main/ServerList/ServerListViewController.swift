@@ -19,6 +19,16 @@ class ServerListViewController: UIViewController {
 		setupTableView()
     }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupNavigationBar()
+	}
+	
+	private func setupNavigationBar() {
+		self.setupDefaultNavigationBar()
+		self.title = "NS2GO"
+	}
+	
 	private func setupTableView() {
 		tableView.delegate = self
 		tableView.dataSource = self

@@ -28,6 +28,11 @@ class RegistrationViewController: UIViewController {
 		}
 	}
 	
+	
+	@IBAction func tncButtonTapped(_ sender: Any) {
+		
+	}
+	
 	private let cells: [[RegistrationTableViewCell.CellType]] = [
 		[.firstName, .lastName, .email],
 		[.company, .country, .city]
@@ -35,14 +40,22 @@ class RegistrationViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		setupTableView()
+		setupView()
     }
 	
-	private func pushToServerInfo() {
-		let serverVC = ServerInformationViewController()
-		DispatchQueue.main.async { [weak self] in
-			self?.navigationController?.pushViewController(serverVC, animated: true)
-		}
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupNavigationBar()
+	}
+	
+	private func setupNavigationBar() {
+		self.setupDefaultNavigationBar()
+	}
+	
+	private func setupView() {
+		setupTableView()
+		setupCheckboxView()
+		continueButton.layer.cornerRadius = 4
 	}
 	
 	private func setupTableView() {
@@ -58,6 +71,12 @@ class RegistrationViewController: UIViewController {
 		
 	}
 
+	private func pushToServerInfo() {
+		let serverVC = ServerInformationViewController()
+		DispatchQueue.main.async { [weak self] in
+			self?.navigationController?.pushViewController(serverVC, animated: true)
+		}
+	}
 }
 
 extension RegistrationViewController: UITableViewDelegate {

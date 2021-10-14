@@ -17,6 +17,16 @@ class IPUListViewController: UIViewController {
 		setupTableView()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupNavigationBar()
+	}
+ 
+	private func setupNavigationBar() {
+		self.setupDefaultNavigationBar()
+		self.title = "IPU"
+	}
+	
 	private func setupTableView() {
 		tableView.delegate = self
 		tableView.dataSource = self

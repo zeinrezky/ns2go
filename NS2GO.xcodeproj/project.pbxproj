@@ -46,13 +46,14 @@
 		DBC7AB1F27148E7C002EB696 /* CPUDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB1D27148E7C002EB696 /* CPUDetailViewController.xib */; };
 		DBC7AB2427148EB6002EB696 /* StatusDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB2227148EB6002EB696 /* StatusDetailTableViewCell.swift */; };
 		DBC7AB2527148EB6002EB696 /* StatusDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB2327148EB6002EB696 /* StatusDetailTableViewCell.xib */; };
-		DBC7AB2A27149342002EB696 /* IPUDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB2827149342002EB696 /* IPUDetailViewController.swift */; };
-		DBC7AB2B27149342002EB696 /* IPUDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB2927149342002EB696 /* IPUDetailViewController.xib */; };
 		DBC7AB3127149382002EB696 /* DiskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB2F27149382002EB696 /* DiskDetailViewController.swift */; };
 		DBC7AB3227149382002EB696 /* DiskDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB3027149382002EB696 /* DiskDetailViewController.xib */; };
 		DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB37271493C9002EB696 /* ProcessDetailViewController.swift */; };
 		DBC7AB3A271493C9002EB696 /* ProcessDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB38271493C9002EB696 /* ProcessDetailViewController.xib */; };
 		DBC7AB5027173AD9002EB696 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB4F27173AD9002EB696 /* OTPTextField.swift */; };
+		DBC7AB552717BCA8002EB696 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB542717BCA8002EB696 /* UIViewController.swift */; };
+		DBC7AB712717C7AF002EB696 /* IPUDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AB6F2717C7AF002EB696 /* IPUDetailViewController.xib */; };
+		DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB702717C7AF002EB696 /* IPUDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,13 +98,14 @@
 		DBC7AB1D27148E7C002EB696 /* CPUDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CPUDetailViewController.xib; sourceTree = "<group>"; };
 		DBC7AB2227148EB6002EB696 /* StatusDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailTableViewCell.swift; sourceTree = "<group>"; };
 		DBC7AB2327148EB6002EB696 /* StatusDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusDetailTableViewCell.xib; sourceTree = "<group>"; };
-		DBC7AB2827149342002EB696 /* IPUDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPUDetailViewController.swift; sourceTree = "<group>"; };
-		DBC7AB2927149342002EB696 /* IPUDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IPUDetailViewController.xib; sourceTree = "<group>"; };
 		DBC7AB2F27149382002EB696 /* DiskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskDetailViewController.swift; sourceTree = "<group>"; };
 		DBC7AB3027149382002EB696 /* DiskDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiskDetailViewController.xib; sourceTree = "<group>"; };
 		DBC7AB37271493C9002EB696 /* ProcessDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessDetailViewController.swift; sourceTree = "<group>"; };
 		DBC7AB38271493C9002EB696 /* ProcessDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProcessDetailViewController.xib; sourceTree = "<group>"; };
 		DBC7AB4F27173AD9002EB696 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
+		DBC7AB542717BCA8002EB696 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		DBC7AB6F2717C7AF002EB696 /* IPUDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPUDetailViewController.xib; sourceTree = "<group>"; };
+		DBC7AB702717C7AF002EB696 /* IPUDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPUDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		DBBC025F2711E3A30033D364 /* NS2GO */ = {
 			isa = PBXGroup;
 			children = (
+				DBC7AB532717BC92002EB696 /* Extension */,
 				DBC7AB4E27173ACD002EB696 /* View */,
 				DBBC02762711E4830033D364 /* Screen */,
 				DBBC02602711E3A30033D364 /* AppDelegate.swift */,
@@ -229,7 +232,7 @@
 			children = (
 				DBC7AB35271493B7002EB696 /* ProcessDetail */,
 				DBC7AB2E27149377002EB696 /* DiskDetail */,
-				DBC7AB2727149333002EB696 /* ListDetail */,
+				DBC7AB6E2717C7AF002EB696 /* IPUDetail */,
 				DBC7AB1B27148E69002EB696 /* CPUDetail */,
 				DBC7AB1427148A7A002EB696 /* ProcessList */,
 				DBC7AB062714897D002EB696 /* DiskList */,
@@ -312,15 +315,6 @@
 			path = CPUDetail;
 			sourceTree = "<group>";
 		};
-		DBC7AB2727149333002EB696 /* ListDetail */ = {
-			isa = PBXGroup;
-			children = (
-				DBC7AB2827149342002EB696 /* IPUDetailViewController.swift */,
-				DBC7AB2927149342002EB696 /* IPUDetailViewController.xib */,
-			);
-			path = ListDetail;
-			sourceTree = "<group>";
-		};
 		DBC7AB2E27149377002EB696 /* DiskDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +339,23 @@
 				DBC7AB4F27173AD9002EB696 /* OTPTextField.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DBC7AB532717BC92002EB696 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB542717BCA8002EB696 /* UIViewController.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DBC7AB6E2717C7AF002EB696 /* IPUDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DBC7AB6F2717C7AF002EB696 /* IPUDetailViewController.xib */,
+				DBC7AB702717C7AF002EB696 /* IPUDetailViewController.swift */,
+			);
+			path = IPUDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,11 +419,11 @@
 				DBC7AB1F27148E7C002EB696 /* CPUDetailViewController.xib in Resources */,
 				DBC7AACB271312CF002EB696 /* LoginViewController.xib in Resources */,
 				DBC7AAEF271328F0002EB696 /* LaunchViewController.xib in Resources */,
+				DBC7AB712717C7AF002EB696 /* IPUDetailViewController.xib in Resources */,
 				DBC7AABE27127F51002EB696 /* ActivationSuccessViewController.xib in Resources */,
 				DBC7AB0327148921002EB696 /* IPUListViewController.xib in Resources */,
 				DBBC02832711EBC00033D364 /* RegistrationTableViewCell.xib in Resources */,
 				DBC7AAD9271317AA002EB696 /* ServerListViewController.xib in Resources */,
-				DBC7AB2B27149342002EB696 /* IPUDetailViewController.xib in Resources */,
 				DBC7AB3A271493C9002EB696 /* ProcessDetailViewController.xib in Resources */,
 				DBC7AAEA2713213C002EB696 /* NodeViewController.xib in Resources */,
 				DBC7AB3227149382002EB696 /* DiskDetailViewController.xib in Resources */,
@@ -445,12 +456,14 @@
 				DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */,
 				DBC7AAD8271317AA002EB696 /* ServerListViewController.swift in Sources */,
 				DBC7AB1E27148E7C002EB696 /* CPUDetailViewController.swift in Sources */,
+				DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */,
 				DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */,
 				DBC7AB1727148AE3002EB696 /* ProcessListViewController.swift in Sources */,
 				DBC7AB2427148EB6002EB696 /* StatusDetailTableViewCell.swift in Sources */,
 				DBC7AAFC27147B7D002EB696 /* StatusListTableViewCell.swift in Sources */,
 				DBC7AAEE271328F0002EB696 /* LaunchViewController.swift in Sources */,
 				DBC7AB5027173AD9002EB696 /* OTPTextField.swift in Sources */,
+				DBC7AB552717BCA8002EB696 /* UIViewController.swift in Sources */,
 				DBC7AB0227148921002EB696 /* IPUListViewController.swift in Sources */,
 				DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */,
 				DBC7AAF727147B07002EB696 /* CPUListViewController.swift in Sources */,
@@ -459,7 +472,6 @@
 				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
 				DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */,
 				DBC7AAB527127D77002EB696 /* OTPVerificationViewController.swift in Sources */,
-				DBC7AB2A27149342002EB696 /* IPUDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
