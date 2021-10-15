@@ -34,6 +34,7 @@ class RegistrationTableViewCell: UITableViewCell {
 	private func setupCell() {
 		textFieldContainer.layer.borderWidth = 1.0
 		textFieldContainer.layer.borderColor = UIColor.darkGray.cgColor
+		inputTextField.addDoneButtonKeyboard()
 	}
     
 }

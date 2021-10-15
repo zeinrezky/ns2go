@@ -13,6 +13,7 @@
                 <outlet property="loginButton" destination="l7f-md-CES" id="DYn-Lv-ABd"/>
                 <outlet property="loginIDTextField" destination="q2f-FQ-Wvb" id="L7b-Bj-OfI"/>
                 <outlet property="passwordTextField" destination="hDn-3O-OPV" id="f7P-yp-9BE"/>
+                <outlet property="scrollView" destination="cfh-BS-tU9" id="t8a-dm-acI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="textFieldContainers" destination="VHs-Gf-zgW" collectionClass="NSMutableArray" id="brM-OE-96G"/>
                 <outletCollection property="textFieldContainers" destination="HIn-GJ-8Vo" collectionClass="NSMutableArray" id="NsR-Ya-hSx"/>

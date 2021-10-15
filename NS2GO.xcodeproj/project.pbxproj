@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
+		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC02602711E3A30033D364 /* AppDelegate.swift */; };
 		DBBC026A2711E3AF0033D364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC02692711E3AF0033D364 /* Assets.xcassets */; };
 		DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC026B2711E3AF0033D364 /* LaunchScreen.storyboard */; };
@@ -57,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBBC025D2711E3A30033D364 /* NS2GO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NS2GO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBC02602711E3A30033D364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBBC02692711E3AF0033D364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 		DBC7AB532717BC92002EB696 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DBA4A3B32719ACB800BA4427 /* UITextField.swift */,
+				DBA4A3B22719ACB700BA4427 /* UITextView.swift */,
 				DBC7AB542717BCA8002EB696 /* UIViewController.swift */,
 			);
 			path = Extension;
@@ -453,8 +459,10 @@
 				DBC7AAE32713212B002EB696 /* NodeTableViewCell.swift in Sources */,
 				DBC7AABD27127F51002EB696 /* ActivationSuccessViewController.swift in Sources */,
 				DBBC027C2711E4B40033D364 /* RegistrationViewController.swift in Sources */,
+				DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */,
 				DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */,
 				DBC7AAD8271317AA002EB696 /* ServerListViewController.swift in Sources */,
+				DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */,
 				DBC7AB1E27148E7C002EB696 /* CPUDetailViewController.swift in Sources */,
 				DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */,
 				DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */,
