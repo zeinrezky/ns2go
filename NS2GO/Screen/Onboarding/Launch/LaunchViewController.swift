@@ -12,7 +12,7 @@ class LaunchViewController: UIViewController {
 	@IBOutlet weak var startButton: UIButton!
 	
 	@IBAction func startButtonTapped(_ sender: Any) {
-		let register = RegistrationViewController()
+		let register = ServerInformationViewController()
 		self.navigationController?.pushViewController(register, animated: true)
 	}
 	

@@ -19,10 +19,12 @@ class ServerInformationViewController: UIViewController {
 	@IBOutlet weak var saveButton: UIButton!
 	
 	@IBAction func saveButtonTapped(_ sender: Any) {
-		let loginVC = LoginViewController()
-		DispatchQueue.main.async { [weak self] in
-			self?.navigationController?.pushViewController(loginVC, animated: true)
-		}
+		VPNManager.shared.connectToVPN()
+		
+//		let loginVC = LoginViewController()
+//		DispatchQueue.main.async { [weak self] in
+//			self?.navigationController?.pushViewController(loginVC, animated: true)
+//		}
 	}
 	
 	override func viewDidLoad() {

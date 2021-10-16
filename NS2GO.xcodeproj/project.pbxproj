@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BCE68F0BBDA5F614507A022B /* Pods_NS2GO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D73CA02A8FA54DCFF8418AC /* Pods_NS2GO.framework */; };
+		ABEA9034903337B482825645 /* Pods_NS2GO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981314274B5968299146F88F /* Pods_NS2GO.framework */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -15,6 +15,8 @@
 		DBA4A3CE2719C0B500BA4427 /* RegisterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3CD2719C0B500BA4427 /* RegisterService.swift */; };
 		DBA4A3D22719C90E00BA4427 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3D12719C90E00BA4427 /* String.swift */; };
 		DBA4A3D52719CBB800BA4427 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3D42719CBB800BA4427 /* LoadingIndicator.swift */; };
+		DBA4A3E1271A8A9D00BA4427 /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3E0271A8A9D00BA4427 /* VPNManager.swift */; };
+		DBA4A3F1271AC0A400BA4427 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3F0271AC0A400BA4427 /* LoginService.swift */; };
 		DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC02602711E3A30033D364 /* AppDelegate.swift */; };
 		DBBC026A2711E3AF0033D364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC02692711E3AF0033D364 /* Assets.xcassets */; };
 		DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC026B2711E3AF0033D364 /* LaunchScreen.storyboard */; };
@@ -64,9 +66,23 @@
 		DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AB702717C7AF002EB696 /* IPUDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DB609A61271ADCCC00E125C7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		7D73CA02A8FA54DCFF8418AC /* Pods_NS2GO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NS2GO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B29DDDEA979B948E2F29B54F /* Pods-NS2GO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.debug.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.debug.xcconfig"; sourceTree = "<group>"; };
+		15D2A2135945290C4A035723 /* Pods-NS2GO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.debug.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.debug.xcconfig"; sourceTree = "<group>"; };
+		981314274B5968299146F88F /* Pods_NS2GO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NS2GO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB609A54271ADCCC00E125C7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -74,6 +90,8 @@
 		DBA4A3CD2719C0B500BA4427 /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
 		DBA4A3D12719C90E00BA4427 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		DBA4A3D42719CBB800BA4427 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		DBA4A3E0271A8A9D00BA4427 /* VPNManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
+		DBA4A3F0271AC0A400BA4427 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		DBBC025D2711E3A30033D364 /* NS2GO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NS2GO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBC02602711E3A30033D364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBBC02692711E3AF0033D364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,7 +141,7 @@
 		DBC7AB542717BCA8002EB696 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		DBC7AB6F2717C7AF002EB696 /* IPUDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPUDetailViewController.xib; sourceTree = "<group>"; };
 		DBC7AB702717C7AF002EB696 /* IPUDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPUDetailViewController.swift; sourceTree = "<group>"; };
-		FCA8BDB08F209EED0B60946E /* Pods-NS2GO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.release.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.release.xcconfig"; sourceTree = "<group>"; };
+		FEDD1BC96EB51B94F4EA2C69 /* Pods-NS2GO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.release.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,17 +149,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCE68F0BBDA5F614507A022B /* Pods_NS2GO.framework in Frameworks */,
+				ABEA9034903337B482825645 /* Pods_NS2GO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		60186687B14ADD63B1693D61 /* Frameworks */ = {
+		53E2060D8E70C94C44A4431B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7D73CA02A8FA54DCFF8418AC /* Pods_NS2GO.framework */,
+				981314274B5968299146F88F /* Pods_NS2GO.framework */,
+				DB609A54271ADCCC00E125C7 /* NetworkExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,8 +168,8 @@
 		C61E5D2C43904D0B4282B8EB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B29DDDEA979B948E2F29B54F /* Pods-NS2GO.debug.xcconfig */,
-				FCA8BDB08F209EED0B60946E /* Pods-NS2GO.release.xcconfig */,
+				15D2A2135945290C4A035723 /* Pods-NS2GO.debug.xcconfig */,
+				FEDD1BC96EB51B94F4EA2C69 /* Pods-NS2GO.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -169,8 +188,17 @@
 			isa = PBXGroup;
 			children = (
 				DBA4A3CD2719C0B500BA4427 /* RegisterService.swift */,
+				DBA4A3F0271AC0A400BA4427 /* LoginService.swift */,
 			);
 			path = Onboard;
+			sourceTree = "<group>";
+		};
+		DBA4A3DF271A8A8E00BA4427 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				DBA4A3E0271A8A9D00BA4427 /* VPNManager.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		DBBC02542711E3A30033D364 = {
@@ -179,7 +207,7 @@
 				DBBC025F2711E3A30033D364 /* NS2GO */,
 				DBBC025E2711E3A30033D364 /* Products */,
 				C61E5D2C43904D0B4282B8EB /* Pods */,
-				60186687B14ADD63B1693D61 /* Frameworks */,
+				53E2060D8E70C94C44A4431B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,6 +222,7 @@
 		DBBC025F2711E3A30033D364 /* NS2GO */ = {
 			isa = PBXGroup;
 			children = (
+				DBA4A3DF271A8A8E00BA4427 /* Helper */,
 				DBA4A3C12719BE5300BA4427 /* Services */,
 				DBC7AB532717BC92002EB696 /* Extension */,
 				DBC7AB4E27173ACD002EB696 /* View */,
@@ -426,11 +455,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBBC02712711E3AF0033D364 /* Build configuration list for PBXNativeTarget "NS2GO" */;
 			buildPhases = (
-				82787AAEB52EED55AD411EB9 /* [CP] Check Pods Manifest.lock */,
+				2AFD1241A26B62CF39C1C53F /* [CP] Check Pods Manifest.lock */,
 				DBBC02592711E3A30033D364 /* Sources */,
 				DBBC025A2711E3A30033D364 /* Frameworks */,
 				DBBC025B2711E3A30033D364 /* Resources */,
-				F59E1372F6174ABF80E774B2 /* [CP] Embed Pods Frameworks */,
+				0FD50BFCF75EFCCA4EC80DBB /* [CP] Embed Pods Frameworks */,
+				DB609A61271ADCCC00E125C7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -507,7 +537,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		82787AAEB52EED55AD411EB9 /* [CP] Check Pods Manifest.lock */ = {
+		0FD50BFCF75EFCCA4EC80DBB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2AFD1241A26B62CF39C1C53F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -527,23 +574,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F59E1372F6174ABF80E774B2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -579,7 +609,9 @@
 				DBC7AAF727147B07002EB696 /* CPUListViewController.swift in Sources */,
 				DBC7AADD2713189F002EB696 /* ServerListTableViewCell.swift in Sources */,
 				DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */,
+				DBA4A3E1271A8A9D00BA4427 /* VPNManager.swift in Sources */,
 				DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */,
+				DBA4A3F1271AC0A400BA4427 /* LoginService.swift in Sources */,
 				DBA4A3C52719BE6600BA4427 /* BaseRequest.swift in Sources */,
 				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
 				DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */,
@@ -719,10 +751,12 @@
 		};
 		DBBC02722711E3AF0033D364 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B29DDDEA979B948E2F29B54F /* Pods-NS2GO.debug.xcconfig */;
+			baseConfigurationReference = 15D2A2135945290C4A035723 /* Pods-NS2GO.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NS2GO/NS2GO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P8B979NUW2;
 				INFOPLIST_FILE = NS2GO/Info.plist;
@@ -740,10 +774,12 @@
 		};
 		DBBC02732711E3AF0033D364 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCA8BDB08F209EED0B60946E /* Pods-NS2GO.release.xcconfig */;
+			baseConfigurationReference = FEDD1BC96EB51B94F4EA2C69 /* Pods-NS2GO.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NS2GO/NS2GORelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P8B979NUW2;
 				INFOPLIST_FILE = NS2GO/Info.plist;

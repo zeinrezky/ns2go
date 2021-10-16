@@ -11,4 +11,7 @@ import Foundation
 struct BaseURL {
     static let guestBaseURL = "https://studio.hpremoteanalyst.com/api/ns2go/"
 	static let vpnBaseURL = "https://10.26.97.22:10132/"
+	
+	static let vpnBaseAddress = "47.180.165.65"
+	static let vpnBasePort = "7443"
 }
