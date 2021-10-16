@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NetworkExtension
 
 class ServerInformationViewController: UIViewController {
 	

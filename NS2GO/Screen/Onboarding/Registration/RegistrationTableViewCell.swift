@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CountryPicker
 
 class RegistrationTableViewCell: UITableViewCell {
 	
@@ -14,6 +15,8 @@ class RegistrationTableViewCell: UITableViewCell {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var textFieldContainer: UIView!
 	@IBOutlet weak var inputTextField: UITextField!
+	
+	private var cellType: CellType = .firstName
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,9 +29,24 @@ class RegistrationTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 	
+	func getValue() -> (CellType, String?){
+		let text = (inputTextField.text ?? "").isEmpty ? nil : inputTextField.text
+		return (cellType, text)
+	}
+	
 	func configureCell(type: CellType) {
+		self.cellType = type
 		titleLabel.text = type.title
 		inputTextField.placeholder = type.title
+		
+		if type == .country {
+			let countryPicker = CountryPicker()
+			countryPicker.delegate = self
+			countryPicker.selectedCountryName = "Indonesia"
+			inputTextField.inputView = countryPicker
+		} else {
+			inputTextField.inputView = nil
+		}
 	}
 	
 	private func setupCell() {
@@ -37,6 +55,12 @@ class RegistrationTableViewCell: UITableViewCell {
 		inputTextField.addDoneButtonKeyboard()
 	}
     
+}
+
+extension RegistrationTableViewCell: CountryPickerDelegate {
+	func countryPicker(_ picker: CountryPicker!, didSelectCountryWithName name: String!, code: String!) {
+		inputTextField.text = name
+	}
 }
 
 extension RegistrationTableViewCell {
@@ -64,22 +88,5 @@ extension RegistrationTableViewCell {
 				return "City"
 			}
 		}
-		
-//		var placeholderText: String {
-//			switch self {
-//			case .firstName:
-//				<#code#>
-//			case .lastName:
-//				<#code#>
-//			case .email:
-//				<#code#>
-//			case .company:
-//				<#code#>
-//			case .country:
-//				<#code#>
-//			case .city:
-//				<#code#>
-//			}
-//		}
 	}
 }

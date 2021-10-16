@@ -3,12 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BCE68F0BBDA5F614507A022B /* Pods_NS2GO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D73CA02A8FA54DCFF8418AC /* Pods_NS2GO.framework */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
+		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
+		DBA4A3C52719BE6600BA4427 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C32719BE6600BA4427 /* BaseRequest.swift */; };
+		DBA4A3CE2719C0B500BA4427 /* RegisterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3CD2719C0B500BA4427 /* RegisterService.swift */; };
+		DBA4A3D22719C90E00BA4427 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3D12719C90E00BA4427 /* String.swift */; };
+		DBA4A3D52719CBB800BA4427 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3D42719CBB800BA4427 /* LoadingIndicator.swift */; };
 		DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC02602711E3A30033D364 /* AppDelegate.swift */; };
 		DBBC026A2711E3AF0033D364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC02692711E3AF0033D364 /* Assets.xcassets */; };
 		DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC026B2711E3AF0033D364 /* LaunchScreen.storyboard */; };
@@ -59,8 +65,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D73CA02A8FA54DCFF8418AC /* Pods_NS2GO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NS2GO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B29DDDEA979B948E2F29B54F /* Pods-NS2GO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.debug.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.debug.xcconfig"; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
+		DBA4A3C32719BE6600BA4427 /* BaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		DBA4A3CD2719C0B500BA4427 /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
+		DBA4A3D12719C90E00BA4427 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		DBA4A3D42719CBB800BA4427 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		DBBC025D2711E3A30033D364 /* NS2GO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NS2GO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBC02602711E3A30033D364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBBC02692711E3AF0033D364 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +123,7 @@
 		DBC7AB542717BCA8002EB696 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		DBC7AB6F2717C7AF002EB696 /* IPUDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPUDetailViewController.xib; sourceTree = "<group>"; };
 		DBC7AB702717C7AF002EB696 /* IPUDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPUDetailViewController.swift; sourceTree = "<group>"; };
+		FCA8BDB08F209EED0B60946E /* Pods-NS2GO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.release.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,17 +131,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCE68F0BBDA5F614507A022B /* Pods_NS2GO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60186687B14ADD63B1693D61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D73CA02A8FA54DCFF8418AC /* Pods_NS2GO.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C61E5D2C43904D0B4282B8EB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B29DDDEA979B948E2F29B54F /* Pods-NS2GO.debug.xcconfig */,
+				FCA8BDB08F209EED0B60946E /* Pods-NS2GO.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DBA4A3C12719BE5300BA4427 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DBA4A3CC2719C0A900BA4427 /* Onboard */,
+				DBA4A3C32719BE6600BA4427 /* BaseRequest.swift */,
+				DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DBA4A3CC2719C0A900BA4427 /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				DBA4A3CD2719C0B500BA4427 /* RegisterService.swift */,
+			);
+			path = Onboard;
+			sourceTree = "<group>";
+		};
 		DBBC02542711E3A30033D364 = {
 			isa = PBXGroup;
 			children = (
 				DBBC025F2711E3A30033D364 /* NS2GO */,
 				DBBC025E2711E3A30033D364 /* Products */,
+				C61E5D2C43904D0B4282B8EB /* Pods */,
+				60186687B14ADD63B1693D61 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +194,7 @@
 		DBBC025F2711E3A30033D364 /* NS2GO */ = {
 			isa = PBXGroup;
 			children = (
+				DBA4A3C12719BE5300BA4427 /* Services */,
 				DBC7AB532717BC92002EB696 /* Extension */,
 				DBC7AB4E27173ACD002EB696 /* View */,
 				DBBC02762711E4830033D364 /* Screen */,
@@ -341,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				DBC7AB4F27173AD9002EB696 /* OTPTextField.swift */,
+				DBA4A3D42719CBB800BA4427 /* LoadingIndicator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -351,6 +405,7 @@
 				DBA4A3B32719ACB800BA4427 /* UITextField.swift */,
 				DBA4A3B22719ACB700BA4427 /* UITextView.swift */,
 				DBC7AB542717BCA8002EB696 /* UIViewController.swift */,
+				DBA4A3D12719C90E00BA4427 /* String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -371,9 +426,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBBC02712711E3AF0033D364 /* Build configuration list for PBXNativeTarget "NS2GO" */;
 			buildPhases = (
+				82787AAEB52EED55AD411EB9 /* [CP] Check Pods Manifest.lock */,
 				DBBC02592711E3A30033D364 /* Sources */,
 				DBBC025A2711E3A30033D364 /* Frameworks */,
 				DBBC025B2711E3A30033D364 /* Resources */,
+				F59E1372F6174ABF80E774B2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -449,22 +506,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		82787AAEB52EED55AD411EB9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NS2GO-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F59E1372F6174ABF80E774B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DBBC02592711E3A30033D364 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA4A3CE2719C0B500BA4427 /* RegisterService.swift in Sources */,
 				DBC7AACA271312CF002EB696 /* LoginViewController.swift in Sources */,
 				DBC7AB3127149382002EB696 /* DiskDetailViewController.swift in Sources */,
 				DBC7AAE32713212B002EB696 /* NodeTableViewCell.swift in Sources */,
 				DBC7AABD27127F51002EB696 /* ActivationSuccessViewController.swift in Sources */,
 				DBBC027C2711E4B40033D364 /* RegistrationViewController.swift in Sources */,
+				DBA4A3D52719CBB800BA4427 /* LoadingIndicator.swift in Sources */,
 				DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */,
 				DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */,
 				DBC7AAD8271317AA002EB696 /* ServerListViewController.swift in Sources */,
 				DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */,
 				DBC7AB1E27148E7C002EB696 /* CPUDetailViewController.swift in Sources */,
 				DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */,
+				DBA4A3D22719C90E00BA4427 /* String.swift in Sources */,
 				DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */,
 				DBC7AB1727148AE3002EB696 /* ProcessListViewController.swift in Sources */,
 				DBC7AB2427148EB6002EB696 /* StatusDetailTableViewCell.swift in Sources */,
@@ -476,7 +578,9 @@
 				DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */,
 				DBC7AAF727147B07002EB696 /* CPUListViewController.swift in Sources */,
 				DBC7AADD2713189F002EB696 /* ServerListTableViewCell.swift in Sources */,
+				DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */,
 				DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */,
+				DBA4A3C52719BE6600BA4427 /* BaseRequest.swift in Sources */,
 				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
 				DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */,
 				DBC7AAB527127D77002EB696 /* OTPVerificationViewController.swift in Sources */,
@@ -615,6 +719,7 @@
 		};
 		DBBC02722711E3AF0033D364 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B29DDDEA979B948E2F29B54F /* Pods-NS2GO.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -634,6 +739,7 @@
 		};
 		DBBC02732711E3AF0033D364 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCA8BDB08F209EED0B60946E /* Pods-NS2GO.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -10,15 +10,20 @@ import UIKit
 class OTPVerificationViewController: UIViewController {
 
 	var onSuccessVerification: (() -> Void)?
+	var email: String?
 	
 	@IBOutlet weak var otpStackView: UIStackView!
 	@IBOutlet weak var continueButton: UIButton!
 	
 	private var otpTextFields: [OTPTextField] = []
-	
+	private let request = RegisterService()
 	
 	@IBAction func continueButtonTapped(_ sender: Any) {
-		presentActivationSuccess()
+		validateUser()
+	}
+	
+	@IBAction func resentCodeTapped(_ sender: Any) {
+		resentCode()
 	}
 	
     override func viewDidLoad() {
@@ -83,6 +88,51 @@ class OTPVerificationViewController: UIViewController {
 	
 	private func getOTPTextFieldWith(tag: Int) -> OTPTextField? {
 		return otpTextFields.first(where: {$0.tag == tag})
+	}
+	
+	private func getOTPCodeFromTextFields() -> String {
+		var code: String = ""
+		for textfield in otpTextFields {
+			code.append(textfield.text ?? "")
+		}
+		
+		return code
+	}
+	
+	private func validateUser() {
+		let code = getOTPCodeFromTextFields()
+		
+		guard let email = email,
+			  !code.isEmpty,
+			  code.count == 6 else {
+			showAlert(message: "Please check your email to get the 6 number code")
+			return
+		}
+		
+		self.showLoading()
+		request.validate(email: email, code: code) { [weak self] in
+			self?.hideLoading()
+			self?.presentActivationSuccess()
+		} onFailed: { [weak self] (message) in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
+	
+	private func resentCode() {
+		guard let email = email else {
+			showAlert(message: "There is something wrong")
+			return
+		}
+		
+		request.resendCode(
+			email: email,
+			onComplete: { [weak self] in
+				self?.showAlert(title: "Code resent", message: "Please check your email")
+			}, onFailed: { [weak self] (message) in
+				
+			}
+		)
 	}
 
 }

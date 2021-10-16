@@ -19,4 +19,24 @@ extension UIViewController {
 		self.navigationController?.view.backgroundColor = .clear
 	}
 	
+	func showAlert(title: String = "Error", message: String? = nil, button: String = "OK", action: (() -> Void)? = nil) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let button = UIAlertAction(title: button, style: .default) { (_) in
+			action?()
+		}
+		
+		alert.addAction(button)
+		
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	func showLoading() {
+		LoadingIndicator.shared.frame = self.view.frame
+		self.view.addSubview(LoadingIndicator.shared)
+	}
+	
+	func hideLoading() {
+		LoadingIndicator.shared.removeFromSuperview()
+	}
+	
 }

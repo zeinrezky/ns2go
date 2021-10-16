@@ -1,0 +1,6 @@
+framework module Pods_NS2GO {
+  umbrella header "Pods-NS2GO-umbrella.h"
+
+  export *
+  module * { export * }
+}

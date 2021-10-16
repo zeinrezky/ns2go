@@ -57,6 +57,9 @@
                             <state key="normal" title="Resent Code">
                                 <color key="titleColor" red="0.32549019610000002" green="0.49803921569999998" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="resentCodeTapped:" destination="-1" eventType="touchUpInside" id="uMP-Vu-9U7"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScK-rG-QPs">
                             <rect key="frame" x="40" y="210.5" width="295" height="44"/>

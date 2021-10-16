@@ -25,18 +25,11 @@ class RegistrationViewController: UIViewController {
 		}
 	}
 	
-	@IBAction func continueButtonTapped(_ sender: Any) {
-		let inputOTPVC = OTPVerificationViewController()
-		inputOTPVC.modalPresentationStyle = .overCurrentContext
-		inputOTPVC.onSuccessVerification = { [weak self] in
-			self?.pushToServerInfo()
-		}
-		
-		DispatchQueue.main.async { [weak self] in
-			self?.present(inputOTPVC, animated: true, completion: nil)
-		}
-	}
+	private let service = RegisterService()
 	
+	@IBAction func continueButtonTapped(_ sender: Any) {
+		registerUser()
+	}
 	
 	@IBAction func tncButtonTapped(_ sender: Any) {
 		isTnCChecked = !isTnCChecked
@@ -123,6 +116,71 @@ class RegistrationViewController: UIViewController {
 		
 		checkboxView.layer.sublayers?.removeAll(where: {$0.accessibilityLabel == "insideStroke"})
 	}
+	
+	private func registerUser() {
+		guard let firstName = getFirstNameText() else {
+			showAlert(message: "First name cannot be empty")
+			return
+		}
+		
+		guard let lastName = getLastNameText() else {
+			showAlert(message: "Last name cannot be empty")
+			return
+		}
+		
+		guard let email = getEmailText() else {
+			showAlert(message: "Email address cannot be empty")
+			return
+		}
+		
+		guard let companyName = getCompanyNameText() else {
+			showAlert(message: "Company name cannot be empty")
+			return
+		}
+		
+		guard let companyCountry = getCompanyCountryText() else {
+			showAlert(message: "Company country cannot be empty")
+			return
+		}
+		
+		guard let companyCity = getCompanyCityText() else {
+			showAlert(message: "Company city cannot be empty")
+			return
+		}
+		
+		guard email.isValidEmail() else {
+			showAlert(message: "Email format is not valid")
+			return
+		}
+		
+		showLoading()
+		service.register(
+			firstName: firstName,
+			lastName: lastName,
+			email: email,
+			companyName: companyName,
+			companyCountry: companyCountry,
+			companyState: companyCity
+		) { [weak self] in
+			self?.hideLoading()
+			self?.presentOTP(email: email)
+		} onFailed: { [weak self] (message) in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
+	
+	private func presentOTP(email: String) {
+		let inputOTPVC = OTPVerificationViewController()
+		inputOTPVC.modalPresentationStyle = .overCurrentContext
+		inputOTPVC.onSuccessVerification = { [weak self] in
+			self?.pushToServerInfo()
+		}
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.present(inputOTPVC, animated: true, completion: nil)
+		}
+	}
 
 	private func pushToServerInfo() {
 		let serverVC = ServerInformationViewController()
@@ -133,7 +191,6 @@ class RegistrationViewController: UIViewController {
 }
 
 extension RegistrationViewController: UITableViewDelegate {
-	
 	
 }
 
@@ -166,6 +223,7 @@ extension RegistrationViewController: UITableViewDataSource {
 			label.text = "Company Information"
 			label.textAlignment = .center
 			label.textColor = .darkGray
+			label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
 			view.addSubview(label)
 			
 			return view
@@ -194,4 +252,96 @@ extension RegistrationViewController: UITableViewDataSource {
 		return 0
 	}
 	
+}
+
+extension RegistrationViewController {
+	private func getFirstNameText() -> String? {
+		
+		guard let cell = tableView.cellForRow(at: IndexPath(item: 0, section: 0)) as? RegistrationTableViewCell else {
+			return nil
+		}
+		
+		let (type, value) = cell.getValue()
+		
+		if type != .firstName {
+			return nil
+		}
+		
+		return value
+	}
+	
+	private func getLastNameText() -> String? {
+		
+		guard let cell = tableView.cellForRow(at: IndexPath(item: 1, section: 0)) as? RegistrationTableViewCell else {
+			return nil
+		}
+		
+		let (type, value) = cell.getValue()
+		
+		if type != .lastName {
+			return nil
+		}
+		
+		return value
+	}
+	
+	private func getEmailText() -> String? {
+		
+		guard let cell = tableView.cellForRow(at: IndexPath(item: 2, section: 0)) as? RegistrationTableViewCell else {
+			return nil
+		}
+		
+		let (type, value) = cell.getValue()
+		
+		if type != .email {
+			return nil
+		}
+		
+		return value
+	}
+	
+	private func getCompanyNameText() -> String? {
+		
+		guard let cell = tableView.cellForRow(at: IndexPath(item: 0, section: 1)) as? RegistrationTableViewCell else {
+			return nil
+		}
+		
+		let (type, value) = cell.getValue()
+		
+		if type != .company {
+			return nil
+		}
+		
+		return value
+	}
+	
+	private func getCompanyCountryText() -> String? {
+		
+		guard let cell = tableView.cellForRow(at: IndexPath(item: 1, section: 1)) as? RegistrationTableViewCell else {
+			return nil
+		}
+		
+		let (type, value) = cell.getValue()
+		
+		if type != .country {
+			return nil
+		}
+		
+		return value
+	}
+	
+	private func getCompanyCityText() -> String? {
+		
+		guard let cell = tableView.cellForRow(at: IndexPath(item: 2, section: 1)) as? RegistrationTableViewCell else {
+			return nil
+		}
+		
+		let (type, value) = cell.getValue()
+		
+		if type != .city {
+			return nil
+		}
+		
+		return value
+	}
 }
