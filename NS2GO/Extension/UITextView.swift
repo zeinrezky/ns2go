@@ -14,7 +14,8 @@ extension UITextView{
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
-		toolbar.items = [.flexibleSpace(), doneButton]
+		let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+		toolbar.items = [flexible, doneButton]
         self.inputAccessoryView = toolbar
     }
     

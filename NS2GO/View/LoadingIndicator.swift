@@ -27,7 +27,12 @@ class LoadingIndicator: UIView {
 	private func setupIndicator() {
 		indicator.color = .white
 		indicator.startAnimating()
-		indicator.style = .large
+		
+		if #available(iOS 13.0, *) {
+			indicator.style = .large
+		} else {
+			indicator.style = .whiteLarge
+		}
 		
 		indicator.autoresizingMask = [.flexibleLeftMargin, .flexibleTopMargin, .flexibleRightMargin, .flexibleBottomMargin]
 		self.addSubview(indicator)
