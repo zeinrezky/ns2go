@@ -15,7 +15,6 @@
 		DBA4A3CE2719C0B500BA4427 /* RegisterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3CD2719C0B500BA4427 /* RegisterService.swift */; };
 		DBA4A3D22719C90E00BA4427 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3D12719C90E00BA4427 /* String.swift */; };
 		DBA4A3D52719CBB800BA4427 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3D42719CBB800BA4427 /* LoadingIndicator.swift */; };
-		DBA4A3E1271A8A9D00BA4427 /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3E0271A8A9D00BA4427 /* VPNManager.swift */; };
 		DBA4A3F1271AC0A400BA4427 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3F0271AC0A400BA4427 /* LoginService.swift */; };
 		DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC02602711E3A30033D364 /* AppDelegate.swift */; };
 		DBBC026A2711E3AF0033D364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBC02692711E3AF0033D364 /* Assets.xcassets */; };
@@ -90,7 +89,6 @@
 		DBA4A3CD2719C0B500BA4427 /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
 		DBA4A3D12719C90E00BA4427 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		DBA4A3D42719CBB800BA4427 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
-		DBA4A3E0271A8A9D00BA4427 /* VPNManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		DBA4A3F0271AC0A400BA4427 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		DBBC025D2711E3A30033D364 /* NS2GO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NS2GO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBC02602711E3A30033D364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 		DBA4A3DF271A8A8E00BA4427 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				DBA4A3E0271A8A9D00BA4427 /* VPNManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -609,7 +606,6 @@
 				DBC7AAF727147B07002EB696 /* CPUListViewController.swift in Sources */,
 				DBC7AADD2713189F002EB696 /* ServerListTableViewCell.swift in Sources */,
 				DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */,
-				DBA4A3E1271A8A9D00BA4427 /* VPNManager.swift in Sources */,
 				DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */,
 				DBA4A3F1271AC0A400BA4427 /* LoginService.swift in Sources */,
 				DBA4A3C52719BE6600BA4427 /* BaseRequest.swift in Sources */,
@@ -756,7 +752,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = NS2GO/NS2GO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P8B979NUW2;
 				INFOPLIST_FILE = NS2GO/Info.plist;
@@ -779,7 +774,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = NS2GO/NS2GORelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P8B979NUW2;
 				INFOPLIST_FILE = NS2GO/Info.plist;

@@ -20,7 +20,7 @@ class RegisterService {
 				  onComplete : @escaping() -> Void,
 				  onFailed : ((String) -> Void)?) {
 		
-		let url = BaseURL.guestBaseURL + "register-user"
+		let url = BaseURL.shared.guestBaseURL + "register-user"
 		
 		let parameter = [
 			"first_name" : firstName,
@@ -53,7 +53,7 @@ class RegisterService {
 				  onComplete : @escaping() -> Void,
 				  onFailed : ((String) -> Void)?) {
 		
-		let url = BaseURL.guestBaseURL + "validate-user"
+		let url = BaseURL.shared.guestBaseURL + "validate-user"
 		
 		let parameter = [
 			"email_address" : email,
@@ -87,7 +87,7 @@ class RegisterService {
 				  onComplete : @escaping() -> Void,
 				  onFailed : ((String) -> Void)?) {
 		
-		let url = BaseURL.guestBaseURL + "resend-code"
+		let url = BaseURL.shared.guestBaseURL + "resend-code"
 		
 		let parameter = [
 			"email_address" : email

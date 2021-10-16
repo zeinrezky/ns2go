@@ -10,6 +10,5 @@ pod 'Alamofire', '5.0.0'
 pod 'SwiftyJSON'
 pod 'CountryPicker'
 pod 'KeychainAccess'
-#pod 'OpenSSL-Universal', '1.1.17'
 
 end

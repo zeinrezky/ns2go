@@ -16,7 +16,7 @@ class LoginService {
 			   onComplete : @escaping() -> Void,
 			   onFailed : ((String) -> Void)?) {
 		
-		let url = BaseURL.vpnBaseURL + "homepage"
+		let url = BaseURL.shared.vpnBaseURL + "homepage"
 		
 		let logonInfo = password + ";" + username
 		let hexLogonInfo = "V" + logonInfo.hexString()

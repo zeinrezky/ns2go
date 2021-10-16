@@ -19,12 +19,15 @@ class ServerInformationViewController: UIViewController {
 	@IBOutlet weak var saveButton: UIButton!
 	
 	@IBAction func saveButtonTapped(_ sender: Any) {
-		VPNManager.shared.connectToVPN()
+		guard let ipAddress = ipAddressTextField.text,
+			  let port = portTextField.text else {
+			return
+		}
 		
-//		let loginVC = LoginViewController()
-//		DispatchQueue.main.async { [weak self] in
-//			self?.navigationController?.pushViewController(loginVC, animated: true)
-//		}
+		BaseURL.shared.vpnBaseAddress = ipAddress
+		BaseURL.shared.vpnBasePort = port
+		BaseURL.shared.saveIPServer()
+		redirectToLogin()
 	}
 	
 	override func viewDidLoad() {
@@ -65,6 +68,9 @@ class ServerInformationViewController: UIViewController {
 		setupTextFieldContanier()
 		ipAddressTextField.addDoneButtonKeyboard()
 		portTextField.addDoneButtonKeyboard()
+		
+		ipAddressTextField.text = BaseURL.shared.vpnBaseAddress
+		portTextField.text = BaseURL.shared.vpnBasePort
 	}
 	
 	private func setupNavigationBar() {
@@ -77,5 +83,21 @@ class ServerInformationViewController: UIViewController {
 			view.layer.borderWidth = 1
 		}
 	}
-
+	
+	private func redirectToLogin() {
+		
+		let lastIndex = (self.navigationController?.viewControllers.count ?? 0) - 1
+		if lastIndex > 0,
+		   let controllerBefore = self.navigationController?.viewControllers[lastIndex - 1],
+		   controllerBefore.isKind(of: LoginViewController.self) {
+			DispatchQueue.main.async { [weak self] in
+				self?.navigationController?.popViewController(animated: true)
+			}
+		} else {
+			let loginVC = LoginViewController()
+			DispatchQueue.main.async { [weak self] in
+				self?.navigationController?.pushViewController(loginVC, animated: true)
+			}
+		}		
+	}
 }

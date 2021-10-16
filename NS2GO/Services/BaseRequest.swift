@@ -11,21 +11,14 @@ import Alamofire
 
 class BaseRequest {
     
-    static let clientSecret = "SEts0SIbJGzeLyG2wfcpHjvpaid9WSm5BDvb80Jx"
-    static var token : String?
-    
     static func getDefaultHeader() -> HTTPHeaders {
         
-//        var header = [
-//            "Accept" : "application/json",
-//            "Content-Type":"application/x-www-form-urlencoded"
-//        ]
-//
-//        if let token = token {
-//            header.updateValue("Bearer \(token)", forKey: "Authorization")
-//        }
-        
-		return HTTPHeaders([:])
+        let header = [
+            "Accept" : "application/json",
+            "Content-Type":"application/x-www-form-urlencoded"
+        ]
+		
+		return HTTPHeaders(header)
     }
     
     static func GET(url:String,
@@ -80,7 +73,7 @@ class BaseRequest {
                 url,
                 method: .post,
                 parameters: parameter,
-                encoding: URLEncoding.default,
+                encoding: URLEncoding.httpBody,
                 headers: header
             ).responseJSON { (response) in
                 print("DEBUG - RESPONSE : \(response)")

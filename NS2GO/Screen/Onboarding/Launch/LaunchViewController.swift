@@ -12,13 +12,17 @@ class LaunchViewController: UIViewController {
 	@IBOutlet weak var startButton: UIButton!
 	
 	@IBAction func startButtonTapped(_ sender: Any) {
-		let register = ServerInformationViewController()
-		self.navigationController?.pushViewController(register, animated: true)
+		if BaseURL.shared.isHaveServerPreferences {
+			pushToLogin()
+		} else {
+			pushToRegister()
+		}
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		configureView()
+		BaseURL.shared.loadIPServer()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -32,5 +36,19 @@ class LaunchViewController: UIViewController {
 	
 	private func configureView() {
 		startButton.layer.cornerRadius = 4
+	}
+	
+	private func pushToRegister() {
+		let register = ServerInformationViewController()
+		DispatchQueue.main.async { [weak self] in
+			self?.navigationController?.pushViewController(register, animated: true)
+		}
+	}
+	
+	private func pushToLogin() {
+		let login = LoginViewController()
+		DispatchQueue.main.async { [weak self] in
+			self?.navigationController?.pushViewController(login, animated: true)
+		}
 	}
 }

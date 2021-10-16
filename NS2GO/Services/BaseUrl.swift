@@ -7,11 +7,48 @@
 //
 
 import Foundation
+import KeychainAccess
 
-struct BaseURL {
-    static let guestBaseURL = "https://studio.hpremoteanalyst.com/api/ns2go/"
-	static let vpnBaseURL = "https://10.26.97.22:10132/"
+class BaseURL {
+	static let shared = BaseURL()
 	
-	static let vpnBaseAddress = "https://47.180.165.65"
-	static let vpnBasePort = "7443"
+	private static let vpnBaseAddressKey = "vpnIPAddress"
+	private static let vpnBasePortKey = "vpnPort"
+	
+	let guestBaseURL = "https://studio.hpremoteanalyst.com/api/ns2go/"
+	var vpnBaseURL: String{
+		return "https://\(vpnBaseAddress ?? ""):\(vpnBasePort ?? "")/"
+	}
+	
+	var vpnBaseAddress: String?
+	var vpnBasePort: String?
+	
+	var isHaveServerPreferences: Bool {
+		return !(vpnBaseAddress ?? "").isEmpty && !(vpnBasePort ?? "").isEmpty
+	}
+	
+	let keychain = Keychain(service: "com.NS2GO")
+	
+	func loadIPServer() {
+		do {
+			try vpnBaseAddress = keychain.get(BaseURL.vpnBaseAddressKey)
+			try vpnBasePort = keychain.get(BaseURL.vpnBasePortKey)
+		} catch {
+			print(error.localizedDescription)
+		}
+	}
+	
+	func saveIPServer() {
+		guard let ipAddress = vpnBaseAddress,
+			  let port = vpnBasePort else {
+			return
+		}
+		
+		do {
+			try keychain.set(ipAddress, key: BaseURL.vpnBaseAddressKey)
+			try keychain.set(port, key: BaseURL.vpnBasePortKey)
+		} catch {
+			print(error.localizedDescription)
+		}
+	}
 }
