@@ -1,47 +1,24 @@
 PODS:
   - Alamofire (5.0.0)
   - CountryPicker (1.3)
-  - OpenSSL-Apple (1.1.1l.11)
-  - SwiftyBeaver (1.9.5)
   - SwiftyJSON (5.0.1)
-  - TunnelKit (3.4.0):
-    - TunnelKit/Protocols/OpenVPN (= 3.4.0)
-  - TunnelKit/AppExtension (3.4.0):
-    - SwiftyBeaver
-    - TunnelKit/Core
-  - TunnelKit/Core (3.4.0):
-    - SwiftyBeaver
-  - TunnelKit/Manager (3.4.0):
-    - SwiftyBeaver
-  - TunnelKit/Protocols/OpenVPN (3.4.0):
-    - OpenSSL-Apple (~> 1.1.1k.11)
-    - TunnelKit/AppExtension
-    - TunnelKit/Core
-    - TunnelKit/Manager
 
 DEPENDENCIES:
   - Alamofire (= 5.0.0)
   - CountryPicker
   - SwiftyJSON
-  - TunnelKit
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - CountryPicker
-    - OpenSSL-Apple
-    - SwiftyBeaver
     - SwiftyJSON
-    - TunnelKit
 
 SPEC CHECKSUMS:
   Alamofire: 58ff2bfb8daaacaa233d5c36e37b10a5248f59b1
   CountryPicker: 664c26411d833bb068c80beb15dc951eadde2911
-  OpenSSL-Apple: fb93d9a7ce4529054764ce19bb80947a38aee09b
-  SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  TunnelKit: 93631182ccc2b19f19093649abeaffaff89e370d
 
-PODFILE CHECKSUM: 27d2f04442d6702c3848e0cc4606aa1448f8c7cd
+PODFILE CHECKSUM: 33508d242de077478c32e0246f4ed97e670d0ecf
 
 COCOAPODS: 1.11.2

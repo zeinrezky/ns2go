@@ -9,6 +9,5 @@ target 'NS2GO' do
 pod 'Alamofire', '5.0.0'
 pod 'SwiftyJSON'
 pod 'CountryPicker'
-pod 'TunnelKit'
 
 end
