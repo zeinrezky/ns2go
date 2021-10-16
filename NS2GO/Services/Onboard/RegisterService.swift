@@ -66,8 +66,14 @@ class RegisterService {
 			
 			let json = JSON(data)
 			
-			if let jsonError = json["message"].string {
-				onFailed?(jsonError)
+			if let status = json["status"].string,
+			   status == "OK" {
+				onComplete()
+				return
+			}
+			
+			if let message = json["message"].string {
+				onFailed?(message)
 				return
 			}
 			

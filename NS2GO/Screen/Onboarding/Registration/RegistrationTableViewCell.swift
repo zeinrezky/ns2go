@@ -43,6 +43,7 @@ class RegistrationTableViewCell: UITableViewCell {
 			let countryPicker = CountryPicker()
 			countryPicker.delegate = self
 			countryPicker.selectedCountryName = "Indonesia"
+			inputTextField.text = "Indonesia"
 			inputTextField.inputView = countryPicker
 		} else {
 			inputTextField.inputView = nil

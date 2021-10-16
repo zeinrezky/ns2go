@@ -168,7 +168,7 @@ extension OTPVerificationViewController : UITextFieldDelegate {
 			nextTextField.becomeFirstResponder()
 			
 			if nextTextField == otpTextFields.last {
-				presentActivationSuccess()
+				validateUser()
 			}
 			
 			return false

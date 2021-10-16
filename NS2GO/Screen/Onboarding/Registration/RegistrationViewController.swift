@@ -27,6 +27,8 @@ class RegistrationViewController: UIViewController {
 	
 	private let service = RegisterService()
 	
+	private var registrationCells: [RegistrationTableViewCell] = []
+	
 	@IBAction func continueButtonTapped(_ sender: Any) {
 		registerUser()
 	}
@@ -118,6 +120,7 @@ class RegistrationViewController: UIViewController {
 	}
 	
 	private func registerUser() {
+		
 		guard let firstName = getFirstNameText() else {
 			showAlert(message: "First name cannot be empty")
 			return
@@ -153,6 +156,7 @@ class RegistrationViewController: UIViewController {
 			return
 		}
 		
+		self.view.endEditing(true)
 		showLoading()
 		service.register(
 			firstName: firstName,
@@ -173,6 +177,7 @@ class RegistrationViewController: UIViewController {
 	private func presentOTP(email: String) {
 		let inputOTPVC = OTPVerificationViewController()
 		inputOTPVC.modalPresentationStyle = .overCurrentContext
+		inputOTPVC.email = email
 		inputOTPVC.onSuccessVerification = { [weak self] in
 			self?.pushToServerInfo()
 		}
@@ -196,6 +201,7 @@ extension RegistrationViewController: UITableViewDelegate {
 
 extension RegistrationViewController: UITableViewDataSource {
 	func numberOfSections(in tableView: UITableView) -> Int {
+		registrationCells.removeAll()
 		return cells.count
 	}
 	
@@ -212,6 +218,7 @@ extension RegistrationViewController: UITableViewDataSource {
 		
 		cell.configureCell(type: cellType)
 		cell.selectionStyle = .none
+		registrationCells.append(cell)
 		
 		return cell
 	}
@@ -256,92 +263,38 @@ extension RegistrationViewController: UITableViewDataSource {
 
 extension RegistrationViewController {
 	private func getFirstNameText() -> String? {
-		
-		guard let cell = tableView.cellForRow(at: IndexPath(item: 0, section: 0)) as? RegistrationTableViewCell else {
-			return nil
-		}
-		
-		let (type, value) = cell.getValue()
-		
-		if type != .firstName {
-			return nil
-		}
-		
-		return value
+		return getCellTextFieldInput(for: .firstName)
 	}
 	
 	private func getLastNameText() -> String? {
-		
-		guard let cell = tableView.cellForRow(at: IndexPath(item: 1, section: 0)) as? RegistrationTableViewCell else {
-			return nil
-		}
-		
-		let (type, value) = cell.getValue()
-		
-		if type != .lastName {
-			return nil
-		}
-		
-		return value
+		return getCellTextFieldInput(for: .lastName)
 	}
 	
 	private func getEmailText() -> String? {
-		
-		guard let cell = tableView.cellForRow(at: IndexPath(item: 2, section: 0)) as? RegistrationTableViewCell else {
-			return nil
-		}
-		
-		let (type, value) = cell.getValue()
-		
-		if type != .email {
-			return nil
-		}
-		
-		return value
+		return getCellTextFieldInput(for: .email)
 	}
 	
 	private func getCompanyNameText() -> String? {
-		
-		guard let cell = tableView.cellForRow(at: IndexPath(item: 0, section: 1)) as? RegistrationTableViewCell else {
-			return nil
-		}
-		
-		let (type, value) = cell.getValue()
-		
-		if type != .company {
-			return nil
-		}
-		
-		return value
+		return getCellTextFieldInput(for: .company)
 	}
 	
 	private func getCompanyCountryText() -> String? {
-		
-		guard let cell = tableView.cellForRow(at: IndexPath(item: 1, section: 1)) as? RegistrationTableViewCell else {
-			return nil
-		}
-		
-		let (type, value) = cell.getValue()
-		
-		if type != .country {
-			return nil
-		}
-		
-		return value
+		return getCellTextFieldInput(for: .country)
 	}
 	
 	private func getCompanyCityText() -> String? {
-		
-		guard let cell = tableView.cellForRow(at: IndexPath(item: 2, section: 1)) as? RegistrationTableViewCell else {
-			return nil
+		return getCellTextFieldInput(for: .city)
+	}
+	
+	private func getCellTextFieldInput(for cellType: RegistrationTableViewCell.CellType) -> String? {
+		for cell in registrationCells {
+			let (type, value) = cell.getValue()
+			
+			if cellType == type {
+				return value
+			}
 		}
 		
-		let (type, value) = cell.getValue()
-		
-		if type != .city {
-			return nil
-		}
-		
-		return value
+		return nil
 	}
 }
