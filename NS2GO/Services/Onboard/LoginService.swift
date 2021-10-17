@@ -28,9 +28,9 @@ class LoginService {
 			"lite" : 0
 		]
 		
-		let header: HTTPHeaders = BaseRequest.getDefaultHeader()
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
 		
-		BaseRequest.POST(url: url, parameter: parameter, header: header, success: { (data) in
+		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
 			

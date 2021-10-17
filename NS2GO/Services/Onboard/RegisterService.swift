@@ -31,9 +31,9 @@ class RegisterService {
 			"company_state" : companyState
 		]
 		
-		let header: HTTPHeaders = BaseRequest.getDefaultHeader()
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
 		
-		BaseRequest.POST(url: url, parameter: parameter, header: header, success: { (data) in
+		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
 			
@@ -60,9 +60,9 @@ class RegisterService {
 			"validation_code" : code
 		]
 		
-		let header: HTTPHeaders = BaseRequest.getDefaultHeader()
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
 		
-		BaseRequest.POST(url: url, parameter: parameter, header: header, success: { (data) in
+		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
 			
@@ -93,9 +93,9 @@ class RegisterService {
 			"email_address" : email
 		]
 		
-		let header: HTTPHeaders = BaseRequest.getDefaultHeader()
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
 		
-		BaseRequest.POST(url: url, parameter: parameter, header: header, success: { (data) in
+		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
 			

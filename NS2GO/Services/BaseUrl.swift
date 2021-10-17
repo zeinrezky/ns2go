@@ -50,5 +50,7 @@ class BaseURL {
 		} catch {
 			print(error.localizedDescription)
 		}
+		
+		BaseRequest.shared.setupSession()
 	}
 }
