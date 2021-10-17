@@ -24,6 +24,10 @@ class ServerListTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+	
+	func configureCell(node: Node) {
+		serverNameLabel.text = node.nodename
+	}
     
 	private func setupContainerView() {
 		containerView.backgroundColor = .cyan

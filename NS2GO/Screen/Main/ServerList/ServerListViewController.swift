@@ -13,6 +13,8 @@ class ServerListViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var headerView: UIView!
 	
+	var nodes: [Node] = []
+	var lastTimeFetch: Date = Date()
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,8 @@ class ServerListViewController: UIViewController {
 extension ServerListViewController: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let node = nodes[indexPath.item]
+		
 		let controller = NodeViewController()
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
@@ -50,7 +54,7 @@ extension ServerListViewController: UITableViewDelegate {
 
 extension ServerListViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 2
+		return nodes.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,6 +62,7 @@ extension ServerListViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
+		cell.configureCell(node: nodes[indexPath.item])
 		cell.selectionStyle = .none
 		
 		return cell

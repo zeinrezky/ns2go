@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var loginButton: UIButton!
 	
 	private let service = LoginService()
+	private var context = LAContext()
 	
 	@IBAction func loginButtonTapped(_ sender: Any) {
 		login()
@@ -102,9 +104,9 @@ class LoginViewController: UIViewController {
 		service.login(
 			username: username,
 			password: password,
-			onComplete: { [weak self] in
+			onComplete: { [weak self] (nodes) in
 				self?.hideLoading()
-				self?.presentServerList()
+				self?.presentServerList(nodes: nodes)
 			}, onFailed: { [weak self] (message) in
 				self?.hideLoading()
 				self?.showAlert(message: message)
@@ -112,8 +114,9 @@ class LoginViewController: UIViewController {
 		)
 	}
 	
-	private func presentServerList() {
+	private func presentServerList(nodes: [Node]) {
 		let serverListVC = ServerListViewController()
+		serverListVC.nodes = nodes
 		let navVC = UINavigationController(rootViewController: serverListVC)
 		
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,

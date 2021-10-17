@@ -13,7 +13,7 @@ class LoginService {
 	
 	func login(username: String,
 			   password: String,
-			   onComplete : @escaping() -> Void,
+			   onComplete : @escaping([Node]) -> Void,
 			   onFailed : ((String) -> Void)?) {
 		
 		let url = BaseURL.shared.vpnBaseURL + "homepage"
@@ -33,19 +33,9 @@ class LoginService {
 		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
+			let node = Node(json: json)
+			onComplete([node])
 			
-			if let status = json["status"].string,
-			   status == "OK" {
-				onComplete()
-				return
-			}
-			
-			if let message = json["message"].string {
-				onFailed?(message)
-				return
-			}
-			
-			onComplete()
 		}) { (message) in
 			onFailed?(message)
 		}
