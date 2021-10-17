@@ -15,10 +15,14 @@ class NodeViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
+	private let service = DashboardService()
+	
+	private var nodeStatus: NodeStatus?
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
+		fetchData()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +42,19 @@ class NodeViewController: UIViewController {
 		tableView.tableHeaderView = headerView
 		tableView.separatorStyle = .none
 		tableView.register(UINib(nibName: NodeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NodeTableViewCell.identifier)
+	}
+	
+	private func fetchData() {
+		showLoading()
+		service.getCurrentStatus(onComplete: { [weak self] nodeStatus in
+			self?.hideLoading()
+			self?.nodeStatus = nodeStatus
+		}, onFailed: { [weak self] message in
+			self?.hideLoading()
+			DispatchQueue.main.async { [weak self] in
+				self?.showAlert(message: message)
+			}
+		})
 	}
 	
 	private func pushToCPUList() {

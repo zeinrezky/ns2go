@@ -11,6 +11,16 @@
 		DB609A6F271BC2C000E125C7 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A6E271BC2C000E125C7 /* Node.swift */; };
 		DB609A72271BC36800E125C7 /* AlertLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A71271BC36800E125C7 /* AlertLimit.swift */; };
 		DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */; };
+		DB609A78271C5C6400E125C7 /* ObjectMonitored.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A77271C5C6400E125C7 /* ObjectMonitored.swift */; };
+		DB609A7C271C5DA800E125C7 /* TMF.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A7B271C5DA800E125C7 /* TMF.swift */; };
+		DB609A80271C5E8000E125C7 /* BaseInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A7F271C5E8000E125C7 /* BaseInstance.swift */; };
+		DB609A84271C5FA900E125C7 /* CLIMAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A83271C5FA900E125C7 /* CLIMAgent.swift */; };
+		DB609A88271C61A800E125C7 /* CIPSSRV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A87271C61A800E125C7 /* CIPSSRV.swift */; };
+		DB609A8B271C647400E125C7 /* CPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A8A271C647400E125C7 /* CPU.swift */; };
+		DB609A8E271C6A1300E125C7 /* CPUProcessInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A8D271C6A1300E125C7 /* CPUProcessInstance.swift */; };
+		DB609A91271C6B7700E125C7 /* DiskProcessInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A90271C6B7700E125C7 /* DiskProcessInstance.swift */; };
+		DB609A94271C6D8C00E125C7 /* NodeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A93271C6D8C00E125C7 /* NodeStatus.swift */; };
+		DB609A97271C6E9A00E125C7 /* DashboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A96271C6E9A00E125C7 /* DashboardService.swift */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -88,6 +98,16 @@
 		DB609A6E271BC2C000E125C7 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		DB609A71271BC36800E125C7 /* AlertLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLimit.swift; sourceTree = "<group>"; };
 		DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NS2GOConstant.swift; sourceTree = "<group>"; };
+		DB609A77271C5C6400E125C7 /* ObjectMonitored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMonitored.swift; sourceTree = "<group>"; };
+		DB609A7B271C5DA800E125C7 /* TMF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMF.swift; sourceTree = "<group>"; };
+		DB609A7F271C5E8000E125C7 /* BaseInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInstance.swift; sourceTree = "<group>"; };
+		DB609A83271C5FA900E125C7 /* CLIMAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLIMAgent.swift; sourceTree = "<group>"; };
+		DB609A87271C61A800E125C7 /* CIPSSRV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIPSSRV.swift; sourceTree = "<group>"; };
+		DB609A8A271C647400E125C7 /* CPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU.swift; sourceTree = "<group>"; };
+		DB609A8D271C6A1300E125C7 /* CPUProcessInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUProcessInstance.swift; sourceTree = "<group>"; };
+		DB609A90271C6B7700E125C7 /* DiskProcessInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskProcessInstance.swift; sourceTree = "<group>"; };
+		DB609A93271C6D8C00E125C7 /* NodeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeStatus.swift; sourceTree = "<group>"; };
+		DB609A96271C6E9A00E125C7 /* DashboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardService.swift; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -181,15 +201,41 @@
 		DB609A6D271BC2B400E125C7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB609A82271C5F7300E125C7 /* Instance */,
 				DB609A6E271BC2C000E125C7 /* Node.swift */,
 				DB609A71271BC36800E125C7 /* AlertLimit.swift */,
+				DB609A77271C5C6400E125C7 /* ObjectMonitored.swift */,
+				DB609A93271C6D8C00E125C7 /* NodeStatus.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		DB609A82271C5F7300E125C7 /* Instance */ = {
+			isa = PBXGroup;
+			children = (
+				DB609A7F271C5E8000E125C7 /* BaseInstance.swift */,
+				DB609A7B271C5DA800E125C7 /* TMF.swift */,
+				DB609A83271C5FA900E125C7 /* CLIMAgent.swift */,
+				DB609A87271C61A800E125C7 /* CIPSSRV.swift */,
+				DB609A8A271C647400E125C7 /* CPU.swift */,
+				DB609A8D271C6A1300E125C7 /* CPUProcessInstance.swift */,
+				DB609A90271C6B7700E125C7 /* DiskProcessInstance.swift */,
+			);
+			path = Instance;
+			sourceTree = "<group>";
+		};
+		DB609A99271C6EA100E125C7 /* LoggedIn */ = {
+			isa = PBXGroup;
+			children = (
+				DB609A96271C6E9A00E125C7 /* DashboardService.swift */,
+			);
+			path = LoggedIn;
 			sourceTree = "<group>";
 		};
 		DBA4A3C12719BE5300BA4427 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DB609A99271C6EA100E125C7 /* LoggedIn */,
 				DBA4A3CC2719C0A900BA4427 /* Onboard */,
 				DBA4A3C32719BE6600BA4427 /* BaseRequest.swift */,
 				DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */,
@@ -601,20 +647,28 @@
 				DBC7AACA271312CF002EB696 /* LoginViewController.swift in Sources */,
 				DBC7AB3127149382002EB696 /* DiskDetailViewController.swift in Sources */,
 				DB609A6F271BC2C000E125C7 /* Node.swift in Sources */,
+				DB609A78271C5C6400E125C7 /* ObjectMonitored.swift in Sources */,
+				DB609A84271C5FA900E125C7 /* CLIMAgent.swift in Sources */,
 				DBC7AAE32713212B002EB696 /* NodeTableViewCell.swift in Sources */,
 				DBC7AABD27127F51002EB696 /* ActivationSuccessViewController.swift in Sources */,
 				DBBC027C2711E4B40033D364 /* RegistrationViewController.swift in Sources */,
 				DBA4A3D52719CBB800BA4427 /* LoadingIndicator.swift in Sources */,
 				DB609A72271BC36800E125C7 /* AlertLimit.swift in Sources */,
 				DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */,
+				DB609A80271C5E8000E125C7 /* BaseInstance.swift in Sources */,
+				DB609A97271C6E9A00E125C7 /* DashboardService.swift in Sources */,
+				DB609A7C271C5DA800E125C7 /* TMF.swift in Sources */,
+				DB609A8B271C647400E125C7 /* CPU.swift in Sources */,
 				DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */,
 				DBC7AAD8271317AA002EB696 /* ServerListViewController.swift in Sources */,
 				DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */,
 				DBC7AB1E27148E7C002EB696 /* CPUDetailViewController.swift in Sources */,
 				DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */,
 				DBA4A3D22719C90E00BA4427 /* String.swift in Sources */,
+				DB609A8E271C6A1300E125C7 /* CPUProcessInstance.swift in Sources */,
 				DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */,
 				DBC7AB1727148AE3002EB696 /* ProcessListViewController.swift in Sources */,
+				DB609A91271C6B7700E125C7 /* DiskProcessInstance.swift in Sources */,
 				DBC7AB2427148EB6002EB696 /* StatusDetailTableViewCell.swift in Sources */,
 				DBC7AAFC27147B7D002EB696 /* StatusListTableViewCell.swift in Sources */,
 				DBC7AAEE271328F0002EB696 /* LaunchViewController.swift in Sources */,
@@ -623,10 +677,12 @@
 				DBC7AB0227148921002EB696 /* IPUListViewController.swift in Sources */,
 				DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */,
 				DBC7AAF727147B07002EB696 /* CPUListViewController.swift in Sources */,
+				DB609A94271C6D8C00E125C7 /* NodeStatus.swift in Sources */,
 				DBC7AADD2713189F002EB696 /* ServerListTableViewCell.swift in Sources */,
 				DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */,
 				DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */,
 				DBA4A3F1271AC0A400BA4427 /* LoginService.swift in Sources */,
+				DB609A88271C61A800E125C7 /* CIPSSRV.swift in Sources */,
 				DBA4A3C52719BE6600BA4427 /* BaseRequest.swift in Sources */,
 				DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */,
 				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
