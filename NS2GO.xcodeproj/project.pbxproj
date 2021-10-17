@@ -10,6 +10,7 @@
 		ABEA9034903337B482825645 /* Pods_NS2GO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981314274B5968299146F88F /* Pods_NS2GO.framework */; };
 		DB609A6F271BC2C000E125C7 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A6E271BC2C000E125C7 /* Node.swift */; };
 		DB609A72271BC36800E125C7 /* AlertLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A71271BC36800E125C7 /* AlertLimit.swift */; };
+		DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -86,6 +87,7 @@
 		DB609A54271ADCCC00E125C7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		DB609A6E271BC2C000E125C7 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		DB609A71271BC36800E125C7 /* AlertLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLimit.swift; sourceTree = "<group>"; };
+		DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NS2GOConstant.swift; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		DBA4A3DF271A8A8E00BA4427 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */,
 				DBA4A3F1271AC0A400BA4427 /* LoginService.swift in Sources */,
 				DBA4A3C52719BE6600BA4427 /* BaseRequest.swift in Sources */,
+				DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */,
 				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
 				DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */,
 				DBC7AAB527127D77002EB696 /* OTPVerificationViewController.swift in Sources */,

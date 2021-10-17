@@ -12,9 +12,6 @@ import KeychainAccess
 class BaseURL {
 	static let shared = BaseURL()
 	
-	private static let vpnBaseAddressKey = "vpnIPAddress"
-	private static let vpnBasePortKey = "vpnPort"
-	
 	let guestBaseURL = "https://studio.hpremoteanalyst.com/api/ns2go/"
 	var vpnBaseURL: String{
 		return "https://\(vpnBaseAddress ?? ""):\(vpnBasePort ?? "")/"
@@ -27,12 +24,12 @@ class BaseURL {
 		return !(vpnBaseAddress ?? "").isEmpty && !(vpnBasePort ?? "").isEmpty
 	}
 	
-	let keychain = Keychain(service: "com.NS2GO")
+	let keychain = Keychain(service: NS2GOConstant.keychainIdentifier)
 	
 	func loadIPServer() {
 		do {
-			try vpnBaseAddress = keychain.get(BaseURL.vpnBaseAddressKey)
-			try vpnBasePort = keychain.get(BaseURL.vpnBasePortKey)
+			try vpnBaseAddress = keychain.get(NS2GOConstant.KeyServerAddress)
+			try vpnBasePort = keychain.get(NS2GOConstant.KeyServerPort)
 		} catch {
 			print(error.localizedDescription)
 		}
@@ -45,8 +42,8 @@ class BaseURL {
 		}
 		
 		do {
-			try keychain.set(ipAddress, key: BaseURL.vpnBaseAddressKey)
-			try keychain.set(port, key: BaseURL.vpnBasePortKey)
+			try keychain.set(ipAddress, key: NS2GOConstant.KeyServerAddress)
+			try keychain.set(port, key: NS2GOConstant.KeyServerPort)
 		} catch {
 			print(error.localizedDescription)
 		}
