@@ -14,4 +14,10 @@ extension String {
 		let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
 		return emailPredicate.evaluate(with: self)
 	}
+	
+	func hexString() -> String {
+		let data = Data(self.utf8)
+		let hexString = data.map{ String(format:"%02x", $0) }.joined()
+		return hexString
+	}
 }

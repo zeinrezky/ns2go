@@ -10,25 +10,43 @@ import Foundation
 import Alamofire
 
 class BaseRequest {
+	
+	static let shared = BaseRequest()
+	private var session = Session()
+	
+	init() {
+		setupSession()
+	}
+	
+	func setupSession() {
+		let configuration = URLSessionConfiguration.default
+		configuration.timeoutIntervalForResource = 30
+		configuration.timeoutIntervalForRequest = 30
+		let serverTrustPolicies: [String: ServerTrustEvaluating] = [
+			BaseURL.shared.vpnBaseURL: DisabledEvaluator(),
+			(BaseURL.shared.vpnBaseAddress ?? ""): DisabledEvaluator()
+		]
+
+		session = Session(
+			configuration: configuration,
+			serverTrustManager: ServerTrustManager(
+				allHostsMustBeEvaluated: false,
+				evaluators: serverTrustPolicies
+			)
+		)
+	}
     
-    static let clientSecret = "SEts0SIbJGzeLyG2wfcpHjvpaid9WSm5BDvb80Jx"
-    static var token : String?
-    
-    static func getDefaultHeader() -> HTTPHeaders {
+   func getDefaultHeader() -> HTTPHeaders {
         
-//        var header = [
-//            "Accept" : "application/json",
-//            "Content-Type":"application/x-www-form-urlencoded"
-//        ]
-//
-//        if let token = token {
-//            header.updateValue("Bearer \(token)", forKey: "Authorization")
-//        }
-        
-		return HTTPHeaders([:])
+        let header = [
+            "Accept" : "application/json",
+            "Content-Type":"application/x-www-form-urlencoded"
+        ]
+		
+		return HTTPHeaders(header)
     }
     
-    static func GET(url:String,
+    func GET(url:String,
                     header:HTTPHeaders,
                     parameter:Parameters? = nil,
                     success: @escaping (Any) -> Void,
@@ -64,7 +82,7 @@ class BaseRequest {
         }
     }
     
-    static func POST(url:String, parameter:Parameters, header:HTTPHeaders, success: @escaping (Any) -> Void, failure: @escaping (String) -> Void) {
+    func POST(url:String, parameter:Parameters, header:HTTPHeaders, success: @escaping (Any) -> Void, failure: @escaping (String) -> Void) {
         
         print("DEBUG - URL : \(url)")
         print("DEBUG - HEADER : \(header)")
@@ -72,26 +90,23 @@ class BaseRequest {
         
         if let encodedString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed),
             let url = URL(string: encodedString) {
-            
-			AF.session.configuration.timeoutIntervalForRequest = 30
-			AF.session.configuration.timeoutIntervalForResource = 30
-            
-            AF.request(
-                url,
-                method: .post,
-                parameters: parameter,
-                encoding: URLEncoding.default,
-                headers: header
-            ).responseJSON { (response) in
-                print("DEBUG - RESPONSE : \(response)")
-                
+			
+			session.request(
+				url,
+				method: .post,
+				parameters: parameter,
+				encoding: URLEncoding.httpBody,
+				headers: header
+			).responseJSON(completionHandler: {(response) in
+				print("DEBUG - RESPONSE : \(response)")
+
 				if let value = response.value {
 					success(value)
 				} else {
 					failure(response.error?.localizedDescription ?? "")
 				}
-				
-            }.validate(statusCode: 200..<300)
+
+			})
         }
     }
 }

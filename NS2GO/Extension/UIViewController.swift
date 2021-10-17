@@ -27,16 +27,23 @@ extension UIViewController {
 		
 		alert.addAction(button)
 		
-		self.present(alert, animated: true, completion: nil)
+		DispatchQueue.main.async { [weak self] in
+			self?.present(alert, animated: true, completion: nil)
+		}
 	}
 	
 	func showLoading() {
 		LoadingIndicator.shared.frame = self.view.frame
-		self.view.addSubview(LoadingIndicator.shared)
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.view.addSubview(LoadingIndicator.shared)
+		}
 	}
 	
 	func hideLoading() {
-		LoadingIndicator.shared.removeFromSuperview()
+		DispatchQueue.main.async { [weak self] in
+			LoadingIndicator.shared.removeFromSuperview()
+		}
 	}
 	
 }

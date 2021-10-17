@@ -20,7 +20,7 @@ class RegisterService {
 				  onComplete : @escaping() -> Void,
 				  onFailed : ((String) -> Void)?) {
 		
-		let url = BaseURL.guestBaseURL + "register-user"
+		let url = BaseURL.shared.guestBaseURL + "register-user"
 		
 		let parameter = [
 			"first_name" : firstName,
@@ -31,9 +31,9 @@ class RegisterService {
 			"company_state" : companyState
 		]
 		
-		let header: HTTPHeaders = BaseRequest.getDefaultHeader()
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
 		
-		BaseRequest.POST(url: url, parameter: parameter, header: header, success: { (data) in
+		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
 			
@@ -53,16 +53,16 @@ class RegisterService {
 				  onComplete : @escaping() -> Void,
 				  onFailed : ((String) -> Void)?) {
 		
-		let url = BaseURL.guestBaseURL + "validate-user"
+		let url = BaseURL.shared.guestBaseURL + "validate-user"
 		
 		let parameter = [
 			"email_address" : email,
 			"validation_code" : code
 		]
 		
-		let header: HTTPHeaders = BaseRequest.getDefaultHeader()
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
 		
-		BaseRequest.POST(url: url, parameter: parameter, header: header, success: { (data) in
+		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
 			
@@ -87,15 +87,15 @@ class RegisterService {
 				  onComplete : @escaping() -> Void,
 				  onFailed : ((String) -> Void)?) {
 		
-		let url = BaseURL.guestBaseURL + "resend-code"
+		let url = BaseURL.shared.guestBaseURL + "resend-code"
 		
 		let parameter = [
 			"email_address" : email
 		]
 		
-		let header: HTTPHeaders = BaseRequest.getDefaultHeader()
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
 		
-		BaseRequest.POST(url: url, parameter: parameter, header: header, success: { (data) in
+		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
 			

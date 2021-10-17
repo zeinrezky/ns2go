@@ -9,7 +9,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-	
 	@IBOutlet var textFieldContainers: [UIView]!
 	
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -18,16 +17,10 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var passwordTextField: UITextField!
 	@IBOutlet weak var loginButton: UIButton!
 	
+	private let service = LoginService()
+	
 	@IBAction func loginButtonTapped(_ sender: Any) {
-		let serverListVC = ServerListViewController()
-		let navVC = UINavigationController(rootViewController: serverListVC)
-		
-		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-			  let window = appDelegate.window else {
-			return
-		}
-		
-		window.rootViewController = navVC
+		login()
 	}
 	
     override func viewDidLoad() {
@@ -83,7 +76,8 @@ class LoginViewController: UIViewController {
 	@objc private func pushToEditServerInformation() {
 		let lastIndex = (self.navigationController?.viewControllers.count ?? 0) - 1
 		if lastIndex > 0,
-		   ((self.navigationController?.viewControllers[lastIndex - 1].isKind(of: ServerInformationViewController.self)) != nil)  {
+		   let controllerBefore = self.navigationController?.viewControllers[lastIndex - 1],
+		   controllerBefore.isKind(of: ServerInformationViewController.self) {
 			DispatchQueue.main.async { [weak self] in
 				self?.navigationController?.popViewController(animated: true)
 			}
@@ -91,6 +85,43 @@ class LoginViewController: UIViewController {
 			let serverVC = ServerInformationViewController()
 			self.navigationController?.pushViewController(serverVC, animated: true)
 		}
+	}
+	
+	private func login() {
+		guard let username = loginIDTextField.text else {
+			showAlert(message: "Login ID cannot be empty")
+			return
+		}
+		
+		guard let password = passwordTextField.text else {
+			showAlert(message: "Password cannot be empty")
+			return
+		}
+		
+		showLoading()
+		service.login(
+			username: username,
+			password: password,
+			onComplete: { [weak self] in
+				self?.hideLoading()
+				self?.presentServerList()
+			}, onFailed: { [weak self] (message) in
+				self?.hideLoading()
+				self?.showAlert(message: message)
+			}
+		)
+	}
+	
+	private func presentServerList() {
+		let serverListVC = ServerListViewController()
+		let navVC = UINavigationController(rootViewController: serverListVC)
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+			  let window = appDelegate.window else {
+			return
+		}
+		
+		window.rootViewController = navVC
 	}
 	
 	private func setupTextFieldContanier() {
