@@ -12,6 +12,20 @@ class IPUListViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
+	var cpu: ObjectMonitored?
+	var busy: ObjectMonitored?
+	var qLength: ObjectMonitored?
+	
+	var ipus: [IPU] {
+		guard let cpus = cpu?.instance as? [CPU] else {
+			return []
+		}
+		
+		let ipus: [IPU] = cpus.flatMap({$0.ipus})
+		
+		return ipus
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -58,13 +72,32 @@ class IPUListViewController: UIViewController {
 extension IPUListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = IPUDetailViewController()
+		
+		let ipu = ipus[indexPath.section]
+		if let cpuNumber = Int(ipu.cpuName ?? ""),
+		   let ipuNumber = ipu.ipunumber {
+			
+			if indexPath.row == 0 {
+				if let instances = busy?.instance as? [CPUProcessInstance] {
+					let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
+					controller.instances = filtered
+				}
+			} else {
+				if let instances = qLength?.instance as? [CPUProcessInstance] {
+					let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
+					controller.instances = filtered
+				}
+			}
+			
+		}
+		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }
 
 extension IPUListViewController: UITableViewDataSource {
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+		return ipus.count
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,18 +105,29 @@ extension IPUListViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusListTableViewCell.identifier) as? StatusListTableViewCell else {
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusListTableViewCell.identifier) as? StatusListTableViewCell,
+			  let instance: CPU = cpu?.instance[indexPath.section] as? CPU else {
 			return UITableViewCell()
 		}
+		let text: String
+		if indexPath.row == 0 {
+			text = "\(instance.cpuBusy ?? 0)% Busy"
+		} else {
+			text = "\(instance.queueLength ?? 0) Q.Length"
+		}
 		
-		cell.configureCell(status: indexPath.row == 0 ? .green : .yellow, text: "Busy")
+		cell.configureCell(status: .green, text: text)
 		cell.selectionStyle = .none
 		
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		return createSectionHeader(for: "IPU")
+		var headerText: String = ""
+		let ipu = ipus[section]
+		headerText = "\(ipu.cpuName ?? "").\(ipu.ipunumber ?? 0)"
+		
+		return createSectionHeader(for: headerText)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

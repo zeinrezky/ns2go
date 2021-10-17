@@ -15,6 +15,11 @@ class NodeViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
+	private let service = DashboardService()
+	
+	private var nodeStatus: NodeStatus?
+	
+	private var isFirstTimeLoad: Bool = true
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +29,12 @@ class NodeViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
+		
+		if isFirstTimeLoad {
+			fetchData()
+		}
+		
+		isFirstTimeLoad = false
 	}
  
 	private func setupNavigationBar() {
@@ -40,23 +51,56 @@ class NodeViewController: UIViewController {
 		tableView.register(UINib(nibName: NodeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NodeTableViewCell.identifier)
 	}
 	
+	private func fetchData() {
+		showLoading()
+		service.getCurrentStatus(onComplete: { [weak self] nodeStatus in
+			self?.hideLoading()
+			self?.nodeStatus = nodeStatus
+		}, onFailed: { [weak self] message in
+			self?.hideLoading()
+			DispatchQueue.main.async { [weak self] in
+				self?.showAlert(message: message)
+			}
+		})
+	}
+	
 	private func pushToCPUList() {
 		let controller = CPUListViewController()
+		let cpu = nodeStatus?.monitors.first(where: {$0.category == .CPU})
+		let busy = nodeStatus?.monitors.first(where: {$0.category == .Busy})
+		let qLength = nodeStatus?.monitors.first(where: {$0.category == .QueueLength})
+		controller.cpu = cpu
+		controller.busy = busy
+		controller.qLength = qLength
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 	
 	private func pushToIPUList() {
 		let controller = IPUListViewController()
+		let cpu = nodeStatus?.monitors.first(where: {$0.category == .CPU})
+		let busy = nodeStatus?.monitors.first(where: {$0.category == .Busy})
+		let qLength = nodeStatus?.monitors.first(where: {$0.category == .QueueLength})
+		controller.cpu = cpu
+		controller.busy = busy
+		controller.qLength = qLength
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 	
 	private func pushToDiskList() {
 		let controller = DiskListViewController()
+		let busy = nodeStatus?.monitors.first(where: {$0.category == .DiskBusy})
+		let qLength = nodeStatus?.monitors.first(where: {$0.category == .DiskQueueLength})
+		controller.busy = busy
+		controller.qLength = qLength
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 	
 	private func pushToProcessList() {
 		let controller = ProcessListViewController()
+		let busy = nodeStatus?.monitors.first(where: {$0.category == .Busy})
+		let qLength = nodeStatus?.monitors.first(where: {$0.category == .QueueLength})
+		controller.busy = busy
+		controller.qLength = qLength
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }

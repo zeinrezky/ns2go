@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import LocalAuthentication
+import KeychainAccess
 
 class LoginViewController: UIViewController {
 
@@ -18,6 +20,9 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var loginButton: UIButton!
 	
 	private let service = LoginService()
+	private var biometricContext = LAContext()
+	
+	private let keychain = Keychain(service: NS2GOConstant.keychainIdentifier)
 	
 	@IBAction func loginButtonTapped(_ sender: Any) {
 		login()
@@ -29,6 +34,8 @@ class LoginViewController: UIViewController {
 		loginButton.layer.cornerRadius = 4
 		loginIDTextField.addDoneButtonKeyboard()
 		passwordTextField.addDoneButtonKeyboard()
+		
+		checkAuthorizationToUseFaceID()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +80,13 @@ class LoginViewController: UIViewController {
 		self.navigationItem.rightBarButtonItem = btBar
 	}
 	
+	private func setupTextFieldContanier() {
+		textFieldContainers.forEach { [weak self] (view) in
+			view.layer.borderColor = UIColor.darkGray.cgColor
+			view.layer.borderWidth = 1
+		}
+	}
+	
 	@objc private func pushToEditServerInformation() {
 		let lastIndex = (self.navigationController?.viewControllers.count ?? 0) - 1
 		if lastIndex > 0,
@@ -87,8 +101,97 @@ class LoginViewController: UIViewController {
 		}
 	}
 	
+	private func presentServerList(nodes: [Node]) {
+		let serverListVC = ServerListViewController()
+		serverListVC.nodes = nodes
+		let navVC = UINavigationController(rootViewController: serverListVC)
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+			  let window = appDelegate.window else {
+			return
+		}
+		
+		window.rootViewController = navVC
+	}
+	
+	private func checkAuthorizationToUseFaceID() {
+		
+		var error: NSError?
+		let permissions = biometricContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+		
+		guard error == nil,
+			  isUserLoggedIn() else {
+			print(error?.localizedDescription ?? "")
+			return
+		}
+		
+		if permissions {
+			doFaceIDBiometric()
+		}
+	}
+	
+	private func doFaceIDBiometric() {
+		let reason = "Log in with Face ID"
+		biometricContext.evaluatePolicy(
+			.deviceOwnerAuthenticationWithBiometrics,
+			localizedReason: reason
+		) { [weak self] success, error in
+			guard error == nil else {
+				print(error?.localizedDescription ?? "")
+				return
+			}
+			
+			let credentials = self?.loadCredential()
+			let loginID = credentials?.0
+			let password = credentials?.1
+			
+			DispatchQueue.main.async { [weak self] in
+				self?.loginIDTextField.text = loginID
+				self?.passwordTextField.text = password
+				self?.login()
+			}
+		}
+	}
+	
+	private func loadCredential() -> (String?, String?){
+		var loginID: String?
+		var password: String?
+		
+		do {
+			loginID = try keychain.getString(NS2GOConstant.KeyLoginID)
+			password = try keychain.getString(NS2GOConstant.KeyPassword)
+		} catch {
+			print(error.localizedDescription)
+		}
+		
+		return (loginID, password)
+	}
+	
+	private func saveCredential(loginID: String, password: String) {
+		do {
+			try keychain.set(loginID, key: NS2GOConstant.KeyLoginID)
+			try keychain.set(password, key: NS2GOConstant.KeyPassword)
+			try keychain.set("YES", key: NS2GOConstant.KeyUserLoggedIn)
+		} catch {
+			print(error.localizedDescription)
+		}
+	}
+	
+	private func isUserLoggedIn() -> Bool {
+		var isUserLoggedIn = false
+		
+		do {
+			let loggedIn = try keychain.getString(NS2GOConstant.KeyUserLoggedIn)
+			isUserLoggedIn = loggedIn == "YES"
+		} catch {
+			print(error.localizedDescription)
+		}
+		
+		return isUserLoggedIn
+	}
+	
 	private func login() {
-		guard let username = loginIDTextField.text else {
+		guard let loginID = loginIDTextField.text else {
 			showAlert(message: "Login ID cannot be empty")
 			return
 		}
@@ -100,34 +203,16 @@ class LoginViewController: UIViewController {
 		
 		showLoading()
 		service.login(
-			username: username,
+			username: loginID,
 			password: password,
-			onComplete: { [weak self] in
+			onComplete: { [weak self] (nodes) in
 				self?.hideLoading()
-				self?.presentServerList()
+				self?.saveCredential(loginID: loginID, password: password)
+				self?.presentServerList(nodes: nodes)
 			}, onFailed: { [weak self] (message) in
 				self?.hideLoading()
 				self?.showAlert(message: message)
 			}
 		)
-	}
-	
-	private func presentServerList() {
-		let serverListVC = ServerListViewController()
-		let navVC = UINavigationController(rootViewController: serverListVC)
-		
-		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-			  let window = appDelegate.window else {
-			return
-		}
-		
-		window.rootViewController = navVC
-	}
-	
-	private func setupTextFieldContanier() {
-		textFieldContainers.forEach { [weak self] (view) in
-			view.layer.borderColor = UIColor.darkGray.cgColor
-			view.layer.borderWidth = 1
-		}
 	}
 }
