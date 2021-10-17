@@ -28,7 +28,7 @@ class CPU: BaseInstance {
 		if let jsonArray = json["IPUS"].array {
 			var objectIPUS: [IPU] = []
 			for jsonObject in jsonArray {
-				let ipu = IPU(json: jsonObject)
+				let ipu = IPU(json: jsonObject, cpuJSON: json)
 				objectIPUS.append(ipu)
 			}
 			self.ipus = objectIPUS
@@ -40,11 +40,13 @@ class CPU: BaseInstance {
 
 // MARK: - Ipus
 class IPU {
+	let cpuName: String?
 	let ipunumber: Int?
 	let ipubusy: Double?
 	let ipuqtime: Double?
 
-	init(json: JSON) {
+	init(json: JSON, cpuJSON: JSON) {
+		self.cpuName = cpuJSON["name"].string ?? String(cpuJSON["name"].intValue)
 		self.ipunumber = json["IPUNUMBER"].int
 		self.ipubusy = json["IPUBUSY"].double
 		self.ipuqtime = json["IPUQTIME"].double

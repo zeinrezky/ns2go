@@ -9,8 +9,11 @@ import UIKit
 
 class CPUListViewController: UIViewController {
 
-	
 	@IBOutlet weak var tableView: UITableView!
+	
+	var cpu: ObjectMonitored?
+	var busy: ObjectMonitored?
+	var qLength: ObjectMonitored?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +61,27 @@ class CPUListViewController: UIViewController {
 extension CPUListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = CPUDetailViewController()
+		let cpuName = cpu?.instance[indexPath.section].name ?? ""
+		
+		if indexPath.row == 0 {
+			if let instances = busy?.instance as? [CPUProcessInstance] {
+				let filtered = instances.filter({$0.cpunumber == Int(cpuName)})
+				controller.instances = filtered
+			}
+		} else {
+			if let instances = qLength?.instance as? [CPUProcessInstance] {
+				let filtered = instances.filter({$0.cpunumber == Int(cpuName)})
+				controller.instances = filtered
+			}
+		}
+		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }
 
 extension CPUListViewController: UITableViewDataSource {
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+		return cpu?.instance.count ?? 0
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,18 +89,29 @@ extension CPUListViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusListTableViewCell.identifier) as? StatusListTableViewCell else {
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusListTableViewCell.identifier) as? StatusListTableViewCell,
+			  let instance: CPU = cpu?.instance[indexPath.section] as? CPU else {
 			return UITableViewCell()
 		}
+		let text: String
+		if indexPath.row == 0 {
+			text = "\(instance.cpuBusy ?? 0)% Busy"
+		} else {
+			text = "\(instance.queueLength ?? 0) Q.Length"
+		}
 		
-		cell.configureCell(status: indexPath.row == 0 ? .green : .yellow, text: "Busy")
+		cell.configureCell(status: .green, text: text)
 		cell.selectionStyle = .none
 		
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		return createSectionHeader(for: "CPU")
+		var headerText: String = ""
+		if let instance = cpu?.instance[section] as? CPU {
+			headerText = (instance.name ?? "")
+		}
+		return createSectionHeader(for: headerText)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

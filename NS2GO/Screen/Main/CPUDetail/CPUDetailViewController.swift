@@ -10,6 +10,8 @@ import UIKit
 class CPUDetailViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
+	
+	var instances: [CPUProcessInstance] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +84,7 @@ extension CPUDetailViewController: UITableViewDelegate {
 extension CPUDetailViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 4
+		return instances.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,7 +92,12 @@ extension CPUDetailViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		cell.configureCell(name: "$X9ZG", busy: "10.08%", lenght: "1.00")
+		let instance = instances[indexPath.item]
+		cell.configureCell(
+			name: (instance.name ?? ""),
+			busy: "\(instance.cpuBusy ?? 0)%",
+			lenght: "\(instance.queueLength ?? 0)"
+		)
 		
 		return cell
 	}

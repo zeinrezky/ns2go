@@ -11,6 +11,9 @@ class DiskListViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
+	var busy: ObjectMonitored?
+	var qLength: ObjectMonitored?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -34,29 +37,21 @@ class DiskListViewController: UIViewController {
 		tableView.separatorColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusListTableViewCell.identifier)
 	}
-	
-//	private func createSectionHeader(for text: String) -> UIView {
-//		let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
-//	    view.backgroundColor = .white
-//		
-//		let separator = UIView(frame: CGRect(x: 40, y: 59, width: tableView.frame.width - 80, height: 1))
-//		separator.backgroundColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
-//		
-//		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 80, height: 20))
-//		label.text = text
-//		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
-//		label.font = UIFont.systemFont(ofSize: 16)
-//		
-//		view.addSubview(label)
-//		view.addSubview(separator)
-//		
-//		return view
-//	}
 }
 
 extension DiskListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = DiskDetailViewController()
+		if indexPath.row == 0 {
+			if let instances = busy?.instance as? [DiskProcessInstance] {
+				controller.instances = instances
+			}
+		} else {
+			if let instances = qLength?.instance as? [DiskProcessInstance] {
+				controller.instances = instances
+			}
+		}
+		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }
@@ -75,17 +70,16 @@ extension DiskListViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		cell.configureCell(status: indexPath.row == 0 ? .green : .yellow, text: "Busy")
+		let text: String
+		if indexPath.row == 0 {
+			text = "DP2 Busy %"
+		} else {
+			text = "Q. Length"
+		}
+		
+		cell.configureCell(status: .green, text: text)
 		cell.selectionStyle = .none
 		
 		return cell
 	}
-//
-//	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//		return createSectionHeader(for: "IPU")
-//	}
-//
-//	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//		return 60.0
-//	}
 }

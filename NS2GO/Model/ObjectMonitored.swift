@@ -29,7 +29,7 @@ class ObjectMonitored {
 			self.metrics = metrics
 		}
 		
-		if let jsonArray = json["instance"].array {
+		if let jsonArray = json["instances"].array {
 			switch category {
 			case .TMF:
 				let objects: [TMF] = populateInstance(jsonArray: jsonArray)

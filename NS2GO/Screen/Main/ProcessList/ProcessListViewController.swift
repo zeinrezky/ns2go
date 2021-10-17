@@ -11,6 +11,9 @@ class ProcessListViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
 	
+	var busy: ObjectMonitored?
+	var qLength: ObjectMonitored?
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -57,6 +60,16 @@ class ProcessListViewController: UIViewController {
 extension ProcessListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = ProcessDetailViewController()
+		if indexPath.row == 0 {
+			if let instances = busy?.instance as? [CPUProcessInstance] {
+				controller.instances = instances
+			}
+		} else {
+			if let instances = qLength?.instance as? [CPUProcessInstance] {
+				controller.instances = instances
+			}
+		}
+		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }
@@ -75,7 +88,14 @@ extension ProcessListViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		cell.configureCell(status: indexPath.row == 0 ? .green : .yellow, text: "Busy")
+		let text: String
+		if indexPath.row == 0 {
+			text = "Busy %"
+		} else {
+			text = "Q. Length"
+		}
+		
+		cell.configureCell(status: .green, text: text)
 		cell.selectionStyle = .none
 		
 		return cell

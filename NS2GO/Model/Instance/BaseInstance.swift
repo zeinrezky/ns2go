@@ -14,6 +14,6 @@ class BaseInstance {
 	
 	required init(json: JSON) {
 		self.ts = json["TS"].string
-		self.name = json["name"].string
+		self.name = json["name"].string ?? String(json["name"].intValue)
 	}
 }

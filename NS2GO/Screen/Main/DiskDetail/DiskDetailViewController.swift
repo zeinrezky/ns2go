@@ -11,6 +11,8 @@ class DiskDetailViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
 	
+	var instances: [DiskProcessInstance] = []
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -82,15 +84,19 @@ extension DiskDetailViewController: UITableViewDelegate {
 extension DiskDetailViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 4
+		return instances.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusDetailTableViewCell.identifier) as? StatusDetailTableViewCell else {
 			return UITableViewCell()
 		}
-		
-		cell.configureCell(name: "$X9ZG", busy: "10.08%", lenght: "1.00")
+		let instance = instances[indexPath.item]
+		cell.configureCell(
+			name: (instance.name ?? ""),
+			busy: "\(instance.dp2Busy ?? 0)%",
+			lenght: "\(instance.queueLength ?? 0)"
+		)
 		
 		return cell
 	}
