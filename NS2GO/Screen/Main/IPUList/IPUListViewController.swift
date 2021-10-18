@@ -82,12 +82,16 @@ extension IPUListViewController: UITableViewDelegate {
 			if indexPath.row == 0 {
 				if let instances = busy?.instance as? [CPUProcessInstance] {
 					let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
-					controller.instances = filtered
+					controller.instances = filtered.sorted(by: { (left, right) -> Bool in
+						return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
+					})
 				}
 			} else {
 				if let instances = qLength?.instance as? [CPUProcessInstance] {
 					let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
-					controller.instances = filtered
+					controller.instances = filtered.sorted(by: { (left, right) -> Bool in
+						return (left.queueLength ?? 0) > (right.queueLength ?? 0)
+					})
 				}
 			}
 			

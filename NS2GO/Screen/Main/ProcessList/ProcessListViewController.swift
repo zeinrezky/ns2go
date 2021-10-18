@@ -46,11 +46,15 @@ extension ProcessListViewController: UITableViewDelegate {
 		let controller = ProcessDetailViewController()
 		if indexPath.row == 0 {
 			if let instances = busy?.instance as? [CPUProcessInstance] {
-				controller.instances = instances
+				controller.instances = instances.sorted(by: { (left, right) -> Bool in
+					return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
+				})
 			}
 		} else {
 			if let instances = qLength?.instance as? [CPUProcessInstance] {
-				controller.instances = instances
+				controller.instances = instances.sorted(by: { (left, right) -> Bool in
+					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
+				})
 			}
 		}
 		controller.alert = self.alert
