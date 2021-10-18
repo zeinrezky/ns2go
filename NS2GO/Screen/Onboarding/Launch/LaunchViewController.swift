@@ -39,7 +39,7 @@ class LaunchViewController: UIViewController {
 	}
 	
 	private func pushToRegister() {
-		let register = ServerInformationViewController()
+		let register = RegistrationViewController()
 		DispatchQueue.main.async { [weak self] in
 			self?.navigationController?.pushViewController(register, animated: true)
 		}
