@@ -14,6 +14,8 @@ class DiskListViewController: UIViewController {
 	var busy: ObjectMonitored?
 	var qLength: ObjectMonitored?
 	
+	var alert: [AlertLimit] = []
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -51,6 +53,7 @@ extension DiskListViewController: UITableViewDelegate {
 				controller.instances = instances
 			}
 		}
+		controller.alert = self.alert
 		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}

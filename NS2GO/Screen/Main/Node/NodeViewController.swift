@@ -15,11 +15,9 @@ class NodeViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
-	private let service = DashboardService()
 	
-	private var nodeStatus: NodeStatus?
-	
-	private var isFirstTimeLoad: Bool = true
+	var nodeStatus: NodeStatus?
+	var nodeAlert: Node?
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +27,11 @@ class NodeViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
-		
-		if isFirstTimeLoad {
-			fetchData()
-		}
-		
-		isFirstTimeLoad = false
 	}
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "MAINNODE"
+		self.title = nodeStatus?.nodename
 	}
 	
 	private func setupTableView() {
@@ -51,19 +43,6 @@ class NodeViewController: UIViewController {
 		tableView.register(UINib(nibName: NodeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NodeTableViewCell.identifier)
 	}
 	
-	private func fetchData() {
-		showLoading()
-		service.getCurrentStatus(onComplete: { [weak self] nodeStatus in
-			self?.hideLoading()
-			self?.nodeStatus = nodeStatus
-		}, onFailed: { [weak self] message in
-			self?.hideLoading()
-			DispatchQueue.main.async { [weak self] in
-				self?.showAlert(message: message)
-			}
-		})
-	}
-	
 	private func pushToCPUList() {
 		let controller = CPUListViewController()
 		let cpu = nodeStatus?.monitors.first(where: {$0.category == .CPU})
@@ -72,6 +51,13 @@ class NodeViewController: UIViewController {
 		controller.cpu = cpu
 		controller.busy = busy
 		controller.qLength = qLength
+		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
+			return limit.object == .CPU &&
+				limit.entity == .busy ||
+				limit.entity == .queueLength
+		}) {
+			controller.alert = alertLimit
+		}
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 	
@@ -83,6 +69,13 @@ class NodeViewController: UIViewController {
 		controller.cpu = cpu
 		controller.busy = busy
 		controller.qLength = qLength
+		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
+			return limit.object == .IPU &&
+				limit.entity == .busy ||
+				limit.entity == .queueLength
+		}) {
+			controller.alert = alertLimit
+		}
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 	
@@ -92,6 +85,13 @@ class NodeViewController: UIViewController {
 		let qLength = nodeStatus?.monitors.first(where: {$0.category == .DiskQueueLength})
 		controller.busy = busy
 		controller.qLength = qLength
+		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
+			return limit.object == .Disk &&
+				limit.entity == .busy ||
+				limit.entity == .queueLength
+		}) {
+			controller.alert = alertLimit
+		}
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 	
@@ -101,6 +101,13 @@ class NodeViewController: UIViewController {
 		let qLength = nodeStatus?.monitors.first(where: {$0.category == .QueueLength})
 		controller.busy = busy
 		controller.qLength = qLength
+		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
+			return limit.object == .Process &&
+				limit.entity == .busy ||
+				limit.entity == .queueLength
+		}) {
+			controller.alert = alertLimit
+		}
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }

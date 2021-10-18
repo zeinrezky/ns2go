@@ -103,7 +103,7 @@ class LoginViewController: UIViewController {
 	
 	private func presentServerList(nodes: [Node]) {
 		let serverListVC = ServerListViewController()
-		serverListVC.nodes = nodes
+		serverListVC.nodeAlert = nodes.first
 		let navVC = UINavigationController(rootViewController: serverListVC)
 		
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
