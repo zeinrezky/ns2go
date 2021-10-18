@@ -33,7 +33,8 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(diskInstance.dp2Busy ?? 0)%"
 		lengthLabel.text = "\(diskInstance.queueLength ?? 0)"
 		
-		setBackgroundIndicator(alertLimits: alertLimits, busy: (diskInstance.dp2Busy ?? 0), qLength: (diskInstance.queueLength ?? 0))
+		let indicator = getIndicator(alertLimits: alertLimits, busy: (diskInstance.dp2Busy ?? 0), qLength: (diskInstance.queueLength ?? 0))
+		setupViewFor(indicator: indicator)
 	}
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
@@ -41,10 +42,26 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
 		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
 		
-		setBackgroundIndicator(alertLimits: alertLimits, busy: (cpuInstance.cpuBusy ?? 0), qLength: (cpuInstance.queueLength ?? 0))
+		let indicator = getIndicator(alertLimits: alertLimits, busy: (cpuInstance.cpuBusy ?? 0), qLength: (cpuInstance.queueLength ?? 0))
+		setupViewFor(indicator: indicator)
 	}
 	
-	func setBackgroundIndicator(alertLimits: [AlertLimit], busy: Double, qLength: Double) {
+	private func setupViewFor(indicator: StatusListTableViewCell.StatusIndicator) {
+		backgroundIndicator.backgroundColor = indicator.color
+		
+		let font: UIFont
+		if indicator == .yellow || indicator == .red {
+			font = UIFont.systemFont(ofSize: 12, weight: .bold)
+		} else {
+			font = UIFont.systemFont(ofSize: 12)
+		}
+		
+		nameLabel.font = font
+		busyLabel.font = font
+		lengthLabel.font = font
+	}
+	
+	private func getIndicator(alertLimits: [AlertLimit], busy: Double, qLength: Double) -> StatusListTableViewCell.StatusIndicator {
 		var indicator: StatusListTableViewCell.StatusIndicator = .clear
 		
 		if let busyLimit = alertLimits.first(where: {$0.entity == .busy}) {
@@ -71,7 +88,7 @@ class StatusDetailTableViewCell: UITableViewCell {
 			}
 		}
 		
-		backgroundIndicator.backgroundColor = indicator.color
+		return indicator
 	}
     
 }

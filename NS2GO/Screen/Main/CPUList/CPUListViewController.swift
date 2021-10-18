@@ -65,6 +65,10 @@ extension CPUListViewController: UITableViewDelegate {
 		let controller = CPUDetailViewController()
 		let cpuName = cpu?.instance[indexPath.section].name ?? ""
 		
+		if let cpu = cpu?.instance[indexPath.section] as? CPU {
+			controller.navTitle = cpu.displayName
+		}
+		
 		if indexPath.row == 0 {
 			if let instances = busy?.instance as? [CPUProcessInstance] {
 				let filtered = instances.filter({$0.cpunumber == Int(cpuName)})
@@ -115,8 +119,9 @@ extension CPUListViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		var headerText: String = ""
 		if let instance = cpu?.instance[section] as? CPU {
-			headerText = (instance.name ?? "")
+			headerText = instance.displayName
 		}
+		
 		return createSectionHeader(for: headerText)
 	}
 	

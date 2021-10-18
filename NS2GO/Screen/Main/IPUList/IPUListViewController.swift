@@ -97,6 +97,7 @@ extension IPUListViewController: UITableViewDelegate {
 			
 		}
 		
+		controller.navTitle = ipu.displayName
 		controller.alert = self.alert
 		
 		self.navigationController?.pushViewController(controller, animated: true)
@@ -130,11 +131,8 @@ extension IPUListViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		var headerText: String = ""
 		let ipu = ipus[section]
-		headerText = "\(ipu.cpuName ?? "").\(ipu.ipunumber ?? 0)"
-		
-		return createSectionHeader(for: headerText)
+		return createSectionHeader(for: ipu.displayName)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
