@@ -12,6 +12,8 @@ class CPUDetailViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	var instances: [CPUProcessInstance] = []
+	
+	var alert: [AlertLimit] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,11 +95,7 @@ extension CPUDetailViewController: UITableViewDataSource {
 		}
 		
 		let instance = instances[indexPath.item]
-		cell.configureCell(
-			name: (instance.name ?? ""),
-			busy: "\(instance.cpuBusy ?? 0)%",
-			lenght: "\(instance.queueLength ?? 0)"
-		)
+		cell.configureCell(alertLimits: alert, cpuInstance: instance)
 		
 		return cell
 	}
