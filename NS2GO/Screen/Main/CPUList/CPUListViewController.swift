@@ -15,6 +15,8 @@ class CPUListViewController: UIViewController {
 	var busy: ObjectMonitored?
 	var qLength: ObjectMonitored?
 	
+	var alert: [AlertLimit] = []
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -75,6 +77,8 @@ extension CPUListViewController: UITableViewDelegate {
 			}
 		}
 		
+		controller.alert = self.alert
+		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }
@@ -93,14 +97,12 @@ extension CPUListViewController: UITableViewDataSource {
 			  let instance: CPU = cpu?.instance[indexPath.section] as? CPU else {
 			return UITableViewCell()
 		}
-		let text: String
-		if indexPath.row == 0 {
-			text = "\(instance.cpuBusy ?? 0)% Busy"
-		} else {
-			text = "\(instance.queueLength ?? 0) Q.Length"
-		}
+	
+		let entity: AlertLimit.EntityType = indexPath.row == 0 ? .busy : .queueLength
 		
-		cell.configureCell(status: .green, text: text)
+		let alertLimit = alert.first(where: {$0.entity == entity})
+		
+		cell.configureCell(alertLimit: alertLimit, instance: instance, row: indexPath.row)
 		cell.selectionStyle = .none
 		
 		return cell

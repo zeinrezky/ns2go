@@ -25,7 +25,7 @@ class ServerListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 	
-	func configureCell(node: Node) {
+	func configureCell(node: NodeStatus) {
 		serverNameLabel.text = node.nodename
 	}
     

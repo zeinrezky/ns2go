@@ -13,9 +13,15 @@ class ServerListViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var headerView: UIView!
 	
-	var nodes: [Node] = []
-	var lastTimeFetch: Date = Date()
+	var nodeAlert: Node?
 	
+	private var lastTimeFetch: Date = Date()
+	private let service = DashboardService()
+	
+	private var isFirstTimeLoad: Bool = true
+	
+	private var nodeStatuses: [NodeStatus] = []
+
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -24,6 +30,12 @@ class ServerListViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
+		
+		if isFirstTimeLoad {
+			fetchData()
+		}
+		
+		isFirstTimeLoad = false
 	}
 	
 	private func setupNavigationBar() {
@@ -39,22 +51,39 @@ class ServerListViewController: UIViewController {
 		tableView.separatorStyle = .none
 		tableView.register(UINib(nibName: ServerListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ServerListTableViewCell.identifier)
 	}
-
+	
+	private func fetchData() {
+		showLoading()
+		service.getCurrentStatus(onComplete: { [weak self] nodeStatus in
+			self?.hideLoading()
+			self?.nodeStatuses = [nodeStatus]
+			DispatchQueue.main.async { [weak self] in
+				self?.tableView.reloadData()
+			}
+		}, onFailed: { [weak self] message in
+			self?.hideLoading()
+			DispatchQueue.main.async { [weak self] in
+				self?.showAlert(message: message)
+			}
+		})
+	}
 }
 
 extension ServerListViewController: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let node = nodes[indexPath.item]
+		let nodeStatus = nodeStatuses[indexPath.item]
 		
 		let controller = NodeViewController()
+		controller.nodeStatus = nodeStatus
+		controller.nodeAlert = nodeAlert
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }
 
 extension ServerListViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return nodes.count
+		return nodeStatuses.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,7 +91,7 @@ extension ServerListViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		cell.configureCell(node: nodes[indexPath.item])
+		cell.configureCell(node: nodeStatuses[indexPath.item])
 		cell.selectionStyle = .none
 		
 		return cell

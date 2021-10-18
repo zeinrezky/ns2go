@@ -13,6 +13,8 @@ class DiskDetailViewController: UIViewController {
 	
 	var instances: [DiskProcessInstance] = []
 	
+	var alert: [AlertLimit] = []
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -92,11 +94,7 @@ extension DiskDetailViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		let instance = instances[indexPath.item]
-		cell.configureCell(
-			name: (instance.name ?? ""),
-			busy: "\(instance.dp2Busy ?? 0)%",
-			lenght: "\(instance.queueLength ?? 0)"
-		)
+		cell.configureCell(alertLimits: alert, diskInstance: instance)
 		
 		return cell
 	}

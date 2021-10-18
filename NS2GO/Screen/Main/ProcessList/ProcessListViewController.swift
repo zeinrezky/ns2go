@@ -14,6 +14,8 @@ class ProcessListViewController: UIViewController {
 	var busy: ObjectMonitored?
 	var qLength: ObjectMonitored?
 	
+	var alert: [AlertLimit] = []
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
@@ -37,24 +39,6 @@ class ProcessListViewController: UIViewController {
 		tableView.separatorColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusListTableViewCell.identifier)
 	}
-	
-//	private func createSectionHeader(for text: String) -> UIView {
-//		let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
-//		view.backgroundColor = .white
-//
-//		let separator = UIView(frame: CGRect(x: 40, y: 59, width: tableView.frame.width - 80, height: 1))
-//		separator.backgroundColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
-//
-//		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 80, height: 20))
-//		label.text = text
-//		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
-//		label.font = UIFont.systemFont(ofSize: 16)
-//
-//		view.addSubview(label)
-//		view.addSubview(separator)
-//
-//		return view
-//	}
 }
 
 extension ProcessListViewController: UITableViewDelegate {
@@ -69,6 +53,7 @@ extension ProcessListViewController: UITableViewDelegate {
 				controller.instances = instances
 			}
 		}
+		controller.alert = self.alert
 		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
@@ -100,12 +85,4 @@ extension ProcessListViewController: UITableViewDataSource {
 		
 		return cell
 	}
-//
-//	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//		return createSectionHeader(for: "IPU")
-//	}
-//
-//	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//		return 60.0
-//	}
 }

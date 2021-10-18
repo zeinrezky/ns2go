@@ -16,6 +16,8 @@ class IPUListViewController: UIViewController {
 	var busy: ObjectMonitored?
 	var qLength: ObjectMonitored?
 	
+	var alert: [AlertLimit] = []
+	
 	var ipus: [IPU] {
 		guard let cpus = cpu?.instance as? [CPU] else {
 			return []
@@ -91,6 +93,8 @@ extension IPUListViewController: UITableViewDelegate {
 			
 		}
 		
+		controller.alert = self.alert
+		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }
@@ -105,18 +109,17 @@ extension IPUListViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusListTableViewCell.identifier) as? StatusListTableViewCell,
-			  let instance: CPU = cpu?.instance[indexPath.section] as? CPU else {
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusListTableViewCell.identifier) as? StatusListTableViewCell else {
 			return UITableViewCell()
 		}
-		let text: String
-		if indexPath.row == 0 {
-			text = "\(instance.cpuBusy ?? 0)% Busy"
-		} else {
-			text = "\(instance.queueLength ?? 0) Q.Length"
-		}
 		
-		cell.configureCell(status: .green, text: text)
+		let instance: IPU = ipus[indexPath.section]
+		
+		let entity: AlertLimit.EntityType = indexPath.row == 0 ? .busy : .queueLength
+		
+		let alertLimit = alert.first(where: {$0.entity == entity})
+		
+		cell.configureCell(alertLimit: alertLimit, instance: instance, row: indexPath.row)
 		cell.selectionStyle = .none
 		
 		return cell
