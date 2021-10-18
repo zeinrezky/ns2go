@@ -22,6 +22,7 @@
 		DB609A94271C6D8C00E125C7 /* NodeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A93271C6D8C00E125C7 /* NodeStatus.swift */; };
 		DB609A97271C6E9A00E125C7 /* DashboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A96271C6E9A00E125C7 /* DashboardService.swift */; };
 		DB609A9F271CFDF800E125C7 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A9E271CFDF800E125C7 /* AppColor.swift */; };
+		DB609B20271DC09B00E125C7 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B1F271DC09B00E125C7 /* Array.swift */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -110,6 +111,7 @@
 		DB609A93271C6D8C00E125C7 /* NodeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeStatus.swift; sourceTree = "<group>"; };
 		DB609A96271C6E9A00E125C7 /* DashboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardService.swift; sourceTree = "<group>"; };
 		DB609A9E271CFDF800E125C7 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		DB609B1F271DC09B00E125C7 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				DBA4A3B22719ACB700BA4427 /* UITextView.swift */,
 				DBC7AB542717BCA8002EB696 /* UIViewController.swift */,
 				DBA4A3D12719C90E00BA4427 /* String.swift */,
+				DB609B1F271DC09B00E125C7 /* Array.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				DB609A6F271BC2C000E125C7 /* Node.swift in Sources */,
 				DB609A78271C5C6400E125C7 /* ObjectMonitored.swift in Sources */,
 				DB609A84271C5FA900E125C7 /* CLIMAgent.swift in Sources */,
+				DB609B20271DC09B00E125C7 /* Array.swift in Sources */,
 				DBC7AAE32713212B002EB696 /* NodeTableViewCell.swift in Sources */,
 				DBC7AABD27127F51002EB696 /* ActivationSuccessViewController.swift in Sources */,
 				DBBC027C2711E4B40033D364 /* RegistrationViewController.swift in Sources */,

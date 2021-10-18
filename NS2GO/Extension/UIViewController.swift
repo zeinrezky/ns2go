@@ -19,13 +19,18 @@ extension UIViewController {
 		self.navigationController?.view.backgroundColor = .clear
 	}
 	
-	func showAlert(title: String = "Error", message: String? = nil, button: String = "OK", action: (() -> Void)? = nil) {
+	func showAlert(title: String = "Error", message: String? = nil, buttonPositive: String = "OK", buttonNegative: String? = nil, action: (() -> Void)? = nil) {
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-		let button = UIAlertAction(title: button, style: .default) { (_) in
+		let button = UIAlertAction(title: buttonPositive, style: .default) { (_) in
 			action?()
 		}
 		
 		alert.addAction(button)
+		
+		if let buttonNegative = buttonNegative {
+			let negativeButton = UIAlertAction(title: buttonNegative, style: .cancel, handler: nil)
+			alert.addAction(negativeButton)
+		}
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.present(alert, animated: true, completion: nil)

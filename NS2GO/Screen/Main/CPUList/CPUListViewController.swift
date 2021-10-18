@@ -70,14 +70,14 @@ extension CPUListViewController: UITableViewDelegate {
 				let filtered = instances.filter({$0.cpunumber == Int(cpuName)})
 				controller.instances = filtered.sorted(by: { (left, right) -> Bool in
 					return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
-				})
+				}).chunked(into: 5).first ?? []
 			}
 		} else {
 			if let instances = qLength?.instance as? [CPUProcessInstance] {
 				let filtered = instances.filter({$0.cpunumber == Int(cpuName)})
 				controller.instances = filtered.sorted(by: { (left, right) -> Bool in
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
-				})
+				}).chunked(into: 5).first ?? []
 			}
 		}
 		

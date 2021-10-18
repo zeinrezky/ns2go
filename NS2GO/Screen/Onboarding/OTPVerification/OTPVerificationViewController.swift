@@ -112,6 +112,7 @@ class OTPVerificationViewController: UIViewController {
 		self.showLoading()
 		request.validate(email: email, code: code) { [weak self] in
 			self?.hideLoading()
+			UserDefaults.standard.setValue(true, forKey: NS2GOConstant.KeyUserRegistered)
 			self?.presentActivationSuccess()
 		} onFailed: { [weak self] (message) in
 			self?.hideLoading()

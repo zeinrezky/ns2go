@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class ServerListViewController: UIViewController {
 
@@ -41,6 +42,45 @@ class ServerListViewController: UIViewController {
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
 		self.title = "NS2GO"
+		
+		let button = UIButton()
+		button.setImage(UIImage(named : "ic_logout"), for: .normal)
+		button.setTitle("", for: .normal)
+		button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+		button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+		let btBar = UIBarButtonItem(customView: button)
+		self.navigationItem.rightBarButtonItem = btBar
+	}
+	
+	@objc private func logOut() {
+		showAlert(
+			title: "Log Out",
+			message: "Do you want to log out ?",
+			buttonPositive: "Yes",
+			buttonNegative: "No"
+		) { [weak self] in
+			DispatchQueue.main.async { [weak self] in
+				
+				let keychain = Keychain(service: NS2GOConstant.keychainIdentifier)
+				do {
+					try keychain.removeAll()
+				} catch {
+					print(error.localizedDescription)
+				}
+				
+				let launchVC = LaunchViewController()
+				let navVC = UINavigationController(rootViewController: launchVC)
+				
+				guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+					  let window = appDelegate.window else {
+					return
+				}
+				
+				window.rootViewController = navVC
+			}
+		}
 	}
 	
 	private func setupTableView() {

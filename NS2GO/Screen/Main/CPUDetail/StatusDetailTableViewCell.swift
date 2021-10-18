@@ -33,7 +33,6 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(diskInstance.dp2Busy ?? 0)%"
 		lengthLabel.text = "\(diskInstance.queueLength ?? 0)"
 		
-		
 		setBackgroundIndicator(alertLimits: alertLimits, busy: (diskInstance.dp2Busy ?? 0), qLength: (diskInstance.queueLength ?? 0))
 	}
 	
@@ -41,7 +40,6 @@ class StatusDetailTableViewCell: UITableViewCell {
 		nameLabel.text = cpuInstance.name
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
 		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
-		
 		
 		setBackgroundIndicator(alertLimits: alertLimits, busy: (cpuInstance.cpuBusy ?? 0), qLength: (cpuInstance.queueLength ?? 0))
 	}

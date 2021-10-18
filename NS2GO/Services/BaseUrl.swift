@@ -27,26 +27,13 @@ class BaseURL {
 	let keychain = Keychain(service: NS2GOConstant.keychainIdentifier)
 	
 	func loadIPServer() {
-		do {
-			try vpnBaseAddress = keychain.get(NS2GOConstant.KeyServerAddress)
-			try vpnBasePort = keychain.get(NS2GOConstant.KeyServerPort)
-		} catch {
-			print(error.localizedDescription)
-		}
+		vpnBaseAddress = UserDefaults.standard.string(forKey: NS2GOConstant.KeyServerAddress)
+		vpnBasePort = UserDefaults.standard.string(forKey: NS2GOConstant.KeyServerPort)
 	}
 	
 	func saveIPServer() {
-		guard let ipAddress = vpnBaseAddress,
-			  let port = vpnBasePort else {
-			return
-		}
-		
-		do {
-			try keychain.set(ipAddress, key: NS2GOConstant.KeyServerAddress)
-			try keychain.set(port, key: NS2GOConstant.KeyServerPort)
-		} catch {
-			print(error.localizedDescription)
-		}
+		UserDefaults.standard.setValue(vpnBaseAddress, forKey: NS2GOConstant.KeyServerAddress)
+		UserDefaults.standard.setValue(vpnBasePort, forKey: NS2GOConstant.KeyServerPort)
 		
 		BaseRequest.shared.setupSession()
 	}
