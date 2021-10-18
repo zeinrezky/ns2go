@@ -21,6 +21,7 @@
 		DB609A91271C6B7700E125C7 /* DiskProcessInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A90271C6B7700E125C7 /* DiskProcessInstance.swift */; };
 		DB609A94271C6D8C00E125C7 /* NodeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A93271C6D8C00E125C7 /* NodeStatus.swift */; };
 		DB609A97271C6E9A00E125C7 /* DashboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A96271C6E9A00E125C7 /* DashboardService.swift */; };
+		DB609A9F271CFDF800E125C7 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A9E271CFDF800E125C7 /* AppColor.swift */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -108,6 +109,7 @@
 		DB609A90271C6B7700E125C7 /* DiskProcessInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskProcessInstance.swift; sourceTree = "<group>"; };
 		DB609A93271C6D8C00E125C7 /* NodeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeStatus.swift; sourceTree = "<group>"; };
 		DB609A96271C6E9A00E125C7 /* DashboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardService.swift; sourceTree = "<group>"; };
+		DB609A9E271CFDF800E125C7 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */,
+				DB609A9E271CFDF800E125C7 /* AppColor.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				DBC7AB2427148EB6002EB696 /* StatusDetailTableViewCell.swift in Sources */,
 				DBC7AAFC27147B7D002EB696 /* StatusListTableViewCell.swift in Sources */,
 				DBC7AAEE271328F0002EB696 /* LaunchViewController.swift in Sources */,
+				DB609A9F271CFDF800E125C7 /* AppColor.swift in Sources */,
 				DBC7AB5027173AD9002EB696 /* OTPTextField.swift in Sources */,
 				DBC7AB552717BCA8002EB696 /* UIViewController.swift in Sources */,
 				DBC7AB0227148921002EB696 /* IPUListViewController.swift in Sources */,
