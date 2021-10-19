@@ -47,7 +47,7 @@ class ServerListViewController: UIViewController {
 		button.setImage(UIImage(named : "ic_logout"), for: .normal)
 		button.setTitle("", for: .normal)
 		button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
-		button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+		button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
 		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
 		let btBar = UIBarButtonItem(customView: button)

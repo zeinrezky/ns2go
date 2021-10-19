@@ -23,6 +23,8 @@
 		DB609A97271C6E9A00E125C7 /* DashboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A96271C6E9A00E125C7 /* DashboardService.swift */; };
 		DB609A9F271CFDF800E125C7 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A9E271CFDF800E125C7 /* AppColor.swift */; };
 		DB609B20271DC09B00E125C7 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B1F271DC09B00E125C7 /* Array.swift */; };
+		DB609B26271E912000E125C7 /* ProcessDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB609B24271E912000E125C7 /* ProcessDetailTableViewCell.xib */; };
+		DB609B27271E912000E125C7 /* ProcessDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B25271E912000E125C7 /* ProcessDetailTableViewCell.swift */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -112,6 +114,8 @@
 		DB609A96271C6E9A00E125C7 /* DashboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardService.swift; sourceTree = "<group>"; };
 		DB609A9E271CFDF800E125C7 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		DB609B1F271DC09B00E125C7 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		DB609B24271E912000E125C7 /* ProcessDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProcessDetailTableViewCell.xib; sourceTree = "<group>"; };
+		DB609B25271E912000E125C7 /* ProcessDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessDetailTableViewCell.swift; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -478,6 +482,8 @@
 		DBC7AB35271493B7002EB696 /* ProcessDetail */ = {
 			isa = PBXGroup;
 			children = (
+				DB609B25271E912000E125C7 /* ProcessDetailTableViewCell.swift */,
+				DB609B24271E912000E125C7 /* ProcessDetailTableViewCell.xib */,
 				DBC7AB37271493C9002EB696 /* ProcessDetailViewController.swift */,
 				DBC7AB38271493C9002EB696 /* ProcessDetailViewController.xib */,
 			);
@@ -590,6 +596,7 @@
 				DBC7AAF827147B07002EB696 /* CPUListViewController.xib in Resources */,
 				DBC7AAE42713212B002EB696 /* NodeTableViewCell.xib in Resources */,
 				DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */,
+				DB609B26271E912000E125C7 /* ProcessDetailTableViewCell.xib in Resources */,
 				DBC7AAFD27147B7D002EB696 /* StatusListTableViewCell.xib in Resources */,
 				DBC7AB1827148AE3002EB696 /* ProcessListViewController.xib in Resources */,
 				DBC7AB1227148A40002EB696 /* DiskListViewController.xib in Resources */,
@@ -685,6 +692,7 @@
 				DBC7AB0227148921002EB696 /* IPUListViewController.swift in Sources */,
 				DBBC02612711E3A30033D364 /* AppDelegate.swift in Sources */,
 				DBC7AAF727147B07002EB696 /* CPUListViewController.swift in Sources */,
+				DB609B27271E912000E125C7 /* ProcessDetailTableViewCell.swift in Sources */,
 				DB609A94271C6D8C00E125C7 /* NodeStatus.swift in Sources */,
 				DBC7AADD2713189F002EB696 /* ServerListTableViewCell.swift in Sources */,
 				DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */,

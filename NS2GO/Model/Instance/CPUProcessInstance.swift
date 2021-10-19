@@ -25,6 +25,20 @@ class CPUProcessInstance: BaseInstance {
 	let abortXNS: Int?
 	let queueLength: Double?
 	let memoryUsed: Double?
+	
+	var cpuDisplayName: String {
+		var displayName: String = ""
+		
+		if let number = cpunumber {
+			
+			let formatter = NumberFormatter()
+			formatter.minimumIntegerDigits = 2
+			
+			displayName = "\(formatter.string(for: number) ?? "")"
+		}
+		
+		return displayName
+	}
 
 	required init(json: JSON) {
 		self.cpunumber = json["CPUNUMBER"].int
