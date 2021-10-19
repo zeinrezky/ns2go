@@ -27,6 +27,7 @@
 		DB609B27271E912000E125C7 /* ProcessDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B25271E912000E125C7 /* ProcessDetailTableViewCell.swift */; };
 		DB609B2B271E997E00E125C7 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B2A271E997E00E125C7 /* TimeInterval.swift */; };
 		DB609B2E271EAFEF00E125C7 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B2D271EAFEF00E125C7 /* ServiceHelper.swift */; };
+		DB609B32271F06BD00E125C7 /* StatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B31271F06BC00E125C7 /* StatusIndicator.swift */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -120,6 +121,7 @@
 		DB609B25271E912000E125C7 /* ProcessDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessDetailTableViewCell.swift; sourceTree = "<group>"; };
 		DB609B2A271E997E00E125C7 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		DB609B2D271EAFEF00E125C7 /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
+		DB609B31271F06BC00E125C7 /* StatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIndicator.swift; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		DB609A6D271BC2B400E125C7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB609B34271F06C200E125C7 /* Enum */,
 				DB609A82271C5F7300E125C7 /* Instance */,
 				DB609A6E271BC2C000E125C7 /* Node.swift */,
 				DB609A71271BC36800E125C7 /* AlertLimit.swift */,
@@ -242,6 +245,14 @@
 				DB609A96271C6E9A00E125C7 /* DashboardService.swift */,
 			);
 			path = LoggedIn;
+			sourceTree = "<group>";
+		};
+		DB609B34271F06C200E125C7 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				DB609B31271F06BC00E125C7 /* StatusIndicator.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		DBA4A3C12719BE5300BA4427 /* Services */ = {
@@ -689,6 +700,7 @@
 				DBA4A3D22719C90E00BA4427 /* String.swift in Sources */,
 				DB609A8E271C6A1300E125C7 /* CPUProcessInstance.swift in Sources */,
 				DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */,
+				DB609B32271F06BD00E125C7 /* StatusIndicator.swift in Sources */,
 				DBC7AB1727148AE3002EB696 /* ProcessListViewController.swift in Sources */,
 				DB609A91271C6B7700E125C7 /* DiskProcessInstance.swift in Sources */,
 				DBC7AB2427148EB6002EB696 /* StatusDetailTableViewCell.swift in Sources */,

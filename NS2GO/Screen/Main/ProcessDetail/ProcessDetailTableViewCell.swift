@@ -31,17 +31,20 @@ class ProcessDetailTableViewCell: UITableViewCell {
     }
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
-		nameLabel.text = cpuInstance.name ?? "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
+		let isNameEmpty = (cpuInstance.name ?? "").isEmpty
+		let CPUPINName = "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
+		let name = isNameEmpty ? CPUPINName : cpuInstance.name
+		nameLabel.text = name
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
-		lengthLabel.text = "\(cpuInstance.receiveQueue ?? 0)"
+		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
 		cpuLabel.text = "\(cpuInstance.cpuDisplayName)"
 		pinLabel.text = "\(cpuInstance.pin ?? 0)"
 		
-		let indicator = getIndicator(alertLimits: alertLimits, busy: (cpuInstance.cpuBusy ?? 0), qLength: (cpuInstance.queueLength ?? 0))
+		let indicator = cpuInstance.getIndicator(alertLimits: alertLimits)
 		setupViewFor(indicator: indicator)
 	}
 	
-	private func setupViewFor(indicator: StatusListTableViewCell.StatusIndicator) {
+	private func setupViewFor(indicator: StatusIndicator) {
 		backgroundIndicator.backgroundColor = indicator.color
 		
 		let font: UIFont
@@ -57,35 +60,4 @@ class ProcessDetailTableViewCell: UITableViewCell {
 		cpuLabel.font = font
 		pinLabel.font = font
 	}
-	
-	private func getIndicator(alertLimits: [AlertLimit], busy: Double, qLength: Double) -> StatusListTableViewCell.StatusIndicator {
-		var indicator: StatusListTableViewCell.StatusIndicator = .clear
-		
-		if let busyLimit = alertLimits.first(where: {$0.entity == .busy}) {
-			if let warning = Double(busyLimit.warning),
-			   let critical = Double(busyLimit.critical) {
-				
-				if busy >= critical {
-					indicator = indicator.compareHigher(indicator: .red)
-				} else if busy >= warning {
-					indicator = indicator.compareHigher(indicator: .yellow)
-				}
-			}
-		}
-		
-		if let lengthLimit = alertLimits.first(where: {$0.entity == .queueLength}) {
-			if let warning = Double(lengthLimit.warning),
-			   let critical = Double(lengthLimit.critical) {
-				
-				if qLength >= critical {
-					indicator = indicator.compareHigher(indicator: .red)
-				} else if qLength >= warning {
-					indicator = indicator.compareHigher(indicator: .yellow)
-				}
-			}
-		}
-		
-		return indicator
-	}
-    
 }

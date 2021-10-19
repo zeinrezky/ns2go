@@ -42,6 +42,7 @@ class ServerListViewController: UIViewController {
 		}
 		
 		isFirstTimeLoad = false
+		updateLastSyncLabel()
 	}
 	
 	private func startSyncTimer() {

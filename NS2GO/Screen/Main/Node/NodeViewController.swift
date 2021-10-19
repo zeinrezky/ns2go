@@ -151,8 +151,8 @@ class NodeViewController: UIViewController {
 		controller.qLength = qLength
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return limit.object == .CPU &&
-				limit.entity == .busy ||
-				limit.entity == .queueLength
+				(limit.entity == .busy ||
+				limit.entity == .queueLength)
 		}) {
 			controller.alert = alertLimit
 		}
@@ -169,8 +169,8 @@ class NodeViewController: UIViewController {
 		controller.qLength = qLength
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return limit.object == .IPU &&
-				limit.entity == .busy ||
-				limit.entity == .queueLength
+				(limit.entity == .busy ||
+				limit.entity == .queueLength)
 		}) {
 			controller.alert = alertLimit
 		}
@@ -185,8 +185,8 @@ class NodeViewController: UIViewController {
 		controller.qLength = qLength
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return limit.object == .Disk &&
-				limit.entity == .busy ||
-				limit.entity == .queueLength
+				(limit.entity == .busy ||
+				limit.entity == .queueLength)
 		}) {
 			controller.alert = alertLimit
 		}
@@ -201,8 +201,8 @@ class NodeViewController: UIViewController {
 		controller.qLength = qLength
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return limit.object == .Process &&
-				limit.entity == .busy ||
-				limit.entity == .queueLength
+				(limit.entity == .busy ||
+				limit.entity == .queueLength)
 		}) {
 			controller.alert = alertLimit
 		}
@@ -238,7 +238,42 @@ extension NodeViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		cell.configureCell(cellType: cells[indexPath.row])
+		var object: [ObjectMonitored] = []
+		var alertLimit: [AlertLimit] = []
+		
+		switch indexPath.row {
+		case 0:
+			if let firstObject = nodeStatus?.monitors.first(where: {$0.category == .CPU}),
+			   let allAlertLimits = nodeAlert?.alertlimits {
+				object = [firstObject]
+				alertLimit = allAlertLimits.filter({$0.object == .CPU})
+			}
+		case 1:
+			if let firstObject = nodeStatus?.monitors.first(where: {$0.category == .CPU}),
+			   let allAlertLimits = nodeAlert?.alertlimits  {
+				object = [firstObject]
+				alertLimit = allAlertLimits.filter({$0.object == .IPU})
+			}
+		case 2:
+			if let firstObject = nodeStatus?.monitors.first(where: {$0.category == .DiskBusy}),
+			   let secondObject = nodeStatus?.monitors.first(where: {$0.category == .DiskQueueLength}),
+			   let allAlertLimits = nodeAlert?.alertlimits  {
+				object = [firstObject, secondObject]
+				alertLimit = allAlertLimits.filter({$0.object == .Disk})
+			}
+		case 3:
+			if let firstObject = nodeStatus?.monitors.first(where: {$0.category == . Busy}),
+			   let secondObject = nodeStatus?.monitors.first(where: {$0.category == .QueueLength}),
+			   let allAlertLimits = nodeAlert?.alertlimits  {
+				object = [firstObject, secondObject]
+				alertLimit = allAlertLimits.filter({$0.object == .Process})
+			}
+			
+		default:
+			return UITableViewCell()
+		}
+		
+		cell.configureCell(cellType: cells[indexPath.row], objects: object, nodeAlert: alertLimit)
 		cell.selectionStyle = .none
 		
 		return cell

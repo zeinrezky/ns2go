@@ -27,10 +27,10 @@ class ServerListTableViewCell: UITableViewCell {
 	
 	func configureCell(node: NodeStatus) {
 		serverNameLabel.text = node.nodename
+		containerView.backgroundColor = node.indicator.color
 	}
     
 	private func setupContainerView() {
-		containerView.backgroundColor = .cyan
 		containerView.layer.cornerRadius = 20.0
 		containerView.layer.shadowColor = UIColor.black.cgColor
 		containerView.layer.shadowOffset = CGSize(width: 10, height: 10)
