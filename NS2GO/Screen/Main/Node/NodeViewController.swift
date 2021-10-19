@@ -19,12 +19,15 @@ class NodeViewController: UIViewController {
 	var nodeAlert: Node?
 	
 	private let refreshControl = UIRefreshControl()
+	private let serviceHelper = ServiceHelper.shared
+	
 	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
 		startSyncTimer()
+		setupCompletion()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +44,8 @@ class NodeViewController: UIViewController {
 	}
 	
 	private func updateLastSyncLabel() {
-//		let interval = Date().timeIntervalSince(lastTimeFetch)
-//		lastSyncLabel.text = "Last sync \(interval.toString()) ago"
+		let interval = Date().timeIntervalSince(serviceHelper.lastFetchTime)
+		lastSyncLabel.text = "Last sync \(interval.toString()) ago"
 	}
  
 	private func setupNavigationBar() {
@@ -110,6 +113,31 @@ class NodeViewController: UIViewController {
 	
 	@objc private func fetchData() {
 		refreshControl.endRefreshing()
+		showLoading()
+		serviceHelper.fetchStatusData()
+	}
+	
+	private func setupCompletion() {
+		let successCompletion = { [weak self] in
+			self?.hideLoading()
+			
+			let nodeName = self?.nodeStatus?.nodename ?? ""
+			if let nodeStatus = self?.serviceHelper.nodeStatuses.first(where: {$0.nodename == nodeName}) {
+				self?.nodeStatus = nodeStatus
+			}
+			
+			DispatchQueue.main.async { [weak self] in
+				self?.updateLastSyncLabel()
+				self?.tableView.reloadData()
+			}
+		}
+		
+		let errorCompletion: (String) -> Void = { [weak self] message in
+			self?.hideLoading()
+		}
+		
+		serviceHelper.addSuccessCompletion(successCompletion)
+		serviceHelper.addErrorCompletion(errorCompletion)
 	}
 	
 	private func pushToCPUList() {

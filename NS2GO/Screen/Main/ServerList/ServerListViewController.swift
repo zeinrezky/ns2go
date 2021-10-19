@@ -14,23 +14,22 @@ class ServerListViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var headerView: UIView!
 	
-	var nodeAlert: Node?
-	private var nodeStatuses: [NodeStatus] = []
+	lazy var nodeAlert: Node? = {
+		return serviceHelper.nodeAlert
+	}()
 	
-	private var lastTimeFetch: Date = Date() {
-		didSet {
-			updateLastSyncLabel()
-		}
-	}
-	private let service = DashboardService()
+	lazy var nodeStatuses: [NodeStatus] = {
+		return serviceHelper.nodeStatuses
+	}()
 	
 	private var isFirstTimeLoad: Bool = true
-	
+	private let serviceHelper = ServiceHelper.shared
 	private let refreshControl = UIRefreshControl()
-
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
+		setupCompletion()
 		startSyncTimer()
     }
 	
@@ -54,7 +53,7 @@ class ServerListViewController: UIViewController {
 	}
 	
 	private func updateLastSyncLabel() {
-		let interval = Date().timeIntervalSince(lastTimeFetch)
+		let interval = Date().timeIntervalSince(serviceHelper.lastFetchTime)
 		lastSyncLabel.text = "Last sync \(interval.toString()) ago"
 	}
 	
@@ -121,22 +120,27 @@ class ServerListViewController: UIViewController {
 		tableView.register(UINib(nibName: ServerListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ServerListTableViewCell.identifier)
 	}
 	
+	private func setupCompletion() {
+		let successCompletion = { [weak self] in
+			self?.hideLoading()
+			DispatchQueue.main.async { [weak self] in
+				self?.updateLastSyncLabel()
+				self?.tableView.reloadData()
+			}
+		}
+		
+		let errorCompletion: (String) -> Void = { [weak self] message in
+			self?.hideLoading()
+		}
+		
+		serviceHelper.addSuccessCompletion(successCompletion)
+		serviceHelper.addErrorCompletion(errorCompletion)
+	}
+	
 	@objc private func fetchData() {
 		refreshControl.endRefreshing()
 		showLoading()
-		service.getCurrentStatus(onComplete: { [weak self] nodeStatus in
-			self?.hideLoading()
-			self?.lastTimeFetch = Date()
-			self?.nodeStatuses = [nodeStatus]
-			DispatchQueue.main.async { [weak self] in
-				self?.tableView.reloadData()
-			}
-		}, onFailed: { [weak self] message in
-			self?.hideLoading()
-			DispatchQueue.main.async { [weak self] in
-				self?.showAlert(message: message)
-			}
-		})
+		serviceHelper.fetchStatusData()
 	}
 }
 
