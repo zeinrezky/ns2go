@@ -28,6 +28,7 @@ class NodeViewController: UIViewController {
 		setupTableView()
 		startSyncTimer()
 		setupCompletion()
+		updateLastSyncLabel()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -102,12 +103,12 @@ class NodeViewController: UIViewController {
 		refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh", attributes: attribute)
 		refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
 		
-		
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
 		tableView.tableHeaderView = headerView
 		tableView.separatorStyle = .none
+		tableView.refreshControl = refreshControl
 		tableView.register(UINib(nibName: NodeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NodeTableViewCell.identifier)
 	}
 	

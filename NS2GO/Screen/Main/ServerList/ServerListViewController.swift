@@ -14,13 +14,13 @@ class ServerListViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var headerView: UIView!
 	
-	lazy var nodeAlert: Node? = {
+	var nodeAlert: Node? {
 		return serviceHelper.nodeAlert
-	}()
+	}
 	
-	lazy var nodeStatuses: [NodeStatus] = {
+	var nodeStatuses: [NodeStatus] {
 		return serviceHelper.nodeStatuses
-	}()
+	}
 	
 	private var isFirstTimeLoad: Bool = true
 	private let serviceHelper = ServiceHelper.shared
