@@ -14,19 +14,35 @@ class NodeViewController: UIViewController {
 	@IBOutlet var headerView: UIView!
 	@IBOutlet weak var tableView: UITableView!
 	
-	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
 	
 	var nodeStatus: NodeStatus?
 	var nodeAlert: Node?
 	
+	private let refreshControl = UIRefreshControl()
+	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
+		startSyncTimer()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
+	}
+	
+	private func startSyncTimer() {
+		Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { (_) in
+			DispatchQueue.main.async { [weak self] in
+				self?.updateLastSyncLabel()
+			}
+		}
+	}
+	
+	private func updateLastSyncLabel() {
+//		let interval = Date().timeIntervalSince(lastTimeFetch)
+//		lastSyncLabel.text = "Last sync \(interval.toString()) ago"
 	}
  
 	private func setupNavigationBar() {
@@ -74,12 +90,26 @@ class NodeViewController: UIViewController {
 	}
 	
 	private func setupTableView() {
+		
+		let attribute: [NSAttributedString.Key : Any] = [
+			NSAttributedString.Key.foregroundColor: UIColor(red: 202.0/255.0, green: 202.0/255.0, blue: 202.0/225.0, alpha: 1),
+			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+		]
+		
+		refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh", attributes: attribute)
+		refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
+		
+		
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
 		tableView.tableHeaderView = headerView
 		tableView.separatorStyle = .none
 		tableView.register(UINib(nibName: NodeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NodeTableViewCell.identifier)
+	}
+	
+	@objc private func fetchData() {
+		refreshControl.endRefreshing()
 	}
 	
 	private func pushToCPUList() {

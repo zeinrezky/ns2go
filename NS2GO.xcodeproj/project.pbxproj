@@ -25,6 +25,8 @@
 		DB609B20271DC09B00E125C7 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B1F271DC09B00E125C7 /* Array.swift */; };
 		DB609B26271E912000E125C7 /* ProcessDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB609B24271E912000E125C7 /* ProcessDetailTableViewCell.xib */; };
 		DB609B27271E912000E125C7 /* ProcessDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B25271E912000E125C7 /* ProcessDetailTableViewCell.swift */; };
+		DB609B2B271E997E00E125C7 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B2A271E997E00E125C7 /* TimeInterval.swift */; };
+		DB609B2E271EAFEF00E125C7 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B2D271EAFEF00E125C7 /* ServiceHelper.swift */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -116,6 +118,8 @@
 		DB609B1F271DC09B00E125C7 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		DB609B24271E912000E125C7 /* ProcessDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProcessDetailTableViewCell.xib; sourceTree = "<group>"; };
 		DB609B25271E912000E125C7 /* ProcessDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessDetailTableViewCell.swift; sourceTree = "<group>"; };
+		DB609B2A271E997E00E125C7 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		DB609B2D271EAFEF00E125C7 /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 			children = (
 				DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */,
 				DB609A9E271CFDF800E125C7 /* AppColor.swift */,
+				DB609B2D271EAFEF00E125C7 /* ServiceHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 				DBC7AB542717BCA8002EB696 /* UIViewController.swift */,
 				DBA4A3D12719C90E00BA4427 /* String.swift */,
 				DB609B1F271DC09B00E125C7 /* Array.swift */,
+				DB609B2A271E997E00E125C7 /* TimeInterval.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -671,12 +677,14 @@
 				DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */,
 				DB609A80271C5E8000E125C7 /* BaseInstance.swift in Sources */,
 				DB609A97271C6E9A00E125C7 /* DashboardService.swift in Sources */,
+				DB609B2E271EAFEF00E125C7 /* ServiceHelper.swift in Sources */,
 				DB609A7C271C5DA800E125C7 /* TMF.swift in Sources */,
 				DB609A8B271C647400E125C7 /* CPU.swift in Sources */,
 				DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */,
 				DBC7AAD8271317AA002EB696 /* ServerListViewController.swift in Sources */,
 				DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */,
 				DBC7AB1E27148E7C002EB696 /* CPUDetailViewController.swift in Sources */,
+				DB609B2B271E997E00E125C7 /* TimeInterval.swift in Sources */,
 				DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */,
 				DBA4A3D22719C90E00BA4427 /* String.swift in Sources */,
 				DB609A8E271C6A1300E125C7 /* CPUProcessInstance.swift in Sources */,

@@ -38,7 +38,10 @@ class StatusDetailTableViewCell: UITableViewCell {
 	}
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
-		nameLabel.text = cpuInstance.name ?? "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
+		let isNameEmpty = (cpuInstance.name ?? "").isEmpty
+		let CPUPINName = "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
+		let name = isNameEmpty ? CPUPINName : cpuInstance.name
+		nameLabel.text = name
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
 		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
 		

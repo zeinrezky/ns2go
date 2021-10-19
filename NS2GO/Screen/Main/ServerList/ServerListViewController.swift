@@ -15,17 +15,23 @@ class ServerListViewController: UIViewController {
 	@IBOutlet var headerView: UIView!
 	
 	var nodeAlert: Node?
+	private var nodeStatuses: [NodeStatus] = []
 	
-	private var lastTimeFetch: Date = Date()
+	private var lastTimeFetch: Date = Date() {
+		didSet {
+			updateLastSyncLabel()
+		}
+	}
 	private let service = DashboardService()
 	
 	private var isFirstTimeLoad: Bool = true
 	
-	private var nodeStatuses: [NodeStatus] = []
+	private let refreshControl = UIRefreshControl()
 
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
+		startSyncTimer()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +43,19 @@ class ServerListViewController: UIViewController {
 		}
 		
 		isFirstTimeLoad = false
+	}
+	
+	private func startSyncTimer() {
+		Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { (_) in
+			DispatchQueue.main.async { [weak self] in
+				self?.updateLastSyncLabel()
+			}
+		}
+	}
+	
+	private func updateLastSyncLabel() {
+		let interval = Date().timeIntervalSince(lastTimeFetch)
+		lastSyncLabel.text = "Last sync \(interval.toString()) ago"
 	}
 	
 	private func setupNavigationBar() {
@@ -84,18 +103,30 @@ class ServerListViewController: UIViewController {
 	}
 	
 	private func setupTableView() {
+		
+		let attribute: [NSAttributedString.Key : Any] = [
+			NSAttributedString.Key.foregroundColor: UIColor(red: 202.0/255.0, green: 202.0/255.0, blue: 202.0/225.0, alpha: 1),
+			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+		]
+		
+		refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh", attributes: attribute)
+		refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
+		
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableHeaderView = headerView
 		tableView.tableFooterView = UIView()
 		tableView.separatorStyle = .none
+		tableView.refreshControl = refreshControl
 		tableView.register(UINib(nibName: ServerListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ServerListTableViewCell.identifier)
 	}
 	
-	private func fetchData() {
+	@objc private func fetchData() {
+		refreshControl.endRefreshing()
 		showLoading()
 		service.getCurrentStatus(onComplete: { [weak self] nodeStatus in
 			self?.hideLoading()
+			self?.lastTimeFetch = Date()
 			self?.nodeStatuses = [nodeStatus]
 			DispatchQueue.main.async { [weak self] in
 				self?.tableView.reloadData()
