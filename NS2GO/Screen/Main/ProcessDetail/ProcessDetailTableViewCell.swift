@@ -17,7 +17,6 @@ class ProcessDetailTableViewCell: UITableViewCell {
 	@IBOutlet weak var cpuLabel: UILabel!
 	@IBOutlet weak var pinLabel: UILabel!
 	
-	
 	@IBOutlet weak var backgroundIndicator: UIView!
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,7 +33,7 @@ class ProcessDetailTableViewCell: UITableViewCell {
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
 		nameLabel.text = cpuInstance.name ?? "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
-		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
+		lengthLabel.text = "\(cpuInstance.receiveQueue ?? 0)"
 		cpuLabel.text = "\(cpuInstance.cpuDisplayName)"
 		pinLabel.text = "\(cpuInstance.pin ?? 0)"
 		
