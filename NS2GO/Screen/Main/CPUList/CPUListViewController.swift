@@ -41,54 +41,68 @@ class CPUListViewController: UIViewController {
 		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusListTableViewCell.identifier)
     }
 	
-	private func createSectionHeader(for text: String) -> UIView {
+	private func createSectionHeader(for text: String, section: Int) -> UIView {
 		let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
 		view.backgroundColor = .white
+		view.tag = section
 		
 		let separator = UIView(frame: CGRect(x: 40, y: 59, width: tableView.frame.width - 80, height: 1))
 		separator.backgroundColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		
-		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 80, height: 20))
+		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 120, height: 20))
 		label.text = text
 		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
 		label.font = UIFont.systemFont(ofSize: 16)
 		
+		let icon = UIImageView(frame: CGRect(x: tableView.frame.width - 80, y: 30, width: 20, height: 20))
+		icon.widthAnchor.constraint(equalToConstant: 20).isActive = true
+		icon.heightAnchor.constraint(equalToConstant: 20).isActive = true
+		icon.image = UIImage(named: "ic_rightArrow")
+		icon.contentMode = .scaleAspectFit
+		
 		view.addSubview(label)
 		view.addSubview(separator)
+		view.addSubview(icon)
+		
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapHeaderSection(_:))))
 		
 		return view
 	}
-}
-
-extension CPUListViewController: UITableViewDelegate {
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let controller = CPUDetailViewController()
-		let cpuName = cpu?.instance[indexPath.section].name ?? ""
-		
-		if let cpu = cpu?.instance[indexPath.section] as? CPU {
-			controller.navTitle = cpu.displayName
+	
+	@objc private func didTapHeaderSection(_ gesture: UITapGestureRecognizer) {
+		let view = gesture.view
+		guard let tag = view?.tag else {
+			return
 		}
 		
-		if indexPath.row == 0 {
-			if let instances = busy?.instance as? [CPUProcessInstance] {
-				let filtered = instances.filter({$0.cpunumber == Int(cpuName)})
-				controller.instances = filtered.sorted(by: { (left, right) -> Bool in
-					return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
-				}).chunked(into: 5).first ?? []
-			}
-		} else {
-			if let instances = qLength?.instance as? [CPUProcessInstance] {
-				let filtered = instances.filter({$0.cpunumber == Int(cpuName)})
-				controller.instances = filtered.sorted(by: { (left, right) -> Bool in
-					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
-				}).chunked(into: 5).first ?? []
-			}
+		pushToDetail(section: tag)
+	}
+	
+	private func pushToDetail(section: Int) {
+		let controller = CPUDetailViewController()
+		let cpuName = cpu?.instance[section].name ?? ""
+		
+		if let cpu = cpu?.instance[section] as? CPU {
+			controller.navTitle = "CPU \(cpu.displayName) Processes"
+		}
+		
+		if let instances = busy?.instance as? [CPUProcessInstance] {
+			let filtered = instances.filter({$0.cpunumber == Int(cpuName)})
+			controller.instances = filtered.sorted(by: { (left, right) -> Bool in
+				return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
+			})
 		}
 		
 		controller.alert = self.alert
 		
-		self.navigationController?.pushViewController(controller, animated: true)
+		DispatchQueue.main.async { [weak self] in
+			self?.navigationController?.pushViewController(controller, animated: true)
+		}
 	}
+}
+
+extension CPUListViewController: UITableViewDelegate {
+	
 }
 
 extension CPUListViewController: UITableViewDataSource {
@@ -122,7 +136,7 @@ extension CPUListViewController: UITableViewDataSource {
 			headerText = instance.displayName
 		}
 		
-		return createSectionHeader(for: headerText)
+		return createSectionHeader(for: headerText, section: section)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

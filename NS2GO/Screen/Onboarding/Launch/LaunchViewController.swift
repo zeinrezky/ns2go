@@ -17,7 +17,7 @@ class LaunchViewController: UIViewController {
 		if isUserRegistered {
 			pushToLogin()
 		} else {
-			pushToRegister()
+			pushToLogin()
 		}
 	}
 	

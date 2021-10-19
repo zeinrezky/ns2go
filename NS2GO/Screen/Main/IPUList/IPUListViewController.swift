@@ -52,56 +52,71 @@ class IPUListViewController: UIViewController {
 		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusListTableViewCell.identifier)
 	}
 	
-	private func createSectionHeader(for text: String) -> UIView {
+	private func createSectionHeader(for text: String, section: Int) -> UIView {
 		let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
 		view.backgroundColor = .white
+		view.tag = section
 		
 		let separator = UIView(frame: CGRect(x: 40, y: 59, width: tableView.frame.width - 80, height: 1))
 		separator.backgroundColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		
-		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 80, height: 20))
+		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 120, height: 20))
 		label.text = text
 		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
 		label.font = UIFont.systemFont(ofSize: 16)
 		
+		let icon = UIImageView(frame: CGRect(x: tableView.frame.width - 80, y: 30, width: 20, height: 20))
+		icon.widthAnchor.constraint(equalToConstant: 20).isActive = true
+		icon.heightAnchor.constraint(equalToConstant: 20).isActive = true
+		icon.image = UIImage(named: "ic_rightArrow")
+		icon.contentMode = .scaleAspectFit
+		
 		view.addSubview(label)
 		view.addSubview(separator)
+		view.addSubview(icon)
+		
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapHeaderSection(_:))))
 		
 		return view
 	}
-}
-
-extension IPUListViewController: UITableViewDelegate {
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let controller = IPUDetailViewController()
+	
+	@objc private func didTapHeaderSection(_ gesture: UITapGestureRecognizer) {
+		let view = gesture.view
+		guard let tag = view?.tag else {
+			return
+		}
 		
-		let ipu = ipus[indexPath.section]
+		pushToDetail(section: tag)
+	}
+	
+	private func pushToDetail(section: Int) {
+		let controller = CPUDetailViewController()
+		let cpuName = cpu?.instance[section].name ?? ""
+		
+		let ipu = ipus[section]
 		if let cpuNumber = Int(ipu.cpuName ?? ""),
 		   let ipuNumber = ipu.ipunumber {
 			
-			if indexPath.row == 0 {
 				if let instances = busy?.instance as? [CPUProcessInstance] {
 					let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
 					controller.instances = filtered.sorted(by: { (left, right) -> Bool in
 						return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
 					}).chunked(into: 5).first ?? []
 				}
-			} else {
-				if let instances = qLength?.instance as? [CPUProcessInstance] {
-					let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
-					controller.instances = filtered.sorted(by: { (left, right) -> Bool in
-						return (left.queueLength ?? 0) > (right.queueLength ?? 0)
-					}).chunked(into: 5).first ?? []
-				}
-			}
 			
 		}
 		
-		controller.navTitle = ipu.displayName
+		controller.navTitle = "IPU \(ipu.displayName) Process"
 		controller.alert = self.alert
 		
-		self.navigationController?.pushViewController(controller, animated: true)
+		DispatchQueue.main.async { [weak self] in
+			self?.navigationController?.pushViewController(controller, animated: true)
+		}
 	}
+}
+
+extension IPUListViewController: UITableViewDelegate {
+
 }
 
 extension IPUListViewController: UITableViewDataSource {
@@ -132,7 +147,7 @@ extension IPUListViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let ipu = ipus[section]
-		return createSectionHeader(for: ipu.displayName)
+		return createSectionHeader(for: ipu.displayName, section: section)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
