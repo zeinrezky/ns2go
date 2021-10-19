@@ -25,9 +25,26 @@ class NodeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 	
-	func configureCell(cellType: CellType) {
-		containerView.backgroundColor = cellType.color
+	func configureCell(cellType: CellType, objects: [ObjectMonitored], nodeAlert: [AlertLimit]) {
 		nodeLabel.text = cellType.rawValue
+		
+		var indicator: StatusIndicator = .green
+		if cellType == .cpu,
+		   let object = objects.first {
+			let objecIndicator = object.getIndicator(alertLimits: nodeAlert)
+			indicator = indicator.compareHigher(indicator: objecIndicator)
+		} else if cellType == .ipu,
+				  let object = objects.first {
+			let objecIndicator = object.getIndicator(alertLimits: nodeAlert)
+			indicator = indicator.compareHigher(indicator: objecIndicator)
+		} else {
+			objects.forEach { (object) in
+				let objecIndicator = object.getIndicator(alertLimits: nodeAlert)
+				indicator = indicator.compareHigher(indicator: objecIndicator)
+			}
+		}
+		
+		containerView.backgroundColor = indicator.color
 	}
 	
 	private func setupContainerView() {
@@ -50,19 +67,5 @@ extension NodeTableViewCell {
 		case ipu = "IPU"
 		case disk = "DISK"
 		case process = "PROCESS"
-		
-		var color: UIColor {
-			switch self {
-			case .cpu:
-				return UIColor(red: 250.0/255.0, green: 244.0/255.0, blue: 104.0/255.0, alpha: 1)
-			case .ipu:
-				return UIColor(red: 174.0/255.0, green: 252.0/255.0, blue: 194.0/255.0, alpha: 1)
-			case .disk:
-				return UIColor(red: 174.0/255.0, green: 252.0/255.0, blue: 194.0/255.0, alpha: 1)
-			case .process:
-				return UIColor(red: 253.0/255.0, green: 165.0/255.0, blue: 154.0/255.0, alpha: 1)
-			}
-		}
-		
 	}
 }

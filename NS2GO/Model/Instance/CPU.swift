@@ -30,6 +30,51 @@ class CPU: BaseInstance {
 		
 		return displayName
 	}
+	
+	func getIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
+		var indicator: StatusIndicator = .clear
+		if alertLimits.count == 0 {
+			return indicator
+		}
+		
+		if let busy = cpuBusy,
+		   let busyLimit = alertLimits.first(where: {$0.entity == .busy}) {
+			if let warning = Double(busyLimit.warning),
+			   let critical = Double(busyLimit.critical) {
+				
+				if busy >= critical {
+					indicator = indicator.compareHigher(indicator: .red)
+				} else if busy >= warning {
+					indicator = indicator.compareHigher(indicator: .yellow)
+				}
+			}
+		}
+		
+		if let qLength = queueLength,
+		   let lengthLimit = alertLimits.first(where: {$0.entity == .queueLength}) {
+			if let warning = Double(lengthLimit.warning),
+			   let critical = Double(lengthLimit.critical) {
+				
+				if qLength >= critical {
+					indicator = indicator.compareHigher(indicator: .red)
+				} else if qLength >= warning {
+					indicator = indicator.compareHigher(indicator: .yellow)
+				}
+			}
+		}
+		
+		return indicator
+	}
+	
+	func getIPUIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
+		var indicator: StatusIndicator = .clear
+		
+		ipus.forEach { (ipu) in
+			indicator = indicator.compareHigher(indicator: ipu.getIndicator(alertLimits: alertLimits))
+		}
+		
+		return indicator
+	}
 
 	required init(json: JSON) {
 		self.cpuBusy = json["% CPU Busy"].double
@@ -72,6 +117,41 @@ class IPU {
 		}
 		
 		return name
+	}
+	
+	func getIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
+		var indicator: StatusIndicator = .clear
+		if alertLimits.count == 0 {
+			return indicator
+		}
+		
+		if let busy = ipubusy,
+		   let busyLimit = alertLimits.first(where: {$0.entity == .busy}) {
+			if let warning = Double(busyLimit.warning),
+			   let critical = Double(busyLimit.critical) {
+				
+				if busy >= critical {
+					indicator = indicator.compareHigher(indicator: .red)
+				} else if busy >= warning {
+					indicator = indicator.compareHigher(indicator: .yellow)
+				}
+			}
+		}
+		
+		if let qLength = ipuqtime,
+		   let lengthLimit = alertLimits.first(where: {$0.entity == .queueLength}) {
+			if let warning = Double(lengthLimit.warning),
+			   let critical = Double(lengthLimit.critical) {
+				
+				if qLength >= critical {
+					indicator = indicator.compareHigher(indicator: .red)
+				} else if qLength >= warning {
+					indicator = indicator.compareHigher(indicator: .yellow)
+				}
+			}
+		}
+		
+		return indicator
 	}
 
 	init(json: JSON, cpuJSON: JSON) {

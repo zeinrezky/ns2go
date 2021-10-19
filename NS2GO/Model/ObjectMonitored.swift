@@ -72,6 +72,52 @@ class ObjectMonitored {
 		return objects
 	}
 	
+	func getIndicator(alertLimits: [AlertLimit]) -> StatusIndicator{
+		var indicator: StatusIndicator = .green
+		guard let object = alertLimits.first?.object else {
+			return indicator
+		}
+		
+		switch object {
+		case .CPU:
+			if let instances = instance as? [CPU] {
+				instances.forEach { (instance) in
+					let filteredAlert = alertLimits.filter({$0.object == .CPU})
+					let instanceIndicator = instance.getIndicator(alertLimits: filteredAlert)
+					indicator = indicator.compareHigher(indicator: instanceIndicator)
+				}
+			}
+		case .IPU:
+			if let instances = instance as? [CPU] {
+				instances.forEach { (instance) in
+					let filteredAlert = alertLimits.filter({$0.object == .IPU})
+					let instanceIndicator = instance.getIPUIndicator(alertLimits: filteredAlert)
+					indicator = indicator.compareHigher(indicator: instanceIndicator)
+				}
+			}
+		case .Disk:
+			if let instances = instance as? [DiskProcessInstance] {
+				instances.forEach { (instance) in
+					let filteredAlert = alertLimits.filter({$0.object == .Disk})
+					let instanceIndicator = instance.getIndicator(alertLimits: filteredAlert)
+					indicator = indicator.compareHigher(indicator: instanceIndicator)
+				}
+			}
+		case .Process:
+			if let instances = instance as? [CPUProcessInstance] {
+				instances.forEach { (instance) in
+					let filteredAlert = alertLimits.filter({$0.object == .Process})
+					let instanceIndicator = instance.getIndicator(alertLimits: filteredAlert)
+					indicator = indicator.compareHigher(indicator: instanceIndicator)
+				}
+			}
+		default:
+			break
+		}
+		
+		return indicator
+	}
+	
 	enum Category: String {
 		case TMF = "TMF"
 		case CLIMAgent = "CLIMAgent"

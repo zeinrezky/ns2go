@@ -33,7 +33,7 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(diskInstance.dp2Busy ?? 0)%"
 		lengthLabel.text = "\(diskInstance.queueLength ?? 0)"
 		
-		let indicator = getIndicator(alertLimits: alertLimits, busy: (diskInstance.dp2Busy ?? 0), qLength: (diskInstance.queueLength ?? 0))
+		let indicator = diskInstance.getIndicator(alertLimits: alertLimits)
 		setupViewFor(indicator: indicator)
 	}
 	
@@ -45,11 +45,11 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
 		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
 		
-		let indicator = getIndicator(alertLimits: alertLimits, busy: (cpuInstance.cpuBusy ?? 0), qLength: (cpuInstance.queueLength ?? 0))
+		let indicator = cpuInstance.getIndicator(alertLimits: alertLimits)
 		setupViewFor(indicator: indicator)
 	}
 	
-	private func setupViewFor(indicator: StatusListTableViewCell.StatusIndicator) {
+	private func setupViewFor(indicator: StatusIndicator) {
 		backgroundIndicator.backgroundColor = indicator.color
 		
 		let font: UIFont
@@ -63,35 +63,4 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.font = font
 		lengthLabel.font = font
 	}
-	
-	private func getIndicator(alertLimits: [AlertLimit], busy: Double, qLength: Double) -> StatusListTableViewCell.StatusIndicator {
-		var indicator: StatusListTableViewCell.StatusIndicator = .clear
-		
-		if let busyLimit = alertLimits.first(where: {$0.entity == .busy}) {
-			if let warning = Double(busyLimit.warning),
-			   let critical = Double(busyLimit.critical) {
-				
-				if busy >= critical {
-					indicator = indicator.compareHigher(indicator: .red)
-				} else if busy >= warning {
-					indicator = indicator.compareHigher(indicator: .yellow)
-				}
-			}
-		}
-		
-		if let lengthLimit = alertLimits.first(where: {$0.entity == .queueLength}) {
-			if let warning = Double(lengthLimit.warning),
-			   let critical = Double(lengthLimit.critical) {
-				
-				if qLength >= critical {
-					indicator = indicator.compareHigher(indicator: .red)
-				} else if qLength >= warning {
-					indicator = indicator.compareHigher(indicator: .yellow)
-				}
-			}
-		}
-		
-		return indicator
-	}
-    
 }

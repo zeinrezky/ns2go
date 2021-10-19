@@ -24,6 +24,9 @@ class ProcessListViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
+		DispatchQueue.main.async {
+			self.tableView.reloadData()
+		}
 	}
  
 	private func setupNavigationBar() {
@@ -77,14 +80,19 @@ extension ProcessListViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		let text: String
-		if indexPath.row == 0 {
+		var text: String = ""
+		var indicator: StatusIndicator = .green
+		
+		if indexPath.row == 0,
+		   let busy = self.busy {
 			text = "Busy %"
-		} else {
+			indicator = busy.getIndicator(alertLimits: alert)
+		} else if let qLength = self.qLength {
 			text = "Q. Length"
+			indicator = qLength.getIndicator(alertLimits: alert)
 		}
 		
-		cell.configureCell(status: .green, text: text)
+		cell.configureCell(status: indicator, text: text)
 		cell.selectionStyle = .none
 		
 		return cell

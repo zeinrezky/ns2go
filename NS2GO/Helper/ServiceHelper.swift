@@ -34,6 +34,11 @@ class ServiceHelper {
 	func fetchStatusData() {
 		service.getCurrentStatus(onComplete: { [weak self] nodeStatus in
 			self?.lastFetchTime = Date()
+			
+			if let alerts = self?.nodeAlert?.alertlimits {
+				nodeStatus.alertLimits = alerts
+			}
+			
 			self?.nodeStatuses = [nodeStatus]
 			
 			self?.successCompletions.forEach { (completion) in
