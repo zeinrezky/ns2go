@@ -12,10 +12,12 @@ class LaunchViewController: UIViewController {
 	@IBOutlet weak var startButton: UIButton!
 	
 	@IBAction func startButtonTapped(_ sender: Any) {
-		if BaseURL.shared.isHaveServerPreferences {
+		let isUserRegistered = UserDefaults.standard.bool(forKey: NS2GOConstant.KeyUserRegistered)
+		
+		if isUserRegistered {
 			pushToLogin()
 		} else {
-			pushToRegister()
+			pushToLogin()
 		}
 	}
 	

@@ -103,7 +103,7 @@ class LoginViewController: UIViewController {
 	
 	private func presentServerList(nodes: [Node]) {
 		let serverListVC = ServerListViewController()
-		serverListVC.nodeAlert = nodes.first
+		ServiceHelper.shared.nodeAlert = nodes.first
 		let navVC = UINavigationController(rootViewController: serverListVC)
 		
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
@@ -119,10 +119,17 @@ class LoginViewController: UIViewController {
 		var error: NSError?
 		let permissions = biometricContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
 		
-		guard error == nil,
-			  isUserLoggedIn() else {
+		guard error == nil else {
 			print(error?.localizedDescription ?? "")
 			return
+		}
+		
+		if !isUserLoggedIn() {
+			do {
+				try keychain.removeAll()
+			} catch {
+				print(error.localizedDescription)
+			}
 		}
 		
 		if permissions {
@@ -171,23 +178,15 @@ class LoginViewController: UIViewController {
 		do {
 			try keychain.set(loginID, key: NS2GOConstant.KeyLoginID)
 			try keychain.set(password, key: NS2GOConstant.KeyPassword)
-			try keychain.set("YES", key: NS2GOConstant.KeyUserLoggedIn)
 		} catch {
 			print(error.localizedDescription)
 		}
+		
+		UserDefaults.standard.setValue(true, forKey: NS2GOConstant.KeyUserLoggedIn)
 	}
 	
 	private func isUserLoggedIn() -> Bool {
-		var isUserLoggedIn = false
-		
-		do {
-			let loggedIn = try keychain.getString(NS2GOConstant.KeyUserLoggedIn)
-			isUserLoggedIn = loggedIn == "YES"
-		} catch {
-			print(error.localizedDescription)
-		}
-		
-		return isUserLoggedIn
+		return UserDefaults.standard.bool(forKey: NS2GOConstant.KeyUserLoggedIn)
 	}
 	
 	private func login() {

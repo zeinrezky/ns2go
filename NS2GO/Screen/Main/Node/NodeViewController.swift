@@ -6,41 +6,139 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class NodeViewController: UIViewController {
 
-	
 	@IBOutlet weak var lastSyncLabel: UILabel!
 	@IBOutlet var headerView: UIView!
 	@IBOutlet weak var tableView: UITableView!
 	
-	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
 	
 	var nodeStatus: NodeStatus?
 	var nodeAlert: Node?
 	
+	private let refreshControl = UIRefreshControl()
+	private let serviceHelper = ServiceHelper.shared
+	
+	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setupTableView()
+		startSyncTimer()
+		setupCompletion()
+		updateLastSyncLabel()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
 	}
+	
+	private func startSyncTimer() {
+		Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { (_) in
+			DispatchQueue.main.async { [weak self] in
+				self?.updateLastSyncLabel()
+			}
+		}
+	}
+	
+	private func updateLastSyncLabel() {
+		let interval = Date().timeIntervalSince(serviceHelper.lastFetchTime)
+		lastSyncLabel.text = "Last sync \(interval.toString()) ago"
+	}
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
 		self.title = nodeStatus?.nodename
+		
+		let button = UIButton()
+		button.setImage(UIImage(named : "ic_logout"), for: .normal)
+		button.setTitle("", for: .normal)
+		button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+		button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+		let btBar = UIBarButtonItem(customView: button)
+		self.navigationItem.rightBarButtonItem = btBar
+	}
+	
+	@objc private func logOut() {
+		showAlert(
+			title: "Log Out",
+			message: "Do you want to log out ?",
+			buttonPositive: "Yes",
+			buttonNegative: "No"
+		) { [weak self] in
+			DispatchQueue.main.async { [weak self] in
+				
+				let keychain = Keychain(service: NS2GOConstant.keychainIdentifier)
+				do {
+					try keychain.removeAll()
+				} catch {
+					print(error.localizedDescription)
+				}
+				
+				let launchVC = LaunchViewController()
+				let navVC = UINavigationController(rootViewController: launchVC)
+				
+				guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+					  let window = appDelegate.window else {
+					return
+				}
+				
+				window.rootViewController = navVC
+			}
+		}
 	}
 	
 	private func setupTableView() {
+		
+		let attribute: [NSAttributedString.Key : Any] = [
+			NSAttributedString.Key.foregroundColor: UIColor(red: 202.0/255.0, green: 202.0/255.0, blue: 202.0/225.0, alpha: 1),
+			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+		]
+		
+		refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh", attributes: attribute)
+		refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
+		
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
 		tableView.tableHeaderView = headerView
 		tableView.separatorStyle = .none
+		tableView.refreshControl = refreshControl
 		tableView.register(UINib(nibName: NodeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NodeTableViewCell.identifier)
+	}
+	
+	@objc private func fetchData() {
+		refreshControl.endRefreshing()
+		showLoading()
+		serviceHelper.fetchStatusData()
+	}
+	
+	private func setupCompletion() {
+		let successCompletion = { [weak self] in
+			self?.hideLoading()
+			
+			let nodeName = self?.nodeStatus?.nodename ?? ""
+			if let nodeStatus = self?.serviceHelper.nodeStatuses.first(where: {$0.nodename == nodeName}) {
+				self?.nodeStatus = nodeStatus
+			}
+			
+			DispatchQueue.main.async { [weak self] in
+				self?.updateLastSyncLabel()
+				self?.tableView.reloadData()
+			}
+		}
+		
+		let errorCompletion: (String) -> Void = { [weak self] message in
+			self?.hideLoading()
+		}
+		
+		serviceHelper.addSuccessCompletion(successCompletion)
+		serviceHelper.addErrorCompletion(errorCompletion)
 	}
 	
 	private func pushToCPUList() {

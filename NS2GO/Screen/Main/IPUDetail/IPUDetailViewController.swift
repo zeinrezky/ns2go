@@ -14,6 +14,7 @@ class IPUDetailViewController: UIViewController {
 	var instances: [CPUProcessInstance] = []
 	
 	var alert: [AlertLimit] = []
+	var navTitle: String = "IPU"
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class IPUDetailViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "IPU"
+		self.title = navTitle
 	}
 	
 	private func setupTableView() {

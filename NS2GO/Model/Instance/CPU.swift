@@ -16,6 +16,20 @@ class CPU: BaseInstance {
 	let lowPINPCBs: Int?
 	let ipucount: Int?
 	var ipus: [IPU] = []
+	
+	var displayName: String {
+		var displayName: String = ""
+		
+		if let cpuDouble = Double(self.name ?? "") {
+			
+			let formatter = NumberFormatter()
+			formatter.minimumIntegerDigits = 2
+			
+			displayName = "\(formatter.string(for: cpuDouble) ?? "")"
+		}
+		
+		return displayName
+	}
 
 	required init(json: JSON) {
 		self.cpuBusy = json["% CPU Busy"].double
@@ -44,6 +58,21 @@ class IPU {
 	let ipunumber: Int?
 	let ipubusy: Double?
 	let ipuqtime: Double?
+	
+	var displayName: String {
+		var name: String = ""
+		
+		if let cpuDouble = Double(cpuName ?? ""),
+		   let ipu = ipunumber {
+			
+			let formatter = NumberFormatter()
+			formatter.minimumIntegerDigits = 2
+			
+			name = "\(formatter.string(for: cpuDouble) ?? "").\(formatter.string(for: ipu) ?? "")"
+		}
+		
+		return name
+	}
 
 	init(json: JSON, cpuJSON: JSON) {
 		self.cpuName = cpuJSON["name"].string ?? String(cpuJSON["name"].intValue)

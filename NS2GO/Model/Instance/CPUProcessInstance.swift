@@ -24,7 +24,22 @@ class CPUProcessInstance: BaseInstance {
 	let beginXNS: Int?
 	let abortXNS: Int?
 	let queueLength: Double?
+	let receiveQueue: Double?
 	let memoryUsed: Double?
+	
+	var cpuDisplayName: String {
+		var displayName: String = ""
+		
+		if let number = cpunumber {
+			
+			let formatter = NumberFormatter()
+			formatter.minimumIntegerDigits = 2
+			
+			displayName = "\(formatter.string(for: number) ?? "")"
+		}
+		
+		return displayName
+	}
 
 	required init(json: JSON) {
 		self.cpunumber = json["CPUNUMBER"].int
@@ -42,6 +57,7 @@ class CPUProcessInstance: BaseInstance {
 		self.beginXNS = json["Begin Xns"].int
 		self.abortXNS = json["Abort Xns"].int
 		self.queueLength = json["Queue Length"].double
+		self.receiveQueue = json["Receive Queue"].double
 		self.memoryUsed = json["Memory Used"].double
 		
 		super.init(json: json)

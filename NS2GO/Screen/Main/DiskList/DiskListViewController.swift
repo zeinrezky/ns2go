@@ -48,13 +48,13 @@ extension DiskListViewController: UITableViewDelegate {
 			if let instances = busy?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.dp2Busy ?? 0) > (right.dp2Busy ?? 0)
-				})
+				}).chunked(into: 5).first ?? []
 			}
 		} else {
 			if let instances = qLength?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
-				})
+				}).chunked(into: 5).first ?? []
 			}
 		}
 		controller.alert = self.alert

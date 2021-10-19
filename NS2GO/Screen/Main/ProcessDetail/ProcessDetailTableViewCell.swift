@@ -1,5 +1,5 @@
 //
-//  StatusDetailTableViewCell.swift
+//  ProcessDetailTableViewCell.swift
 //  NS2GO
 //
 //  Created by Yosua Antonio Raphael Ekowidjaja on 11/10/21.
@@ -7,13 +7,15 @@
 
 import UIKit
 
-class StatusDetailTableViewCell: UITableViewCell {
+class ProcessDetailTableViewCell: UITableViewCell {
 	
-	static let identifier = "StatusDetailTableViewCell"
+	static let identifier = "ProcessDetailTableViewCell"
 	
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var busyLabel: UILabel!
 	@IBOutlet weak var lengthLabel: UILabel!
+	@IBOutlet weak var cpuLabel: UILabel!
+	@IBOutlet weak var pinLabel: UILabel!
 	
 	@IBOutlet weak var backgroundIndicator: UIView!
 	override func awakeFromNib() {
@@ -28,22 +30,12 @@ class StatusDetailTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 	
-	func configureCell(alertLimits: [AlertLimit], diskInstance: DiskProcessInstance) {
-		nameLabel.text = diskInstance.name
-		busyLabel.text = "\(diskInstance.dp2Busy ?? 0)%"
-		lengthLabel.text = "\(diskInstance.queueLength ?? 0)"
-		
-		let indicator = getIndicator(alertLimits: alertLimits, busy: (diskInstance.dp2Busy ?? 0), qLength: (diskInstance.queueLength ?? 0))
-		setupViewFor(indicator: indicator)
-	}
-	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
-		let isNameEmpty = (cpuInstance.name ?? "").isEmpty
-		let CPUPINName = "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
-		let name = isNameEmpty ? CPUPINName : cpuInstance.name
-		nameLabel.text = name
+		nameLabel.text = cpuInstance.name ?? "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
-		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
+		lengthLabel.text = "\(cpuInstance.receiveQueue ?? 0)"
+		cpuLabel.text = "\(cpuInstance.cpuDisplayName)"
+		pinLabel.text = "\(cpuInstance.pin ?? 0)"
 		
 		let indicator = getIndicator(alertLimits: alertLimits, busy: (cpuInstance.cpuBusy ?? 0), qLength: (cpuInstance.queueLength ?? 0))
 		setupViewFor(indicator: indicator)
@@ -62,6 +54,8 @@ class StatusDetailTableViewCell: UITableViewCell {
 		nameLabel.font = font
 		busyLabel.font = font
 		lengthLabel.font = font
+		cpuLabel.font = font
+		pinLabel.font = font
 	}
 	
 	private func getIndicator(alertLimits: [AlertLimit], busy: Double, qLength: Double) -> StatusListTableViewCell.StatusIndicator {

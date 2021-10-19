@@ -14,6 +14,7 @@ class CPUDetailViewController: UIViewController {
 	var instances: [CPUProcessInstance] = []
 	
 	var alert: [AlertLimit] = []
+	var navTitle: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class CPUDetailViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "CPU"
+		self.title = navTitle
 	}
 	
 	private func setupTableView() {
