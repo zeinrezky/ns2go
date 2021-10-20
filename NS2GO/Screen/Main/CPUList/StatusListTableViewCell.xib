@@ -27,7 +27,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzf-38-jSi">
-                        <rect key="frame" x="64" y="13.5" width="216" height="17"/>
+                        <rect key="frame" x="76" y="13.5" width="204" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                 <constraints>
                     <constraint firstItem="bzf-38-jSi" firstAttribute="centerY" secondItem="TlR-dO-Ai4" secondAttribute="centerY" id="YCm-3d-Zbd"/>
                     <constraint firstItem="TlR-dO-Ai4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dCf-ab-4xw"/>
-                    <constraint firstItem="bzf-38-jSi" firstAttribute="leading" secondItem="TlR-dO-Ai4" secondAttribute="trailing" constant="12" id="dYL-92-zr5"/>
+                    <constraint firstItem="bzf-38-jSi" firstAttribute="leading" secondItem="TlR-dO-Ai4" secondAttribute="trailing" constant="24" id="dYL-92-zr5"/>
                     <constraint firstAttribute="trailing" secondItem="bzf-38-jSi" secondAttribute="trailing" constant="40" id="m5i-Lh-fVm"/>
                     <constraint firstItem="TlR-dO-Ai4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="yJi-Z3-SfD"/>
                 </constraints>
