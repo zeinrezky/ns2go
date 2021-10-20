@@ -151,7 +151,7 @@ class RegistrationViewController: UIViewController {
 			return
 		}
 		
-		guard !isTnCChecked else {
+		guard isTnCChecked else {
 			showAlert(message: "You need to agree our Terms and Conditions")
 			return
 		}
@@ -170,19 +170,23 @@ class RegistrationViewController: UIViewController {
 			companyName: companyName,
 			companyCountry: companyCountry,
 			companyState: companyCity
-		) { [weak self] in
+		) { [weak self] message in
 			self?.hideLoading()
-			self?.presentOTP(email: email)
+			
+			let willResentCode = message == "User exists."
+
+			self?.presentOTP(email: email, willResentCode: willResentCode)
 		} onFailed: { [weak self] (message) in
 			self?.hideLoading()
 			self?.showAlert(message: message)
 		}
 	}
 	
-	private func presentOTP(email: String) {
+	private func presentOTP(email: String, willResentCode: Bool) {
 		let inputOTPVC = OTPVerificationViewController()
 		inputOTPVC.modalPresentationStyle = .overCurrentContext
 		inputOTPVC.email = email
+		inputOTPVC.willResentCode = willResentCode
 		inputOTPVC.onSuccessVerification = { [weak self] in
 			self?.presentLogin()
 		}

@@ -17,7 +17,7 @@ class RegisterService {
 				  companyName: String,
 				  companyCountry: String,
 				  companyState: String,
-				  onComplete : @escaping() -> Void,
+				  onComplete : @escaping(String?) -> Void,
 				  onFailed : ((String) -> Void)?) {
 		
 		let url = BaseURL.shared.guestBaseURL + "register-user"
@@ -36,13 +36,9 @@ class RegisterService {
 		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
+			var jsonMessage = json["message"].string
 			
-			if let jsonError = json["message"].string {
-				onFailed?(jsonError)
-				return
-			}
-			
-			onComplete()
+			onComplete(jsonMessage)
 		}) { (message) in
 			onFailed?(message)
 		}

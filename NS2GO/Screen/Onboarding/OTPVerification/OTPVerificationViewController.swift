@@ -11,6 +11,7 @@ class OTPVerificationViewController: UIViewController {
 
 	var onSuccessVerification: (() -> Void)?
 	var email: String?
+	var willResentCode: Bool = false
 	
 	@IBOutlet weak var otpStackView: UIStackView!
 	@IBOutlet weak var continueButton: UIButton!
@@ -30,6 +31,10 @@ class OTPVerificationViewController: UIViewController {
         super.viewDidLoad()
 		setupTextFields()
 		continueButton.layer.cornerRadius = 4
+		
+		if willResentCode {
+			resentCode()
+		}
     }
 	
 	private func presentActivationSuccess() {
