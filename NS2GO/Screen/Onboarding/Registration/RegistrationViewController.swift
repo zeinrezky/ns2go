@@ -151,6 +151,11 @@ class RegistrationViewController: UIViewController {
 			return
 		}
 		
+		guard isTnCChecked else {
+			showAlert(message: "You need to agree our Terms and Conditions")
+			return
+		}
+		
 		guard email.isValidEmail() else {
 			showAlert(message: "Email format is not valid")
 			return
@@ -165,21 +170,25 @@ class RegistrationViewController: UIViewController {
 			companyName: companyName,
 			companyCountry: companyCountry,
 			companyState: companyCity
-		) { [weak self] in
+		) { [weak self] message in
 			self?.hideLoading()
-			self?.presentOTP(email: email)
+			
+			let willResentCode = message == "User exists."
+
+			self?.presentOTP(email: email, willResentCode: willResentCode)
 		} onFailed: { [weak self] (message) in
 			self?.hideLoading()
 			self?.showAlert(message: message)
 		}
 	}
 	
-	private func presentOTP(email: String) {
+	private func presentOTP(email: String, willResentCode: Bool) {
 		let inputOTPVC = OTPVerificationViewController()
 		inputOTPVC.modalPresentationStyle = .overCurrentContext
 		inputOTPVC.email = email
+		inputOTPVC.willResentCode = willResentCode
 		inputOTPVC.onSuccessVerification = { [weak self] in
-			self?.pushToServerInfo()
+			self?.presentLogin()
 		}
 		
 		DispatchQueue.main.async { [weak self] in
@@ -187,10 +196,17 @@ class RegistrationViewController: UIViewController {
 		}
 	}
 
-	private func pushToServerInfo() {
-		let serverVC = ServerInformationViewController()
-		DispatchQueue.main.async { [weak self] in
-			self?.navigationController?.pushViewController(serverVC, animated: true)
+	private func presentLogin() {
+		let login = LoginViewController()
+		let navVC = UINavigationController(rootViewController: login)
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+			  let window = appDelegate.window else {
+			return
+		}
+			
+		DispatchQueue.main.async {
+			window.rootViewController = navVC
 		}
 	}
 }

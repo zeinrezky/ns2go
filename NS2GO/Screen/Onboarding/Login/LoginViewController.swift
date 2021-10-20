@@ -115,6 +115,14 @@ class LoginViewController: UIViewController {
 	}
 	
 	private func checkAuthorizationToUseFaceID() {
+		if !isUserLoggedIn() {
+			do {
+				try keychain.removeAll()
+			} catch {
+				print(error.localizedDescription)
+			}
+			return
+		}
 		
 		var error: NSError?
 		let permissions = biometricContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
@@ -122,14 +130,6 @@ class LoginViewController: UIViewController {
 		guard error == nil else {
 			print(error?.localizedDescription ?? "")
 			return
-		}
-		
-		if !isUserLoggedIn() {
-			do {
-				try keychain.removeAll()
-			} catch {
-				print(error.localizedDescription)
-			}
 		}
 		
 		if permissions {
