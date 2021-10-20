@@ -179,7 +179,7 @@ class RegistrationViewController: UIViewController {
 		inputOTPVC.modalPresentationStyle = .overCurrentContext
 		inputOTPVC.email = email
 		inputOTPVC.onSuccessVerification = { [weak self] in
-			self?.pushToServerInfo()
+			self?.presentLogin()
 		}
 		
 		DispatchQueue.main.async { [weak self] in
@@ -187,10 +187,17 @@ class RegistrationViewController: UIViewController {
 		}
 	}
 
-	private func pushToServerInfo() {
-		let serverVC = ServerInformationViewController()
-		DispatchQueue.main.async { [weak self] in
-			self?.navigationController?.pushViewController(serverVC, animated: true)
+	private func presentLogin() {
+		let login = LoginViewController()
+		let navVC = UINavigationController(rootViewController: login)
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+			  let window = appDelegate.window else {
+			return
+		}
+			
+		DispatchQueue.main.async {
+			window.rootViewController = navVC
 		}
 	}
 }
