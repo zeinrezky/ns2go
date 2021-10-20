@@ -26,7 +26,7 @@ class StatusListTableViewCell: UITableViewCell {
     }
 	
 	func configureCell(status: StatusIndicator, text: String) {
-		statusIndicatorView.backgroundColor = status == .green ? AppColor.dotGreen : indicator.color
+		statusIndicatorView.backgroundColor = status == .green ? AppColor.dotGreen : status.color
 		statusLabel.text = text
 	}
 	
