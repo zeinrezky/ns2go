@@ -151,6 +151,11 @@ class RegistrationViewController: UIViewController {
 			return
 		}
 		
+		guard !isTnCChecked else {
+			showAlert(message: "You need to agree our Terms and Conditions")
+			return
+		}
+		
 		guard email.isValidEmail() else {
 			showAlert(message: "Email format is not valid")
 			return
