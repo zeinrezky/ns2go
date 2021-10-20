@@ -53,7 +53,7 @@ class StatusListTableViewCell: UITableViewCell {
 			}
 		}
 		
-		statusIndicatorView.backgroundColor = indicator.color
+		statusIndicatorView.backgroundColor = indicator == .green ? AppColor.dotGreen : indicator.color
 	}
 	
 	func configureCell(alertLimit: AlertLimit?, instance: IPU, row: Int) {
