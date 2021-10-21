@@ -38,8 +38,8 @@ class DiskListViewController: UIViewController {
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
-		tableView.separatorInset = UIEdgeInsets(top: 1, left: 40, bottom: 1, right: 40)
-		tableView.separatorColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
+		tableView.backgroundColor = .clear
+		tableView.separatorStyle = .none
 		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusListTableViewCell.identifier)
 	}
 }
@@ -47,7 +47,7 @@ class DiskListViewController: UIViewController {
 extension DiskListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = DiskDetailViewController()
-		if indexPath.row == 0 {
+		if indexPath.section == 0 {
 			if let instances = busy?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.dp2Busy ?? 0) > (right.dp2Busy ?? 0)

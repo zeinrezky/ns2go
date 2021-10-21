@@ -53,6 +53,7 @@ class NodeViewController: UIViewController {
 	
 	private func setupVersionLabel() {
 		let versionFormat = "WVPe Version: "
+		versionLabel.text = ""
 		if let version = serviceHelper.version {
 			versionLabel.text = versionFormat + version
 		} else {

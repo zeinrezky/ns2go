@@ -28,6 +28,8 @@
 		DB609B2B271E997E00E125C7 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B2A271E997E00E125C7 /* TimeInterval.swift */; };
 		DB609B2E271EAFEF00E125C7 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B2D271EAFEF00E125C7 /* ServiceHelper.swift */; };
 		DB609B32271F06BD00E125C7 /* StatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B31271F06BC00E125C7 /* StatusIndicator.swift */; };
+		DB609B3F2721ACC400E125C7 /* DualStatusListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B3D2721ACC300E125C7 /* DualStatusListTableViewCell.swift */; };
+		DB609B402721ACC400E125C7 /* DualStatusListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB609B3E2721ACC300E125C7 /* DualStatusListTableViewCell.xib */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -122,6 +124,8 @@
 		DB609B2A271E997E00E125C7 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		DB609B2D271EAFEF00E125C7 /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
 		DB609B31271F06BC00E125C7 /* StatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIndicator.swift; sourceTree = "<group>"; };
+		DB609B3D2721ACC300E125C7 /* DualStatusListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualStatusListTableViewCell.swift; sourceTree = "<group>"; };
+		DB609B3E2721ACC300E125C7 /* DualStatusListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DualStatusListTableViewCell.xib; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -444,6 +448,8 @@
 				DBC7AAF627147B07002EB696 /* CPUListViewController.xib */,
 				DBC7AAFA27147B7D002EB696 /* StatusListTableViewCell.swift */,
 				DBC7AAFB27147B7D002EB696 /* StatusListTableViewCell.xib */,
+				DB609B3D2721ACC300E125C7 /* DualStatusListTableViewCell.swift */,
+				DB609B3E2721ACC300E125C7 /* DualStatusListTableViewCell.xib */,
 			);
 			path = CPUList;
 			sourceTree = "<group>";
@@ -603,6 +609,7 @@
 				DBC7AAEF271328F0002EB696 /* LaunchViewController.xib in Resources */,
 				DBC7AB712717C7AF002EB696 /* IPUDetailViewController.xib in Resources */,
 				DBC7AABE27127F51002EB696 /* ActivationSuccessViewController.xib in Resources */,
+				DB609B402721ACC400E125C7 /* DualStatusListTableViewCell.xib in Resources */,
 				DBC7AB0327148921002EB696 /* IPUListViewController.xib in Resources */,
 				DBBC02832711EBC00033D364 /* RegistrationTableViewCell.xib in Resources */,
 				DBC7AAD9271317AA002EB696 /* ServerListViewController.xib in Resources */,
@@ -692,6 +699,7 @@
 				DB609A7C271C5DA800E125C7 /* TMF.swift in Sources */,
 				DB609A8B271C647400E125C7 /* CPU.swift in Sources */,
 				DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */,
+				DB609B3F2721ACC400E125C7 /* DualStatusListTableViewCell.swift in Sources */,
 				DBC7AAD8271317AA002EB696 /* ServerListViewController.swift in Sources */,
 				DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */,
 				DBC7AB1E27148E7C002EB696 /* CPUDetailViewController.swift in Sources */,
