@@ -36,9 +36,8 @@ class CPUListViewController: UIViewController {
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
-		tableView.separatorInset = UIEdgeInsets(top: 1, left: 40, bottom: 1, right: 40)
-		tableView.separatorColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
-		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusListTableViewCell.identifier)
+		tableView.separatorStyle = .none
+		tableView.register(UINib(nibName: DualStatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DualStatusListTableViewCell.identifier)
     }
 	
 	private func createSectionHeader(for text: String, section: Int) -> UIView {
@@ -54,9 +53,9 @@ class CPUListViewController: UIViewController {
 		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
 		label.font = UIFont.systemFont(ofSize: 16)
 		
-		let icon = UIImageView(frame: CGRect(x: tableView.frame.width - 80, y: 30, width: 20, height: 20))
-		icon.widthAnchor.constraint(equalToConstant: 20).isActive = true
-		icon.heightAnchor.constraint(equalToConstant: 20).isActive = true
+		let icon = UIImageView(frame: CGRect(x: tableView.frame.width - 52, y: 34, width: 12, height: 12))
+		icon.widthAnchor.constraint(equalToConstant: 12).isActive = true
+		icon.heightAnchor.constraint(equalToConstant: 12).isActive = true
 		icon.image = UIImage(named: "ic_rightArrow")
 		icon.contentMode = .scaleAspectFit
 		
@@ -111,20 +110,16 @@ extension CPUListViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 2
+		return 1
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusListTableViewCell.identifier) as? StatusListTableViewCell,
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: DualStatusListTableViewCell.identifier) as? DualStatusListTableViewCell,
 			  let instance: CPU = cpu?.instance[indexPath.section] as? CPU else {
 			return UITableViewCell()
 		}
-	
-		let entity: AlertLimit.EntityType = indexPath.row == 0 ? .busy : .queueLength
 		
-		let alertLimit = alert.first(where: {$0.entity == entity})
-		
-		cell.configureCell(alertLimit: alertLimit, instance: instance, row: indexPath.row)
+		cell.configureCell(alertLimits: alert, instance: instance)
 		cell.selectionStyle = .none
 		
 		return cell

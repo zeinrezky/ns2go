@@ -58,27 +58,23 @@ class BaseRequest {
         
         if let encodedString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed),
             let url = URL(string: encodedString) {
-            
-			AF.session.configuration.timeoutIntervalForRequest = 30
-            AF.session.configuration.timeoutIntervalForResource = 30
 			
-            AF.request(
-                url,
-                method: .get,
-                parameters: parameter,
-                encoding : URLEncoding.default,
-                headers: header
-            ).responseJSON{ (response) in
-                
-                print("DEBUG - RESPONSE : \(response)")
-				
+			session.request(
+				url,
+				method: .get,
+				parameters: parameter,
+				encoding: URLEncoding.default,
+				headers: header
+			).responseJSON(completionHandler: {(response) in
+				print("DEBUG - RESPONSE : \(response)")
+
 				if let value = response.value {
 					success(value)
 				} else {
 					failure(response.error?.localizedDescription ?? "")
 				}
-				
-            }.validate(statusCode: 200..<300)
+
+			})
         }
     }
     

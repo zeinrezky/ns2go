@@ -37,4 +37,25 @@ class DashboardService {
 			onFailed?(message)
 		}
 	}
+	
+	func getCurrentVersion(onComplete: @escaping (String) -> Void,
+						   onFailed: ((String) -> Void)?) {
+		let url = BaseURL.shared.vpnBaseURL + "homepage"
+		
+		let parameter: [String: Any] = [
+			"command" : "GET_VERSION_INFO"
+		]
+		
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
+		
+		BaseRequest.shared.GET(url: url, header: header, parameter: parameter, success: { (data) in
+			
+			let json = JSON(data)
+			let version = json["version"].stringValue
+			onComplete(version)
+			
+		}) { (message) in
+			onFailed?(message)
+		}
+	}
 }
