@@ -13,6 +13,8 @@ class ServerListViewController: UIViewController {
 	@IBOutlet weak var lastSyncLabel: UILabel!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var headerView: UIView!
+	@IBOutlet weak var versionLabel: UILabel!
+	
 	
 	var nodeAlert: Node? {
 		return serviceHelper.nodeAlert
@@ -39,6 +41,15 @@ class ServerListViewController: UIViewController {
 		
 		if isFirstTimeLoad {
 			fetchData()
+			
+			let versionFormat = "WVPe Version: "
+			if let version = serviceHelper.version {
+				versionLabel.text = versionFormat + version
+			} else {
+				serviceHelper.getVersion { [weak self] (version) in
+					self?.versionLabel.text = versionFormat + version
+				}
+			}
 		}
 		
 		isFirstTimeLoad = false

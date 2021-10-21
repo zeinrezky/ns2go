@@ -13,6 +13,7 @@ class NodeViewController: UIViewController {
 	@IBOutlet weak var lastSyncLabel: UILabel!
 	@IBOutlet var headerView: UIView!
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var versionLabel: UILabel!
 	
 	
 	var nodeStatus: NodeStatus?
@@ -28,6 +29,7 @@ class NodeViewController: UIViewController {
 		setupTableView()
 		startSyncTimer()
 		setupCompletion()
+		setupVersionLabel()
 		updateLastSyncLabel()
 	}
 	
@@ -47,6 +49,17 @@ class NodeViewController: UIViewController {
 	private func updateLastSyncLabel() {
 		let interval = Date().timeIntervalSince(serviceHelper.lastFetchTime)
 		lastSyncLabel.text = "Last sync \(interval.toString()) ago"
+	}
+	
+	private func setupVersionLabel() {
+		let versionFormat = "WVPe Version: "
+		if let version = serviceHelper.version {
+			versionLabel.text = versionFormat + version
+		} else {
+			serviceHelper.getVersion { [weak self] (version) in
+				self?.versionLabel.text = versionFormat + version
+			}
+		}
 	}
  
 	private func setupNavigationBar() {

@@ -36,7 +36,7 @@ class RegisterService {
 		BaseRequest.shared.POST(url: url, parameter: parameter, header: header, success: { (data) in
 			
 			let json = JSON(data)
-			var jsonMessage = json["message"].string
+			let jsonMessage = json["message"].string
 			
 			onComplete(jsonMessage)
 		}) { (message) in

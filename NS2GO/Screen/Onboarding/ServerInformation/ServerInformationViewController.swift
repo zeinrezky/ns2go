@@ -78,7 +78,7 @@ class ServerInformationViewController: UIViewController {
 	}
 	
 	private func setupTextFieldContanier() {
-		textFieldContainers.forEach { [weak self] (view) in
+		textFieldContainers.forEach { (view) in
 			view.layer.borderColor = UIColor.darkGray.cgColor
 			view.layer.borderWidth = 1
 		}

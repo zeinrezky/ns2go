@@ -14,6 +14,7 @@
                 <outlet property="headerView" destination="8Xq-tg-FB6" id="BsA-zE-Uee"/>
                 <outlet property="lastSyncLabel" destination="FYX-6o-Cuf" id="SDJ-qL-z6f"/>
                 <outlet property="tableView" destination="CV9-ZA-3FL" id="ezj-tg-8Vw"/>
+                <outlet property="versionLabel" destination="W78-Tz-vJJ" id="5YG-ao-Egq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,8 +23,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W78-Tz-vJJ">
+                    <rect key="frame" x="40" y="825" width="48.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CV9-ZA-3FL">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="761"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
@@ -32,7 +39,9 @@
             <constraints>
                 <constraint firstItem="CV9-ZA-3FL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="A5T-JS-gn2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CV9-ZA-3FL" secondAttribute="trailing" id="PWH-Op-Fij"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CV9-ZA-3FL" secondAttribute="bottom" id="YJS-fJ-I87"/>
+                <constraint firstItem="W78-Tz-vJJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="VKy-5g-t0d"/>
+                <constraint firstItem="W78-Tz-vJJ" firstAttribute="top" secondItem="CV9-ZA-3FL" secondAttribute="bottom" constant="20" id="YJS-fJ-I87"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="W78-Tz-vJJ" secondAttribute="bottom" constant="20" id="iw6-AV-UtP"/>
                 <constraint firstItem="CV9-ZA-3FL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xor-eZ-mUZ"/>
             </constraints>
             <point key="canvasLocation" x="-154" y="67"/>

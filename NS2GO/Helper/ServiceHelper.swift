@@ -14,6 +14,8 @@ class ServiceHelper {
 	var nodeStatuses: [NodeStatus] = []
 	var lastFetchTime: Date = Date()
 	
+	var version: String?
+	
 	var successCompletions: [(() -> Void)] = []
 	var errorCompletions: [((String) -> Void)] = []
 	
@@ -50,6 +52,13 @@ class ServiceHelper {
 				completion(message)
 			}
 		})
+	}
+	
+	func getVersion(onComplete: @escaping(String) -> Void) {
+		service.getCurrentVersion(onComplete: { [weak self] (version) in
+			self?.version = version
+			onComplete(version)
+		}, onFailed: nil)
 	}
 	
 }

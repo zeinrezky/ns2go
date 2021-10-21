@@ -91,7 +91,6 @@ class IPUListViewController: UIViewController {
 	
 	private func pushToDetail(section: Int) {
 		let controller = CPUDetailViewController()
-		let cpuName = cpu?.instance[section].name ?? ""
 		
 		let ipu = ipus[section]
 		if let cpuNumber = Int(ipu.cpuName ?? ""),
