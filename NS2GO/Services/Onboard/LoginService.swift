@@ -35,7 +35,7 @@ class LoginService {
 			let json = JSON(data)
 			let node = Node(json: json)
 			var dict = json.dictionaryObject
-			dict?["response_name"] = "Alert Limits"
+			dict?["response_name"] = "Do Logon (Alert Limits)"
 			onComplete(dict, [node])
 			
 		}) { (message) in

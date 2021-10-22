@@ -32,7 +32,7 @@ class DashboardService {
 			let json = JSON(data)
 			let nodeStatus = NodeStatus(json: json)
 			var dict = json.dictionaryObject
-			dict?["response_name"] = "Current Status"
+			dict?["response_name"] = "Get XView Data"
 			onComplete(dict, nodeStatus)
 			
 		}) { (message) in
@@ -55,7 +55,7 @@ class DashboardService {
 			let json = JSON(data)
 			let version = json["version"].stringValue
 			var dict = json.dictionaryObject
-			dict?["response_name"] = "Current Status"
+			dict?["response_name"] = "Get version info"
 			onComplete(dict, version)
 			
 		}) { (message) in
