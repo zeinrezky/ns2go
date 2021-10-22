@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 class DashboardService {
-	func getCurrentStatus(onComplete : @escaping(NodeStatus) -> Void,
+	func getCurrentStatus(onComplete : @escaping([String: Any]?, NodeStatus) -> Void,
 						  onFailed : ((String) -> Void)?) {
 		
 		let url = BaseURL.shared.vpnBaseURL + "homepage"
@@ -31,14 +31,16 @@ class DashboardService {
 			
 			let json = JSON(data)
 			let nodeStatus = NodeStatus(json: json)
-			onComplete(nodeStatus)
+			var dict = json.dictionaryObject
+			dict?["response_name"] = "Current Status"
+			onComplete(dict, nodeStatus)
 			
 		}) { (message) in
 			onFailed?(message)
 		}
 	}
 	
-	func getCurrentVersion(onComplete: @escaping (String) -> Void,
+	func getCurrentVersion(onComplete: @escaping ([String: Any]?, String) -> Void,
 						   onFailed: ((String) -> Void)?) {
 		let url = BaseURL.shared.vpnBaseURL + "homepage"
 		
@@ -52,7 +54,9 @@ class DashboardService {
 			
 			let json = JSON(data)
 			let version = json["version"].stringValue
-			onComplete(version)
+			var dict = json.dictionaryObject
+			dict?["response_name"] = "Current Status"
+			onComplete(dict, version)
 			
 		}) { (message) in
 			onFailed?(message)

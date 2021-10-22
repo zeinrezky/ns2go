@@ -13,7 +13,7 @@ class LoginService {
 	
 	func login(username: String,
 			   password: String,
-			   onComplete : @escaping([Node]) -> Void,
+			   onComplete : @escaping([String: Any]?,[Node]) -> Void,
 			   onFailed : ((String) -> Void)?) {
 		
 		let url = BaseURL.shared.vpnBaseURL + "homepage"
@@ -34,7 +34,9 @@ class LoginService {
 			
 			let json = JSON(data)
 			let node = Node(json: json)
-			onComplete([node])
+			var dict = json.dictionaryObject
+			dict?["response_name"] = "Alert Limits"
+			onComplete(dict, [node])
 			
 		}) { (message) in
 			onFailed?(message)
