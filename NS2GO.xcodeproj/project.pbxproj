@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		ABEA9034903337B482825645 /* Pods_NS2GO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981314274B5968299146F88F /* Pods_NS2GO.framework */; };
+		DB32C3A12722713900A592E5 /* ResponseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB32C39F2722713900A592E5 /* ResponseListViewController.swift */; };
+		DB32C3A22722713900A592E5 /* ResponseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB32C3A02722713900A592E5 /* ResponseListViewController.xib */; };
+		DB32C3A72722723700A592E5 /* ResponseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB32C3A52722723700A592E5 /* ResponseDetailViewController.swift */; };
+		DB32C3A82722723700A592E5 /* ResponseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB32C3A62722723700A592E5 /* ResponseDetailViewController.xib */; };
 		DB609A6F271BC2C000E125C7 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A6E271BC2C000E125C7 /* Node.swift */; };
 		DB609A72271BC36800E125C7 /* AlertLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A71271BC36800E125C7 /* AlertLimit.swift */; };
 		DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */; };
@@ -103,6 +107,10 @@
 /* Begin PBXFileReference section */
 		15D2A2135945290C4A035723 /* Pods-NS2GO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.debug.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.debug.xcconfig"; sourceTree = "<group>"; };
 		981314274B5968299146F88F /* Pods_NS2GO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NS2GO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB32C39F2722713900A592E5 /* ResponseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseListViewController.swift; sourceTree = "<group>"; };
+		DB32C3A02722713900A592E5 /* ResponseListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResponseListViewController.xib; sourceTree = "<group>"; };
+		DB32C3A52722723700A592E5 /* ResponseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDetailViewController.swift; sourceTree = "<group>"; };
+		DB32C3A62722723700A592E5 /* ResponseDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResponseDetailViewController.xib; sourceTree = "<group>"; };
 		DB609A54271ADCCC00E125C7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		DB609A6E271BC2C000E125C7 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		DB609A71271BC36800E125C7 /* AlertLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLimit.swift; sourceTree = "<group>"; };
@@ -216,6 +224,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DB32C39E2722711F00A592E5 /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				DB32C39F2722713900A592E5 /* ResponseListViewController.swift */,
+				DB32C3A02722713900A592E5 /* ResponseListViewController.xib */,
+				DB32C3A52722723700A592E5 /* ResponseDetailViewController.swift */,
+				DB32C3A62722723700A592E5 /* ResponseDetailViewController.xib */,
+			);
+			path = Dummy;
+			sourceTree = "<group>";
+		};
 		DB609A6D271BC2B400E125C7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +346,7 @@
 		DBBC02762711E4830033D364 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				DB32C39E2722711F00A592E5 /* Dummy */,
 				DBC7AACD27131755002EB696 /* Main */,
 				DBC7AAB927127F32002EB696 /* Onboarding */,
 			);
@@ -604,6 +624,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBC7AB2527148EB6002EB696 /* StatusDetailTableViewCell.xib in Resources */,
+				DB32C3A22722713900A592E5 /* ResponseListViewController.xib in Resources */,
 				DBC7AB1F27148E7C002EB696 /* CPUDetailViewController.xib in Resources */,
 				DBC7AACB271312CF002EB696 /* LoginViewController.xib in Resources */,
 				DBC7AAEF271328F0002EB696 /* LaunchViewController.xib in Resources */,
@@ -619,6 +640,7 @@
 				DBBC027D2711E4B40033D364 /* RegistrationViewController.xib in Resources */,
 				DBC7AAF827147B07002EB696 /* CPUListViewController.xib in Resources */,
 				DBC7AAE42713212B002EB696 /* NodeTableViewCell.xib in Resources */,
+				DB32C3A82722723700A592E5 /* ResponseDetailViewController.xib in Resources */,
 				DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */,
 				DB609B26271E912000E125C7 /* ProcessDetailTableViewCell.xib in Resources */,
 				DBC7AAFD27147B7D002EB696 /* StatusListTableViewCell.xib in Resources */,
@@ -696,6 +718,7 @@
 				DB609A80271C5E8000E125C7 /* BaseInstance.swift in Sources */,
 				DB609A97271C6E9A00E125C7 /* DashboardService.swift in Sources */,
 				DB609B2E271EAFEF00E125C7 /* ServiceHelper.swift in Sources */,
+				DB32C3A12722713900A592E5 /* ResponseListViewController.swift in Sources */,
 				DB609A7C271C5DA800E125C7 /* TMF.swift in Sources */,
 				DB609A8B271C647400E125C7 /* CPU.swift in Sources */,
 				DBC7AAE92713213C002EB696 /* NodeViewController.swift in Sources */,
@@ -731,6 +754,7 @@
 				DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */,
 				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
 				DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */,
+				DB32C3A72722723700A592E5 /* ResponseDetailViewController.swift in Sources */,
 				DBC7AAB527127D77002EB696 /* OTPVerificationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

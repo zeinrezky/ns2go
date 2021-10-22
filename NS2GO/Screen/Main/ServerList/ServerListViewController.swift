@@ -82,7 +82,10 @@ class ServerListViewController: UIViewController {
 		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
 		let btBar = UIBarButtonItem(customView: button)
-		self.navigationItem.rightBarButtonItem = btBar
+//		self.navigationItem.rightBarButtonItem = btBar
+		
+		let dummyButtonItem = UIBarButtonItem(title: "Response", style: .plain, target: self, action: #selector(pushToResponseList))
+		self.navigationItem.rightBarButtonItems = [btBar, dummyButtonItem]
 	}
 	
 	@objc private func logOut() {
@@ -111,6 +114,15 @@ class ServerListViewController: UIViewController {
 				
 				window.rootViewController = navVC
 			}
+		}
+	}
+	
+	@objc private func pushToResponseList() {
+		let controller = ResponseListViewController()
+		controller.responses = [serviceHelper.nodeAlertJSON, serviceHelper.nodeStatusesJSON, serviceHelper.versionJSON]
+		
+		DispatchQueue.main.async {
+			self.navigationController?.pushViewController(controller, animated: true)
 		}
 	}
 	

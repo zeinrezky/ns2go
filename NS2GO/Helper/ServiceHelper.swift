@@ -14,6 +14,10 @@ class ServiceHelper {
 	var nodeStatuses: [NodeStatus] = []
 	var lastFetchTime: Date = Date()
 	
+	var nodeAlertJSON: [String: Any]? = [:]
+	var nodeStatusesJSON: [String: Any]? = [:]
+	var versionJSON: [String: Any]? = [:]
+	
 	var version: String?
 	
 	var successCompletions: [(() -> Void)] = []
@@ -34,8 +38,9 @@ class ServiceHelper {
 	}
 	
 	func fetchStatusData() {
-		service.getCurrentStatus(onComplete: { [weak self] nodeStatus in
+		service.getCurrentStatus(onComplete: { [weak self] json, nodeStatus in
 			self?.lastFetchTime = Date()
+			self?.nodeStatusesJSON = json
 			
 			if let alerts = self?.nodeAlert?.alertlimits {
 				nodeStatus.alertLimits = alerts
@@ -55,8 +60,9 @@ class ServiceHelper {
 	}
 	
 	func getVersion(onComplete: @escaping(String) -> Void) {
-		service.getCurrentVersion(onComplete: { [weak self] (version) in
+		service.getCurrentVersion(onComplete: { [weak self] (json, version) in
 			self?.version = version
+			self?.versionJSON = json
 			onComplete(version)
 		}, onFailed: nil)
 	}
