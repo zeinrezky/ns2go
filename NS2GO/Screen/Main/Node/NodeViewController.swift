@@ -75,7 +75,19 @@ class NodeViewController: UIViewController {
 		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
 		let btBar = UIBarButtonItem(customView: button)
-		self.navigationItem.rightBarButtonItem = btBar
+		
+		let alertCriteria = UIBarButtonItem(title: "Alerts", style: .plain, target: self, action: #selector(pushToAlertCriteria))
+		self.navigationItem.rightBarButtonItems = [btBar, alertCriteria]
+	}
+	
+	@objc private func pushToAlertCriteria() {
+		let controller = AlertCriteriaViewController()
+		controller.nodename = self.nodeStatus?.nodename
+		controller.alerts = self.nodeAlert?.alertlimits ?? []
+		
+		DispatchQueue.main.async {
+			self.navigationController?.pushViewController(controller, animated: true)
+		}
 	}
 	
 	@objc private func logOut() {

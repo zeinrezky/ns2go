@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		ABEA9034903337B482825645 /* Pods_NS2GO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981314274B5968299146F88F /* Pods_NS2GO.framework */; };
+		DB084EBA2723AE190060606A /* AlertCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB084EB82723AE190060606A /* AlertCriteriaViewController.swift */; };
+		DB084EBB2723AE190060606A /* AlertCriteriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB084EB92723AE190060606A /* AlertCriteriaViewController.xib */; };
+		DB084EC02723AFDF0060606A /* AlertCriteriaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB084EBE2723AFDF0060606A /* AlertCriteriaTableViewCell.swift */; };
+		DB084EC12723AFDF0060606A /* AlertCriteriaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB084EBF2723AFDF0060606A /* AlertCriteriaTableViewCell.xib */; };
 		DB32C3A12722713900A592E5 /* ResponseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB32C39F2722713900A592E5 /* ResponseListViewController.swift */; };
 		DB32C3A22722713900A592E5 /* ResponseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB32C3A02722713900A592E5 /* ResponseListViewController.xib */; };
 		DB32C3A72722723700A592E5 /* ResponseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB32C3A52722723700A592E5 /* ResponseDetailViewController.swift */; };
@@ -107,6 +111,10 @@
 /* Begin PBXFileReference section */
 		15D2A2135945290C4A035723 /* Pods-NS2GO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.debug.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.debug.xcconfig"; sourceTree = "<group>"; };
 		981314274B5968299146F88F /* Pods_NS2GO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NS2GO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB084EB82723AE190060606A /* AlertCriteriaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCriteriaViewController.swift; sourceTree = "<group>"; };
+		DB084EB92723AE190060606A /* AlertCriteriaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertCriteriaViewController.xib; sourceTree = "<group>"; };
+		DB084EBE2723AFDF0060606A /* AlertCriteriaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCriteriaTableViewCell.swift; sourceTree = "<group>"; };
+		DB084EBF2723AFDF0060606A /* AlertCriteriaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertCriteriaTableViewCell.xib; sourceTree = "<group>"; };
 		DB32C39F2722713900A592E5 /* ResponseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseListViewController.swift; sourceTree = "<group>"; };
 		DB32C3A02722713900A592E5 /* ResponseListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResponseListViewController.xib; sourceTree = "<group>"; };
 		DB32C3A52722723700A592E5 /* ResponseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDetailViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +230,17 @@
 				FEDD1BC96EB51B94F4EA2C69 /* Pods-NS2GO.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DB084EB72723ADFB0060606A /* AlertCriteria */ = {
+			isa = PBXGroup;
+			children = (
+				DB084EB82723AE190060606A /* AlertCriteriaViewController.swift */,
+				DB084EB92723AE190060606A /* AlertCriteriaViewController.xib */,
+				DB084EBE2723AFDF0060606A /* AlertCriteriaTableViewCell.swift */,
+				DB084EBF2723AFDF0060606A /* AlertCriteriaTableViewCell.xib */,
+			);
+			path = AlertCriteria;
 			sourceTree = "<group>";
 		};
 		DB32C39E2722711F00A592E5 /* Dummy */ = {
@@ -425,6 +444,7 @@
 		DBC7AACD27131755002EB696 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				DB084EB72723ADFB0060606A /* AlertCriteria */,
 				DBC7AB35271493B7002EB696 /* ProcessDetail */,
 				DBC7AB2E27149377002EB696 /* DiskDetail */,
 				DBC7AB6E2717C7AF002EB696 /* IPUDetail */,
@@ -625,6 +645,7 @@
 			files = (
 				DBC7AB2527148EB6002EB696 /* StatusDetailTableViewCell.xib in Resources */,
 				DB32C3A22722713900A592E5 /* ResponseListViewController.xib in Resources */,
+				DB084EBB2723AE190060606A /* AlertCriteriaViewController.xib in Resources */,
 				DBC7AB1F27148E7C002EB696 /* CPUDetailViewController.xib in Resources */,
 				DBC7AACB271312CF002EB696 /* LoginViewController.xib in Resources */,
 				DBC7AAEF271328F0002EB696 /* LaunchViewController.xib in Resources */,
@@ -649,6 +670,7 @@
 				DBC7AADE2713189F002EB696 /* ServerListTableViewCell.xib in Resources */,
 				DBC7AAB627127D77002EB696 /* OTPVerificationViewController.xib in Resources */,
 				DBBC026A2711E3AF0033D364 /* Assets.xcassets in Resources */,
+				DB084EC12723AFDF0060606A /* AlertCriteriaTableViewCell.xib in Resources */,
 				DBC7AAC52712850A002EB696 /* ServerInformationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -748,9 +770,11 @@
 				DBC7AADD2713189F002EB696 /* ServerListTableViewCell.swift in Sources */,
 				DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */,
 				DBC7AB39271493C9002EB696 /* ProcessDetailViewController.swift in Sources */,
+				DB084EBA2723AE190060606A /* AlertCriteriaViewController.swift in Sources */,
 				DBA4A3F1271AC0A400BA4427 /* LoginService.swift in Sources */,
 				DB609A88271C61A800E125C7 /* CIPSSRV.swift in Sources */,
 				DBA4A3C52719BE6600BA4427 /* BaseRequest.swift in Sources */,
+				DB084EC02723AFDF0060606A /* AlertCriteriaTableViewCell.swift in Sources */,
 				DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */,
 				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
 				DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */,
