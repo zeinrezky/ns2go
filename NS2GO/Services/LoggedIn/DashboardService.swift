@@ -50,7 +50,7 @@ class DashboardService {
 		
 		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
 		
-		BaseRequest.shared.GET(url: url, header: header, parameter: parameter, success: { (data) in
+		BaseRequest.shared.GETVPN(url: url, header: header, parameter: parameter, success: { (data) in
 			
 			let json = JSON(data)
 			let version = json["version"].stringValue

@@ -45,8 +45,44 @@ class BaseRequest {
 		
 		return HTTPHeaders(header)
     }
+	
+	func GET(url:String,
+					header:HTTPHeaders,
+					parameter:Parameters? = nil,
+					success: @escaping (Any) -> Void,
+					failure: @escaping (String) -> Void) {
+		
+		print("DEBUG - URL : \(url)")
+		print("DEBUG - HEADER : \(header)")
+		print("DEBUG - PARAMETER : \(String(describing: parameter))")
+		
+		if let encodedString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed),
+			let url = URL(string: encodedString) {
+			
+			AF.session.configuration.timeoutIntervalForRequest = 30
+			AF.session.configuration.timeoutIntervalForResource = 30
+			
+			AF.request(
+				url,
+				method: .get,
+				parameters: parameter,
+				encoding : URLEncoding.default,
+				headers: header
+			).responseJSON{ (response) in
+				
+				print("DEBUG - RESPONSE : \(response)")
+				
+				if let value = response.value {
+					success(value)
+				} else {
+					failure(response.error?.localizedDescription ?? "")
+				}
+				
+			}.validate(statusCode: 200..<300)
+		}
+	}
     
-    func GET(url:String,
+    func GETVPN(url:String,
                     header:HTTPHeaders,
                     parameter:Parameters? = nil,
                     success: @escaping (Any) -> Void,
