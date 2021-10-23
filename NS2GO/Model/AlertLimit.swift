@@ -14,6 +14,7 @@ class AlertLimit {
 	let warning: String
 	let critical: String
 	let monitor: String
+	let entityString: String
 	
 	init(json: JSON) {
 		self.warning = json["warning"].stringValue
@@ -27,10 +28,17 @@ class AlertLimit {
 			self.object = .none
 		}
 		
-		if let entityString = json["entity"].string,
-		   let entity = EntityType(rawValue: entityString) {
-			self.entity = entity
+		if let entityString = json["entity"].string {
+			self.entityString = entityString
+			if let entity = EntityType(rawValue: entityString) {
+				self.entity = entity
+			} else if entityString.lowercased().contains("busy") {
+				self.entity = .busy
+			} else {
+				self.entity = .none
+			}
 		} else {
+			self.entityString = ""
 			self.entity = .none
 		}
 		

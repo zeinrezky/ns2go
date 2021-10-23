@@ -75,8 +75,8 @@ extension AlertCriteriaViewController: UITableViewDataSource, UITableViewDelegat
 		}
 		
 		let object: AlertLimit.ObjectType = sections[indexPath.section]
-		let busyEntity: AlertLimit.EntityType = object == .Disk ? .busy : .none
-		let qlengthEntity: AlertLimit.EntityType = object == .Process ? .queueLength : .queueLength
+		let busyEntity: AlertLimit.EntityType = .busy
+		let qlengthEntity: AlertLimit.EntityType = .queueLength
 		
 		guard let busyAlert = alerts.first(where: {$0.object == object && $0.entity == busyEntity}),
 			  let qlengthAlert = alerts.first(where: {$0.object == object && $0.entity == qlengthEntity}) else {

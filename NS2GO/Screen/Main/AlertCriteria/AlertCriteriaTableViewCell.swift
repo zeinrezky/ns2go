@@ -32,11 +32,11 @@ class AlertCriteriaTableViewCell: UITableViewCell {
 	
 	func configureCell(busyAlert: AlertLimit, qLengthAlert: AlertLimit) {
 		
-		busyNameLabel.text = busyAlert.entity.rawValue
+		busyNameLabel.text = busyAlert.entityString
 		busyWarningLabel.text = "\(busyAlert.warning)-\(busyAlert.critical)%"
 		busyCriticalLabel.text = "> \(busyAlert.critical)%"
 		
-		qLengthNameLabel.text = qLengthAlert.entity.rawValue
+		qLengthNameLabel.text = qLengthAlert.entityString
 		qLengthWarningLabel.text = "\(qLengthAlert.warning)-\(busyAlert.critical)"
 		qLengthCriticalLabel.text = "> \(qLengthAlert.critical)"
 	}
