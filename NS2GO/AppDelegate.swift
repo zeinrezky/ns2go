@@ -15,13 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 		
-		let initialVC = LaunchViewController()
+		BaseURL.shared.loadIPServer()
+		let isUserRegistered = UserDefaults.standard.bool(forKey: NS2GOConstant.KeyUserRegistered)
+		let initialVC: UIViewController
+		if isUserRegistered {
+			initialVC = LoginViewController()
+		} else {
+			initialVC = LaunchViewController()
+		}
+		
 		let navVC = UINavigationController(rootViewController: initialVC)
 		
 		self.window?.rootViewController = navVC
 		self.window?.makeKeyAndVisible()
 		
 		return true
+	}
+	
+	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+		return .portrait
 	}
 
 }

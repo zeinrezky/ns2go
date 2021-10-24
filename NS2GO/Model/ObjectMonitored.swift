@@ -42,19 +42,29 @@ class ObjectMonitored {
 				self.instance = objects
 			case .CPU:
 				let objects: [CPU] = populateInstance(jsonArray: jsonArray)
-				self.instance = objects
+				self.instance = objects.sorted(by: { (left, right) -> Bool in
+					return (left.name ?? "") < (right.name ?? "")
+				})
 			case .Busy:
 				let objects: [CPUProcessInstance] = populateInstance(jsonArray: jsonArray)
-				self.instance = objects
+				self.instance = objects.sorted(by: { (left, right) -> Bool in
+					return (left.name ?? "") < (right.name ?? "")
+				})
 			case .QueueLength:
 				let objects: [CPUProcessInstance] = populateInstance(jsonArray: jsonArray)
-				self.instance = objects
+				self.instance = objects.sorted(by: { (left, right) -> Bool in
+					return (left.name ?? "") < (right.name ?? "")
+				})
 			case .DiskBusy:
 				let objects: [DiskProcessInstance] = populateInstance(jsonArray: jsonArray)
-				self.instance = objects
+				self.instance = objects.sorted(by: { (left, right) -> Bool in
+					return (left.name ?? "") < (right.name ?? "")
+				})
 			case .DiskQueueLength:
 				let objects: [DiskProcessInstance] = populateInstance(jsonArray: jsonArray)
-				self.instance = objects
+				self.instance = objects.sorted(by: { (left, right) -> Bool in
+					return (left.name ?? "") < (right.name ?? "")
+				})
 			case .none:
 				break
 			}

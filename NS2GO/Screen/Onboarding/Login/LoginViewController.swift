@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import LocalAuthentication
 import KeychainAccess
 
 class LoginViewController: UIViewController {
@@ -20,7 +19,6 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var loginButton: UIButton!
 	
 	private let service = LoginService()
-	private var biometricContext = LAContext()
 	
 	private let keychain = Keychain(service: NS2GOConstant.keychainIdentifier)
 	
@@ -34,8 +32,6 @@ class LoginViewController: UIViewController {
 		loginButton.layer.cornerRadius = 4
 		loginIDTextField.addDoneButtonKeyboard()
 		passwordTextField.addDoneButtonKeyboard()
-		
-		checkAuthorizationToUseFaceID()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -114,81 +110,6 @@ class LoginViewController: UIViewController {
 		window.rootViewController = navVC
 	}
 	
-	private func checkAuthorizationToUseFaceID() {
-		if !isUserLoggedIn() {
-			do {
-				try keychain.removeAll()
-			} catch {
-				print(error.localizedDescription)
-			}
-			return
-		}
-		
-		var error: NSError?
-		let permissions = biometricContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-		
-		guard error == nil else {
-			print(error?.localizedDescription ?? "")
-			return
-		}
-		
-		if permissions {
-			doFaceIDBiometric()
-		}
-	}
-	
-	private func doFaceIDBiometric() {
-		let reason = "Log in with Face ID"
-		biometricContext.evaluatePolicy(
-			.deviceOwnerAuthenticationWithBiometrics,
-			localizedReason: reason
-		) { [weak self] success, error in
-			guard error == nil else {
-				print(error?.localizedDescription ?? "")
-				return
-			}
-			
-			let credentials = self?.loadCredential()
-			let loginID = credentials?.0
-			let password = credentials?.1
-			
-			DispatchQueue.main.async { [weak self] in
-				self?.loginIDTextField.text = loginID
-				self?.passwordTextField.text = password
-				self?.login()
-			}
-		}
-	}
-	
-	private func loadCredential() -> (String?, String?){
-		var loginID: String?
-		var password: String?
-		
-		do {
-			loginID = try keychain.getString(NS2GOConstant.KeyLoginID)
-			password = try keychain.getString(NS2GOConstant.KeyPassword)
-		} catch {
-			print(error.localizedDescription)
-		}
-		
-		return (loginID, password)
-	}
-	
-	private func saveCredential(loginID: String, password: String) {
-		do {
-			try keychain.set(loginID, key: NS2GOConstant.KeyLoginID)
-			try keychain.set(password, key: NS2GOConstant.KeyPassword)
-		} catch {
-			print(error.localizedDescription)
-		}
-		
-		UserDefaults.standard.setValue(true, forKey: NS2GOConstant.KeyUserLoggedIn)
-	}
-	
-	private func isUserLoggedIn() -> Bool {
-		return UserDefaults.standard.bool(forKey: NS2GOConstant.KeyUserLoggedIn)
-	}
-	
 	private func login() {
 		guard let loginID = loginIDTextField.text else {
 			showAlert(message: "Login ID cannot be empty")
@@ -206,7 +127,6 @@ class LoginViewController: UIViewController {
 			password: password,
 			onComplete: { [weak self] (json, nodes) in
 				self?.hideLoading()
-				self?.saveCredential(loginID: loginID, password: password)
 				
 				ServiceHelper.shared.nodeAlertJSON = json
 				self?.presentServerList(nodes: nodes)

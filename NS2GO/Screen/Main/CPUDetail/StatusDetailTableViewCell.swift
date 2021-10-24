@@ -34,7 +34,14 @@ class StatusDetailTableViewCell: UITableViewCell {
 		lengthLabel.text = "\(diskInstance.queueLength ?? 0)"
 		
 		let indicator = diskInstance.getIndicator(alertLimits: alertLimits)
-		setupViewFor(indicator: indicator)
+		
+		var entity: AlertLimit.EntityType? = nil
+		
+		if alertLimits.count == 1, let alert = alertLimits.first {
+			entity = alert.entity
+		}
+		
+		setupViewFor(indicator: indicator, for: entity)
 	}
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
@@ -45,22 +52,54 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
 		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
 		
-		let indicator = cpuInstance.getIndicator(alertLimits: alertLimits)
-		setupViewFor(indicator: indicator)
+		let busyIndicator = cpuInstance.getBusyIndicator(alertLimits: alertLimits)
+		let qlengthIndicator = cpuInstance.getQLenghtIndicator(alertLimits: alertLimits)
+		setupViewFor(busy: busyIndicator, qlength: qlengthIndicator)
 	}
 	
-	private func setupViewFor(indicator: StatusIndicator) {
+	private func setupViewFor(indicator: StatusIndicator, for entity: AlertLimit.EntityType?) {
 		backgroundIndicator.backgroundColor = indicator.color
 		
-		let font: UIFont
-		if indicator == .yellow || indicator == .red {
-			font = UIFont.systemFont(ofSize: 12, weight: .bold)
+		let boldFont = UIFont.systemFont(ofSize: 12, weight: .bold)
+		let normalFont = UIFont.systemFont(ofSize: 12)
+		
+		busyLabel.font = normalFont
+		lengthLabel.font = normalFont
+		
+		if indicator == .red || indicator == .yellow {
+			if let entity = entity {
+				switch entity {
+				case .busy:
+					busyLabel.font = boldFont
+				case .queueLength:
+					lengthLabel.font = boldFont
+				default:
+					break
+				}
+			} else {
+				busyLabel.font = boldFont
+				lengthLabel.font = boldFont
+			}
+		}
+	}
+	
+	
+	private func setupViewFor(busy: StatusIndicator, qlength: StatusIndicator) {
+		backgroundIndicator.backgroundColor = busy.compareHigher(indicator: qlength).color
+		
+		let boldFont = UIFont.systemFont(ofSize: 12, weight: .bold)
+		let normalFont = UIFont.systemFont(ofSize: 12)
+		
+		if busy == .yellow || busy == .red {
+			busyLabel.font = boldFont
 		} else {
-			font = UIFont.systemFont(ofSize: 12)
+			busyLabel.font = normalFont
 		}
 		
-		nameLabel.font = font
-		busyLabel.font = font
-		lengthLabel.font = font
+		if qlength == .yellow || qlength == .red {
+			lengthLabel.font = boldFont
+		} else {
+			lengthLabel.font = normalFont
+		}
 	}
 }
