@@ -12,19 +12,12 @@ class LaunchViewController: UIViewController {
 	@IBOutlet weak var startButton: UIButton!
 	
 	@IBAction func startButtonTapped(_ sender: Any) {
-		let isUserRegistered = UserDefaults.standard.bool(forKey: NS2GOConstant.KeyUserRegistered)
-		
-		if isUserRegistered {
-			pushToLogin()
-		} else {
-			pushToRegister()
-		}
+		pushToRegister()
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		configureView()
-		BaseURL.shared.loadIPServer()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
