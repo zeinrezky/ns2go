@@ -127,7 +127,6 @@ class LoginViewController: UIViewController {
 			password: password,
 			onComplete: { [weak self] (json, nodes) in
 				self?.hideLoading()
-				self?.saveCredential(loginID: loginID, password: password)
 				
 				ServiceHelper.shared.nodeAlertJSON = json
 				self?.presentServerList(nodes: nodes)
