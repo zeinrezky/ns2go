@@ -41,23 +41,39 @@ class ProcessDetailTableViewCell: UITableViewCell {
 		pinLabel.text = "\(cpuInstance.pin ?? 0)"
 		
 		let indicator = cpuInstance.getIndicator(alertLimits: alertLimits)
-		setupViewFor(indicator: indicator)
-	}
-	
-	private func setupViewFor(indicator: StatusIndicator) {
-		backgroundIndicator.backgroundColor = indicator.color
 		
-		let font: UIFont
-		if indicator == .yellow || indicator == .red {
-			font = UIFont.systemFont(ofSize: 12, weight: .bold)
-		} else {
-			font = UIFont.systemFont(ofSize: 12)
+		var entity: AlertLimit.EntityType? = nil
+		
+		if alertLimits.count == 1, let alert = alertLimits.first {
+			entity = alert.entity
 		}
 		
-		nameLabel.font = font
-		busyLabel.font = font
-		lengthLabel.font = font
-		cpuLabel.font = font
-		pinLabel.font = font
+		setupViewFor(indicator: indicator, for: entity)
+	}
+	
+	private func setupViewFor(indicator: StatusIndicator, for entity: AlertLimit.EntityType?) {
+		backgroundIndicator.backgroundColor = indicator.color
+		
+		let boldFont = UIFont.systemFont(ofSize: 12, weight: .bold)
+		let normalFont = UIFont.systemFont(ofSize: 12)
+		
+		busyLabel.font = normalFont
+		lengthLabel.font = normalFont
+		
+		if indicator == .red || indicator == .yellow {
+			if let entity = entity {
+				switch entity {
+				case .busy:
+					busyLabel.font = boldFont
+				case .queueLength:
+					lengthLabel.font = boldFont
+				default:
+					break
+				}
+			} else {
+				busyLabel.font = boldFont
+				lengthLabel.font = boldFont
+			}
+		}
 	}
 }

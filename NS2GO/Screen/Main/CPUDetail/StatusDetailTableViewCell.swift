@@ -34,7 +34,14 @@ class StatusDetailTableViewCell: UITableViewCell {
 		lengthLabel.text = "\(diskInstance.queueLength ?? 0)"
 		
 		let indicator = diskInstance.getIndicator(alertLimits: alertLimits)
-		setupViewFor(indicator: indicator)
+		
+		var entity: AlertLimit.EntityType? = nil
+		
+		if alertLimits.count == 1, let alert = alertLimits.first {
+			entity = alert.entity
+		}
+		
+		setupViewFor(indicator: indicator, for: entity)
 	}
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
@@ -46,21 +53,32 @@ class StatusDetailTableViewCell: UITableViewCell {
 		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
 		
 		let indicator = cpuInstance.getIndicator(alertLimits: alertLimits)
-		setupViewFor(indicator: indicator)
+		setupViewFor(indicator: indicator, for: nil)
 	}
 	
-	private func setupViewFor(indicator: StatusIndicator) {
+	private func setupViewFor(indicator: StatusIndicator, for entity: AlertLimit.EntityType?) {
 		backgroundIndicator.backgroundColor = indicator.color
 		
-		let font: UIFont
-		if indicator == .yellow || indicator == .red {
-			font = UIFont.systemFont(ofSize: 12, weight: .bold)
-		} else {
-			font = UIFont.systemFont(ofSize: 12)
-		}
+		let boldFont = UIFont.systemFont(ofSize: 12, weight: .bold)
+		let normalFont = UIFont.systemFont(ofSize: 12)
 		
-		nameLabel.font = font
-		busyLabel.font = font
-		lengthLabel.font = font
+		busyLabel.font = normalFont
+		lengthLabel.font = normalFont
+		
+		if indicator == .red || indicator == .yellow {
+			if let entity = entity {
+				switch entity {
+				case .busy:
+					busyLabel.font = boldFont
+				case .queueLength:
+					lengthLabel.font = boldFont
+				default:
+					break
+				}
+			} else {
+				busyLabel.font = boldFont
+				lengthLabel.font = boldFont
+			}
+		}
 	}
 }
