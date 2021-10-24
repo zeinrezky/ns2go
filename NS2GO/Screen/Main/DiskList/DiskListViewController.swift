@@ -49,10 +49,15 @@ extension DiskListViewController: UITableViewDelegate {
 		let controller = DiskDetailViewController()
 		if indexPath.section == 0 {
 			controller.title = "DP2 Busy %"
+			
 			if let instances = busy?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.dp2Busy ?? 0) > (right.dp2Busy ?? 0)
 				}).chunked(into: 5).first ?? []
+			}
+			
+			if let busyAlert = self.alert.first(where: {$0.entity == .busy}) {
+				controller.alert = [busyAlert]
 			}
 		} else {
 			controller.title = "Q. Length"
@@ -61,8 +66,11 @@ extension DiskListViewController: UITableViewDelegate {
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
 				}).chunked(into: 5).first ?? []
 			}
+			
+			if let qlengthAlert = self.alert.first(where: {$0.entity == .queueLength}) {
+				controller.alert = [qlengthAlert]
+			}
 		}
-		controller.alert = self.alert
 		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
