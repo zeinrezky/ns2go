@@ -32,8 +32,6 @@ class LoginViewController: UIViewController {
 		loginButton.layer.cornerRadius = 4
 		loginIDTextField.addDoneButtonKeyboard()
 		passwordTextField.addDoneButtonKeyboard()
-		
-		checkAuthorizationToUseFaceID()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
