@@ -92,12 +92,14 @@ extension ProcessListViewController: UITableViewDataSource {
 		var indicator: StatusIndicator = .green
 		
 		if indexPath.row == 0,
-		   let busy = self.busy {
+		   let busy = self.busy,
+		   let alert = self.alert.first(where: {$0.entity == .busy}) {
 			text = "Busy %"
-			indicator = busy.getIndicator(alertLimits: alert)
-		} else if let qLength = self.qLength {
+			indicator = busy.getIndicator(alertLimits: [alert])
+		} else if let qLength = self.qLength,
+				  let alert = self.alert.first(where: {$0.entity == .queueLength}) {
 			text = "Q. Length"
-			indicator = qLength.getIndicator(alertLimits: alert)
+			indicator = qLength.getIndicator(alertLimits: [alert])
 		}
 		
 		cell.configureCell(status: indicator, text: text)

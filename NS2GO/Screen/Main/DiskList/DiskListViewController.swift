@@ -47,7 +47,7 @@ class DiskListViewController: UIViewController {
 extension DiskListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = DiskDetailViewController()
-		if indexPath.section == 0 {
+		if indexPath.row == 0 {
 			controller.title = "DP2 Busy %"
 			
 			if let instances = busy?.instance as? [DiskProcessInstance] {
@@ -94,12 +94,14 @@ extension DiskListViewController: UITableViewDataSource {
 		var indicator: StatusIndicator = .green
 		
 		if indexPath.row == 0,
-		   let busy = self.busy {
+		   let busy = self.busy,
+		   let alert = self.alert.first(where: {$0.entity == .busy}) {
 			text = "DP2 Busy %"
-			indicator = busy.getIndicator(alertLimits: alert)
-		} else if let qLength = self.qLength {
+			indicator = busy.getIndicator(alertLimits: [alert])
+		} else if let qLength = self.qLength,
+				  let alert = self.alert.first(where: {$0.entity == .queueLength}) {
 			text = "Q. Length"
-			indicator = qLength.getIndicator(alertLimits: alert)
+			indicator = qLength.getIndicator(alertLimits: [alert])
 		}
 		
 		cell.configureCell(status: indicator, text: text)
