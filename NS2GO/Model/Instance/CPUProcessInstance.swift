@@ -63,7 +63,7 @@ class CPUProcessInstance: BaseInstance {
 		super.init(json: json)
 	}
 	
-	func getIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
+	func getBusyIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
 		var indicator: StatusIndicator = .clear
 		if alertLimits.count == 0 {
 			return indicator
@@ -82,6 +82,15 @@ class CPUProcessInstance: BaseInstance {
 			}
 		}
 		
+		return indicator
+	}
+	
+	func getQLenghtIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
+		var indicator: StatusIndicator = .clear
+		if alertLimits.count == 0 {
+			return indicator
+		}
+		
 		if let qLength = queueLength,
 		   let lengthLimit = alertLimits.first(where: {$0.entity == .queueLength}) {
 			if let warning = Double(lengthLimit.warning),
@@ -96,5 +105,12 @@ class CPUProcessInstance: BaseInstance {
 		}
 		
 		return indicator
+	}
+	
+	func getIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
+		let busyIndicator = getBusyIndicator(alertLimits: alertLimits)
+		let qLengthIndicator = getQLenghtIndicator(alertLimits: alertLimits)
+		
+		return busyIndicator.compareHigher(indicator: qLengthIndicator)
 	}
 }

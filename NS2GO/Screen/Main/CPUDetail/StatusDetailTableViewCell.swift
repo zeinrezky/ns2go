@@ -52,8 +52,9 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
 		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
 		
-		let indicator = cpuInstance.getIndicator(alertLimits: alertLimits)
-		setupViewFor(indicator: indicator, for: nil)
+		let busyIndicator = cpuInstance.getBusyIndicator(alertLimits: alertLimits)
+		let qlengthIndicator = cpuInstance.getQLenghtIndicator(alertLimits: alertLimits)
+		setupViewFor(busy: busyIndicator, qlength: qlengthIndicator)
 	}
 	
 	private func setupViewFor(indicator: StatusIndicator, for entity: AlertLimit.EntityType?) {
@@ -79,6 +80,26 @@ class StatusDetailTableViewCell: UITableViewCell {
 				busyLabel.font = boldFont
 				lengthLabel.font = boldFont
 			}
+		}
+	}
+	
+	
+	private func setupViewFor(busy: StatusIndicator, qlength: StatusIndicator) {
+		backgroundIndicator.backgroundColor = busy.compareHigher(indicator: qlength).color
+		
+		let boldFont = UIFont.systemFont(ofSize: 12, weight: .bold)
+		let normalFont = UIFont.systemFont(ofSize: 12)
+		
+		if busy == .yellow || busy == .red {
+			busyLabel.font = boldFont
+		} else {
+			busyLabel.font = normalFont
+		}
+		
+		if qlength == .yellow || qlength == .red {
+			lengthLabel.font = boldFont
+		} else {
+			lengthLabel.font = normalFont
 		}
 	}
 }
