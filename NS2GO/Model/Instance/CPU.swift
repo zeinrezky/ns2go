@@ -90,7 +90,9 @@ class CPU: BaseInstance {
 				let ipu = IPU(json: jsonObject, cpuJSON: json)
 				objectIPUS.append(ipu)
 			}
-			self.ipus = objectIPUS
+			self.ipus = objectIPUS.sorted(by: { (left, right) -> Bool in
+				return (left.ipunumber ?? 0) < (right.ipunumber ?? 0)
+			})
 		}
 		
 		super.init(json: json)

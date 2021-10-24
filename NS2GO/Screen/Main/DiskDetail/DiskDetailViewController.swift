@@ -27,7 +27,6 @@ class DiskDetailViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "Disk"
 	}
 	
 	private func setupTableView() {

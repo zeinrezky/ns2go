@@ -28,7 +28,6 @@ class ProcessDetailViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "Process"
 	}
 	
 	private func setupTableView() {

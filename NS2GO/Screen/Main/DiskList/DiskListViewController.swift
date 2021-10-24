@@ -48,12 +48,14 @@ extension DiskListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = DiskDetailViewController()
 		if indexPath.section == 0 {
+			controller.title = "DP2 Busy %"
 			if let instances = busy?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.dp2Busy ?? 0) > (right.dp2Busy ?? 0)
 				}).chunked(into: 5).first ?? []
 			}
 		} else {
+			controller.title = "Q. Length"
 			if let instances = qLength?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
