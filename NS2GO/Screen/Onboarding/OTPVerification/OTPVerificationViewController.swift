@@ -136,7 +136,7 @@ class OTPVerificationViewController: UIViewController {
 			onComplete: { [weak self] in
 				self?.showAlert(title: "Code resent", message: "Please check your email")
 			}, onFailed: { [weak self] (message) in
-				
+				self?.showAlert(message: message)
 			}
 		)
 	}

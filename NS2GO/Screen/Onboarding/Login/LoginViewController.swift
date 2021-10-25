@@ -111,6 +111,11 @@ class LoginViewController: UIViewController {
 	}
 	
 	private func login() {
+		guard BaseURL.shared.vpnBaseAddress != nil, BaseURL.shared.vpnBasePort != nil else {
+			showAlert(message: "Please set up the server address and port")
+			return
+		}
+		
 		guard let loginID = loginIDTextField.text else {
 			showAlert(message: "Login ID cannot be empty")
 			return
