@@ -106,7 +106,7 @@ class NodeViewController: UIViewController {
 					print(error.localizedDescription)
 				}
 				
-				let launchVC = LaunchViewController()
+				let launchVC = LoginViewController()
 				let navVC = UINavigationController(rootViewController: launchVC)
 				
 				guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
