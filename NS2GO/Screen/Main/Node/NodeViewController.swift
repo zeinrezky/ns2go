@@ -15,12 +15,17 @@ class NodeViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var versionLabel: UILabel!
 	
+	var nodeAlert: Node? {
+		return serviceHelper.nodeAlert
+	}
 	
-	var nodeStatus: NodeStatus?
-	var nodeAlert: Node?
+	var nodeStatus: NodeStatus? {
+		return serviceHelper.nodeStatuses.first
+	}
 	
 	private let refreshControl = UIRefreshControl()
 	private let serviceHelper = ServiceHelper.shared
+	private var isFirstTimeLoad: Bool = true
 	
 	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
 	
@@ -30,12 +35,28 @@ class NodeViewController: UIViewController {
 		startSyncTimer()
 		setupCompletion()
 		setupVersionLabel()
-		updateLastSyncLabel()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
+		
+		if isFirstTimeLoad {
+			fetchData()
+			
+			let versionFormat = "WVPe Version: "
+			versionLabel.text = ""
+			if let version = serviceHelper.version {
+				versionLabel.text = versionFormat + version
+			} else {
+				serviceHelper.getVersion { [weak self] (version) in
+					self?.versionLabel.text = versionFormat + version
+				}
+			}
+		}
+		
+		isFirstTimeLoad = false
+		updateLastSyncLabel()
 	}
 	
 	private func startSyncTimer() {
@@ -68,16 +89,14 @@ class NodeViewController: UIViewController {
 		self.title = nodeStatus?.nodename
 		
 		let button = UIButton()
-		button.setImage(UIImage(named : "ic_logout"), for: .normal)
+		button.setImage(UIImage(named : "ic_hamburger_menu"), for: .normal)
 		button.setTitle("", for: .normal)
-		button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+		button.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
 		button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
 		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
 		let btBar = UIBarButtonItem(customView: button)
-		
-		let alertCriteria = UIBarButtonItem(title: "Alerts", style: .plain, target: self, action: #selector(pushToAlertCriteria))
-		self.navigationItem.rightBarButtonItems = [btBar, alertCriteria]
+		self.navigationItem.rightBarButtonItem = btBar
 	}
 	
 	@objc private func pushToAlertCriteria() {
@@ -90,10 +109,26 @@ class NodeViewController: UIViewController {
 		}
 	}
 	
+	@objc private func showMenu() {
+		let popup = PopupNodeMenuViewController()
+		popup.modalPresentationStyle = .overFullScreen
+		popup.modalTransitionStyle = .crossDissolve
+		
+		popup.onTapLogout = { [weak self] in
+			self?.logOut()
+		}
+		
+		popup.onTapViewAlertDef = { [weak self] in
+			self?.pushToAlertCriteria()
+		}
+		
+		self.navigationController?.present(popup, animated: true, completion: nil)
+	}
+	
 	@objc private func logOut() {
 		showAlert(
-			title: "Log Out",
-			message: "Do you want to log out ?",
+			title: "Logout",
+			message: "Do you want to logout ?",
 			buttonPositive: "Yes",
 			buttonNegative: "No"
 		) { [weak self] in
@@ -149,9 +184,7 @@ class NodeViewController: UIViewController {
 			self?.hideLoading()
 			
 			let nodeName = self?.nodeStatus?.nodename ?? ""
-			if let nodeStatus = self?.serviceHelper.nodeStatuses.first(where: {$0.nodename == nodeName}) {
-				self?.nodeStatus = nodeStatus
-			}
+			self?.title = nodeName
 			
 			DispatchQueue.main.async { [weak self] in
 				self?.updateLastSyncLabel()
@@ -304,7 +337,4 @@ extension NodeViewController: UITableViewDataSource {
 		
 		return cell
 	}
-	
-	
-	
 }

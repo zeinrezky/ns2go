@@ -42,9 +42,8 @@ class OTPVerificationViewController: UIViewController {
 		activationSuccessVC.modalPresentationStyle = .overCurrentContext
 		activationSuccessVC.onSuccessVerification = { [weak self] in
 			DispatchQueue.main.async { [weak self] in
-				self?.dismiss(animated: false, completion: { [weak self] in
-					self?.onSuccessVerification?()
-				})
+				self?.navigationController?.popViewController(animated: true)
+				self?.onSuccessVerification?()
 			}
 		}
 		
@@ -134,7 +133,10 @@ class OTPVerificationViewController: UIViewController {
 		request.resendCode(
 			email: email,
 			onComplete: { [weak self] in
-				self?.showAlert(title: "Code resent", message: "Please check your email")
+				if !(self?.willResentCode ?? false) {
+					self?.showAlert(title: "Code resent", message: "Please check your email")
+				}
+				self?.willResentCode = false
 			}, onFailed: { [weak self] (message) in
 				self?.showAlert(message: message)
 			}

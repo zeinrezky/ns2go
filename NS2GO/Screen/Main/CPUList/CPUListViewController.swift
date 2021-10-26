@@ -82,7 +82,7 @@ class CPUListViewController: UIViewController {
 		let cpuName = cpu?.instance[section].name ?? ""
 		
 		if let cpu = cpu?.instance[section] as? CPU {
-			controller.navTitle = "CPU \(cpu.displayName) Processes"
+			controller.navTitle = "CPU \(cpu.displayName) Busiest Processes"
 		}
 		
 		if let instances = busy?.instance as? [CPUProcessInstance] {

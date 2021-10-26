@@ -24,7 +24,9 @@ class ServerInformationViewController: UIViewController {
 			return
 		}
 		
-		BaseURL.shared.vpnBaseAddress = ipAddress
+		let ipAddressFormatted = ipAddress.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "")
+		
+		BaseURL.shared.vpnBaseAddress = ipAddressFormatted
 		BaseURL.shared.vpnBasePort = port
 		BaseURL.shared.saveIPServer()
 		redirectToLogin()

@@ -47,7 +47,7 @@ extension ProcessListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = ProcessDetailViewController()
 		if indexPath.row == 0 {
-			controller.title = "Busy %"
+			controller.title = "Process Busy %"
 			if let instances = busy?.instance as? [CPUProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
@@ -58,7 +58,7 @@ extension ProcessListViewController: UITableViewDelegate {
 				controller.alert = [busyAlert]
 			}
 		} else {
-			controller.title = "Q. Length"
+			controller.title = "Process Q. Length"
 			if let instances = qLength?.instance as? [CPUProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)

@@ -175,8 +175,8 @@ extension ServerListViewController: UITableViewDelegate {
 		let nodeStatus = nodeStatuses[indexPath.item]
 		
 		let controller = NodeViewController()
-		controller.nodeStatus = nodeStatus
-		controller.nodeAlert = nodeAlert
+//		controller.nodeStatus = nodeStatus
+//		controller.nodeAlert = nodeAlert
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }

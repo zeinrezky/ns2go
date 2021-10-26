@@ -192,7 +192,7 @@ class RegistrationViewController: UIViewController {
 		}
 		
 		DispatchQueue.main.async { [weak self] in
-			self?.present(inputOTPVC, animated: true, completion: nil)
+			self?.navigationController?.pushViewController(inputOTPVC, animated: true)
 		}
 	}
 

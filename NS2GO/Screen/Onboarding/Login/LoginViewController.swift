@@ -97,10 +97,21 @@ class LoginViewController: UIViewController {
 		}
 	}
 	
-	private func presentServerList(nodes: [Node]) {
+	private func presentServerList() {
 		let serverListVC = ServerListViewController()
-		ServiceHelper.shared.nodeAlert = nodes.first
 		let navVC = UINavigationController(rootViewController: serverListVC)
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+			  let window = appDelegate.window else {
+			return
+		}
+		
+		window.rootViewController = navVC
+	}
+	
+	private func presentNodeDashboard() {
+		let nodeVC = NodeViewController()
+		let navVC = UINavigationController(rootViewController: nodeVC)
 		
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
 			  let window = appDelegate.window else {
@@ -134,7 +145,8 @@ class LoginViewController: UIViewController {
 				self?.hideLoading()
 				
 				ServiceHelper.shared.nodeAlertJSON = json
-				self?.presentServerList(nodes: nodes)
+				ServiceHelper.shared.nodeAlert = nodes.first
+				self?.presentNodeDashboard()
 			}, onFailed: { [weak self] (message) in
 				self?.hideLoading()
 				self?.showAlert(message: message)
