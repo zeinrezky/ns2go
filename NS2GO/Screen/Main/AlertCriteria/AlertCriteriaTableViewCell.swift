@@ -37,7 +37,7 @@ class AlertCriteriaTableViewCell: UITableViewCell {
 		busyCriticalLabel.text = "> \(busyAlert.critical)%"
 		
 		qLengthNameLabel.text = qLengthAlert.entityString
-		qLengthWarningLabel.text = "\(qLengthAlert.warning)-\(busyAlert.critical)"
+		qLengthWarningLabel.text = "\(qLengthAlert.warning)-\(qLengthAlert.critical)"
 		qLengthCriticalLabel.text = "> \(qLengthAlert.critical)"
 	}
     
