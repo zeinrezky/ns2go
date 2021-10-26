@@ -42,9 +42,8 @@ class OTPVerificationViewController: UIViewController {
 		activationSuccessVC.modalPresentationStyle = .overCurrentContext
 		activationSuccessVC.onSuccessVerification = { [weak self] in
 			DispatchQueue.main.async { [weak self] in
-				self?.dismiss(animated: false, completion: { [weak self] in
-					self?.onSuccessVerification?()
-				})
+				self?.navigationController?.popViewController(animated: true)
+				self?.onSuccessVerification?()
 			}
 		}
 		
