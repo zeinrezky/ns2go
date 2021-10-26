@@ -96,11 +96,11 @@ extension DiskListViewController: UITableViewDataSource {
 		if indexPath.row == 0,
 		   let busy = self.busy,
 		   let alert = self.alert.first(where: {$0.entity == .busy}) {
-			text = "DP2 Busy %"
+			text = "Disk DP2 Busy %"
 			indicator = busy.getIndicator(alertLimits: [alert])
 		} else if let qLength = self.qLength,
 				  let alert = self.alert.first(where: {$0.entity == .queueLength}) {
-			text = "Q. Length"
+			text = "Disk Q. Length"
 			indicator = qLength.getIndicator(alertLimits: [alert])
 		}
 		

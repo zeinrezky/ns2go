@@ -104,7 +104,7 @@ class IPUListViewController: UIViewController {
 			
 		}
 		
-		controller.navTitle = "IPU \(ipu.displayName) Process"
+		controller.navTitle = "IPU \(ipu.displayName) Busiest Processes"
 		controller.alert = self.alert
 		
 		DispatchQueue.main.async { [weak self] in
