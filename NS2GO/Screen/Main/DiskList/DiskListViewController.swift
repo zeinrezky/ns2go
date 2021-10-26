@@ -48,7 +48,7 @@ extension DiskListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = DiskDetailViewController()
 		if indexPath.row == 0 {
-			controller.title = "DP2 Busy %"
+			controller.title = "Disk DP2 Busy %"
 			
 			if let instances = busy?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
@@ -60,7 +60,7 @@ extension DiskListViewController: UITableViewDelegate {
 				controller.alert = [busyAlert]
 			}
 		} else {
-			controller.title = "Q. Length"
+			controller.title = "Disk Q. Length"
 			if let instances = qLength?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
@@ -96,11 +96,11 @@ extension DiskListViewController: UITableViewDataSource {
 		if indexPath.row == 0,
 		   let busy = self.busy,
 		   let alert = self.alert.first(where: {$0.entity == .busy}) {
-			text = "Disk DP2 Busy %"
+			text = "DP2 Busy %"
 			indicator = busy.getIndicator(alertLimits: [alert])
 		} else if let qLength = self.qLength,
 				  let alert = self.alert.first(where: {$0.entity == .queueLength}) {
-			text = "Disk Q. Length"
+			text = "Q. Length"
 			indicator = qLength.getIndicator(alertLimits: [alert])
 		}
 		

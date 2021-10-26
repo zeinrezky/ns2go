@@ -16,6 +16,8 @@
 		DB32C3A22722713900A592E5 /* ResponseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB32C3A02722713900A592E5 /* ResponseListViewController.xib */; };
 		DB32C3A72722723700A592E5 /* ResponseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB32C3A52722723700A592E5 /* ResponseDetailViewController.swift */; };
 		DB32C3A82722723700A592E5 /* ResponseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB32C3A62722723700A592E5 /* ResponseDetailViewController.xib */; };
+		DB3495272728455A00CD99A9 /* PopupNodeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3495252728455A00CD99A9 /* PopupNodeMenuViewController.swift */; };
+		DB3495282728455A00CD99A9 /* PopupNodeMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB3495262728455A00CD99A9 /* PopupNodeMenuViewController.xib */; };
 		DB609A6F271BC2C000E125C7 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A6E271BC2C000E125C7 /* Node.swift */; };
 		DB609A72271BC36800E125C7 /* AlertLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A71271BC36800E125C7 /* AlertLimit.swift */; };
 		DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609A74271BCA2D00E125C7 /* NS2GOConstant.swift */; };
@@ -119,6 +121,8 @@
 		DB32C3A02722713900A592E5 /* ResponseListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResponseListViewController.xib; sourceTree = "<group>"; };
 		DB32C3A52722723700A592E5 /* ResponseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDetailViewController.swift; sourceTree = "<group>"; };
 		DB32C3A62722723700A592E5 /* ResponseDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResponseDetailViewController.xib; sourceTree = "<group>"; };
+		DB3495252728455A00CD99A9 /* PopupNodeMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNodeMenuViewController.swift; sourceTree = "<group>"; };
+		DB3495262728455A00CD99A9 /* PopupNodeMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupNodeMenuViewController.xib; sourceTree = "<group>"; };
 		DB609A54271ADCCC00E125C7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		DB609A6E271BC2C000E125C7 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		DB609A71271BC36800E125C7 /* AlertLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLimit.swift; sourceTree = "<group>"; };
@@ -252,6 +256,15 @@
 				DB32C3A62722723700A592E5 /* ResponseDetailViewController.xib */,
 			);
 			path = Dummy;
+			sourceTree = "<group>";
+		};
+		DB349524272844EF00CD99A9 /* PopUpMenu */ = {
+			isa = PBXGroup;
+			children = (
+				DB3495252728455A00CD99A9 /* PopupNodeMenuViewController.swift */,
+				DB3495262728455A00CD99A9 /* PopupNodeMenuViewController.xib */,
+			);
+			path = PopUpMenu;
 			sourceTree = "<group>";
 		};
 		DB609A6D271BC2B400E125C7 /* Model */ = {
@@ -444,6 +457,7 @@
 		DBC7AACD27131755002EB696 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				DB349524272844EF00CD99A9 /* PopUpMenu */,
 				DB084EB72723ADFB0060606A /* AlertCriteria */,
 				DBC7AB35271493B7002EB696 /* ProcessDetail */,
 				DBC7AB2E27149377002EB696 /* DiskDetail */,
@@ -659,6 +673,7 @@
 				DBC7AAEA2713213C002EB696 /* NodeViewController.xib in Resources */,
 				DBC7AB3227149382002EB696 /* DiskDetailViewController.xib in Resources */,
 				DBBC027D2711E4B40033D364 /* RegistrationViewController.xib in Resources */,
+				DB3495282728455A00CD99A9 /* PopupNodeMenuViewController.xib in Resources */,
 				DBC7AAF827147B07002EB696 /* CPUListViewController.xib in Resources */,
 				DBC7AAE42713212B002EB696 /* NodeTableViewCell.xib in Resources */,
 				DB32C3A82722723700A592E5 /* ResponseDetailViewController.xib in Resources */,
@@ -730,6 +745,7 @@
 				DB609A6F271BC2C000E125C7 /* Node.swift in Sources */,
 				DB609A78271C5C6400E125C7 /* ObjectMonitored.swift in Sources */,
 				DB609A84271C5FA900E125C7 /* CLIMAgent.swift in Sources */,
+				DB3495272728455A00CD99A9 /* PopupNodeMenuViewController.swift in Sources */,
 				DB609B20271DC09B00E125C7 /* Array.swift in Sources */,
 				DBC7AAE32713212B002EB696 /* NodeTableViewCell.swift in Sources */,
 				DBC7AABD27127F51002EB696 /* ActivationSuccessViewController.swift in Sources */,
