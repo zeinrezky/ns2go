@@ -42,7 +42,7 @@ class ServerListViewController: UIViewController {
 		if isFirstTimeLoad {
 			fetchData()
 			
-			let versionFormat = "WVPe Version: "
+			let versionFormat = "WVP E. Version: "
 			versionLabel.text = ""
 			if let version = serviceHelper.version {
 				versionLabel.text = versionFormat + version
