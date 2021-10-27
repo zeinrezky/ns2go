@@ -188,7 +188,7 @@ class RegistrationViewController: UIViewController {
 		inputOTPVC.email = email
 		inputOTPVC.willResentCode = willResentCode
 		inputOTPVC.onSuccessVerification = { [weak self] in
-			self?.presentLogin()
+			self?.presentServerInformation()
 		}
 		
 		DispatchQueue.main.async { [weak self] in
@@ -196,9 +196,9 @@ class RegistrationViewController: UIViewController {
 		}
 	}
 
-	private func presentLogin() {
-		let login = LoginViewController()
-		let navVC = UINavigationController(rootViewController: login)
+	private func presentServerInformation() {
+		let serverVC = ServerInformationViewController()
+		let navVC = UINavigationController(rootViewController: serverVC)
 		
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
 			  let window = appDelegate.window else {

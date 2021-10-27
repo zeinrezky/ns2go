@@ -97,6 +97,7 @@ class ServerInformationViewController: UIViewController {
 			}
 		} else {
 			let loginVC = LoginViewController()
+			loginVC.showNavBarButton = false
 			DispatchQueue.main.async { [weak self] in
 				self?.navigationController?.pushViewController(loginVC, animated: true)
 			}
