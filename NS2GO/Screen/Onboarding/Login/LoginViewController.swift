@@ -18,8 +18,9 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var passwordTextField: UITextField!
 	@IBOutlet weak var loginButton: UIButton!
 	
-	private let service = LoginService()
+	var showNavBarButton: Bool = true
 	
+	private let service = LoginService()
 	private let keychain = Keychain(service: NS2GOConstant.keychainIdentifier)
 	
 	@IBAction func loginButtonTapped(_ sender: Any) {
@@ -65,15 +66,17 @@ class LoginViewController: UIViewController {
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
 		
-		let button = UIButton()
-		button.setImage(UIImage(named : "ic_setting"), for: .normal)
-		button.setTitle("", for: .normal)
-		button.addTarget(self, action: #selector(pushToEditServerInformation), for: .touchUpInside)
-		button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
-		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-		let btBar = UIBarButtonItem(customView: button)
-		self.navigationItem.rightBarButtonItem = btBar
+		if showNavBarButton {
+			let button = UIButton()
+			button.setImage(UIImage(named : "ic_setting"), for: .normal)
+			button.setTitle("", for: .normal)
+			button.addTarget(self, action: #selector(pushToEditServerInformation), for: .touchUpInside)
+			button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+			button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+			button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+			let btBar = UIBarButtonItem(customView: button)
+			self.navigationItem.rightBarButtonItem = btBar
+		}
 	}
 	
 	private func setupTextFieldContanier() {

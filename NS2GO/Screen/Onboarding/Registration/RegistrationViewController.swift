@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class RegistrationViewController: UIViewController {
 	
@@ -33,8 +34,24 @@ class RegistrationViewController: UIViewController {
 		registerUser()
 	}
 	
-	@IBAction func tncButtonTapped(_ sender: Any) {
+	@IBAction func tncAgreeButtonTapped(_ sender: Any) {
 		isTnCChecked = !isTnCChecked
+	}
+	
+	@IBAction func tncShowButtonTapped(_ sender: Any) {
+		guard let url = URL(string: BaseURL.shared.tncURL) else {
+			return
+		}
+		
+		let configuration = SFSafariViewController.Configuration()
+		configuration.barCollapsingEnabled = true
+		
+		let safariVC = SFSafariViewController(url: url, configuration: configuration)
+		safariVC.dismissButtonStyle = .close
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.present(safariVC, animated: true, completion: nil)
+		}
 	}
 	
 	private let cells: [[RegistrationTableViewCell.CellType]] = [
@@ -188,7 +205,7 @@ class RegistrationViewController: UIViewController {
 		inputOTPVC.email = email
 		inputOTPVC.willResentCode = willResentCode
 		inputOTPVC.onSuccessVerification = { [weak self] in
-			self?.presentLogin()
+			self?.presentServerInformation()
 		}
 		
 		DispatchQueue.main.async { [weak self] in
@@ -196,9 +213,9 @@ class RegistrationViewController: UIViewController {
 		}
 	}
 
-	private func presentLogin() {
-		let login = LoginViewController()
-		let navVC = UINavigationController(rootViewController: login)
+	private func presentServerInformation() {
+		let serverVC = ServerInformationViewController()
+		let navVC = UINavigationController(rootViewController: serverVC)
 		
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
 			  let window = appDelegate.window else {

@@ -115,7 +115,7 @@ class IPU {
 			let formatter = NumberFormatter()
 			formatter.minimumIntegerDigits = 2
 			
-			name = "\(formatter.string(for: cpuDouble) ?? "").\(formatter.string(for: ipu) ?? "")"
+			name = "\(formatter.string(for: cpuDouble) ?? ""):\(formatter.string(for: ipu) ?? "")"
 		}
 		
 		return name
