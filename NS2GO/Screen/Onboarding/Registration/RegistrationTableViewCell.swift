@@ -45,8 +45,6 @@ class RegistrationTableViewCell: UITableViewCell {
 		if type == .country {
 			let countryPicker = CountryPicker()
 			countryPicker.delegate = self
-			countryPicker.selectedCountryName = "United States"
-			inputTextField.text = "United States"
 			inputTextField.inputView = countryPicker
 		} else if type == .email{
 			inputTextField.keyboardType = .emailAddress

@@ -59,21 +59,48 @@
 
 + (NSArray *)countryNames
 {
-    static NSArray *_countryNames = nil;
+    static NSMutableArray *_countryNames = nil;
     if (!_countryNames)
     {
-        _countryNames = [[[self countryNamesByCode].allValues sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] copy];
+        _countryNames = [[[self countryNamesByCode].allValues sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] mutableCopy];
     }
+	
+	NSString *countryName = [[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:NSLocaleCountryCode value:@"US"];
+	__block NSInteger usIndex = -1;
+	[_countryNames enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+		if ([obj isEqualToString:countryName]) {
+			usIndex = idx;
+		}
+	}];
+	
+	if (usIndex >= 0) {
+		[_countryNames removeObjectAtIndex:usIndex];
+		[_countryNames insertObject:countryName atIndex:0];
+	}
+	
     return _countryNames;
 }
 
 + (NSArray *)countryCodes
 {
-    static NSArray *_countryCodes = nil;
+    static NSMutableArray *_countryCodes = nil;
     if (!_countryCodes)
     {
-        _countryCodes = [[[self countryCodesByName] objectsForKeys:[self countryNames] notFoundMarker:@""] copy];
+        _countryCodes = [[[self countryCodesByName] objectsForKeys:[self countryNames] notFoundMarker:@""] mutableCopy];
     }
+	
+	__block NSInteger usIndex = -1;
+	[_countryCodes enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+		if ([obj isEqualToString:@"US"]) {
+			usIndex = idx;
+		}
+	}];
+	
+	if (usIndex > 0) {
+		[_countryCodes removeObjectAtIndex:usIndex];
+		[_countryCodes insertObject:@"US" atIndex:0];
+	}
+	
     return _countryCodes;
 }
 
