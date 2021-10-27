@@ -17,6 +17,8 @@ class RegistrationTableViewCell: UITableViewCell {
 	@IBOutlet weak var inputTextField: UITextField!
 	
 	private var cellType: CellType = .firstName
+	
+	private let countryPicker = CountryPicker()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,8 +45,8 @@ class RegistrationTableViewCell: UITableViewCell {
 		inputTextField.keyboardType = .default
 		
 		if type == .country {
-			let countryPicker = CountryPicker()
 			countryPicker.delegate = self
+			inputTextField.delegate = self
 			inputTextField.inputView = countryPicker
 		} else if type == .email{
 			inputTextField.keyboardType = .emailAddress
@@ -62,6 +64,16 @@ class RegistrationTableViewCell: UITableViewCell {
 extension RegistrationTableViewCell: CountryPickerDelegate {
 	func countryPicker(_ picker: CountryPicker!, didSelectCountryWithName name: String!, code: String!) {
 		inputTextField.text = name
+	}
+}
+
+extension RegistrationTableViewCell: UITextFieldDelegate {
+	func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+		guard cellType == .country else {
+			return
+		}
+		
+		textField.text = countryPicker.selectedCountryName
 	}
 }
 
