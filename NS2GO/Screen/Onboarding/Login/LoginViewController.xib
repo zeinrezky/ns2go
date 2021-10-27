@@ -46,9 +46,13 @@
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="bIX-e5-BSP" secondAttribute="trailing" constant="40" id="1qa-7D-7gd"/>
+                                                <constraint firstAttribute="trailing" secondItem="bIX-e5-BSP" secondAttribute="trailing" constant="40" id="1qa-7D-7gd">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="160"/>
+                                                </constraint>
                                                 <constraint firstItem="bIX-e5-BSP" firstAttribute="top" secondItem="pfO-RQ-y7i" secondAttribute="top" id="4Y8-uz-b2b"/>
-                                                <constraint firstItem="bIX-e5-BSP" firstAttribute="leading" secondItem="pfO-RQ-y7i" secondAttribute="leading" constant="40" id="7gh-2y-BO3"/>
+                                                <constraint firstItem="bIX-e5-BSP" firstAttribute="leading" secondItem="pfO-RQ-y7i" secondAttribute="leading" constant="40" id="7gh-2y-BO3">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="160"/>
+                                                </constraint>
                                                 <constraint firstAttribute="bottom" secondItem="bIX-e5-BSP" secondAttribute="bottom" id="ab4-E7-gIQ"/>
                                             </constraints>
                                         </view>
@@ -166,7 +170,7 @@
         </view>
     </objects>
     <resources>
-        <image name="LogoLaunch" width="360" height="360"/>
+        <image name="LogoLaunch" width="682.5" height="682.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
