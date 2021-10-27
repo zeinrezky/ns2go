@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -72,23 +73,48 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MVv-Xj-vBz">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="753" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dih-7e-qBQ">
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wA3-CD-4Mg">
                                     <rect key="frame" x="20" y="0.0" width="280" height="44"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="753" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dih-7e-qBQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="134.5" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="6wE-Lk-5uG"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="selected" title="I Agree to the Terms and Conditions"/>
+                                            <connections>
+                                                <action selector="tncAgreeButtonTapped:" destination="-1" eventType="touchUpInside" id="vmV-1M-hog"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="753" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDR-Wz-NkQ">
+                                            <rect key="frame" x="134.5" y="0.0" width="145.5" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="mmr-MQ-Ocs"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <inset key="titleEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal">
+                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="selected" title="I Agree to the Terms and Conditions"/>
+                                            <connections>
+                                                <action selector="tncShowButtonTapped:" destination="-1" eventType="touchUpInside" id="v0G-vK-Ykr"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="6wE-Lk-5uG"/>
-                                        <constraint firstAttribute="width" constant="280" id="o7O-WS-BG4"/>
+                                        <constraint firstItem="XDR-Wz-NkQ" firstAttribute="width" secondItem="wA3-CD-4Mg" secondAttribute="width" multiplier="0.52" id="6PJ-4J-Eaz"/>
+                                        <constraint firstItem="Dih-7e-qBQ" firstAttribute="width" secondItem="wA3-CD-4Mg" secondAttribute="width" multiplier="0.48" id="Iir-9v-3P5"/>
+                                        <constraint firstAttribute="width" constant="280" id="Pbt-yz-Ec3"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <inset key="titleEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="I Agree to the Terms and Conditions">
-                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <state key="selected" title="I Agree to the Terms and Conditions"/>
-                                    <connections>
-                                        <action selector="tncButtonTapped:" destination="-1" eventType="touchUpInside" id="fH4-tP-c7b"/>
-                                    </connections>
-                                </button>
+                                </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxE-bV-pwb">
                                     <rect key="frame" x="32" y="12" width="20" height="20"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -96,15 +122,23 @@
                                         <constraint firstAttribute="width" secondItem="BxE-bV-pwb" secondAttribute="height" id="Yro-vq-v5z"/>
                                     </constraints>
                                 </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I Agree to the Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f40-an-b3I">
+                                    <rect key="frame" x="64" y="13.5" width="231.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="BxE-bV-pwb" firstAttribute="top" secondItem="Dih-7e-qBQ" secondAttribute="top" constant="12" id="5e4-5q-4KW"/>
-                                <constraint firstItem="BxE-bV-pwb" firstAttribute="leading" secondItem="Dih-7e-qBQ" secondAttribute="leading" constant="12" id="L7f-hA-Dmy"/>
-                                <constraint firstItem="BxE-bV-pwb" firstAttribute="bottom" secondItem="Dih-7e-qBQ" secondAttribute="bottom" constant="-12" id="bp5-ao-nGs"/>
-                                <constraint firstAttribute="bottom" secondItem="Dih-7e-qBQ" secondAttribute="bottom" id="drP-vr-fUo"/>
-                                <constraint firstItem="Dih-7e-qBQ" firstAttribute="centerX" secondItem="MVv-Xj-vBz" secondAttribute="centerX" id="kFt-Q9-OtX"/>
-                                <constraint firstItem="Dih-7e-qBQ" firstAttribute="top" secondItem="MVv-Xj-vBz" secondAttribute="top" id="vZI-EU-ALn"/>
+                                <constraint firstItem="wA3-CD-4Mg" firstAttribute="leading" secondItem="BxE-bV-pwb" secondAttribute="leading" constant="-12" id="0gy-pT-JHe"/>
+                                <constraint firstItem="BxE-bV-pwb" firstAttribute="top" secondItem="wA3-CD-4Mg" secondAttribute="bottom" constant="-32" id="3aK-pP-bZ4"/>
+                                <constraint firstAttribute="bottom" secondItem="wA3-CD-4Mg" secondAttribute="bottom" id="IQG-pv-d6G"/>
+                                <constraint firstItem="wA3-CD-4Mg" firstAttribute="top" secondItem="MVv-Xj-vBz" secondAttribute="top" id="MkU-Dv-Vss"/>
+                                <constraint firstItem="f40-an-b3I" firstAttribute="centerY" secondItem="BxE-bV-pwb" secondAttribute="centerY" id="ehC-aR-IlA"/>
+                                <constraint firstItem="BxE-bV-pwb" firstAttribute="centerY" secondItem="wA3-CD-4Mg" secondAttribute="centerY" id="gL5-zJ-IC4"/>
+                                <constraint firstItem="f40-an-b3I" firstAttribute="leading" secondItem="BxE-bV-pwb" secondAttribute="trailing" constant="12" id="kkF-cJ-Oci"/>
+                                <constraint firstItem="wA3-CD-4Mg" firstAttribute="centerX" secondItem="MVv-Xj-vBz" secondAttribute="centerX" id="ybA-uR-ZDC"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-PK-TUb">
