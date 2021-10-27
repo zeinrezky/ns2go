@@ -43,6 +43,7 @@ class RegistrationTableViewCell: UITableViewCell {
 		
 		inputTextField.inputView = nil
 		inputTextField.keyboardType = .default
+		inputTextField.addDoneButtonKeyboard()
 		
 		if type == .country {
 			countryPicker.delegate = self
@@ -50,13 +51,19 @@ class RegistrationTableViewCell: UITableViewCell {
 			inputTextField.inputView = countryPicker
 		} else if type == .email{
 			inputTextField.keyboardType = .emailAddress
+			
+			let comButtonItem = UIBarButtonItem(title: ".com", style: .plain, target: self, action: #selector(didTapDotCom))
+			inputTextField.addDoneButtonKeyboard(additionalButton: comButtonItem)
 		}
 	}
 	
 	private func setupCell() {
 		textFieldContainer.layer.borderWidth = 1.0
 		textFieldContainer.layer.borderColor = UIColor.darkGray.cgColor
-		inputTextField.addDoneButtonKeyboard()
+	}
+	
+	@objc private func didTapDotCom() {
+		inputTextField.text = (inputTextField.text ?? "") + ".com"
 	}
     
 }

@@ -10,12 +10,18 @@ import Foundation
 import UIKit
 
 extension UITextField {
-    func addDoneButtonKeyboard(){
+	func addDoneButtonKeyboard(additionalButton: UIBarButtonItem? = nil){
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
 		let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-		toolbar.items = [flexible, doneButton]
+		var items = [flexible, doneButton]
+		
+		if let additionalButton = additionalButton {
+			items.insert(additionalButton, at: 1)
+		}
+		
+		toolbar.items = items
         self.inputAccessoryView = toolbar
     }
     
