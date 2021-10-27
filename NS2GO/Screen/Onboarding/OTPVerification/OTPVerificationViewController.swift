@@ -18,6 +18,7 @@ class OTPVerificationViewController: UIViewController {
 	
 	private var otpTextFields: [OTPTextField] = []
 	private let request = RegisterService()
+	private var resentCodeTimer: Timer? = nil
 	
 	@IBAction func continueButtonTapped(_ sender: Any) {
 		validateUser()
@@ -36,6 +37,16 @@ class OTPVerificationViewController: UIViewController {
 			resentCode()
 		}
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupTimer()
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		resentCodeTimer?.invalidate()
+	}
 	
 	private func presentActivationSuccess() {
 		let activationSuccessVC = ActivationSuccessViewController()
@@ -141,6 +152,15 @@ class OTPVerificationViewController: UIViewController {
 				self?.showAlert(message: message)
 			}
 		)
+	}
+	
+	private func setupTimer() {
+		let minutes: Double = 10
+		let timeInterval: Double = minutes * 60
+		resentCodeTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true, block: { [weak self] (_) in
+			self?.willResentCode = true
+			self?.resentCode()
+		})
 	}
 
 }
