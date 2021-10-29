@@ -110,19 +110,22 @@ class NodeViewController: UIViewController {
 	}
 	
 	@objc private func showMenu() {
-		let popup = PopupNodeMenuViewController()
-		popup.modalPresentationStyle = .overFullScreen
-		popup.modalTransitionStyle = .crossDissolve
-		
-		popup.onTapLogout = { [weak self] in
+		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+		let logout = UIAlertAction(title: "Logout", style: .default) { [weak self] (_) in
 			self?.logOut()
 		}
 		
-		popup.onTapViewAlertDef = { [weak self] in
+		let alertDef = UIAlertAction(title: "View Alert Def.", style: .default) { [weak self] (_) in
 			self?.pushToAlertCriteria()
 		}
 		
-		self.navigationController?.present(popup, animated: true, completion: nil)
+		let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+		
+		alert.addAction(alertDef)
+		alert.addAction(logout)
+		alert.addAction(cancel)
+		
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	@objc private func logOut() {
