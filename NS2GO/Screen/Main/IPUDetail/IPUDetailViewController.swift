@@ -66,11 +66,11 @@ class IPUDetailViewController: UIViewController {
 		lenghtLabel.textAlignment = .center
 		
 		let stack = UIStackView(arrangedSubviews: [nameLabel, busyLabel, lenghtLabel])
-		stack.frame = CGRect(x: 40, y: 0, width: tableView.frame.width - 80, height: 40)
+		stack.frame = CGRect(x: 60, y: 0, width: tableView.frame.width - 120, height: 40)
 		stack.axis = .horizontal
 		stack.distribution = .fillEqually
 		
-		let separator = UIView(frame: CGRect(x: 40, y: 39, width: tableView.frame.width - 80, height: 1))
+		let separator = UIView(frame: CGRect(x: 60, y: 39, width: tableView.frame.width - 120, height: 1))
 		separator.backgroundColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		
 		view.addSubview(stack)
