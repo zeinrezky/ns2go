@@ -62,9 +62,13 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="8fU-Mh-RIW" secondAttribute="trailing" constant="60" id="3Bd-gV-gvr"/>
+                    <constraint firstAttribute="trailing" secondItem="8fU-Mh-RIW" secondAttribute="trailing" constant="60" id="3Bd-gV-gvr">
+                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                    </constraint>
                     <constraint firstItem="8fU-Mh-RIW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="agP-Ba-Gr4"/>
-                    <constraint firstItem="8fU-Mh-RIW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="lnh-sH-cQ1"/>
+                    <constraint firstItem="8fU-Mh-RIW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="lnh-sH-cQ1">
+                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                    </constraint>
                     <constraint firstAttribute="bottom" secondItem="8fU-Mh-RIW" secondAttribute="bottom" id="mrj-Iu-ncZ"/>
                 </constraints>
             </tableViewCellContentView>

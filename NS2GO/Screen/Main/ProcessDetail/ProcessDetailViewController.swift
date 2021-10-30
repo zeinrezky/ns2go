@@ -31,10 +31,12 @@ class ProcessDetailViewController: UIViewController {
 	}
 	
 	private func setupTableView() {
+		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 60
+		
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
-		tableView.separatorInset = UIEdgeInsets(top: 1, left: 40, bottom: 1, right: 40)
+		tableView.separatorInset = UIEdgeInsets(top: 1, left: margin, bottom: 1, right: margin)
 		tableView.separatorColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		tableView.register(UINib(nibName: ProcessDetailTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ProcessDetailTableViewCell.identifier)
 	}
