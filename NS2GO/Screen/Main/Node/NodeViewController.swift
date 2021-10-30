@@ -15,6 +15,8 @@ class NodeViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var versionLabel: UILabel!
 	
+	var rightBarButtonItem: UIBarButtonItem?
+	
 	var nodeAlert: Node? {
 		return serviceHelper.nodeAlert
 	}
@@ -95,8 +97,8 @@ class NodeViewController: UIViewController {
 		button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
 		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-		let btBar = UIBarButtonItem(customView: button)
-		self.navigationItem.rightBarButtonItem = btBar
+		rightBarButtonItem = UIBarButtonItem(customView: button)
+		self.navigationItem.rightBarButtonItem = rightBarButtonItem
 	}
 	
 	@objc private func pushToAlertCriteria() {
@@ -124,6 +126,8 @@ class NodeViewController: UIViewController {
 		alert.addAction(alertDef)
 		alert.addAction(logout)
 		alert.addAction(cancel)
+		
+		alert.popoverPresentationController?.barButtonItem = rightBarButtonItem
 		
 		self.present(alert, animated: true, completion: nil)
 	}
