@@ -45,6 +45,7 @@ class RegistrationTableViewCell: UITableViewCell {
 		inputTextField.keyboardType = .default
 		inputTextField.addDoneButtonKeyboard()
 		
+		inputTextField.text = ""
 		if type == .country {
 			countryPicker.delegate = self
 			countryPicker.selectedCountryName = "United States"
