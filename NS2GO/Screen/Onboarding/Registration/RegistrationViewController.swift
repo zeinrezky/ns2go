@@ -215,7 +215,6 @@ class RegistrationViewController: UIViewController {
 
 	private func presentServerInformation() {
 		let serverVC = ServerInformationViewController()
-		let navVC = UINavigationController(rootViewController: serverVC)
 		
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
 			  let window = appDelegate.window else {
@@ -223,7 +222,7 @@ class RegistrationViewController: UIViewController {
 		}
 			
 		DispatchQueue.main.async {
-			window.rootViewController = navVC
+			window.rootViewController = serverVC
 		}
 	}
 }
