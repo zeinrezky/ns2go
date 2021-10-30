@@ -263,7 +263,7 @@ extension RegistrationViewController: UITableViewDataSource {
 			label.text = "Company Information"
 			label.textAlignment = .center
 			label.textColor = .darkGray
-			label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+			label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
 			view.addSubview(label)
 			
 			return view
