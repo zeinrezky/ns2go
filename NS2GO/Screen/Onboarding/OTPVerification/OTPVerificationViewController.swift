@@ -79,7 +79,7 @@ class OTPVerificationViewController: UIViewController {
 		textField.tag = tag
 		textField.textAlignment = .center
 		textField.borderStyle = .none
-		textField.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+		textField.font =  UIFont(name: "HelveticaNeue-Bold", size: 40)
 		textField.delegate = self
 		textField.deleteDelegate = self
 		textField.keyboardType = .asciiCapableNumberPad

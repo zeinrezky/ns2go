@@ -51,7 +51,7 @@ class AlertCriteriaViewController: UIViewController {
 		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 120, height: 20))
 		label.text = text
 		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
-		label.font = UIFont.systemFont(ofSize: 16)
+		label.font = UIFont(name: "HelveticaNeue", size: 16)
 		
 		view.addSubview(label)
 		view.addSubview(separator)
@@ -95,6 +95,10 @@ extension AlertCriteriaViewController: UITableViewDataSource, UITableViewDelegat
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		return 60
+	}
+	
+	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		return CGFloat.leastNonzeroMagnitude
 	}
 	
 }

@@ -165,7 +165,7 @@ class NodeViewController: UIViewController {
 		
 		let attribute: [NSAttributedString.Key : Any] = [
 			NSAttributedString.Key.foregroundColor: UIColor(red: 202.0/255.0, green: 202.0/255.0, blue: 202.0/225.0, alpha: 1),
-			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+			NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 12)
 		]
 		
 		refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh", attributes: attribute)
