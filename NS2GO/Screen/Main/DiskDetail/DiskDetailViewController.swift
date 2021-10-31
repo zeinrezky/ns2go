@@ -30,10 +30,12 @@ class DiskDetailViewController: UIViewController {
 	}
 	
 	private func setupTableView() {
+		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 60
+		
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
-		tableView.separatorInset = UIEdgeInsets(top: 1, left: 40, bottom: 1, right: 40)
+		tableView.separatorInset = UIEdgeInsets(top: 1, left: margin, bottom: 1, right: margin)
 		tableView.separatorColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		tableView.register(UINib(nibName: StatusDetailTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusDetailTableViewCell.identifier)
 	}
@@ -43,36 +45,63 @@ class DiskDetailViewController: UIViewController {
 		view.backgroundColor = .white
 		
 		let textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
-		let font = UIFont.systemFont(ofSize: 12)
+		let font = UIFont(name: "Helvetica Neue", size: 12)
 		
 		let nameLabel = UILabel()
 		nameLabel.text = "Name"
 		nameLabel.textColor = textColor
 		nameLabel.font = font
-		nameLabel.textAlignment = .center
+		nameLabel.textAlignment = .left
 		
 		let busyLabel = UILabel()
 		busyLabel.text = "Busy"
 		busyLabel.textColor = textColor
 		busyLabel.font = font
-		busyLabel.textAlignment = .center
+		busyLabel.textAlignment = .right
 		
 		let lenghtLabel = UILabel()
 		lenghtLabel.text = "Q Length"
 		lenghtLabel.textColor = textColor
 		lenghtLabel.font = font
-		lenghtLabel.textAlignment = .center
+		lenghtLabel.textAlignment = .right
+		
+		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 60
 		
 		let stack = UIStackView(arrangedSubviews: [nameLabel, busyLabel, lenghtLabel])
-		stack.frame = CGRect(x: 60, y: 0, width: tableView.frame.width - 120, height: 40)
+		stack.frame = CGRect(x: margin, y: 0, width: tableView.frame.width - (2 * margin), height: 40)
 		stack.axis = .horizontal
 		stack.distribution = .fillEqually
 		
-		let separator = UIView(frame: CGRect(x: 60, y: 39, width: tableView.frame.width - 120, height: 1))
+		let separator = UIView(frame: CGRect(x: margin, y: 39, width: tableView.frame.width - (2 * margin), height: 1))
 		separator.backgroundColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		
 		view.addSubview(stack)
 		view.addSubview(separator)
+		
+		return view
+	}
+	
+	private func createNoDataAvailable() -> UIView {
+		let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+		view.backgroundColor = .white
+		
+		let textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
+		let font = UIFont(name: "Helvetica Neue", size: 12)
+		
+		let nameLabel = UILabel()
+		nameLabel.text = "No data available"
+		nameLabel.textColor = textColor
+		nameLabel.font = font
+		nameLabel.textAlignment = .center
+		
+		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 60
+		
+		let stack = UIStackView(arrangedSubviews: [nameLabel])
+		stack.frame = CGRect(x: margin, y: 0, width: tableView.frame.width - (2 * margin), height: 40)
+		stack.axis = .horizontal
+		stack.distribution = .fillEqually
+		
+		view.addSubview(stack)
 		
 		return view
 	}
@@ -99,6 +128,10 @@ extension DiskDetailViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		if instances.count == 0 {
+			return createNoDataAvailable()
+		}
+		
 		return createSectionHeader()
 	}
 	

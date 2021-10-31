@@ -54,8 +54,8 @@ class ProcessDetailTableViewCell: UITableViewCell {
 	private func setupViewFor(indicator: StatusIndicator, for entity: AlertLimit.EntityType?) {
 		backgroundIndicator.backgroundColor = indicator.color
 		
-		let boldFont = UIFont.systemFont(ofSize: 12, weight: .bold)
-		let normalFont = UIFont.systemFont(ofSize: 12)
+		let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 12)
+		let normalFont = UIFont(name: "HelveticaNeue", size: 12)
 		
 		busyLabel.font = normalFont
 		lengthLabel.font = normalFont

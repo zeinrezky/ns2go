@@ -26,19 +26,19 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkO-ca-DJz">
                                         <rect key="frame" x="0.0" y="0.0" width="66.5" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" red="0.23921568630000001" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vow-ZI-jlk">
                                         <rect key="frame" x="66.5" y="0.0" width="67" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" red="0.23921568630000001" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GsJ-Fe-0tX">
                                         <rect key="frame" x="133.5" y="0.0" width="66.5" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                         <color key="textColor" red="0.23921568630000001" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -62,9 +62,13 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="8fU-Mh-RIW" secondAttribute="trailing" constant="60" id="3Bd-gV-gvr"/>
+                    <constraint firstAttribute="trailing" secondItem="8fU-Mh-RIW" secondAttribute="trailing" constant="60" id="3Bd-gV-gvr">
+                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                    </constraint>
                     <constraint firstItem="8fU-Mh-RIW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="agP-Ba-Gr4"/>
-                    <constraint firstItem="8fU-Mh-RIW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="lnh-sH-cQ1"/>
+                    <constraint firstItem="8fU-Mh-RIW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="lnh-sH-cQ1">
+                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                    </constraint>
                     <constraint firstAttribute="bottom" secondItem="8fU-Mh-RIW" secondAttribute="bottom" id="mrj-Iu-ncZ"/>
                 </constraints>
             </tableViewCellContentView>
