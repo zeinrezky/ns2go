@@ -40,6 +40,31 @@ class ProcessDetailViewController: UIViewController {
 		tableView.separatorColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		tableView.register(UINib(nibName: ProcessDetailTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ProcessDetailTableViewCell.identifier)
 	}
+	
+	private func createNoDataAvailable() -> UIView {
+		let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+		view.backgroundColor = .white
+		
+		let textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
+		let font = UIFont.systemFont(ofSize: 12)
+		
+		let nameLabel = UILabel()
+		nameLabel.text = "No data available"
+		nameLabel.textColor = textColor
+		nameLabel.font = font
+		nameLabel.textAlignment = .center
+		
+		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 60
+		
+		let stack = UIStackView(arrangedSubviews: [nameLabel])
+		stack.frame = CGRect(x: margin, y: 0, width: tableView.frame.width - (2 * margin), height: 40)
+		stack.axis = .horizontal
+		stack.distribution = .fillEqually
+		
+		view.addSubview(stack)
+		
+		return view
+	}
 }
 
 extension ProcessDetailViewController: UITableViewDelegate {
@@ -63,6 +88,10 @@ extension ProcessDetailViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		if instances.count == 0 {
+			return createNoDataAvailable()
+		}
+		
 		return sectionHeader
 	}
 	
