@@ -257,12 +257,12 @@ extension RegistrationViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		if section == 1 {
-			let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-			let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 20))
+			let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
+			let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30))
 			label.text = "Company Information"
 			label.textAlignment = .center
-			label.textColor = .darkGray
-			label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+			label.textColor = UIColor(red: 117.0/255.0, green: 117.0/255.0, blue: 117.0/255.0, alpha: 1)
+			label.font = UIFont(name: "Helvetica Neue", size: 24)
 			view.addSubview(label)
 			
 			return view
@@ -277,7 +277,7 @@ extension RegistrationViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		if section == 1 {
-			return 40.0
+			return 50.0
 		}
 		
 		return 0
