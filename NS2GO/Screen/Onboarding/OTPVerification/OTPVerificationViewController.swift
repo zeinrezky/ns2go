@@ -15,10 +15,17 @@ class OTPVerificationViewController: UIViewController {
 	
 	@IBOutlet weak var otpStackView: UIStackView!
 	@IBOutlet weak var continueButton: UIButton!
+	@IBOutlet weak var resentCodeButton: UIButton!
+	
 	
 	private var otpTextFields: [OTPTextField] = []
 	private let request = RegisterService()
 	private var resentCodeTimer: Timer? = nil
+	private var codeResentEnableTimeInterval: Double = 600
+	private var timestampLastCodeResent: Date = Date()
+	private var timestampCodeResentWillEnable: Date {
+		return timestampLastCodeResent.addingTimeInterval(codeResentEnableTimeInterval)
+	}
 	
 	@IBAction func continueButtonTapped(_ sender: Any) {
 		validateUser()
@@ -26,6 +33,7 @@ class OTPVerificationViewController: UIViewController {
 	
 	@IBAction func resentCodeTapped(_ sender: Any) {
 		resentCode()
+		setupTimer()
 	}
 	
     override func viewDidLoad() {
@@ -72,6 +80,13 @@ class OTPVerificationViewController: UIViewController {
 		}
 		
 		otpTextFields.first?.becomeFirstResponder()
+	}
+	
+	private func setupResentCodeButton() {
+		resentCodeButton.setTitleColor(UIColor(red: 83.0/255.0, green: 127.0/255.0, blue: 227.0/255.0, alpha: 1), for: .normal)
+		resentCodeButton.setTitleColor(.lightGray, for: .disabled)
+		
+		resentCodeButton.setTitle("Resent Code", for: .normal)
 	}
 	
 	private func createOTPTextField(tag: Int) -> UIView {
@@ -141,6 +156,8 @@ class OTPVerificationViewController: UIViewController {
 			return
 		}
 		
+		timestampLastCodeResent = Date()
+		
 		request.resendCode(
 			email: email,
 			onComplete: { [weak self] in
@@ -155,12 +172,29 @@ class OTPVerificationViewController: UIViewController {
 	}
 	
 	private func setupTimer() {
-		let minutes: Double = 10
-		let timeInterval: Double = minutes * 60
-		resentCodeTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true, block: { [weak self] (_) in
-			self?.willResentCode = true
-			self?.resentCode()
+		resentCodeTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
+			DispatchQueue.main.async { [weak self] in
+				if Date().timeIntervalSince1970 >= (self?.timestampCodeResentWillEnable.timeIntervalSince1970 ?? 0) {
+					self?.resentCodeButton.isEnabled = true
+					self?.resentCodeTimer?.invalidate()
+					self?.resentCodeTimer = nil
+				} else {
+					self?.resentCodeButton.isEnabled = false
+					self?.updateCountdown()
+				}
+			}
 		})
+	}
+	
+	private func updateCountdown() {
+		let timeInterval = timestampCodeResentWillEnable.timeIntervalSince(Date())
+		let formatter = DateComponentsFormatter()
+		formatter.allowedUnits = [.hour, .minute, .second]
+		formatter.unitsStyle = .positional
+		let countdown = formatter.string(from: timeInterval)
+		
+		resentCodeButton.setTitle("Resent code in \(countdown ?? "")", for: .disabled)
+		resentCodeButton.setTitleColor(.lightGray, for: .disabled)
 	}
 
 }
