@@ -127,6 +127,8 @@ class NodeViewController: UIViewController {
 		alert.addAction(logout)
 		alert.addAction(cancel)
 		
+		alert.view.tintColor = .black
+		
 		alert.popoverPresentationController?.barButtonItem = rightBarButtonItem
 		
 		self.present(alert, animated: true, completion: nil)

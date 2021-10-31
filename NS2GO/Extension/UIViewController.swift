@@ -25,6 +25,7 @@ extension UIViewController {
 			action?()
 		}
 		
+		alert.view.tintColor = .black
 		alert.addAction(button)
 		
 		if let buttonNegative = buttonNegative {
