@@ -26,6 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		let navVC = UINavigationController(rootViewController: initialVC)
 		
+		if let font = UIFont(name: "HelveticaNeue", size: 20) {
+			navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font]
+		}
+		
 		self.window?.rootViewController = navVC
 		self.window?.makeKeyAndVisible()
 		

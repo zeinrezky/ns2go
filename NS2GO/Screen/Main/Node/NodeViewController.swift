@@ -153,6 +153,10 @@ class NodeViewController: UIViewController {
 				let launchVC = LoginViewController()
 				let navVC = UINavigationController(rootViewController: launchVC)
 				
+				if let font = UIFont(name: "HelveticaNeue", size: 20) {
+					navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font]
+				}
+				
 				guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
 					  let window = appDelegate.window else {
 					return
