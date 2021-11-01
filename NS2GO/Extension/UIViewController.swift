@@ -11,12 +11,34 @@ import UIKit
 extension UIViewController {
 	
 	func setupDefaultNavigationBar() {
-		self.navigationItem.backButtonTitle = " "
 		self.navigationController?.navigationBar.tintColor = UIColor(red: 117.0/255.0, green: 117.0/255.0, blue: 117.0/255.0, alpha: 1)
 		self.navigationController?.navigationBar.shadowImage = UIImage()
 		self.navigationController?.navigationBar.isTranslucent = true
 		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		self.navigationController?.view.backgroundColor = .clear
+		
+		if (self.navigationController?.viewControllers.count ?? 0) > 1 {
+			addDefaultBackButton()
+		}
+	}
+	
+	func addDefaultBackButton() {
+		let button = UIButton()
+		button.setImage(UIImage(named : "ic_leftArrow"), for: .normal)
+		button.setTitle(nil, for: .normal)
+		button.addTarget(self, action: #selector(back), for: .touchUpInside)
+		button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+		let leftBarButtonItem = UIBarButtonItem(customView: button)
+		
+		self.navigationItem.leftBarButtonItem = leftBarButtonItem
+	}
+	
+	@objc private func back() {
+		DispatchQueue.main.async {
+			self.navigationController?.popViewController(animated: true)
+		}
 	}
 	
 	func showAlert(title: String = "Error", message: String? = nil, buttonPositive: String = "OK", buttonNegative: String? = nil, action: (() -> Void)? = nil) {
