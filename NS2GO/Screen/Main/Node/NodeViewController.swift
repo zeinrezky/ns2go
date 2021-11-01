@@ -127,6 +127,8 @@ class NodeViewController: UIViewController {
 		alert.addAction(logout)
 		alert.addAction(cancel)
 		
+		alert.view.tintColor = .black
+		
 		alert.popoverPresentationController?.barButtonItem = rightBarButtonItem
 		
 		self.present(alert, animated: true, completion: nil)
@@ -150,6 +152,10 @@ class NodeViewController: UIViewController {
 				
 				let launchVC = LoginViewController()
 				let navVC = UINavigationController(rootViewController: launchVC)
+				
+				if let font = UIFont(name: "HelveticaNeue", size: 20) {
+					navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font]
+				}
 				
 				guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
 					  let window = appDelegate.window else {

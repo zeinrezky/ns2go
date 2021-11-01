@@ -99,6 +99,10 @@ class ServerInformationViewController: UIViewController {
 			let loginVC = LoginViewController()
 			let navVC = UINavigationController(rootViewController: loginVC)
 			
+			if let font = UIFont(name: "HelveticaNeue", size: 20) {
+				navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font]
+			}
+			
 			guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
 				  let window = appDelegate.window else {
 				return
