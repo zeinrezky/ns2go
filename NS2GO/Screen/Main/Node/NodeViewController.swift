@@ -150,10 +150,12 @@ class NodeViewController: UIViewController {
 					print(error.localizedDescription)
 				}
 				
+				UserDefaults.standard.removeObject(forKey: "ns2go-LoginIDCredentials")
+				
 				let launchVC = LoginViewController()
 				let navVC = UINavigationController(rootViewController: launchVC)
 				
-				if let font = UIFont(name: "HelveticaNeue", size: 20) {
+				if let font = UIFont(name: "HelveticaNeue", size: 18) {
 					navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font]
 				}
 				

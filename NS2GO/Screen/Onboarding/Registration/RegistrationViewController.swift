@@ -176,32 +176,32 @@ class RegistrationViewController: UIViewController {
 	
 	private func registerUser() {
 		
-		guard let firstName = firstNameTextField.text else {
+		guard let firstName = firstNameTextField.text, !firstName.isEmpty else {
 			showAlert(message: "First name cannot be empty")
 			return
 		}
 		
-		guard let lastName = lastNameTextField.text else {
+		guard let lastName = lastNameTextField.text, !lastName.isEmpty else {
 			showAlert(message: "Last name cannot be empty")
 			return
 		}
 		
-		guard let email = emailTextField.text else {
+		guard let email = emailTextField.text, !email.isEmpty else {
 			showAlert(message: "Email address cannot be empty")
 			return
 		}
 		
-		guard let companyName = companyTextField.text else {
+		guard let companyName = companyTextField.text, !companyName.isEmpty else {
 			showAlert(message: "Company name cannot be empty")
 			return
 		}
 		
-		guard let companyCountry = countryTextField.text else {
+		guard let companyCountry = countryTextField.text, !companyCountry.isEmpty else {
 			showAlert(message: "Company country cannot be empty")
 			return
 		}
 		
-		guard let companyCity = cityTextField.text else {
+		guard let companyCity = cityTextField.text, !companyCity.isEmpty else {
 			showAlert(message: "Company city cannot be empty")
 			return
 		}

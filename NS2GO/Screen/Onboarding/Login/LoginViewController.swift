@@ -29,6 +29,11 @@ class LoginViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		if let loginID = UserDefaults.standard.value(forKey: "ns2go-LoginIDCredentials") as? String {
+			loginIDTextField.text = loginID
+		}
+		
 		setupTextFieldContanier()
 		loginButton.layer.cornerRadius = 4
 		loginIDTextField.addDoneButtonKeyboard()
@@ -150,7 +155,7 @@ class LoginViewController: UIViewController {
 			password: password,
 			onComplete: { [weak self] (json, nodes) in
 				self?.hideLoading()
-				
+				UserDefaults.standard.setValue(loginID, forKey: "ns2go-LoginIDCredentials")
 				ServiceHelper.shared.nodeAlertJSON = json
 				ServiceHelper.shared.nodeAlert = nodes.first
 				self?.presentNodeDashboard()

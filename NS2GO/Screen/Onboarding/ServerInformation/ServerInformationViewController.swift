@@ -19,8 +19,14 @@ class ServerInformationViewController: UIViewController {
 	@IBOutlet weak var saveButton: UIButton!
 	
 	@IBAction func saveButtonTapped(_ sender: Any) {
-		guard let ipAddress = ipAddressTextField.text,
-			  let port = portTextField.text else {
+		
+		guard let ipAddress = ipAddressTextField.text, !ipAddress.isEmpty else {
+			showAlert(message: "IP Address server cannot be empty")
+			return
+		}
+		
+		guard let port = portTextField.text, !port.isEmpty else {
+			showAlert(message: "Port cannot be empty")
 			return
 		}
 		
