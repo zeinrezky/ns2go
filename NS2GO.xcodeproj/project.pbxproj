@@ -53,8 +53,6 @@
 		DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBC026B2711E3AF0033D364 /* LaunchScreen.storyboard */; };
 		DBBC027C2711E4B40033D364 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC027A2711E4B40033D364 /* RegistrationViewController.swift */; };
 		DBBC027D2711E4B40033D364 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBBC027B2711E4B40033D364 /* RegistrationViewController.xib */; };
-		DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC02802711EBC00033D364 /* RegistrationTableViewCell.swift */; };
-		DBBC02832711EBC00033D364 /* RegistrationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBBC02812711EBC00033D364 /* RegistrationTableViewCell.xib */; };
 		DBBCF7AE272DB8F000D17A74 /* UITraitCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBCF7AD272DB8F000D17A74 /* UITraitCollection.swift */; };
 		DBC7AAB527127D77002EB696 /* OTPVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7AAB327127D77002EB696 /* OTPVerificationViewController.swift */; };
 		DBC7AAB627127D77002EB696 /* OTPVerificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC7AAB427127D77002EB696 /* OTPVerificationViewController.xib */; };
@@ -162,8 +160,6 @@
 		DBBC026E2711E3AF0033D364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBBC027A2711E4B40033D364 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		DBBC027B2711E4B40033D364 /* RegistrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
-		DBBC02802711EBC00033D364 /* RegistrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewCell.swift; sourceTree = "<group>"; };
-		DBBC02812711EBC00033D364 /* RegistrationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationTableViewCell.xib; sourceTree = "<group>"; };
 		DBBCF7AD272DB8F000D17A74 /* UITraitCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitCollection.swift; sourceTree = "<group>"; };
 		DBC7AAB327127D77002EB696 /* OTPVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationViewController.swift; sourceTree = "<group>"; };
 		DBC7AAB427127D77002EB696 /* OTPVerificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTPVerificationViewController.xib; sourceTree = "<group>"; };
@@ -392,8 +388,6 @@
 			children = (
 				DBBC027A2711E4B40033D364 /* RegistrationViewController.swift */,
 				DBBC027B2711E4B40033D364 /* RegistrationViewController.xib */,
-				DBBC02802711EBC00033D364 /* RegistrationTableViewCell.swift */,
-				DBBC02812711EBC00033D364 /* RegistrationTableViewCell.xib */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -670,7 +664,6 @@
 				DBC7AABE27127F51002EB696 /* ActivationSuccessViewController.xib in Resources */,
 				DB609B402721ACC400E125C7 /* DualStatusListTableViewCell.xib in Resources */,
 				DBC7AB0327148921002EB696 /* IPUListViewController.xib in Resources */,
-				DBBC02832711EBC00033D364 /* RegistrationTableViewCell.xib in Resources */,
 				DBC7AAD9271317AA002EB696 /* ServerListViewController.xib in Resources */,
 				DBC7AB3A271493C9002EB696 /* ProcessDetailViewController.xib in Resources */,
 				DBC7AAEA2713213C002EB696 /* NodeViewController.xib in Resources */,
@@ -771,7 +764,6 @@
 				DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */,
 				DBA4A3D22719C90E00BA4427 /* String.swift in Sources */,
 				DB609A8E271C6A1300E125C7 /* CPUProcessInstance.swift in Sources */,
-				DBBC02822711EBC00033D364 /* RegistrationTableViewCell.swift in Sources */,
 				DB609B32271F06BD00E125C7 /* StatusIndicator.swift in Sources */,
 				DBC7AB1727148AE3002EB696 /* ProcessListViewController.swift in Sources */,
 				DB609A91271C6B7700E125C7 /* DiskProcessInstance.swift in Sources */,

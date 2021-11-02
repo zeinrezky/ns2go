@@ -7,12 +7,21 @@
 
 import UIKit
 import SafariServices
+import CountryPicker
 
 class RegistrationViewController: UIViewController {
 	
-	@IBOutlet var headerView: UIView!
-	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet var footerView: UIView!
+	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet var textFieldViewContainers: [UIView]!
+	
+	@IBOutlet weak var firstNameTextField: UITextField!
+	@IBOutlet weak var lastNameTextField: UITextField!
+	@IBOutlet weak var emailTextField: UITextField!
+	@IBOutlet weak var companyTextField: UITextField!
+	@IBOutlet weak var countryTextField: UITextField!
+	@IBOutlet weak var cityTextField: UITextField!
+	
+	@IBOutlet weak var tncLabel: UILabel!
 	@IBOutlet weak var checkboxView: UIView!
 	@IBOutlet weak var continueButton: UIButton!
 	
@@ -28,7 +37,7 @@ class RegistrationViewController: UIViewController {
 	
 	private let service = RegisterService()
 	
-	private var registrationCells: [RegistrationTableViewCell] = []
+	private let countryPicker = CountryPicker()
 	
 	@IBAction func continueButtonTapped(_ sender: Any) {
 		registerUser()
@@ -54,11 +63,6 @@ class RegistrationViewController: UIViewController {
 		}
 	}
 	
-	private let cells: [[RegistrationTableViewCell.CellType]] = [
-		[.firstName, .lastName, .email],
-		[.company, .country, .city]
-	]
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupView()
@@ -81,14 +85,14 @@ class RegistrationViewController: UIViewController {
 		if let userInfo = notification.userInfo,
 			let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 			DispatchQueue.main.async { [weak self] in
-				self?.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
+				self?.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height + 30, right: 0)
 			}
 		}
 	}
 	
 	@objc func hideKeyboard(){
 		DispatchQueue.main.async { [weak self] in
-			self?.tableView.contentInset = UIEdgeInsets.zero
+			self?.scrollView.contentInset = UIEdgeInsets.zero
 		}
 	}
 	
@@ -97,20 +101,53 @@ class RegistrationViewController: UIViewController {
 	}
 	
 	private func setupView() {
-		setupTableView()
+		textFieldViewContainers.forEach( {
+			$0.layer.borderWidth = 1
+			$0.layer.borderColor = UIColor.darkGray.cgColor
+		})
+		
 		uncheckTnC()
+		setupTextField()
 		continueButton.layer.cornerRadius = 4
 		checkboxView.isUserInteractionEnabled = false
+		
+		let agreeString = NSAttributedString(string: "I Agree to the ", attributes: [
+			NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 14.0) ?? UIFont.systemFont(ofSize: 14),
+			NSAttributedString.Key.foregroundColor: UIColor(red: 151.0/255.0, green: 151.0/255.0, blue: 151.0/255.0, alpha: 1)
+		])
+		
+		let tncString = NSAttributedString(string: "Terms and Conditions", attributes: [
+			NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 14.0) ?? UIFont.systemFont(ofSize: 14),
+			NSAttributedString.Key.foregroundColor: UIColor(red: 83.0/255.0, green: 127.0/255.0, blue: 227.0/255.0, alpha: 1),
+			NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+		])
+		
+		let mutableAttrString = NSMutableAttributedString(attributedString: agreeString)
+		mutableAttrString.append(tncString)
+		tncLabel.attributedText = mutableAttrString
 	}
 	
-	private func setupTableView() {
-		tableView.delegate = self
-		tableView.dataSource = self
-		tableView.tableHeaderView = headerView
-		tableView.tableFooterView = footerView
-		tableView.separatorStyle = .none
-		tableView.backgroundColor = .white
-		tableView.register(UINib(nibName: RegistrationTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RegistrationTableViewCell.identifier)
+	private func setupTextField() {
+		firstNameTextField.addDoneButtonKeyboard()
+		lastNameTextField.addDoneButtonKeyboard()
+		emailTextField.addDoneButtonKeyboard()
+		companyTextField.addDoneButtonKeyboard()
+		countryTextField.addDoneButtonKeyboard()
+		cityTextField.addDoneButtonKeyboard()
+		
+		countryPicker.delegate = self
+		countryPicker.selectedCountryName = "United States"
+		countryTextField.text = "United States"
+		countryTextField.delegate = self
+		countryTextField.inputView = countryPicker
+		
+		emailTextField.keyboardType = .emailAddress
+		let comButtonItem = UIBarButtonItem(title: ".com", style: .plain, target: self, action: #selector(didTapDotCom))
+		emailTextField.addDoneButtonKeyboard(additionalButton: comButtonItem)
+	}
+	
+	@objc private func didTapDotCom() {
+		emailTextField.text = (emailTextField.text ?? "") + ".com"
 	}
 	
 	private func checkTnC() {
@@ -138,32 +175,32 @@ class RegistrationViewController: UIViewController {
 	
 	private func registerUser() {
 		
-		guard let firstName = getFirstNameText() else {
+		guard let firstName = firstNameTextField.text else {
 			showAlert(message: "First name cannot be empty")
 			return
 		}
 		
-		guard let lastName = getLastNameText() else {
+		guard let lastName = lastNameTextField.text else {
 			showAlert(message: "Last name cannot be empty")
 			return
 		}
 		
-		guard let email = getEmailText() else {
+		guard let email = emailTextField.text else {
 			showAlert(message: "Email address cannot be empty")
 			return
 		}
 		
-		guard let companyName = getCompanyNameText() else {
+		guard let companyName = companyTextField.text else {
 			showAlert(message: "Company name cannot be empty")
 			return
 		}
 		
-		guard let companyCountry = getCompanyCountryText() else {
+		guard let companyCountry = countryTextField.text else {
 			showAlert(message: "Company country cannot be empty")
 			return
 		}
 		
-		guard let companyCity = getCompanyCityText() else {
+		guard let companyCity = cityTextField.text else {
 			showAlert(message: "Company city cannot be empty")
 			return
 		}
@@ -227,106 +264,14 @@ class RegistrationViewController: UIViewController {
 	}
 }
 
-extension RegistrationViewController: UITableViewDelegate {
-	
+extension RegistrationViewController: UITextFieldDelegate {
+	func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+		countryTextField.text = countryPicker.selectedCountryName
+	}
 }
 
-extension RegistrationViewController: UITableViewDataSource {
-	func numberOfSections(in tableView: UITableView) -> Int {
-		registrationCells.removeAll()
-		return cells.count
-	}
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return cells[section].count
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: RegistrationTableViewCell.identifier) as? RegistrationTableViewCell else {
-			return UITableViewCell()
-		}
-		
-		let cellType = cells[indexPath.section][indexPath.row]
-		
-		cell.configureCell(type: cellType)
-		cell.selectionStyle = .none
-		registrationCells.append(cell)
-		
-		return cell
-	}
-	
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		if section == 1 {
-			let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
-			let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30))
-			label.text = "Company Information"
-			label.textAlignment = .center
-			label.textColor = UIColor(red: 117.0/255.0, green: 117.0/255.0, blue: 117.0/255.0, alpha: 1)
-			label.font = UIFont(name: "Helvetica Neue", size: 24)
-			view.addSubview(label)
-			
-			return view
-		}
-		
-		return nil
-	}
-	
-	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-		return UIView()
-	}
-	
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		if section == 1 {
-			return 50.0
-		}
-		
-		return 0
-	}
-	
-	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-		if section == 0 {
-			return 60.0
-		}
-		
-		return 0
-	}
-	
-}
-
-extension RegistrationViewController {
-	private func getFirstNameText() -> String? {
-		return getCellTextFieldInput(for: .firstName)
-	}
-	
-	private func getLastNameText() -> String? {
-		return getCellTextFieldInput(for: .lastName)
-	}
-	
-	private func getEmailText() -> String? {
-		return getCellTextFieldInput(for: .email)
-	}
-	
-	private func getCompanyNameText() -> String? {
-		return getCellTextFieldInput(for: .company)
-	}
-	
-	private func getCompanyCountryText() -> String? {
-		return getCellTextFieldInput(for: .country)
-	}
-	
-	private func getCompanyCityText() -> String? {
-		return getCellTextFieldInput(for: .city)
-	}
-	
-	private func getCellTextFieldInput(for cellType: RegistrationTableViewCell.CellType) -> String? {
-		for cell in registrationCells {
-			let (type, value) = cell.getValue()
-			
-			if cellType == type {
-				return value
-			}
-		}
-		
-		return nil
+extension RegistrationViewController: CountryPickerDelegate {
+	func countryPicker(_ picker: CountryPicker!, didSelectCountryWithName name: String!, code: String!) {
+		countryTextField.text = name
 	}
 }
