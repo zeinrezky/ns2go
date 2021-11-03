@@ -10,6 +10,9 @@ import KeychainAccess
 
 class LoginViewController: UIViewController {
 
+	
+	@IBOutlet weak var blurView: UIView!
+	
 	@IBOutlet var textFieldContainers: [UIView]!
 	
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -38,6 +41,7 @@ class LoginViewController: UIViewController {
 		loginButton.layer.cornerRadius = 4
 		loginIDTextField.addDoneButtonKeyboard()
 		passwordTextField.addDoneButtonKeyboard()
+		addGradientLayer()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +55,17 @@ class LoginViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
 		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+	}
+	
+	private func addGradientLayer() {
+		let gradientLayer = CAGradientLayer()
+		let blueColor = UIColor(red: 208.0/255.0, green: 228.0/255.0, blue: 253.0/255.0, alpha: 1)
+		gradientLayer.colors = [UIColor.white.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, blueColor.cgColor]
+		gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+		gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+		gradientLayer.locations = [NSNumber(value: 0.0), NSNumber(value: 0.2), NSNumber(value: 0.5), NSNumber(value: 1)]
+		gradientLayer.frame = blurView.frame
+		blurView.layer.addSublayer(gradientLayer)
 	}
 	
 	@objc func showKeyboard(_ notification: NSNotification) {

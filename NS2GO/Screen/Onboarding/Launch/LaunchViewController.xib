@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLm-kw-RYw">
-                    <rect key="frame" x="0.0" y="44" width="428" height="882"/>
+                    <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GT0-aF-S2Z">
@@ -79,7 +79,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="gLm-kw-RYw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="6kU-IQ-07p"/>
+                <constraint firstItem="gLm-kw-RYw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6kU-IQ-07p"/>
                 <constraint firstItem="gLm-kw-RYw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EkT-3g-Wrf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gLm-kw-RYw" secondAttribute="trailing" id="OTd-S8-HF5"/>
                 <constraint firstAttribute="bottom" secondItem="gLm-kw-RYw" secondAttribute="bottom" id="cfO-jq-rZb"/>

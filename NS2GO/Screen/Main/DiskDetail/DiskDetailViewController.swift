@@ -51,19 +51,19 @@ class DiskDetailViewController: UIViewController {
 		nameLabel.text = "Name"
 		nameLabel.textColor = textColor
 		nameLabel.font = font
-		nameLabel.textAlignment = .center
+		nameLabel.textAlignment = .left
 		
 		let busyLabel = UILabel()
 		busyLabel.text = "DP2 Busy %"
 		busyLabel.textColor = textColor
 		busyLabel.font = font
-		busyLabel.textAlignment = .center
+		busyLabel.textAlignment = .right
 		
 		let lenghtLabel = UILabel()
 		lenghtLabel.text = "Q. Length"
 		lenghtLabel.textColor = textColor
 		lenghtLabel.font = font
-		lenghtLabel.textAlignment = .center
+		lenghtLabel.textAlignment = .right
 		
 		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 40
 		

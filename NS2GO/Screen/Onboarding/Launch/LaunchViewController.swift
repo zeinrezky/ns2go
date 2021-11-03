@@ -33,12 +33,18 @@ class LaunchViewController: UIViewController {
 	
 	private func configureView() {
 		startButton.layer.cornerRadius = 4
-		
-		let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-		let blurEffectView = UIVisualEffectView(effect: blurEffect)
-		blurEffectView.frame = blurView.bounds
-		blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		blurView.addSubview(blurEffectView)
+		addGradientLayer()
+	}
+	
+	private func addGradientLayer() {
+		let gradientLayer = CAGradientLayer()
+		let blueColor = UIColor(red: 208.0/255.0, green: 228.0/255.0, blue: 253.0/255.0, alpha: 1)
+		gradientLayer.colors = [blueColor.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, blueColor.cgColor]
+		gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+		gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+		gradientLayer.locations = [NSNumber(value: 0.0), NSNumber(value: 0.2), NSNumber(value: 0.5), NSNumber(value: 1)]
+		gradientLayer.frame = blurView.frame
+		blurView.layer.addSublayer(gradientLayer)
 	}
 	
 	private func pushToRegister() {

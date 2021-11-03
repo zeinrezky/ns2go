@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="NS2GO" customModuleProvider="target">
             <connections>
+                <outlet property="blurView" destination="RMu-1d-ThY" id="ja6-AK-IqA"/>
                 <outlet property="loginButton" destination="l7f-md-CES" id="DYn-Lv-ABd"/>
                 <outlet property="loginIDTextField" destination="q2f-FQ-Wvb" id="L7b-Bj-OfI"/>
                 <outlet property="passwordTextField" destination="hDn-3O-OPV" id="f7P-yp-9BE"/>
@@ -25,6 +26,10 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMu-1d-ThY">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfh-BS-tU9">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
@@ -44,7 +49,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="bIX-e5-BSP" secondAttribute="trailing" constant="40" id="1qa-7D-7gd">
                                                     <variation key="heightClass=regular-widthClass=regular" constant="160"/>
@@ -87,7 +92,7 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mu1-ZP-jWH" userLabel="Space">
                                             <rect key="frame" x="0.0" y="381" width="334" height="12"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="12" id="LzX-Fh-tXB"/>
                                             </constraints>
@@ -117,7 +122,7 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZY-Yz-FTd" userLabel="Space">
                                             <rect key="frame" x="0.0" y="487" width="334" height="60"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="jg7-Fq-Eqx"/>
                                             </constraints>
@@ -128,8 +133,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="8JS-uJ-0tU"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                            <state key="normal" title="Login">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <state key="normal" title="LOGIN">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -139,7 +144,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="haI-X1-rmS" firstAttribute="leading" secondItem="MPr-02-gF0" secondAttribute="leading" constant="40" id="8dY-3g-kDc"/>
                                 <constraint firstItem="haI-X1-rmS" firstAttribute="top" secondItem="MPr-02-gF0" secondAttribute="top" constant="20" id="TAy-Fd-C2p"/>
@@ -160,11 +165,15 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RMu-1d-ThY" secondAttribute="trailing" id="4cv-pH-Eg4"/>
                 <constraint firstItem="cfh-BS-tU9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5Ht-Kh-Rhv"/>
                 <constraint firstItem="cfh-BS-tU9" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="7yq-dQ-ZWZ"/>
                 <constraint firstItem="cfh-BS-tU9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8sY-mA-lKl"/>
+                <constraint firstItem="RMu-1d-ThY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NKd-4R-074"/>
                 <constraint firstAttribute="trailing" secondItem="cfh-BS-tU9" secondAttribute="trailing" id="XA1-0w-g3W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cfh-BS-tU9" secondAttribute="bottom" id="YgS-la-c1z"/>
+                <constraint firstAttribute="bottom" secondItem="RMu-1d-ThY" secondAttribute="bottom" id="aGg-NW-AEn"/>
+                <constraint firstItem="RMu-1d-ThY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wxa-bP-wOu"/>
             </constraints>
             <point key="canvasLocation" x="-74" y="66"/>
         </view>
