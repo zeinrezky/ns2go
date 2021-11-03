@@ -29,9 +29,12 @@ class StatusDetailTableViewCell: UITableViewCell {
     }
 	
 	func configureCell(alertLimits: [AlertLimit], diskInstance: DiskProcessInstance) {
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumFractionDigits = 2
+		
 		nameLabel.text = diskInstance.name
-		busyLabel.text = "\(diskInstance.dp2Busy ?? 0)%"
-		lengthLabel.text = "\(diskInstance.queueLength ?? 0)"
+		busyLabel.text = "\(numberFormatter.string(from: NSNumber(value: diskInstance.dp2Busy ?? 0)) ?? "")%"
+		lengthLabel.text = "\(numberFormatter.string(from: NSNumber(value: diskInstance.queueLength ?? 0)) ?? "")"
 		
 		let indicator = diskInstance.getIndicator(alertLimits: alertLimits)
 		
@@ -45,12 +48,15 @@ class StatusDetailTableViewCell: UITableViewCell {
 	}
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumFractionDigits = 2
+		
 		let isNameEmpty = (cpuInstance.name ?? "").isEmpty
 		let CPUPINName = "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
 		let name = isNameEmpty ? CPUPINName : cpuInstance.name
 		nameLabel.text = name
-		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
-		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
+		busyLabel.text = "\(numberFormatter.string(from: NSNumber(value: cpuInstance.cpuBusy ?? 0)) ?? "")%"
+		lengthLabel.text = "\(numberFormatter.string(from: NSNumber(value: cpuInstance.queueLength ?? 0)) ?? "")"
 		
 		let busyIndicator = cpuInstance.getBusyIndicator(alertLimits: alertLimits)
 		let qlengthIndicator = cpuInstance.getQLenghtIndicator(alertLimits: alertLimits)

@@ -142,12 +142,12 @@ class LoginViewController: UIViewController {
 			return
 		}
 		
-		guard let loginID = loginIDTextField.text else {
+		guard let loginID = loginIDTextField.text, !loginID.isEmpty else {
 			showAlert(message: "Login ID cannot be empty")
 			return
 		}
 		
-		guard let password = passwordTextField.text else {
+		guard let password = passwordTextField.text, !password.isEmpty else {
 			showAlert(message: "Password cannot be empty")
 			return
 		}

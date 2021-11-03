@@ -51,11 +51,11 @@ class CPUListViewController: UIViewController {
 		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 120, height: 20))
 		label.text = text
 		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
-		label.font = UIFont(name: "Helvetica Neue", size: 16)
+		label.font = UIFont(name: "HelveticaNeue", size: 16)
 		
-		let icon = UIImageView(frame: CGRect(x: tableView.frame.width - 52, y: 34, width: 12, height: 12))
-		icon.widthAnchor.constraint(equalToConstant: 12).isActive = true
-		icon.heightAnchor.constraint(equalToConstant: 12).isActive = true
+		let icon = UIImageView(frame: CGRect(x: tableView.frame.width - 56, y: 30, width: 16, height: 16))
+		icon.widthAnchor.constraint(equalToConstant: 16).isActive = true
+		icon.heightAnchor.constraint(equalToConstant: 16).isActive = true
 		icon.image = UIImage(named: "ic_rightArrow")
 		icon.contentMode = .scaleAspectFit
 		

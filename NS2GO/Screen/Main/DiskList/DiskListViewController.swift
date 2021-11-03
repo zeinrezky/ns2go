@@ -31,7 +31,7 @@ class DiskListViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "Disk"
+		self.title = "DISK"
 	}
 	
 	private func setupTableView() {
@@ -40,7 +40,9 @@ class DiskListViewController: UIViewController {
 		tableView.tableFooterView = UIView()
 		tableView.backgroundColor = .clear
 		tableView.separatorStyle = .none
-		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusListTableViewCell.identifier)
+		tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil),
+						   forCellReuseIdentifier: StatusListTableViewCell.identifier)
 	}
 }
 
@@ -48,7 +50,7 @@ extension DiskListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = DiskDetailViewController()
 		if indexPath.row == 0 {
-			controller.title = "Disk DP2 Busy %"
+			controller.title = "DISK DP2 BUSY %"
 			
 			if let instances = busy?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
@@ -60,7 +62,7 @@ extension DiskListViewController: UITableViewDelegate {
 				controller.alert = [busyAlert]
 			}
 		} else {
-			controller.title = "Disk Q. Length"
+			controller.title = "DISK Q. LENGTH"
 			if let instances = qLength?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
@@ -96,11 +98,11 @@ extension DiskListViewController: UITableViewDataSource {
 		if indexPath.row == 0,
 		   let busy = self.busy,
 		   let alert = self.alert.first(where: {$0.entity == .busy}) {
-			text = "DP2 Busy %"
+			text = "DP2 BUSY%"
 			indicator = busy.getIndicator(alertLimits: [alert])
 		} else if let qLength = self.qLength,
 				  let alert = self.alert.first(where: {$0.entity == .queueLength}) {
-			text = "Q. Length"
+			text = "Q. LENGTH"
 			indicator = qLength.getIndicator(alertLimits: [alert])
 		}
 		

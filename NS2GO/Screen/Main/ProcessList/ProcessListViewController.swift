@@ -31,7 +31,7 @@ class ProcessListViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "Process"
+		self.title = "PROCESS"
 	}
 	
 	private func setupTableView() {
@@ -39,6 +39,7 @@ class ProcessListViewController: UIViewController {
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
 		tableView.separatorStyle = .none
+		tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
 		tableView.register(UINib(nibName: StatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: StatusListTableViewCell.identifier)
 	}
 }
@@ -47,7 +48,7 @@ extension ProcessListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = ProcessDetailViewController()
 		if indexPath.row == 0 {
-			controller.title = "Process Busy %"
+			controller.title = "PROCESS BUSY %"
 			if let instances = busy?.instance as? [CPUProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
@@ -58,7 +59,7 @@ extension ProcessListViewController: UITableViewDelegate {
 				controller.alert = [busyAlert]
 			}
 		} else {
-			controller.title = "Process Q. Length"
+			controller.title = "PROCESS Q. LENGTH"
 			if let instances = qLength?.instance as? [CPUProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)
@@ -88,7 +89,7 @@ extension ProcessListViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		let text: String = indexPath.row == 0 ? "Busy %" : "Q. Length"
+		let text: String = indexPath.row == 0 ? "BUSY %" : "Q. LENGTH"
 		var indicator: StatusIndicator = .green
 		
 		if indexPath.row == 0,
