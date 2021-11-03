@@ -11,6 +11,8 @@ class StatusListTableViewCell: UITableViewCell {
 	
 	static let identifier = "StatusListTableViewCell"
 	
+	
+	@IBOutlet weak var alertTypeLabel: UILabel!
 	@IBOutlet weak var statusIndicatorView: UIView!
 	@IBOutlet weak var statusLabel: UILabel!
 	
@@ -25,9 +27,34 @@ class StatusListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 	
-	func configureCell(status: StatusIndicator, text: String) {
-		statusIndicatorView.backgroundColor = status == .green ? AppColor.dotGreen : status.color
-		statusLabel.text = text
+	func configureCell(text: String, topProcess: DiskProcessInstance, alert: AlertLimit) {
+		alertTypeLabel.text = text
+		let indicator = topProcess.getIndicator(alertLimits: [alert])
+		statusIndicatorView.backgroundColor = indicator == .green || indicator == .clear ? AppColor.dotGreen : indicator.color
+		
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumFractionDigits = 2
+		
+		if alert.entity == .busy {
+			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? ""):\(topProcess.pin ?? "")") \(numberFormatter.string(from: NSNumber(value: topProcess.dp2Busy ?? 0)) ?? "")%"
+		} else if alert.entity == .queueLength {
+			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? ""):\(topProcess.pin ?? "")") \(numberFormatter.string(from: NSNumber(value: topProcess.queueLength ?? 0)) ?? "")"
+		}
+	}
+	
+	func configureCell(text: String, topProcess: CPUProcessInstance, alert: AlertLimit) {
+		alertTypeLabel.text = text
+		let indicator = topProcess.getIndicator(alertLimits: [alert])
+		statusIndicatorView.backgroundColor = indicator == .green || indicator == .clear ? AppColor.dotGreen : indicator.color
+		
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumFractionDigits = 2
+		
+		if alert.entity == .busy {
+			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? 0):\(topProcess.pin ?? 0)") \(numberFormatter.string(from: NSNumber(value: topProcess.cpuBusy ?? 0)) ?? "")%"
+		} else if alert.entity == .queueLength {
+			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? 0):\(topProcess.pin ?? 0)") \(numberFormatter.string(from: NSNumber(value: topProcess.queueLength ?? 0)) ?? "")"
+		}
 	}
 	
 	private func setupStatusView() {

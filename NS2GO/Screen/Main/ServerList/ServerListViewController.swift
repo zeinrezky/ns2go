@@ -104,8 +104,11 @@ class ServerListViewController: UIViewController {
 				let launchVC = LoginViewController()
 				let navVC = UINavigationController(rootViewController: launchVC)
 				
-				if let font = UIFont(name: "HelveticaNeue", size: 20) {
-					navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font]
+				if let font = UIFont(name: "HelveticaNeue-Light", size: 18) {
+					navVC.navigationBar.titleTextAttributes = [
+						NSAttributedString.Key.font: font,
+						NSAttributedString.Key.foregroundColor: UIColor(red: 112.0/255.0, green: 112.0/255.0, blue: 112.0/255.0, alpha: 1)
+					]
 				}
 				
 				guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,

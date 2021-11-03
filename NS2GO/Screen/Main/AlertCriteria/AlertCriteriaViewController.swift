@@ -28,7 +28,7 @@ class AlertCriteriaViewController: UIViewController {
 	
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = nodename ?? "Alert"
+		self.title = "\(nodename ?? "") Alert Definitions"
 	}
 	
 	private func setupTableView() {
@@ -50,7 +50,7 @@ class AlertCriteriaViewController: UIViewController {
 		
 		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 120, height: 20))
 		label.text = text
-		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
+		label.textColor = UIColor(red: 117.0/255.0, green: 117.0/255.0, blue: 117.0/255.0, alpha: 1)
 		label.font = UIFont(name: "HelveticaNeue", size: 16)
 		
 		view.addSubview(label)
@@ -90,7 +90,7 @@ extension AlertCriteriaViewController: UITableViewDataSource, UITableViewDelegat
 	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		return createSectionHeader(for: sections[section].rawValue, section: section)
+		return createSectionHeader(for: sections[section].rawValue.uppercased(), section: section)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

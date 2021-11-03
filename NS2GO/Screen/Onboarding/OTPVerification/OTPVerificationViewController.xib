@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OTPVerificationViewController" customModule="NS2GO" customModuleProvider="target">
             <connections>
                 <outlet property="continueButton" destination="ScK-rG-QPs" id="BkD-to-iY2"/>
+                <outlet property="lbExpiredCode" destination="xzG-Ih-uFf" id="cOw-68-KUK"/>
                 <outlet property="otpStackView" destination="1FO-g3-tGi" id="NY4-d0-UQa"/>
                 <outlet property="resentCodeButton" destination="UUI-sP-KSE" id="j7H-Hy-Wn7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="o0h-fh-x0v">
-                    <rect key="frame" x="0.0" y="40" width="375" height="253.5"/>
+                    <rect key="frame" x="0.0" y="40" width="375" height="282"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3m-pw-w5c">
                             <rect key="frame" x="119" y="0.0" width="137" height="21"/>
@@ -37,21 +38,27 @@
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:58" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzG-Ih-uFf">
+                            <rect key="frame" x="170" y="61.5" width="35.5" height="16.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGf-QI-eDC">
-                            <rect key="frame" x="67.5" y="61.5" width="240" height="12"/>
+                            <rect key="frame" x="67.5" y="90" width="240" height="12"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="nN6-QC-hOC"/>
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1FO-g3-tGi">
-                            <rect key="frame" x="40" y="85.5" width="295" height="60"/>
+                            <rect key="frame" x="40" y="114" width="295" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="hT8-B3-688"/>
                             </constraints>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUI-sP-KSE">
-                            <rect key="frame" x="97.5" y="157.5" width="180" height="40"/>
+                            <rect key="frame" x="97.5" y="186" width="180" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Gv5-jm-ICX"/>
                                 <constraint firstAttribute="width" constant="180" id="qVz-vj-upq"/>
@@ -64,7 +71,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScK-rG-QPs">
-                            <rect key="frame" x="40" y="209.5" width="295" height="44"/>
+                            <rect key="frame" x="40" y="238" width="295" height="44"/>
                             <color key="backgroundColor" red="0.32549019610000002" green="0.49803921569999998" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="3ad-ih-2FW"/>

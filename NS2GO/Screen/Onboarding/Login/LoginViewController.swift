@@ -29,6 +29,11 @@ class LoginViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		if let loginID = UserDefaults.standard.value(forKey: "ns2go-LoginIDCredentials") as? String {
+			loginIDTextField.text = loginID
+		}
+		
 		setupTextFieldContanier()
 		loginButton.layer.cornerRadius = 4
 		loginIDTextField.addDoneButtonKeyboard()
@@ -116,8 +121,11 @@ class LoginViewController: UIViewController {
 		let nodeVC = NodeViewController()
 		let navVC = UINavigationController(rootViewController: nodeVC)
 		
-		if let font = UIFont(name: "HelveticaNeue", size: 20) {
-			navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font]
+		if let font = UIFont(name: "HelveticaNeue-Light", size: 18) {
+			navVC.navigationBar.titleTextAttributes = [
+				NSAttributedString.Key.font: font,
+				NSAttributedString.Key.foregroundColor: UIColor(red: 112.0/255.0, green: 112.0/255.0, blue: 112.0/255.0, alpha: 1)
+			]
 		}
 		
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
@@ -134,23 +142,24 @@ class LoginViewController: UIViewController {
 			return
 		}
 		
-		guard let loginID = loginIDTextField.text else {
+		guard let loginID = loginIDTextField.text, !loginID.isEmpty else {
 			showAlert(message: "Login ID cannot be empty")
 			return
 		}
 		
-		guard let password = passwordTextField.text else {
+		guard let password = passwordTextField.text, !password.isEmpty else {
 			showAlert(message: "Password cannot be empty")
 			return
 		}
 		
 		showLoading()
+		self.view.endEditing(true)
 		service.login(
 			username: loginID,
 			password: password,
 			onComplete: { [weak self] (json, nodes) in
 				self?.hideLoading()
-				
+				UserDefaults.standard.setValue(loginID, forKey: "ns2go-LoginIDCredentials")
 				ServiceHelper.shared.nodeAlertJSON = json
 				ServiceHelper.shared.nodeAlert = nodes.first
 				self?.presentNodeDashboard()

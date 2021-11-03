@@ -28,8 +28,12 @@ class DualStatusListTableViewCell: UITableViewCell {
     }
 	
 	func configureCell(alertLimits: [AlertLimit], instance: CPU) {
-		busyLabel.text = "\(instance.cpuBusy ?? 0)% Busy"
-		qLengthLabel.text = "\(instance.queueLength ?? 0) Q.Length"
+		
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumFractionDigits = 2
+		
+		busyLabel.text = "\(numberFormatter.string(from: NSNumber(value: instance.cpuBusy ?? 0)) ?? "")% Busy"
+		qLengthLabel.text = "\(numberFormatter.string(from: NSNumber(value: instance.queueLength ?? 0)) ?? "") Q. Length"
 		
 		var busyStatusIndicator: StatusIndicator = .green
 		
@@ -67,8 +71,11 @@ class DualStatusListTableViewCell: UITableViewCell {
 	}
 	
 	func configureCell(alertLimits: [AlertLimit], instance: IPU) {
-		busyLabel.text = "\(instance.ipubusy ?? 0)% Busy"
-		qLengthLabel.text = "\(instance.ipuqtime ?? 0) Q.Length"
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumFractionDigits = 2
+		
+		busyLabel.text = "\(numberFormatter.string(from: NSNumber(value: instance.ipubusy ?? 0)) ?? "")% Busy"
+		qLengthLabel.text = "\(numberFormatter.string(from: NSNumber(value: instance.ipuqtime ?? 0)) ?? "") Q. Length"
 		
 		var busyStatusIndicator: StatusIndicator = .green
 		

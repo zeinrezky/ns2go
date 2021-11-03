@@ -9,6 +9,7 @@ import UIKit
 
 class LaunchViewController: UIViewController {
 	
+	@IBOutlet weak var blurView: UIView!
 	@IBOutlet weak var startButton: UIButton!
 	
 	@IBAction func startButtonTapped(_ sender: Any) {
@@ -23,6 +24,7 @@ class LaunchViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
+		self.navigationController?.setNavigationBarHidden(true, animated: false)
 	}
 	
 	private func setupNavigationBar() {
@@ -31,6 +33,12 @@ class LaunchViewController: UIViewController {
 	
 	private func configureView() {
 		startButton.layer.cornerRadius = 4
+		
+		let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+		let blurEffectView = UIVisualEffectView(effect: blurEffect)
+		blurEffectView.frame = blurView.bounds
+		blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		blurView.addSubview(blurEffectView)
 	}
 	
 	private func pushToRegister() {

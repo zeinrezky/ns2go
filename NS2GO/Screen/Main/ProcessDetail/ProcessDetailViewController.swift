@@ -31,13 +31,13 @@ class ProcessDetailViewController: UIViewController {
 	}
 	
 	private func setupTableView() {
-		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 60
+		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 40
 		
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
-		tableView.separatorInset = UIEdgeInsets(top: 1, left: margin, bottom: 1, right: margin)
-		tableView.separatorColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
+		tableView.separatorStyle = .none
+		tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
 		tableView.register(UINib(nibName: ProcessDetailTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ProcessDetailTableViewCell.identifier)
 	}
 	
@@ -54,7 +54,7 @@ class ProcessDetailViewController: UIViewController {
 		nameLabel.font = font
 		nameLabel.textAlignment = .center
 		
-		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 60
+		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 40
 		
 		let stack = UIStackView(arrangedSubviews: [nameLabel])
 		stack.frame = CGRect(x: margin, y: 0, width: tableView.frame.width - (2 * margin), height: 40)

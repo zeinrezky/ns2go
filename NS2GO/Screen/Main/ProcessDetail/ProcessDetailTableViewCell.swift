@@ -31,12 +31,16 @@ class ProcessDetailTableViewCell: UITableViewCell {
     }
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
+		
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumFractionDigits = 2
+		
 		let isNameEmpty = (cpuInstance.name ?? "").isEmpty
 		let CPUPINName = "\(cpuInstance.cpuDisplayName),\(cpuInstance.pin ?? 0)"
 		let name = isNameEmpty ? CPUPINName : cpuInstance.name
 		nameLabel.text = name
-		busyLabel.text = "\(cpuInstance.cpuBusy ?? 0)%"
-		lengthLabel.text = "\(cpuInstance.queueLength ?? 0)"
+		busyLabel.text = "\(numberFormatter.string(from: NSNumber(value: cpuInstance.cpuBusy ?? 0)) ?? "")%"
+		lengthLabel.text = "\(numberFormatter.string(from: NSNumber(value: cpuInstance.queueLength ?? 0)) ?? "")"
 		cpuLabel.text = "\(cpuInstance.cpuDisplayName)"
 		pinLabel.text = "\(cpuInstance.pin ?? 0)"
 		

@@ -19,8 +19,14 @@ class ServerInformationViewController: UIViewController {
 	@IBOutlet weak var saveButton: UIButton!
 	
 	@IBAction func saveButtonTapped(_ sender: Any) {
-		guard let ipAddress = ipAddressTextField.text,
-			  let port = portTextField.text else {
+		
+		guard let ipAddress = ipAddressTextField.text, !ipAddress.isEmpty else {
+			showAlert(message: "IP Address server cannot be empty")
+			return
+		}
+		
+		guard let port = portTextField.text, !port.isEmpty else {
+			showAlert(message: "Port cannot be empty")
 			return
 		}
 		
@@ -99,8 +105,11 @@ class ServerInformationViewController: UIViewController {
 			let loginVC = LoginViewController()
 			let navVC = UINavigationController(rootViewController: loginVC)
 			
-			if let font = UIFont(name: "HelveticaNeue", size: 20) {
-				navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: font]
+			if let font = UIFont(name: "HelveticaNeue-Light", size: 18) {
+				navVC.navigationBar.titleTextAttributes = [
+					NSAttributedString.Key.font: font,
+					NSAttributedString.Key.foregroundColor: UIColor(red: 112.0/255.0, green: 112.0/255.0, blue: 112.0/255.0, alpha: 1)
+				]
 			}
 			
 			guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,

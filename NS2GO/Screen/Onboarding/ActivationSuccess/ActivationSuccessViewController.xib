@@ -21,29 +21,42 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lYv-4x-ett">
-                    <rect key="frame" x="24" y="104" width="366" height="224.5"/>
+                    <rect key="frame" x="24" y="104" width="366" height="298"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activation Successful!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcA-oZ-kNj">
-                            <rect key="frame" x="84.5" y="0.0" width="197.5" height="23.5"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                            <rect key="frame" x="94.5" y="0.0" width="177.5" height="21"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                             <color key="textColor" red="0.12549019610000001" green="0.14117647059999999" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratulations, your account has been activated successfully. You can now login to access your NonStop Server Information." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHT-qj-wpE">
-                            <rect key="frame" x="4.5" y="39.5" width="357" height="49"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                            <nil key="textColor"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbl-Mc-kP5">
+                            <rect key="frame" x="63" y="37" width="240" height="40"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="tul-19-Yoi"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHT-qj-wpE">
+                            <rect key="frame" x="4.5" y="93" width="357" height="69"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Congratulations, your account has been activated successfully. You can now login to access your NonStop Server Information.">
+                                    <attributes>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mav-M1-M7y">
-                            <rect key="frame" x="63" y="104.5" width="240" height="60"/>
+                            <rect key="frame" x="63" y="178" width="240" height="60"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="piD-3G-xF5"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uai-c8-T8w">
-                            <rect key="frame" x="30" y="180.5" width="306" height="44"/>
+                            <rect key="frame" x="30" y="254" width="306" height="44"/>
                             <color key="backgroundColor" red="0.32549019610000002" green="0.49803921569999998" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="WuP-6F-z3I"/>

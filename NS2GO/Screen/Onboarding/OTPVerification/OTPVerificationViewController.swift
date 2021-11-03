@@ -16,6 +16,7 @@ class OTPVerificationViewController: UIViewController {
 	@IBOutlet weak var otpStackView: UIStackView!
 	@IBOutlet weak var continueButton: UIButton!
 	@IBOutlet weak var resentCodeButton: UIButton!
+	@IBOutlet weak var lbExpiredCode: UILabel!
 	
 	
 	private var otpTextFields: [OTPTextField] = []
@@ -33,6 +34,9 @@ class OTPVerificationViewController: UIViewController {
 	
 	@IBAction func resentCodeTapped(_ sender: Any) {
 		resentCode()
+		
+		resentCodeTimer?.invalidate()
+		resentCodeTimer = nil
 		setupTimer()
 	}
 	
@@ -49,6 +53,7 @@ class OTPVerificationViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupTimer()
+		setupDefaultNavigationBar()
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -175,11 +180,9 @@ class OTPVerificationViewController: UIViewController {
 		resentCodeTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
 			DispatchQueue.main.async { [weak self] in
 				if Date().timeIntervalSince1970 >= (self?.timestampCodeResentWillEnable.timeIntervalSince1970 ?? 0) {
-					self?.resentCodeButton.isEnabled = true
 					self?.resentCodeTimer?.invalidate()
 					self?.resentCodeTimer = nil
 				} else {
-					self?.resentCodeButton.isEnabled = false
 					self?.updateCountdown()
 				}
 			}
@@ -188,13 +191,13 @@ class OTPVerificationViewController: UIViewController {
 	
 	private func updateCountdown() {
 		let timeInterval = timestampCodeResentWillEnable.timeIntervalSince(Date())
-		let formatter = DateComponentsFormatter()
-		formatter.allowedUnits = [.hour, .minute, .second]
-		formatter.unitsStyle = .positional
-		let countdown = formatter.string(from: timeInterval)
+		let minute = Int(Int(timeInterval) / 60)
+		let second = Int(Int(timeInterval) - (60 * minute))
 		
-		resentCodeButton.setTitle("Resent code in \(countdown ?? "")", for: .disabled)
-		resentCodeButton.setTitleColor(.lightGray, for: .disabled)
+		let numberFormatter = NumberFormatter()
+		numberFormatter.minimumIntegerDigits = 2
+		
+		lbExpiredCode.text = "\(numberFormatter.string(from: NSNumber(value: minute)) ?? ""):\(numberFormatter.string(from: NSNumber(value: second)) ?? "")"
 	}
 
 }
