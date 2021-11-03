@@ -92,21 +92,17 @@ extension DiskListViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		var text: String = ""
-		var indicator: StatusIndicator = .green
-		
 		if indexPath.row == 0,
-		   let busy = self.busy,
-		   let alert = self.alert.first(where: {$0.entity == .busy}) {
-			text = "DP2 BUSY%"
-			indicator = busy.getIndicator(alertLimits: [alert])
-		} else if let qLength = self.qLength,
-				  let alert = self.alert.first(where: {$0.entity == .queueLength}) {
-			text = "Q. LENGTH"
-			indicator = qLength.getIndicator(alertLimits: [alert])
+		   let processInstance = self.busy?.instance as? [DiskProcessInstance],
+		   let alert = self.alert.first(where: {$0.entity == .busy}),
+		   let topProcess = processInstance.sorted(by: {$0.dp2Busy ?? 0 > $1.dp2Busy ?? 0}).first {
+			cell.configureCell(text: "DP2 BUSY%", topProcess: topProcess, alert: alert)
+		} else if let processInstance = self.qLength?.instance as? [DiskProcessInstance],
+				  let alert = self.alert.first(where: {$0.entity == .queueLength}),
+				  let topProcess = processInstance.sorted(by: {$0.queueLength ?? 0 > $1.queueLength ?? 0}).first {
+			cell.configureCell(text: "Q. LENGTH", topProcess: topProcess, alert: alert)
 		}
 		
-		cell.configureCell(status: indicator, text: text)
 		cell.selectionStyle = .none
 		
 		return cell

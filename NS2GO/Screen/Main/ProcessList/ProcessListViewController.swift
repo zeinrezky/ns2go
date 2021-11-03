@@ -90,18 +90,19 @@ extension ProcessListViewController: UITableViewDataSource {
 		}
 		
 		let text: String = indexPath.row == 0 ? "BUSY %" : "Q. LENGTH"
-		var indicator: StatusIndicator = .green
-		
 		if indexPath.row == 0,
-		   let busy = self.busy,
-		   let alert = self.alert.first(where: {$0.entity == .busy}) {
-			indicator = busy.getIndicator(alertLimits: [alert])
-		} else if let qLength = self.qLength,
-				  let alert = self.alert.first(where: {$0.entity == .queueLength}) {
-			indicator = qLength.getIndicator(alertLimits: [alert])
+		   let processInstance = self.busy?.instance as? [CPUProcessInstance],
+		   let alert = self.alert.first(where: {$0.entity == .busy}),
+		   let topProcess = processInstance.sorted(by: {$0.cpuBusy ?? 0 > $1.cpuBusy ?? 0}).first {
+			
+			cell.configureCell(text: text, topProcess: topProcess, alert: alert)
+		} else if let processInstance = self.qLength?.instance as? [CPUProcessInstance],
+				  let alert = self.alert.first(where: {$0.entity == .queueLength}),
+				  let topProcess = processInstance.sorted(by: {$0.queueLength ?? 0 > $1.queueLength ?? 0}).first {
+
+			cell.configureCell(text: text, topProcess: topProcess, alert: alert)
 		}
 		
-		cell.configureCell(status: indicator, text: text)
 		cell.selectionStyle = .none
 		
 		return cell
