@@ -21,21 +21,24 @@
             <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLm-kw-RYw">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLm-kw-RYw">
                     <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_launch" translatesAutoresizingMaskIntoConstraints="NO" id="JMC-FC-CPA">
+                    <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GT0-aF-S2Z">
-                    <rect key="frame" x="60" y="245.33333333333334" width="308" height="445.66666666666663"/>
+                    <rect key="frame" x="60" y="244.99999999999997" width="308" height="446.33333333333326"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monitor your NonStop Server on the go" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCZ-77-AmH">
-                            <rect key="frame" x="0.0" y="0.0" width="308" height="53.666666666666664"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
+                            <rect key="frame" x="0.0" y="0.0" width="308" height="54.333333333333336"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
                             <color key="textColor" red="0.51372549019607838" green="0.51372549019607838" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHU-l6-eBC">
-                            <rect key="frame" x="0.0" y="73.666666666666657" width="308" height="308"/>
+                            <rect key="frame" x="0.0" y="74.333333333333314" width="308" height="308"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="Jtc-2q-Pe8">
                                     <rect key="frame" x="0.0" y="0.0" width="308" height="308"/>
@@ -59,12 +62,12 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXf-T2-7Zl">
-                            <rect key="frame" x="0.0" y="401.66666666666663" width="308" height="44"/>
-                            <color key="backgroundColor" red="0.32549019610000002" green="0.49803921569999998" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <rect key="frame" x="0.0" y="402.33333333333337" width="308" height="44"/>
+                            <color key="backgroundColor" red="0.29411764705882354" green="0.44705882352941173" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="ErH-Wi-d7C"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                             <state key="normal" title="LET'S START">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -79,11 +82,15 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="JMC-FC-CPA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="058-1B-uUJ"/>
+                <constraint firstAttribute="bottom" secondItem="JMC-FC-CPA" secondAttribute="bottom" id="0BR-bT-Mod"/>
                 <constraint firstItem="gLm-kw-RYw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6kU-IQ-07p"/>
+                <constraint firstItem="JMC-FC-CPA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C1J-7A-zU0"/>
                 <constraint firstItem="gLm-kw-RYw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EkT-3g-Wrf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gLm-kw-RYw" secondAttribute="trailing" id="OTd-S8-HF5"/>
                 <constraint firstAttribute="bottom" secondItem="gLm-kw-RYw" secondAttribute="bottom" id="cfO-jq-rZb"/>
                 <constraint firstItem="GT0-aF-S2Z" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="dAp-2E-EGJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JMC-FC-CPA" secondAttribute="trailing" id="gS4-C0-g16"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GT0-aF-S2Z" secondAttribute="trailing" constant="60" id="jM9-iw-RF1"/>
                 <constraint firstItem="GT0-aF-S2Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="w1A-Mw-erN"/>
             </constraints>
@@ -92,6 +99,7 @@
     </objects>
     <resources>
         <image name="LogoLaunch" width="341.33334350585938" height="341.33334350585938"/>
+        <image name="bg_launch" width="375" height="875"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -99,7 +99,7 @@ class OTPVerificationViewController: UIViewController {
 		textField.tag = tag
 		textField.textAlignment = .center
 		textField.borderStyle = .none
-		textField.font =  UIFont(name: "HelveticaNeue-Bold", size: 40)
+		textField.font =  UIFont(name: "HelveticaNeue", size: 40)
 		textField.delegate = self
 		textField.deleteDelegate = self
 		textField.keyboardType = .asciiCapableNumberPad
@@ -178,13 +178,11 @@ class OTPVerificationViewController: UIViewController {
 	
 	private func setupTimer() {
 		resentCodeTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
-			DispatchQueue.main.async { [weak self] in
-				if Date().timeIntervalSince1970 >= (self?.timestampCodeResentWillEnable.timeIntervalSince1970 ?? 0) {
-					self?.resentCodeTimer?.invalidate()
-					self?.resentCodeTimer = nil
-				} else {
-					self?.updateCountdown()
-				}
+			if Date().timeIntervalSince1970 >= (self?.timestampCodeResentWillEnable.timeIntervalSince1970 ?? 0) {
+				self?.resentCodeTimer?.invalidate()
+				self?.resentCodeTimer = nil
+			} else {
+				self?.updateCountdown()
 			}
 		})
 	}
@@ -197,7 +195,9 @@ class OTPVerificationViewController: UIViewController {
 		let numberFormatter = NumberFormatter()
 		numberFormatter.minimumIntegerDigits = 2
 		
-		lbExpiredCode.text = "\(numberFormatter.string(from: NSNumber(value: minute)) ?? ""):\(numberFormatter.string(from: NSNumber(value: second)) ?? "")"
+		DispatchQueue.main.async { [weak self] in
+			self?.lbExpiredCode.text = "\(numberFormatter.string(from: NSNumber(value: minute)) ?? ""):\(numberFormatter.string(from: NSNumber(value: second)) ?? "")"
+		}
 	}
 
 }

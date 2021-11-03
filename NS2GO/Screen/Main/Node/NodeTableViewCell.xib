@@ -58,6 +58,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="containerView" destination="JC3-Vd-mTO" id="DVQ-YQ-sFT"/>
+                <outlet property="iconRightArrow" destination="L1D-kJ-KDy" id="cf5-G2-z4a"/>
                 <outlet property="nodeLabel" destination="Wyf-LD-wej" id="ldz-4V-v7d"/>
             </connections>
             <point key="canvasLocation" x="7.9710144927536239" y="111.49553571428571"/>

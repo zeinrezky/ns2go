@@ -13,6 +13,7 @@ class NodeTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var nodeLabel: UILabel!
+	@IBOutlet weak var iconRightArrow: UIImageView!
 	
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,7 +45,16 @@ class NodeTableViewCell: UITableViewCell {
 			}
 		}
 		
-		containerView.backgroundColor = indicator.color
+		if indicator == .red {
+			containerView.backgroundColor = AppColor.darkRed
+			nodeLabel.textColor = .white
+			iconRightArrow.image = UIImage(named: "ic_rightArrowWhite")
+		} else {
+			let fontColor = UIColor(red: 131.0/255.0, green: 131.0/255.0, blue: 131.0/255.0, alpha: 1)
+			nodeLabel.textColor = fontColor
+			iconRightArrow.image = UIImage(named: "ic_rightArrow")
+			containerView.backgroundColor = indicator.color
+		}
 	}
 	
 	private func setupContainerView() {
