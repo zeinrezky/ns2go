@@ -63,6 +63,7 @@
                                 <constraint firstAttribute="height" constant="40" id="Gv5-jm-ICX"/>
                                 <constraint firstAttribute="width" constant="180" id="qVz-vj-upq"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                             <state key="normal" title="Resent Code">
                                 <color key="titleColor" red="0.32549019610000002" green="0.49803921569999998" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -76,7 +77,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="3ad-ih-2FW"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <state key="normal" title="CONTINUE">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
