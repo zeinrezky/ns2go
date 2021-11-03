@@ -47,6 +47,13 @@
                                     <constraint firstAttribute="height" constant="40" id="HYt-36-GJc"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j5g-IK-DDA">
+                                <rect key="frame" x="0.0" y="39" width="200" height="1"/>
+                                <color key="backgroundColor" red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="hbA-gK-1ph"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -56,6 +63,9 @@
                             <constraint firstAttribute="trailing" secondItem="fAk-ZX-mzK" secondAttribute="trailing" id="EKC-3G-huS"/>
                             <constraint firstAttribute="trailing" secondItem="fAk-ZX-mzK" secondAttribute="trailing" id="ONw-dp-GpW"/>
                             <constraint firstAttribute="bottom" secondItem="fAk-ZX-mzK" secondAttribute="bottom" id="V1Y-9Q-hps"/>
+                            <constraint firstItem="j5g-IK-DDA" firstAttribute="leading" secondItem="fAk-ZX-mzK" secondAttribute="leading" id="Vkd-ci-KCL"/>
+                            <constraint firstItem="j5g-IK-DDA" firstAttribute="bottom" secondItem="fAk-ZX-mzK" secondAttribute="bottom" id="kTE-1S-keM"/>
+                            <constraint firstItem="j5g-IK-DDA" firstAttribute="trailing" secondItem="fAk-ZX-mzK" secondAttribute="trailing" id="q7c-hv-VQd"/>
                             <constraint firstItem="fAk-ZX-mzK" firstAttribute="top" secondItem="8fU-Mh-RIW" secondAttribute="top" id="roC-vj-Tvl"/>
                             <constraint firstItem="fAk-ZX-mzK" firstAttribute="leading" secondItem="8fU-Mh-RIW" secondAttribute="leading" id="tDZ-lS-wbT"/>
                         </constraints>

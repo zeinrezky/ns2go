@@ -153,6 +153,7 @@ class LoginViewController: UIViewController {
 		}
 		
 		showLoading()
+		self.view.endEditing(true)
 		service.login(
 			username: loginID,
 			password: password,
