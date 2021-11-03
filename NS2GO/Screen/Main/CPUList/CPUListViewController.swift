@@ -37,6 +37,7 @@ class CPUListViewController: UIViewController {
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
 		tableView.separatorStyle = .none
+		tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
 		tableView.register(UINib(nibName: DualStatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DualStatusListTableViewCell.identifier)
     }
 	

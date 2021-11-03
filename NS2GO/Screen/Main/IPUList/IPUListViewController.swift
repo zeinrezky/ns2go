@@ -48,10 +48,11 @@ class IPUListViewController: UIViewController {
 		tableView.dataSource = self
 		tableView.tableFooterView = UIView()
 		tableView.separatorStyle = .none
+		tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
 		tableView.register(UINib(nibName: DualStatusListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DualStatusListTableViewCell.identifier)
 	}
 	
-	private func createSectionHeader(for text: String, section: Int) -> UIView {
+	private func createSectionHeader(for text: String, section: Int, processCount: Int) -> UIView {
 		let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
 		view.backgroundColor = .white
 		view.tag = section
@@ -59,20 +60,42 @@ class IPUListViewController: UIViewController {
 		let separator = UIView(frame: CGRect(x: 40, y: 59, width: tableView.frame.width - 80, height: 1))
 		separator.backgroundColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
 		
-		let label = UILabel(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 120, height: 20))
+		let stackView = UIStackView(frame: CGRect(x: 40, y: 30, width: tableView.frame.width - 80, height: 20))
+		stackView.axis = .horizontal
+		stackView.alignment = .fill
+		stackView.spacing = 8
+		
+		let label = UILabel(frame: CGRect.zero)
 		label.text = text
 		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
 		label.font = UIFont(name: "HelveticaNeue", size: 16)
+		label.sizeToFit()
 		
-		let icon = UIImageView(frame: CGRect(x: tableView.frame.width - 56, y: 30, width: 16, height: 16))
+		let icon = UIImageView(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
 		icon.widthAnchor.constraint(equalToConstant: 16).isActive = true
 		icon.heightAnchor.constraint(equalToConstant: 16).isActive = true
 		icon.image = UIImage(named: "ic_rightArrow")
 		icon.contentMode = .scaleAspectFit
 		
-		view.addSubview(label)
+		let countLabel = UILabel(frame: CGRect.zero)
+		let textColor = processCount > 0 ? UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1) : UIColor(red: 173.0/255.0, green: 173.0/255.0, blue: 173.0/255.0, alpha: 1)
+		countLabel.font = UIFont(name: "HelveticaNeue", size: 12)
+		countLabel.textColor = textColor
+		countLabel.textAlignment = .right
+		countLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+		
+		if processCount > 0 {
+			countLabel.text = "Top \(processCount) process(es)"
+		} else {
+			countLabel.text = "No top process data"
+		}
+		
+		stackView.addArrangedSubview(label)
+		stackView.addArrangedSubview(countLabel)
+		stackView.addArrangedSubview(icon)
+		
+		view.addSubview(stackView)
 		view.addSubview(separator)
-		view.addSubview(icon)
 		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapHeaderSection(_:))))
 		
@@ -92,16 +115,21 @@ class IPUListViewController: UIViewController {
 		let controller = CPUDetailViewController()
 		
 		let ipu = ipus[section]
+		
 		if let cpuNumber = Int(ipu.cpuName ?? ""),
 		   let ipuNumber = ipu.ipunumber {
 			
-				if let instances = busy?.instance as? [CPUProcessInstance] {
-					let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
-					controller.instances = filtered.sorted(by: { (left, right) -> Bool in
-						return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
-					}).chunked(into: 5).first ?? []
+			if let instances = busy?.instance as? [CPUProcessInstance] {
+				let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
+				
+				guard filtered.count > 0 else {
+					return
 				}
-			
+				
+				controller.instances = filtered.sorted(by: { (left, right) -> Bool in
+					return (left.cpuBusy ?? 0) > (right.cpuBusy ?? 0)
+				})
+			}
 		}
 		
 		controller.navTitle = "IPU \(ipu.displayName) Busiest Processes"
@@ -141,7 +169,18 @@ extension IPUListViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let ipu = ipus[section]
-		return createSectionHeader(for: ipu.displayName, section: section)
+		var count: Int = 0
+		if let cpuNumber = Int(ipu.cpuName ?? ""),
+		   let ipuNumber = ipu.ipunumber {
+			
+			if let instances = busy?.instance as? [CPUProcessInstance] {
+				let filtered = instances.filter({$0.cpunumber == cpuNumber && $0.ipunumber == ipuNumber})
+				
+				count = filtered.count
+			}
+		}
+		
+		return createSectionHeader(for: ipu.displayName, section: section, processCount: count)
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
