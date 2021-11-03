@@ -54,7 +54,7 @@ class ProcessDetailViewController: UIViewController {
 		nameLabel.font = font
 		nameLabel.textAlignment = .center
 		
-		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 60
+		let margin: CGFloat = traitCollection.isDeviceIpad() ? 120 : 40
 		
 		let stack = UIStackView(arrangedSubviews: [nameLabel])
 		stack.frame = CGRect(x: margin, y: 0, width: tableView.frame.width - (2 * margin), height: 40)
