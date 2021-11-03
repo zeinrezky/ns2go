@@ -68,7 +68,7 @@ class IPUListViewController: UIViewController {
 		let label = UILabel(frame: CGRect.zero)
 		label.text = text
 		label.textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
-		label.font = UIFont(name: "HelveticaNeue", size: 16)
+		label.font = UIFont(name: "HelveticaNeue-Thin", size: 16)
 		label.sizeToFit()
 		
 		let icon = UIImageView(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
@@ -79,7 +79,7 @@ class IPUListViewController: UIViewController {
 		
 		let countLabel = UILabel(frame: CGRect.zero)
 		let textColor = processCount > 0 ? UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1) : UIColor(red: 173.0/255.0, green: 173.0/255.0, blue: 173.0/255.0, alpha: 1)
-		countLabel.font = UIFont(name: "HelveticaNeue", size: 12)
+		countLabel.font = UIFont(name: "HelveticaNeue-LightItalic", size: 12)
 		countLabel.textColor = textColor
 		countLabel.textAlignment = .right
 		countLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)

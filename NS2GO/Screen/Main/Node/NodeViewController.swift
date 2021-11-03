@@ -47,12 +47,33 @@ class NodeViewController: UIViewController {
 			fetchData()
 			
 			let versionFormat = "WVP E. Version: "
-			versionLabel.text = ""
+			let fontColor = UIColor(red: 117.0/255.0, green: 117.0/255.0, blue: 117.0/255.0, alpha: 1)
+			
+			let versionPrefixString = NSAttributedString(string: versionFormat, attributes: [
+				NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 14) ?? UIFont.systemFont(ofSize: 14),
+				NSAttributedString.Key.foregroundColor: fontColor
+			])
+		
+			let mutableAttrString = NSMutableAttributedString(attributedString: versionPrefixString)
 			if let version = serviceHelper.version {
-				versionLabel.text = versionFormat + version
+				let versionAttrString = NSAttributedString(string: version, attributes: [
+					NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-LightItalic", size: 14) ?? UIFont.italicSystemFont(ofSize: 14),
+					NSAttributedString.Key.foregroundColor: fontColor
+				])
+				
+				mutableAttrString.append(versionAttrString)
+				
+				versionLabel.attributedText = mutableAttrString
 			} else {
 				serviceHelper.getVersion { [weak self] (version) in
-					self?.versionLabel.text = versionFormat + version
+					let versionAttrString = NSAttributedString(string: version, attributes: [
+						NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-LightItalic", size: 14) ?? UIFont.italicSystemFont(ofSize: 14),
+						NSAttributedString.Key.foregroundColor: fontColor
+					])
+					
+					mutableAttrString.append(versionAttrString)
+					
+					self?.versionLabel.attributedText = mutableAttrString
 				}
 			}
 		}

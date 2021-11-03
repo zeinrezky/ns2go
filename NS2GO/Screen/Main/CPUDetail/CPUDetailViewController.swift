@@ -47,7 +47,7 @@ class CPUDetailViewController: UIViewController {
 		view.backgroundColor = .white
 		
 		let textColor = UIColor(red: 61.0/255.0, green: 61.0/255.0, blue: 61.0/255.0, alpha: 1)
-		let font = UIFont(name: "Helvetica Neue", size: 12)
+		let font = UIFont(name: "HelveticaNeue", size: 12)
 		
 		let nameLabel = UILabel()
 		nameLabel.text = "Name"
