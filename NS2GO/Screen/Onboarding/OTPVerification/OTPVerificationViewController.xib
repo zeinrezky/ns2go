@@ -71,7 +71,7 @@
                                 <constraint firstAttribute="width" constant="180" id="qVz-vj-upq"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                            <state key="normal" title="Resent Code">
+                            <state key="normal" title="Resend Code">
                                 <color key="titleColor" red="0.29411764709999999" green="0.44705882349999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>

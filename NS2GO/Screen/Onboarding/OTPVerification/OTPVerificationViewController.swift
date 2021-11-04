@@ -163,13 +163,16 @@ class OTPVerificationViewController: UIViewController {
 		
 		timestampLastCodeResent = Date()
 		
+		if !willResentCode {
+			showAlert(title: "Authentication code has been sent", message: "Please check your email")
+		}
+		
+		willResentCode = false
+		
 		request.resendCode(
 			email: email,
 			onComplete: { [weak self] in
-				if !(self?.willResentCode ?? false) {
-					self?.showAlert(title: "Code resent", message: "Please check your email")
-				}
-				self?.willResentCode = false
+				
 			}, onFailed: { [weak self] (message) in
 				self?.showAlert(message: message)
 			}
