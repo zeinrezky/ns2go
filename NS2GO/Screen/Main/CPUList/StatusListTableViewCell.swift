@@ -36,9 +36,9 @@ class StatusListTableViewCell: UITableViewCell {
 		numberFormatter.minimumFractionDigits = 2
 		
 		if alert.entity == .busy {
-			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? ""):\(topProcess.pin ?? "")") \(numberFormatter.string(from: NSNumber(value: topProcess.dp2Busy ?? 0)) ?? "")%"
+			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? ""):\(topProcess.pin ?? "")")   \(numberFormatter.string(from: NSNumber(value: topProcess.dp2Busy ?? 0)) ?? "")%"
 		} else if alert.entity == .queueLength {
-			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? ""):\(topProcess.pin ?? "")") \(numberFormatter.string(from: NSNumber(value: topProcess.queueLength ?? 0)) ?? "")"
+			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? ""):\(topProcess.pin ?? "")")   \(numberFormatter.string(from: NSNumber(value: topProcess.queueLength ?? 0)) ?? "")"
 		}
 	}
 	
@@ -51,9 +51,9 @@ class StatusListTableViewCell: UITableViewCell {
 		numberFormatter.minimumFractionDigits = 2
 		
 		if alert.entity == .busy {
-			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? 0):\(topProcess.pin ?? 0)") \(numberFormatter.string(from: NSNumber(value: topProcess.cpuBusy ?? 0)) ?? "")%"
+			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? 0):\(topProcess.pin ?? 0)")   \(numberFormatter.string(from: NSNumber(value: topProcess.cpuBusy ?? 0)) ?? "")%"
 		} else if alert.entity == .queueLength {
-			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? 0):\(topProcess.pin ?? 0)") \(numberFormatter.string(from: NSNumber(value: topProcess.queueLength ?? 0)) ?? "")"
+			statusLabel.text = "\(topProcess.name ?? "\(topProcess.cpunumber ?? 0):\(topProcess.pin ?? 0)")   \(numberFormatter.string(from: NSNumber(value: topProcess.queueLength ?? 0)) ?? "")"
 		}
 	}
 	

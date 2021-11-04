@@ -171,8 +171,6 @@ class NodeViewController: UIViewController {
 					print(error.localizedDescription)
 				}
 				
-				UserDefaults.standard.removeObject(forKey: "ns2go-LoginIDCredentials")
-				
 				let launchVC = LoginViewController()
 				let navVC = UINavigationController(rootViewController: launchVC)
 				

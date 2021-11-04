@@ -85,7 +85,7 @@ class IPUListViewController: UIViewController {
 		countLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 		
 		if processCount > 0 {
-			countLabel.text = "Top \(processCount) process(es)"
+			countLabel.text = "Top \(processCount) process\(processCount > 1 ? "es" : "")"
 		} else {
 			countLabel.text = "No top process data"
 		}
