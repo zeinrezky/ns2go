@@ -27,8 +27,8 @@ extension UIViewController {
 		button.setImage(UIImage(named : "ic_leftArrow"), for: .normal)
 		button.setTitle(nil, for: .normal)
 		button.addTarget(self, action: #selector(back), for: .touchUpInside)
-		button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 24)
-		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+		button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 40)
+		button.widthAnchor.constraint(equalToConstant: 60).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
 		let leftBarButtonItem = UIBarButtonItem(customView: button)
 		
