@@ -64,7 +64,11 @@ class LaunchViewController: UIViewController {
 }
 
 extension LaunchViewController: UIGestureRecognizerDelegate {
-	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-		return true
+	func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+		guard let nav = navigationController else {
+			return false
+		}
+		
+		return nav.viewControllers.count > 1
 	}
 }
