@@ -29,6 +29,18 @@ class ServiceHelper {
 		
 	}
 	
+	func reset() {
+		nodeAlert = nil
+		nodeStatuses = []
+		lastFetchTime = Date()
+		nodeAlertJSON = [:]
+		nodeStatusesJSON = [:]
+		versionJSON = [:]
+		version = nil
+		successCompletions.removeAll()
+		errorCompletions.removeAll()
+	}
+	
 	func addSuccessCompletion(_ completion: @escaping () -> Void) {
 		successCompletions.append(completion)
 	}

@@ -175,6 +175,8 @@ class NodeViewController: UIViewController {
 				let launchVC = LoginViewController()
 				let navVC = UINavigationController(rootViewController: launchVC)
 				
+				ServiceHelper.shared.reset()
+				
 				if let font = UIFont(name: "HelveticaNeue-Light", size: 18) {
 					navVC.navigationBar.titleTextAttributes = [
 						NSAttributedString.Key.font: font,
