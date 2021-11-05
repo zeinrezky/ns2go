@@ -73,6 +73,7 @@ class ServerListViewController: UIViewController {
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
 		self.title = "NS2GO"
+		self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 		
 		let button = UIButton()
 		button.setImage(UIImage(named : "ic_logout"), for: .normal)
@@ -190,5 +191,11 @@ extension ServerListViewController: UITableViewDataSource {
 		cell.selectionStyle = .none
 		
 		return cell
+	}
+}
+
+extension ServerListViewController: UIGestureRecognizerDelegate {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		return true
 	}
 }

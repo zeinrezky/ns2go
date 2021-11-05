@@ -29,6 +29,7 @@ class LaunchViewController: UIViewController {
 	
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
+		self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 	}
 	
 	private func configureView() {
@@ -59,5 +60,11 @@ class LaunchViewController: UIViewController {
 		DispatchQueue.main.async { [weak self] in
 			self?.navigationController?.pushViewController(login, animated: true)
 		}
+	}
+}
+
+extension LaunchViewController: UIGestureRecognizerDelegate {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		return true
 	}
 }

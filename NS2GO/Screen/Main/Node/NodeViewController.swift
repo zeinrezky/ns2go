@@ -110,6 +110,7 @@ class NodeViewController: UIViewController {
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
 		self.title = nodeStatus?.nodename
+		self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 		
 		let button = UIButton()
 		button.setImage(UIImage(named : "ic_hamburger_menu"), for: .normal)
@@ -375,3 +376,10 @@ extension NodeViewController: UITableViewDataSource {
 		return cell
 	}
 }
+
+extension NodeViewController: UIGestureRecognizerDelegate {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		return true
+	}
+}
+

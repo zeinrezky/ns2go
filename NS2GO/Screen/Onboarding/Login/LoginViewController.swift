@@ -85,6 +85,7 @@ class LoginViewController: UIViewController {
 	
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
+		self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 		
 		if showNavBarButton {
 			let button = UIButton()
@@ -183,5 +184,11 @@ class LoginViewController: UIViewController {
 				self?.showAlert(message: message)
 			}
 		)
+	}
+}
+
+extension LoginViewController: UIGestureRecognizerDelegate {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		return true
 	}
 }
