@@ -152,7 +152,16 @@ class OTPVerificationViewController: UIViewController {
 		} onFailed: { [weak self] (message) in
 			self?.hideLoading()
 			self?.showAlert(message: message)
+			self?.resetOTP()
 		}
+	}
+	
+	private func resetOTP() {
+		for textField in otpTextFields {
+			textField.text = ""
+		}
+		
+		otpTextFields.first?.becomeFirstResponder()
 	}
 	
 	private func resentCode() {
