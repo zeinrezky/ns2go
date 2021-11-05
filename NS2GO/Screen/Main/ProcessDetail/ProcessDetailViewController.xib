@@ -41,7 +41,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xcd-Wo-bdP">
-                    <rect key="frame" x="40" y="39" width="334" height="1"/>
+                    <rect key="frame" x="30" y="39" width="354" height="1"/>
                     <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="JVW-Xy-9ib"/>
@@ -100,10 +100,10 @@
                 <constraint firstItem="cJD-SP-ugD" firstAttribute="leading" secondItem="BNn-ni-M06" secondAttribute="leading" constant="40" id="4Wc-lT-QvS">
                     <variation key="heightClass=regular-widthClass=regular" constant="120"/>
                 </constraint>
-                <constraint firstItem="cJD-SP-ugD" firstAttribute="trailing" secondItem="Xcd-Wo-bdP" secondAttribute="trailing" id="9k4-iW-ZR7"/>
+                <constraint firstItem="cJD-SP-ugD" firstAttribute="trailing" secondItem="Xcd-Wo-bdP" secondAttribute="trailing" constant="-10" id="9k4-iW-ZR7"/>
                 <constraint firstItem="cJD-SP-ugD" firstAttribute="top" secondItem="6JI-yR-Qoe" secondAttribute="top" id="Bnf-nQ-9vE"/>
                 <constraint firstItem="Xcd-Wo-bdP" firstAttribute="bottom" secondItem="BNn-ni-M06" secondAttribute="bottom" id="fhC-Eu-A8K"/>
-                <constraint firstItem="Xcd-Wo-bdP" firstAttribute="leading" secondItem="cJD-SP-ugD" secondAttribute="leading" id="tL5-6Z-m11"/>
+                <constraint firstItem="Xcd-Wo-bdP" firstAttribute="leading" secondItem="cJD-SP-ugD" secondAttribute="leading" constant="-10" id="tL5-6Z-m11"/>
                 <constraint firstItem="BNn-ni-M06" firstAttribute="trailing" secondItem="cJD-SP-ugD" secondAttribute="trailing" constant="40" id="tUD-ps-tfS">
                     <variation key="heightClass=regular-widthClass=regular" constant="120"/>
                 </constraint>
