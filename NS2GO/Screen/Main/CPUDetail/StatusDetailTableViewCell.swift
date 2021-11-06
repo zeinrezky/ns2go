@@ -91,21 +91,30 @@ class StatusDetailTableViewCell: UITableViewCell {
 	
 	
 	private func setupViewFor(busy: StatusIndicator, qlength: StatusIndicator) {
-		backgroundIndicator.backgroundColor = busy.compareHigher(indicator: qlength).color
+		let indicator = busy.compareHigher(indicator: qlength)
+		backgroundIndicator.backgroundColor = indicator.color
 		
 		let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 12)
 		let normalFont = UIFont(name: "HelveticaNeue", size: 12)
 		
-		if busy == .yellow || busy == .red {
+		if indicator == .yellow || indicator == .red {
 			busyLabel.font = boldFont
-		} else {
-			busyLabel.font = normalFont
-		}
-		
-		if qlength == .yellow || qlength == .red {
 			lengthLabel.font = boldFont
 		} else {
+			busyLabel.font = normalFont
 			lengthLabel.font = normalFont
 		}
+		
+//		if busy == .yellow || busy == .red {
+//			busyLabel.font = boldFont
+//		} else {
+//			busyLabel.font = normalFont
+//		}
+//
+//		if qlength == .yellow || qlength == .red {
+//			lengthLabel.font = boldFont
+//		} else {
+//			lengthLabel.font = normalFont
+//		}
 	}
 }

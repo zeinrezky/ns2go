@@ -9,7 +9,7 @@ import UIKit
 import KeychainAccess
 
 class NodeViewController: UIViewController {
-
+	
 	@IBOutlet weak var lastSyncLabel: UILabel!
 	@IBOutlet var headerView: UIView!
 	@IBOutlet weak var tableView: UITableView!
@@ -32,7 +32,7 @@ class NodeViewController: UIViewController {
 	private let cells: [NodeTableViewCell.CellType] = [.cpu, .ipu, .disk, .process]
 	
 	override func viewDidLoad() {
-        super.viewDidLoad()
+		super.viewDidLoad()
 		setupTableView()
 		startSyncTimer()
 		setupCompletion()
@@ -53,7 +53,7 @@ class NodeViewController: UIViewController {
 				NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 14) ?? UIFont.systemFont(ofSize: 14),
 				NSAttributedString.Key.foregroundColor: fontColor
 			])
-		
+			
 			let mutableAttrString = NSMutableAttributedString(attributedString: versionPrefixString)
 			if let version = serviceHelper.version {
 				let versionAttrString = NSAttributedString(string: version, attributes: [
@@ -106,7 +106,7 @@ class NodeViewController: UIViewController {
 			}
 		}
 	}
- 
+	
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
 		self.title = nodeStatus?.nodename
@@ -250,7 +250,8 @@ class NodeViewController: UIViewController {
 		controller.qLength = qLength
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return limit.object == .CPU &&
-				(limit.entity == .busy)
+				(limit.entity == .busy ||
+				limit.entity == .queueLength)
 		}) {
 			controller.alert = alertLimit
 		}
@@ -267,7 +268,8 @@ class NodeViewController: UIViewController {
 		controller.qLength = qLength
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return limit.object == .IPU &&
-				(limit.entity == .busy)
+				(limit.entity == .busy ||
+				limit.entity == .queueLength)
 		}) {
 			controller.alert = alertLimit
 		}
