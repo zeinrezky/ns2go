@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "Icon awesome-bell@2x.png",
+      "filename" : "alert red@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Icon awesome-bell@3x.png",
+      "filename" : "alert red@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
