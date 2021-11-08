@@ -55,9 +55,7 @@ extension ProcessListViewController: UITableViewDelegate {
 				}).chunked(into: 5).first ?? []
 			}
 			
-			if let busyAlert = self.alert.first(where: {$0.entity == .busy}) {
-				controller.alert = [busyAlert]
-			}
+			controller.alert = alert
 		} else {
 			controller.title = "PROCESS Q. LENGTH"
 			if let instances = qLength?.instance as? [CPUProcessInstance] {
@@ -66,9 +64,7 @@ extension ProcessListViewController: UITableViewDelegate {
 				}).chunked(into: 5).first ?? []
 			}
 			
-			if let qlengthAlert = self.alert.first(where: {$0.entity == .queueLength}) {
-				controller.alert = [qlengthAlert]
-			}
+			controller.alert = alert
 		}
 		
 		self.navigationController?.pushViewController(controller, animated: true)

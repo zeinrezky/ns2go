@@ -36,15 +36,9 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(numberFormatter.string(from: NSNumber(value: diskInstance.dp2Busy ?? 0)) ?? "")%"
 		lengthLabel.text = "\(numberFormatter.string(from: NSNumber(value: diskInstance.queueLength ?? 0)) ?? "")"
 		
-		let indicator = diskInstance.getIndicator(alertLimits: alertLimits)
-		
-		var entity: AlertLimit.EntityType? = nil
-		
-		if alertLimits.count == 1, let alert = alertLimits.first {
-			entity = alert.entity
-		}
-		
-		setupViewFor(indicator: indicator, for: entity)
+		let busyIndicator = diskInstance.getBusyIndicator(alertLimits: alertLimits)
+		let qlengthIndicator = diskInstance.getQLengthIndicator(alertLimits: alertLimits)
+		setupViewFor(busy: busyIndicator, qlength: qlengthIndicator)
 	}
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
@@ -97,24 +91,16 @@ class StatusDetailTableViewCell: UITableViewCell {
 		let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 12)
 		let normalFont = UIFont(name: "HelveticaNeue", size: 12)
 		
-		if indicator == .yellow || indicator == .red {
+		if busy == .yellow || busy == .red {
 			busyLabel.font = boldFont
-			lengthLabel.font = boldFont
 		} else {
 			busyLabel.font = normalFont
+		}
+
+		if qlength == .yellow || qlength == .red {
+			lengthLabel.font = boldFont
+		} else {
 			lengthLabel.font = normalFont
 		}
-		
-//		if busy == .yellow || busy == .red {
-//			busyLabel.font = boldFont
-//		} else {
-//			busyLabel.font = normalFont
-//		}
-//
-//		if qlength == .yellow || qlength == .red {
-//			lengthLabel.font = boldFont
-//		} else {
-//			lengthLabel.font = normalFont
-//		}
 	}
 }

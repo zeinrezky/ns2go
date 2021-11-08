@@ -44,15 +44,9 @@ class ProcessDetailTableViewCell: UITableViewCell {
 		cpuLabel.text = "\(cpuInstance.cpuDisplayName)"
 		pinLabel.text = "\(cpuInstance.pin ?? 0)"
 		
-		let indicator = cpuInstance.getIndicator(alertLimits: alertLimits)
-		
-		var entity: AlertLimit.EntityType? = nil
-		
-		if alertLimits.count == 1, let alert = alertLimits.first {
-			entity = alert.entity
-		}
-		
-		setupViewFor(indicator: indicator, for: entity)
+		let busyIndicator = cpuInstance.getBusyIndicator(alertLimits: alertLimits)
+		let qlengthIndicator = cpuInstance.getQLenghtIndicator(alertLimits: alertLimits)
+		setupViewFor(busy: busyIndicator, qlength: qlengthIndicator)
 	}
 	
 	private func setupViewFor(indicator: StatusIndicator, for entity: AlertLimit.EntityType?) {
@@ -78,6 +72,26 @@ class ProcessDetailTableViewCell: UITableViewCell {
 				busyLabel.font = boldFont
 				lengthLabel.font = boldFont
 			}
+		}
+	}
+	
+	private func setupViewFor(busy: StatusIndicator, qlength: StatusIndicator) {
+		let indicator = busy.compareHigher(indicator: qlength)
+		backgroundIndicator.backgroundColor = indicator.color
+		
+		let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 12)
+		let normalFont = UIFont(name: "HelveticaNeue", size: 12)
+		
+		if busy == .yellow || busy == .red {
+			busyLabel.font = boldFont
+		} else {
+			busyLabel.font = normalFont
+		}
+
+		if qlength == .yellow || qlength == .red {
+			lengthLabel.font = boldFont
+		} else {
+			lengthLabel.font = normalFont
 		}
 	}
 }

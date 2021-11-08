@@ -35,6 +35,13 @@ class DiskProcessInstance: BaseInstance {
 	}
 	
 	func getIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
+		let busyIndicator = getBusyIndicator(alertLimits: alertLimits)
+		let qLengthIndicator = getQLengthIndicator(alertLimits: alertLimits)
+		
+		return busyIndicator.compareHigher(indicator: qLengthIndicator)
+	}
+	
+	func getBusyIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
 		var indicator: StatusIndicator = .clear
 		if alertLimits.count == 0 {
 			return indicator
@@ -51,6 +58,15 @@ class DiskProcessInstance: BaseInstance {
 					indicator = indicator.compareHigher(indicator: .yellow)
 				}
 			}
+		}
+		
+		return indicator
+	}
+	
+	func getQLengthIndicator(alertLimits: [AlertLimit]) -> StatusIndicator {
+		var indicator: StatusIndicator = .clear
+		if alertLimits.count == 0 {
+			return indicator
 		}
 		
 		if let qLength = queueLength,
