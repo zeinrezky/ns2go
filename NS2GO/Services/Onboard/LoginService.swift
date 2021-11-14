@@ -11,12 +11,21 @@ import SwiftyJSON
 
 class LoginService {
 	
-	func login(username: String,
+	func login(ip: String?,
+			   port: String?,
+			   username: String,
 			   password: String,
-			   onComplete : @escaping([String: Any]?,[Node]) -> Void,
+			   onComplete : @escaping([String: Any]?,Node) -> Void,
 			   onFailed : ((String) -> Void)?) {
 		
-		let url = BaseURL.shared.vpnBaseURL + "homepage"
+		var baseUrl = BaseURL.shared.vpnBaseURL
+		
+		if let ip = ip,
+		   let port = port {
+			baseUrl = "https://\(ip):\(port)/"
+		}
+		
+		let url = baseUrl + "homepage"
 		
 		let logonInfo = password + ";" + username
 		let hexLogonInfo = "V" + logonInfo.hexString()
@@ -36,7 +45,31 @@ class LoginService {
 			let node = Node(json: json)
 			var dict = json.dictionaryObject
 			dict?["response_name"] = "Do Logon (Alert Limits)"
-			onComplete(dict, [node])
+			onComplete(dict, node)
+			
+		}) { (message) in
+			onFailed?(message)
+		}
+	}
+	
+	func getNeighborhood(onComplete : @escaping(NeighborhoodResponse) -> Void,
+						 onFailed : ((String) -> Void)?) {
+		let url = BaseURL.shared.vpnBaseURL + "homepage"
+		
+		let parameter: [String: Any] = [
+			"requestor" : "WVP",
+			"command" : "GET_NEIGHBORHOODS",
+			"CRINFO" : "",
+			"LITE" : 0
+		]
+		
+		let header: HTTPHeaders = BaseRequest.shared.getDefaultHeader()
+		
+		BaseRequest.shared.GETVPN(url: url, header: header, parameter: parameter, success: { (data) in
+			
+			let json = JSON(data)
+			let object = NeighborhoodResponse(json: json)
+			onComplete(object)
 			
 		}) { (message) in
 			onFailed?(message)

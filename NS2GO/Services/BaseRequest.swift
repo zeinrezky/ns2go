@@ -35,6 +35,29 @@ class BaseRequest {
 			)
 		)
 	}
+	
+	func setupSession(with neighborhood: [Neighborhood]) {
+		let configuration = URLSessionConfiguration.default
+		configuration.timeoutIntervalForResource = 30
+		configuration.timeoutIntervalForRequest = 30
+		var serverTrustPolicies: [String: ServerTrustEvaluating] = [
+			BaseURL.shared.vpnBaseURL: DisabledEvaluator(),
+			(BaseURL.shared.vpnBaseAddress ?? ""): DisabledEvaluator()
+		]
+		
+		for node in neighborhood {
+			serverTrustPolicies["https://\(node.ipAddress):\(node.port)/"] = DisabledEvaluator()
+			serverTrustPolicies[node.ipAddress] = DisabledEvaluator()
+		}
+
+		session = Session(
+			configuration: configuration,
+			serverTrustManager: ServerTrustManager(
+				allHostsMustBeEvaluated: false,
+				evaluators: serverTrustPolicies
+			)
+		)
+	}
     
    func getDefaultHeader() -> HTTPHeaders {
         

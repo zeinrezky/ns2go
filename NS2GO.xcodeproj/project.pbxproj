@@ -40,6 +40,8 @@
 		DB609B32271F06BD00E125C7 /* StatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B31271F06BC00E125C7 /* StatusIndicator.swift */; };
 		DB609B3F2721ACC400E125C7 /* DualStatusListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB609B3D2721ACC300E125C7 /* DualStatusListTableViewCell.swift */; };
 		DB609B402721ACC400E125C7 /* DualStatusListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB609B3E2721ACC300E125C7 /* DualStatusListTableViewCell.xib */; };
+		DB7F997A274118920072742E /* NeighborhoodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F9979274118920072742E /* NeighborhoodResponse.swift */; };
+		DB7F997D27411E7C0072742E /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F997C27411E7C0072742E /* Version.swift */; };
 		DBA4A3B42719ACB800BA4427 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B22719ACB700BA4427 /* UITextView.swift */; };
 		DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3B32719ACB800BA4427 /* UITextField.swift */; };
 		DBA4A3C42719BE6600BA4427 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */; };
@@ -145,6 +147,8 @@
 		DB609B31271F06BC00E125C7 /* StatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIndicator.swift; sourceTree = "<group>"; };
 		DB609B3D2721ACC300E125C7 /* DualStatusListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualStatusListTableViewCell.swift; sourceTree = "<group>"; };
 		DB609B3E2721ACC300E125C7 /* DualStatusListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DualStatusListTableViewCell.xib; sourceTree = "<group>"; };
+		DB7F9979274118920072742E /* NeighborhoodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodResponse.swift; sourceTree = "<group>"; };
+		DB7F997C27411E7C0072742E /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		DBA4A3B22719ACB700BA4427 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		DBA4A3B32719ACB800BA4427 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		DBA4A3C22719BE6600BA4427 /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 				DB609A71271BC36800E125C7 /* AlertLimit.swift */,
 				DB609A77271C5C6400E125C7 /* ObjectMonitored.swift */,
 				DB609A93271C6D8C00E125C7 /* NodeStatus.swift */,
+				DB7F9979274118920072742E /* NeighborhoodResponse.swift */,
+				DB7F997C27411E7C0072742E /* Version.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				DB609B2B271E997E00E125C7 /* TimeInterval.swift in Sources */,
 				DBC7AB722717C7AF002EB696 /* IPUDetailViewController.swift in Sources */,
 				DBA4A3D22719C90E00BA4427 /* String.swift in Sources */,
+				DB7F997A274118920072742E /* NeighborhoodResponse.swift in Sources */,
 				DB609A8E271C6A1300E125C7 /* CPUProcessInstance.swift in Sources */,
 				DB609B32271F06BD00E125C7 /* StatusIndicator.swift in Sources */,
 				DBC7AB1727148AE3002EB696 /* ProcessListViewController.swift in Sources */,
@@ -772,6 +779,7 @@
 				DBC7AAFC27147B7D002EB696 /* StatusListTableViewCell.swift in Sources */,
 				DBC7AAEE271328F0002EB696 /* LaunchViewController.swift in Sources */,
 				DB609A9F271CFDF800E125C7 /* AppColor.swift in Sources */,
+				DB7F997D27411E7C0072742E /* Version.swift in Sources */,
 				DBC7AB5027173AD9002EB696 /* OTPTextField.swift in Sources */,
 				DBC7AB552717BCA8002EB696 /* UIViewController.swift in Sources */,
 				DBC7AB0227148921002EB696 /* IPUListViewController.swift in Sources */,

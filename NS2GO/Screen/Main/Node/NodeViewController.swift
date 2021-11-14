@@ -17,13 +17,9 @@ class NodeViewController: UIViewController {
 	
 	var rightBarButtonItem: UIBarButtonItem?
 	
-	var nodeAlert: Node? {
-		return serviceHelper.nodeAlert
-	}
-	
-	var nodeStatus: NodeStatus? {
-		return serviceHelper.nodeStatuses.first
-	}
+	var nodeAlert: Node?
+	var nodeStatus: NodeStatus?
+	var version: Version?
 	
 	private let refreshControl = UIRefreshControl()
 	private let serviceHelper = ServiceHelper.shared
@@ -43,41 +39,6 @@ class NodeViewController: UIViewController {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
 		
-		if isFirstTimeLoad {
-			fetchData()
-			
-			let versionFormat = "WVP E. Version: "
-			let fontColor = UIColor(red: 117.0/255.0, green: 117.0/255.0, blue: 117.0/255.0, alpha: 1)
-			
-			let versionPrefixString = NSAttributedString(string: versionFormat, attributes: [
-				NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 14) ?? UIFont.systemFont(ofSize: 14),
-				NSAttributedString.Key.foregroundColor: fontColor
-			])
-			
-			let mutableAttrString = NSMutableAttributedString(attributedString: versionPrefixString)
-			if let version = serviceHelper.version {
-				let versionAttrString = NSAttributedString(string: version, attributes: [
-					NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-LightItalic", size: 14) ?? UIFont.italicSystemFont(ofSize: 14),
-					NSAttributedString.Key.foregroundColor: fontColor
-				])
-				
-				mutableAttrString.append(versionAttrString)
-				
-				versionLabel.attributedText = mutableAttrString
-			} else {
-				serviceHelper.getVersion { [weak self] (version) in
-					let versionAttrString = NSAttributedString(string: version, attributes: [
-						NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-LightItalic", size: 14) ?? UIFont.italicSystemFont(ofSize: 14),
-						NSAttributedString.Key.foregroundColor: fontColor
-					])
-					
-					mutableAttrString.append(versionAttrString)
-					
-					self?.versionLabel.attributedText = mutableAttrString
-				}
-			}
-		}
-		
 		isFirstTimeLoad = false
 		updateLastSyncLabel()
 	}
@@ -96,21 +57,34 @@ class NodeViewController: UIViewController {
 	}
 	
 	private func setupVersionLabel() {
-		let versionFormat = "WVP E. Version: "
 		versionLabel.text = ""
-		if let version = serviceHelper.version {
-			versionLabel.text = versionFormat + version
-		} else {
-			serviceHelper.getVersion { [weak self] (version) in
-				self?.versionLabel.text = versionFormat + version
-			}
+		if let version = version?.version {
+			let versionFormat = "WVP E. Version: "
+			let fontColor = UIColor(red: 117.0/255.0, green: 117.0/255.0, blue: 117.0/255.0, alpha: 1)
+			
+			let versionPrefixString = NSAttributedString(string: versionFormat, attributes: [
+				NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 14) ?? UIFont.systemFont(ofSize: 14),
+				NSAttributedString.Key.foregroundColor: fontColor
+			])
+			let mutableAttrString = NSMutableAttributedString(attributedString: versionPrefixString)
+			
+			let versionAttrString = NSAttributedString(string: version, attributes: [
+				NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-LightItalic", size: 14) ?? UIFont.italicSystemFont(ofSize: 14),
+				NSAttributedString.Key.foregroundColor: fontColor
+			])
+			
+			mutableAttrString.append(versionAttrString)
+			
+			versionLabel.attributedText = mutableAttrString
 		}
 	}
 	
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
 		self.title = nodeStatus?.nodename
-		self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+		if self.navigationController?.interactivePopGestureRecognizer?.delegate == nil {
+			self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+		}
 		
 		let button = UIButton()
 		button.setImage(UIImage(named : "ic_hamburger_menu"), for: .normal)
@@ -216,7 +190,29 @@ class NodeViewController: UIViewController {
 	@objc private func fetchData() {
 		refreshControl.endRefreshing()
 		showLoading()
-		serviceHelper.fetchStatusData()
+		if serviceHelper.neighborhood.count > 0 {
+			serviceHelper.fetchAllStatusNode(onComplete: nil, onError: nil)
+		} else {
+			serviceHelper.nodeStatuses.removeAll()
+			serviceHelper.fetchStatusData(onComplete: { [weak self] in
+				self?.hideLoading()
+				
+				let nodeName = self?.nodeStatus?.nodename ?? ""
+				self?.title = nodeName
+				
+				if let newStatus = self?.serviceHelper.nodeStatuses.first(where: {$0.nodename == nodeName}) {
+					self?.nodeStatus = newStatus
+					DispatchQueue.main.async { [weak self] in
+						self?.tableView.reloadData()
+					}
+				}
+				
+				self?.updateLastSyncLabel()
+			}, onError: { [weak self] message in
+				self?.hideLoading()
+				self?.showAlert(message: message)
+			})
+		}
 	}
 	
 	private func setupCompletion() {
@@ -226,14 +222,19 @@ class NodeViewController: UIViewController {
 			let nodeName = self?.nodeStatus?.nodename ?? ""
 			self?.title = nodeName
 			
-			DispatchQueue.main.async { [weak self] in
-				self?.updateLastSyncLabel()
-				self?.tableView.reloadData()
+			if let newStatus = self?.serviceHelper.nodeStatuses.first(where: {$0.nodename == nodeName}) {
+				self?.nodeStatus = newStatus
+				DispatchQueue.main.async { [weak self] in
+					self?.tableView.reloadData()
+				}
 			}
+			
+			self?.updateLastSyncLabel()
 		}
 		
 		let errorCompletion: (String) -> Void = { [weak self] message in
 			self?.hideLoading()
+			self?.showAlert(message: message)
 		}
 		
 		serviceHelper.addSuccessCompletion(successCompletion)

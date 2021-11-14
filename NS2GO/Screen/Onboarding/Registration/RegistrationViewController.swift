@@ -126,6 +126,12 @@ class RegistrationViewController: UIViewController {
 		let mutableAttrString = NSMutableAttributedString(attributedString: agreeString)
 		mutableAttrString.append(tncString)
 		tncLabel.attributedText = mutableAttrString
+		
+		firstNameTextField.delegate = self
+		lastNameTextField.delegate = self
+		emailTextField.delegate = self
+		companyTextField.delegate = self
+		cityTextField.delegate = self
 	}
 	
 	private func setupTextField() {
@@ -268,6 +274,26 @@ class RegistrationViewController: UIViewController {
 extension RegistrationViewController: UITextFieldDelegate {
 	func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
 		countryTextField.text = countryPicker.selectedCountryName
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		
+		switch textField {
+		case firstNameTextField:
+			lastNameTextField.becomeFirstResponder()
+		case lastNameTextField:
+			emailTextField.becomeFirstResponder()
+		case emailTextField:
+			companyTextField.becomeFirstResponder()
+		case companyTextField:
+			countryTextField.becomeFirstResponder()
+		case cityTextField:
+			self.view.endEditing(true)
+		default:
+			break
+		}
+		
+		return true
 	}
 }
 

@@ -18,4 +18,5 @@ class NS2GOConstant {
 	static let KeyServerPort = "ns2go_serverPort"
 	
 	static let KeyUserRegistered = "ns2go_userRegistered"
+	static let KeyUserCredential = "ns2go-LoginIDCredentials"
 }
