@@ -9,7 +9,6 @@ import UIKit
 import KeychainAccess
 
 class LoginViewController: UIViewController {
-
 	
 	@IBOutlet weak var blurView: UIView!
 	
@@ -33,7 +32,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		if let loginID = UserDefaults.standard.value(forKey: "ns2go-LoginIDCredentials") as? String {
+		if let loginID = ServiceHelper.shared.getCredential() {
 			loginIDTextField.text = loginID
 		}
 		
@@ -41,6 +40,8 @@ class LoginViewController: UIViewController {
 		loginButton.layer.cornerRadius = 4
 		loginIDTextField.addDoneButtonKeyboard()
 		passwordTextField.addDoneButtonKeyboard()
+		loginIDTextField.delegate = self
+		passwordTextField.delegate = self
 		addGradientLayer()
     }
 	
@@ -121,37 +122,6 @@ class LoginViewController: UIViewController {
 		}
 	}
 	
-	private func presentServerList() {
-		let serverListVC = ServerListViewController()
-		let navVC = UINavigationController(rootViewController: serverListVC)
-		
-		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-			  let window = appDelegate.window else {
-			return
-		}
-		
-		window.rootViewController = navVC
-	}
-	
-	private func presentNodeDashboard() {
-		let nodeVC = NodeViewController()
-		let navVC = UINavigationController(rootViewController: nodeVC)
-		
-		if let font = UIFont(name: "HelveticaNeue-Light", size: 18) {
-			navVC.navigationBar.titleTextAttributes = [
-				NSAttributedString.Key.font: font,
-				NSAttributedString.Key.foregroundColor: UIColor(red: 112.0/255.0, green: 112.0/255.0, blue: 112.0/255.0, alpha: 1)
-			]
-		}
-		
-		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-			  let window = appDelegate.window else {
-			return
-		}
-		
-		window.rootViewController = navVC
-	}
-	
 	private func login() {
 		guard BaseURL.shared.vpnBaseAddress != nil, BaseURL.shared.vpnBasePort != nil else {
 			showAlert(message: "Please set up the server address and port")
@@ -169,21 +139,115 @@ class LoginViewController: UIViewController {
 		}
 		
 		showLoading()
+		ServiceHelper.shared.username = loginID
+		ServiceHelper.shared.password = password
 		self.view.endEditing(true)
-		service.login(
-			username: loginID,
-			password: password,
-			onComplete: { [weak self] (json, nodes) in
-				self?.hideLoading()
-				UserDefaults.standard.setValue(loginID, forKey: "ns2go-LoginIDCredentials")
-				ServiceHelper.shared.nodeAlertJSON = json
-				ServiceHelper.shared.nodeAlert = nodes.first
-				self?.presentNodeDashboard()
-			}, onFailed: { [weak self] (message) in
-				self?.hideLoading()
-				self?.showAlert(message: message)
+	
+		ServiceHelper.shared.getNeighborhood {[weak self] (neighborhoods) in
+			if neighborhoods.count > 0 {
+				BaseRequest.shared.setupSession(with: neighborhoods)
+				self?.doAllLogin()
+			} else {
+				ServiceHelper.shared.loginNode(ip: nil, port: nil) { [weak self] in
+					self?.getSingleVersion()
+				} onError: { [weak self] (message) in
+					self?.hideLoading()
+					self?.showAlert(message: message)
+				}
 			}
-		)
+		} onError: { [weak self] (message) in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
+	
+	private func doAllLogin() {
+		ServiceHelper.shared.loginEachNode {[weak self] in
+			self?.getAllVersion()
+			ServiceHelper.shared.saveCredential()
+		} onError: { [weak self] (message) in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
+	
+	private func getAllVersion() {
+		ServiceHelper.shared.getAllVersions { [weak self] in
+			self?.getAllNodeStatus()
+		} onError: { [weak self] (message) in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
+	
+	private func getAllNodeStatus() {
+		ServiceHelper.shared.fetchAllStatusNode { [weak self] in
+			self?.hideLoading()
+			self?.presentNodeListDashboard()
+		} onError: { [weak self] (message) in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
+	
+	private func getSingleVersion() {
+		ServiceHelper.shared.getVersion { [weak self] in
+			self?.getSingleNodeStatus()
+		} onError: {[weak self] (message) in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
+	
+	private func getSingleNodeStatus() {
+		ServiceHelper.shared.fetchStatusData { [weak self] in
+			self?.hideLoading()
+			self?.presentNodeDashboard()
+		} onError: { [weak self] message in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
+	
+	private func presentNodeListDashboard() {
+		let nodeVC = ServerListViewController()
+		let navVC = UINavigationController(rootViewController: nodeVC)
+		
+		if let font = UIFont(name: "HelveticaNeue-Light", size: 18) {
+			navVC.navigationBar.titleTextAttributes = [
+				NSAttributedString.Key.font: font,
+				NSAttributedString.Key.foregroundColor: UIColor(red: 112.0/255.0, green: 112.0/255.0, blue: 112.0/255.0, alpha: 1)
+			]
+		}
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+			  let window = appDelegate.window else {
+			return
+		}
+		
+		window.rootViewController = navVC
+	}
+	
+	private func presentNodeDashboard() {
+		let nodeVC = NodeViewController()
+		nodeVC.nodeAlert = ServiceHelper.shared.nodeAlert.first
+		nodeVC.nodeStatus = ServiceHelper.shared.nodeStatuses.first
+		nodeVC.version = ServiceHelper.shared.versions.first
+		let navVC = UINavigationController(rootViewController: nodeVC)
+		
+		if let font = UIFont(name: "HelveticaNeue-Light", size: 18) {
+			navVC.navigationBar.titleTextAttributes = [
+				NSAttributedString.Key.font: font,
+				NSAttributedString.Key.foregroundColor: UIColor(red: 112.0/255.0, green: 112.0/255.0, blue: 112.0/255.0, alpha: 1)
+			]
+		}
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+			  let window = appDelegate.window else {
+			return
+		}
+		
+		window.rootViewController = navVC
 	}
 }
 
@@ -194,5 +258,20 @@ extension LoginViewController: UIGestureRecognizerDelegate {
 		}
 		
 		return nav.viewControllers.count > 1
+	}
+}
+
+extension LoginViewController: UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		switch textField {
+		case loginIDTextField:
+			passwordTextField.becomeFirstResponder()
+		case passwordTextField:
+			view.endEditing(true)
+		default:
+			break
+		}
+		
+		return true
 	}
 }

@@ -10,10 +10,18 @@ import Alamofire
 import SwiftyJSON
 
 class DashboardService {
-	func getCurrentStatus(onComplete : @escaping([String: Any]?, NodeStatus) -> Void,
+	func getCurrentStatus(ip: String?,
+						  port: String?,
+						  onComplete : @escaping([String: Any]?, NodeStatus) -> Void,
 						  onFailed : ((String) -> Void)?) {
+		var baseUrl = BaseURL.shared.vpnBaseURL
 		
-		let url = BaseURL.shared.vpnBaseURL + "homepage"
+		if let ip = ip,
+		   let port = port {
+			baseUrl = "https://\(ip):\(port)/"
+		}
+		
+		let url = baseUrl + "homepage"
 		
 		let parameter: [String: Any] = [
 			"requestor" : "XVIEW",
@@ -40,10 +48,19 @@ class DashboardService {
 		}
 	}
 	
-	func getCurrentVersion(onComplete: @escaping ([String: Any]?, String) -> Void,
+	func getCurrentVersion(ip: String?,
+						   port: String?,
+						   onComplete: @escaping (Version) -> Void,
 						   onFailed: ((String) -> Void)?) {
-		let url = BaseURL.shared.vpnBaseURL + "homepage"
 		
+		var baseUrl = BaseURL.shared.vpnBaseURL
+		
+		if let ip = ip,
+		   let port = port {
+			baseUrl = "https://\(ip):\(port)/"
+		}
+		
+		let url = baseUrl + "homepage"
 		let parameter: [String: Any] = [
 			"command" : "GET_VERSION_INFO"
 		]
@@ -53,10 +70,8 @@ class DashboardService {
 		BaseRequest.shared.GETVPN(url: url, header: header, parameter: parameter, success: { (data) in
 			
 			let json = JSON(data)
-			let version = json["version"].stringValue
-			var dict = json.dictionaryObject
-			dict?["response_name"] = "Get version info"
-			onComplete(dict, version)
+			let version = Version(json: json)
+			onComplete(version)
 			
 		}) { (message) in
 			onFailed?(message)

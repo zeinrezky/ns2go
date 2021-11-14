@@ -35,6 +35,7 @@ class ServerInformationViewController: UIViewController {
 		BaseURL.shared.vpnBaseAddress = ipAddressFormatted
 		BaseURL.shared.vpnBasePort = port
 		BaseURL.shared.saveIPServer()
+		BaseRequest.shared.setupSession()
 		redirectToLogin()
 	}
 	
@@ -79,6 +80,9 @@ class ServerInformationViewController: UIViewController {
 		
 		ipAddressTextField.text = BaseURL.shared.vpnBaseAddress
 		portTextField.text = BaseURL.shared.vpnBasePort
+		
+		ipAddressTextField.delegate = self
+		portTextField.delegate = self
 	}
 	
 	private func setupNavigationBar() {
@@ -121,5 +125,20 @@ class ServerInformationViewController: UIViewController {
 				window.rootViewController = navVC
 			}
 		}		
+	}
+}
+
+extension ServerInformationViewController: UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		switch textField {
+		case ipAddressTextField:
+			portTextField.becomeFirstResponder()
+		case portTextField:
+			view.endEditing(true)
+		default:
+			break
+		}
+		
+		return true
 	}
 }

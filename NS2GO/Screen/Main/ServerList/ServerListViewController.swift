@@ -13,15 +13,15 @@ class ServerListViewController: UIViewController {
 	@IBOutlet weak var lastSyncLabel: UILabel!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var headerView: UIView!
-	@IBOutlet weak var versionLabel: UILabel!
 	
-	
-	var nodeAlert: Node? {
+	var nodeAlert: [Node] {
 		return serviceHelper.nodeAlert
 	}
-	
 	var nodeStatuses: [NodeStatus] {
 		return serviceHelper.nodeStatuses
+	}
+	var versions: [Version] {
+		return serviceHelper.versions
 	}
 	
 	private var isFirstTimeLoad: Bool = true
@@ -41,16 +41,6 @@ class ServerListViewController: UIViewController {
 		
 		if isFirstTimeLoad {
 			fetchData()
-			
-			let versionFormat = "WVP E. Version: "
-			versionLabel.text = ""
-			if let version = serviceHelper.version {
-				versionLabel.text = versionFormat + version
-			} else {
-				serviceHelper.getVersion { [weak self] (version) in
-					self?.versionLabel.text = versionFormat + version
-				}
-			}
 		}
 		
 		isFirstTimeLoad = false
@@ -154,6 +144,7 @@ class ServerListViewController: UIViewController {
 		
 		let errorCompletion: (String) -> Void = { [weak self] message in
 			self?.hideLoading()
+			self?.showAlert(message: message)
 		}
 		
 		serviceHelper.addSuccessCompletion(successCompletion)
@@ -163,7 +154,7 @@ class ServerListViewController: UIViewController {
 	@objc private func fetchData() {
 		refreshControl.endRefreshing()
 		showLoading()
-		serviceHelper.fetchStatusData()
+		serviceHelper.fetchAllStatusNode(onComplete: nil, onError: nil)
 	}
 }
 
@@ -173,8 +164,18 @@ extension ServerListViewController: UITableViewDelegate {
 		let nodeStatus = nodeStatuses[indexPath.item]
 		
 		let controller = NodeViewController()
-//		controller.nodeStatus = nodeStatus
-//		controller.nodeAlert = nodeAlert
+		
+		controller.nodeAlert = serviceHelper.nodeAlert.first(where: { (node) -> Bool in
+			var nodename = node.nodename
+			if !nodename.starts(with: "\\") {
+				nodename = "\\\(node.nodename)"
+			}
+			
+			return (nodeStatus.nodename ?? "") == nodename
+		})
+		controller.nodeStatus = nodeStatus
+		controller.version = serviceHelper.versions.first(where: {$0.systemname == (nodeStatus.nodename ?? "")})
+		
 		self.navigationController?.pushViewController(controller, animated: true)
 	}
 }
