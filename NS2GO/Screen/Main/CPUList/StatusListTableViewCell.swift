@@ -34,7 +34,7 @@ class StatusListTableViewCell: UITableViewCell {
 		
 		let numberFormatter = NumberFormatter()
 		numberFormatter.minimumFractionDigits = 2
-		let name = topProcess.name?.isEmpty == false ? (topProcess.name ?? "") : "\(topProcess.cpunumber ?? ""), \(topProcess.pin ?? "")"
+		let name = !(topProcess.name ?? "").isEmpty ? (topProcess.name ?? "") : "\(topProcess.cpunumber ?? ""), \(topProcess.pin ?? "")"
 		
 		if alert.entity == .busy {
 			statusLabel.text = "\(name)   \(numberFormatter.string(from: NSNumber(value: topProcess.dp2Busy ?? 0)) ?? "")%"
@@ -51,7 +51,7 @@ class StatusListTableViewCell: UITableViewCell {
 		let numberFormatter = NumberFormatter()
 		numberFormatter.minimumFractionDigits = 2
 		
-		let name = topProcess.name?.isEmpty == false ? (topProcess.name ?? "") : "\(topProcess.cpunumber ?? 0), \(topProcess.pin ?? 0)"
+		let name = !(topProcess.name ?? "").isEmpty ? (topProcess.name ?? "") : "\(topProcess.cpunumber ?? 0), \(topProcess.pin ?? 0)"
 		
 		if alert.entity == .busy {
 			statusLabel.text = "\(name)   \(numberFormatter.string(from: NSNumber(value: topProcess.cpuBusy ?? 0)) ?? "")%"
