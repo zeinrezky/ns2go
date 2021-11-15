@@ -12,7 +12,9 @@ class ServerListTableViewCell: UITableViewCell {
 	static let identifier = "ServerListTableViewCell"
 	
 	@IBOutlet weak var containerView: UIView!
+	@IBOutlet weak var iconRightArrow: UIImageView!
 	@IBOutlet weak var serverNameLabel: UILabel!
+	
 	
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +29,17 @@ class ServerListTableViewCell: UITableViewCell {
 	
 	func configureCell(node: NodeStatus) {
 		serverNameLabel.text = node.nodename
-		containerView.backgroundColor = node.indicator.color
+		
+		if node.indicator == .red {
+			containerView.backgroundColor = AppColor.darkRed
+			serverNameLabel.textColor = .white
+			iconRightArrow.image = UIImage(named: "ic_rightArrowWhite")
+		} else {
+			let fontColor = UIColor(red: 131.0/255.0, green: 131.0/255.0, blue: 131.0/255.0, alpha: 1)
+			serverNameLabel.textColor = fontColor
+			iconRightArrow.image = UIImage(named: "ic_rightArrow")
+			containerView.backgroundColor = node.indicator.color
+		}
 	}
     
 	private func setupContainerView() {

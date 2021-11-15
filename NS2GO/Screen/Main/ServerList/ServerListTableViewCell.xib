@@ -60,13 +60,14 @@
             <connections>
                 <outlet property="backgroundView" destination="H2p-sc-9uM" id="AAV-2a-Jb7"/>
                 <outlet property="containerView" destination="kwz-DV-DCV" id="fL0-1P-EWN"/>
+                <outlet property="iconRightArrow" destination="dHJ-Fv-xhr" id="Lef-la-MdS"/>
                 <outlet property="serverNameLabel" destination="ZEU-YB-50z" id="ko0-E9-OGR"/>
             </connections>
             <point key="canvasLocation" x="-60.869565217391312" y="101.45089285714285"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_rightArrow" width="170.5" height="170.5"/>
+        <image name="ic_rightArrow" width="42.5" height="42.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

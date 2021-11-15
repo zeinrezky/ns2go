@@ -24,6 +24,8 @@ class ServerListViewController: UIViewController {
 		return serviceHelper.versions
 	}
 	
+	private var rightBarButtonItem: UIBarButtonItem?
+	
 	private var isFirstTimeLoad: Bool = true
 	private let serviceHelper = ServiceHelper.shared
 	private let refreshControl = UIRefreshControl()
@@ -66,14 +68,32 @@ class ServerListViewController: UIViewController {
 		self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 		
 		let button = UIButton()
-		button.setImage(UIImage(named : "ic_logout"), for: .normal)
+		button.setImage(UIImage(named : "ic_hamburger_menu"), for: .normal)
 		button.setTitle("", for: .normal)
-		button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+		button.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
 		button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
 		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-		let btBar = UIBarButtonItem(customView: button)
-		self.navigationItem.rightBarButtonItem = btBar
+		rightBarButtonItem = UIBarButtonItem(customView: button)
+		self.navigationItem.rightBarButtonItem = rightBarButtonItem
+	}
+	
+	@objc private func showMenu() {
+		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+		let logout = UIAlertAction(title: "Logout", style: .default) { [weak self] (_) in
+			self?.logOut()
+		}
+		
+		let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+		
+		alert.addAction(logout)
+		alert.addAction(cancel)
+		
+		alert.view.tintColor = .black
+		
+		alert.popoverPresentationController?.barButtonItem = rightBarButtonItem
+		
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	@objc private func logOut() {
