@@ -102,7 +102,7 @@ class LoginViewController: UIViewController {
 	}
 	
 	private func setupTextFieldContanier() {
-		textFieldContainers.forEach { [weak self] (view) in
+		textFieldContainers.forEach { (view) in
 			view.layer.borderColor = UIColor.darkGray.cgColor
 			view.layer.borderWidth = 1
 		}
@@ -147,12 +147,7 @@ class LoginViewController: UIViewController {
 			if neighborhoods.count > 0 {
 				self?.handleNeighborhoodLogin(neighborhoods: neighborhoods)
 			} else {
-				ServiceHelper.shared.loginNode(ip: nil, port: nil) { [weak self] in
-					self?.getSingleVersion()
-				} onError: { [weak self] (message) in
-					self?.hideLoading()
-					self?.showAlert(message: message)
-				}
+				self?.handleSingleLogin()
 			}
 		} onError: { [weak self] (message) in
 			self?.hideLoading()
@@ -166,6 +161,8 @@ class LoginViewController: UIViewController {
 		var isVersionRequestSuccess: Bool? = nil
 		var isStatusRequestSuccess: Bool? = nil
 		
+		var isAlreadyShowingError: Bool = false
+		
 		let onAllComplete: () -> Void = {
 			guard let login = isLoginSuccess,
 				  let version = isVersionRequestSuccess,
@@ -176,75 +173,149 @@ class LoginViewController: UIViewController {
 			let safeToLogin = login && version && status
 			
 			if safeToLogin {
+				ServiceHelper.shared.filterWhitelist()
 				self.hideLoading()
 				self.presentNodeListDashboard()
 			}
 		}
 		
-		doAllLogin(onComplete: { isSuccess in
-			isLoginSuccess = isSuccess
+		let onError: (String) -> Void = { [weak self] message in
+			guard !isAlreadyShowingError else {
+				return
+			}
+			
+			isAlreadyShowingError = true
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+		
+		doAllLogin(onComplete: {
+			isLoginSuccess = true
 			onAllComplete()
+		}, onError: { message in
+			isLoginSuccess = false
+			onError(message)
 		})
 		
-		getAllVersion { isSuccess in
-			isVersionRequestSuccess = isSuccess
+		getAllVersion(onComplete: {
+			isVersionRequestSuccess = true
 			onAllComplete()
-		}
+		}, onError: { message in
+			isVersionRequestSuccess = false
+			onError(message)
+		})
 		
-		getAllNodeStatus { isSuccess in
-			isStatusRequestSuccess = isSuccess
+		getAllNodeStatus(onComplete: {
+			isStatusRequestSuccess = true
 			onAllComplete()
-			
-		}
+		}, onError: { message in
+			isStatusRequestSuccess = false
+			onError(message)
+		})
 	}
 	
-	private func doAllLogin(onComplete: @escaping (Bool) -> Void) {
+	private func doAllLogin(onComplete: @escaping () -> Void,
+							onError: @escaping (String) -> Void) {
 		ServiceHelper.shared.loginEachNode {
 			ServiceHelper.shared.saveCredential()
-			onComplete(true)
-		} onError: { [weak self] (message) in
-			self?.hideLoading()
-			self?.showAlert(message: message)
-			onComplete(false)
-		}
+			onComplete()
+		 } onError: { (message) in
+			 onError(message)
+		 }
 	}
 	
-	private func getAllVersion(onComplete: @escaping (Bool) -> Void) {
+	private func getAllVersion(onComplete: @escaping () -> Void,
+							   onError: @escaping (String) -> Void ) {
 		ServiceHelper.shared.getAllVersions {
-			onComplete(true)
-		} onError: { [weak self] (message) in
-			self?.hideLoading()
-			self?.showAlert(message: message)
-			onComplete(false)
+			onComplete()
+		} onError: { (message) in
+			onError(message)
 		}
 	}
 	
-	private func getAllNodeStatus(onComplete: @escaping (Bool) -> Void) {
+	private func getAllNodeStatus(onComplete: @escaping () -> Void,
+								  onError: @escaping (String) -> Void) {
 		ServiceHelper.shared.fetchAllStatusNode {
-			onComplete(true)
-		} onError: { [weak self] (message) in
-			self?.hideLoading()
-			self?.showAlert(message: message)
-			onComplete(false)
+			onComplete()
+		} onError: { (message) in
+			onError(message)
 		}
 	}
 	
-	private func getSingleVersion() {
-		ServiceHelper.shared.getVersion { [weak self] in
-			self?.getSingleNodeStatus()
-		} onError: {[weak self] (message) in
+	private func handleSingleLogin() {
+		
+		var isLoginSuccess: Bool? = nil
+		var isVersionRequestSuccess: Bool? = nil
+		var isStatusRequestSuccess: Bool? = nil
+		
+		var isAlreadyShowingError: Bool = false
+		
+		let onAllComplete: () -> Void = {
+			guard let login = isLoginSuccess,
+				  let version = isVersionRequestSuccess,
+				  let status = isStatusRequestSuccess else {
+				return
+			}
+			
+			let safeToLogin = login && version && status
+			
+			if safeToLogin {
+				ServiceHelper.shared.filterWhitelist()
+				self.hideLoading()
+				self.presentNodeDashboard()
+			}
+		}
+		
+		let onError: (String) -> Void = { [weak self] message in
+			guard !isAlreadyShowingError else {
+				return
+			}
+			
+			isAlreadyShowingError = true
 			self?.hideLoading()
 			self?.showAlert(message: message)
 		}
+		
+		ServiceHelper.shared.loginNode(ip: nil, port: nil, completion: {
+			isLoginSuccess = true
+			onAllComplete()
+		}, onError: { (message) in
+			isLoginSuccess = false
+			onError(message)
+		})
+		
+		getSingleVersion(onComplete: {
+			isVersionRequestSuccess = true
+			onAllComplete()
+		}, onError: { message in
+			isVersionRequestSuccess = false
+			onError(message)
+		})
+		
+		getSingleNodeStatus(onComplete: {
+			isStatusRequestSuccess = true
+			onAllComplete()
+		}, onError: { message in
+			isStatusRequestSuccess = false
+			onError(message)
+		})
 	}
 	
-	private func getSingleNodeStatus() {
-		ServiceHelper.shared.fetchStatusData { [weak self] in
-			self?.hideLoading()
-			self?.presentNodeDashboard()
-		} onError: { [weak self] message in
-			self?.hideLoading()
-			self?.showAlert(message: message)
+	private func getSingleVersion(onComplete: @escaping () -> Void,
+								  onError: @escaping (String) -> Void ) {
+		ServiceHelper.shared.getVersion {
+			onComplete()
+		} onError: { (message) in
+			onError(message)
+		}
+	}
+	
+	private func getSingleNodeStatus(onComplete: @escaping () -> Void,
+									 onError: @escaping (String) -> Void ) {
+		ServiceHelper.shared.fetchStatusData {
+			onComplete()
+		} onError: { (message) in
+			onError(message)
 		}
 	}
 	

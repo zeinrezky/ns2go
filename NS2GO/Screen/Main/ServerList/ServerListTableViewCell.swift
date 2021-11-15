@@ -15,6 +15,7 @@ class ServerListTableViewCell: UITableViewCell {
 	@IBOutlet weak var iconRightArrow: UIImageView!
 	@IBOutlet weak var serverNameLabel: UILabel!
 	
+	var nodename: String = ""
 	
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +28,20 @@ class ServerListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 	
+	func configureCell(neighborhood: Neighborhood) {
+		self.nodename = neighborhood.sysName
+		serverNameLabel.text = neighborhood.sysName
+		serverNameLabel.textColor = .white
+		
+		containerView.backgroundColor = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1)
+		containerView.layer.shadowOpacity = 0
+		
+		iconRightArrow.image = nil
+	}
+	
 	func configureCell(node: NodeStatus) {
+		self.nodename = node.nodename ?? ""
+		containerView.layer.shadowOpacity = 0.1
 		serverNameLabel.text = node.nodename
 		
 		if node.indicator == .red {

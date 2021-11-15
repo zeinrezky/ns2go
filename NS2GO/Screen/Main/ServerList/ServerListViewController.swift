@@ -17,11 +17,17 @@ class ServerListViewController: UIViewController {
 	var nodeAlert: [Node] {
 		return serviceHelper.nodeAlert
 	}
+	
 	var nodeStatuses: [NodeStatus] {
 		return serviceHelper.nodeStatuses
 	}
+	
 	var versions: [Version] {
 		return serviceHelper.versions
+	}
+	
+	var neighborhoods: [Neighborhood] {
+		return serviceHelper.neighborhood
 	}
 	
 	private var rightBarButtonItem: UIBarButtonItem?
@@ -40,10 +46,6 @@ class ServerListViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
-		
-		if isFirstTimeLoad {
-			fetchData()
-		}
 		
 		isFirstTimeLoad = false
 		updateLastSyncLabel()
@@ -181,7 +183,10 @@ class ServerListViewController: UIViewController {
 extension ServerListViewController: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let nodeStatus = nodeStatuses[indexPath.item]
+		guard let cell = tableView.cellForRow(at: indexPath) as? ServerListTableViewCell,
+			  let nodeStatus = getNodeStatus(for: cell.nodename) else {
+			return
+		}
 		
 		let controller = NodeViewController()
 		
@@ -202,18 +207,46 @@ extension ServerListViewController: UITableViewDelegate {
 
 extension ServerListViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return nodeStatuses.count
+		return neighborhoods.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: ServerListTableViewCell.identifier) as? ServerListTableViewCell else {
 			return UITableViewCell()
 		}
+		let neighborhood = neighborhoods[indexPath.row]
 		
-		cell.configureCell(node: nodeStatuses[indexPath.item])
+		if let status = getNodeStatus(for: neighborhood.sysName) {
+			cell.configureCell(node: status)
+		} else {
+			cell.configureCell(neighborhood: neighborhood)
+		}
 		cell.selectionStyle = .none
 		
 		return cell
+	}
+	
+	func getNodeStatus(for nodename: String) -> NodeStatus? {
+		let versionName = versions.map({$0.systemname})
+		let alertName = nodeAlert.map { (alert) -> String in
+			var nodename = alert.nodename
+			if !nodename.starts(with: "\\") {
+				nodename = "\\\(alert.nodename)"
+			}
+			
+			return nodename
+		}
+		
+		guard versionName.contains(nodename),
+			  alertName.contains(nodename) else {
+			return nil
+		}
+		
+		guard let status = nodeStatuses.first(where: {$0.nodename == nodename}) else {
+			return nil
+		}
+		
+		return status
 	}
 }
 

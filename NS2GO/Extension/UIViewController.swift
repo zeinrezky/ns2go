@@ -10,6 +10,8 @@ import UIKit
 
 extension UIViewController {
 	
+	static var backButtonArea: UIButton?
+	
 	func setupDefaultNavigationBar() {
 		self.navigationController?.navigationBar.tintColor = UIColor(red: 117.0/255.0, green: 117.0/255.0, blue: 117.0/255.0, alpha: 1)
 		self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -19,6 +21,9 @@ extension UIViewController {
 		
 		if (self.navigationController?.viewControllers.count ?? 0) > 1 {
 			addDefaultBackButton()
+		} else {
+			UIViewController.backButtonArea?.removeFromSuperview()
+			UIViewController.backButtonArea = nil
 		}
 	}
 	
@@ -33,6 +38,18 @@ extension UIViewController {
 		let leftBarButtonItem = UIBarButtonItem(customView: button)
 		
 		self.navigationItem.leftBarButtonItem = leftBarButtonItem
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+			let backArea = UIButton()
+			let safeAreaTop = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
+			backArea.backgroundColor = .clear
+			backArea.widthAnchor.constraint(equalToConstant: 100).isActive = true
+			backArea.heightAnchor.constraint(equalToConstant: 60 + safeAreaTop).isActive = true
+			backArea.addTarget(self, action: #selector(self.back), for: .touchUpInside)
+			backArea.frame = CGRect(x: 0, y: 0, width: 100, height: 60 + safeAreaTop)
+			UIViewController.backButtonArea = backArea
+			self.navigationController?.view.addSubview(backArea)
+		}
 	}
 	
 	@objc private func back() {
