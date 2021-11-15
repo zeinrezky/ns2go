@@ -18,7 +18,23 @@ class ServerListViewController: UIViewController {
 		return serviceHelper.nodeAlert
 	}
 	var nodeStatuses: [NodeStatus] {
-		return serviceHelper.nodeStatuses
+		let versionName = serviceHelper.versions.map({$0.systemname})
+		let alertName = serviceHelper.nodeAlert.map { (alert) -> String in
+			var nodename = alert.nodename
+			if !nodename.starts(with: "\\") {
+				nodename = "\\\(alert.nodename)"
+			}
+			
+			return nodename
+		}
+		
+		let nodeStatuses = serviceHelper.nodeStatuses.filter { (node) -> Bool in
+			let isVersionExist = versionName.contains(node.nodename ?? "")
+			let isAlertExist = alertName.contains(node.nodename ?? "")
+			return isVersionExist && isAlertExist
+		}
+		
+		return nodeStatuses
 	}
 	var versions: [Version] {
 		return serviceHelper.versions
@@ -40,10 +56,6 @@ class ServerListViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupNavigationBar()
-		
-		if isFirstTimeLoad {
-			fetchData()
-		}
 		
 		isFirstTimeLoad = false
 		updateLastSyncLabel()
