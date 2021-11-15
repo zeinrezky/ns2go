@@ -145,8 +145,7 @@ class LoginViewController: UIViewController {
 	
 		ServiceHelper.shared.getNeighborhood {[weak self] (neighborhoods) in
 			if neighborhoods.count > 0 {
-				BaseRequest.shared.setupSession(with: neighborhoods)
-				self?.doAllLogin()
+				self?.handleNeighborhoodLogin(neighborhoods: neighborhoods)
 			} else {
 				ServiceHelper.shared.loginNode(ip: nil, port: nil) { [weak self] in
 					self?.getSingleVersion()
@@ -161,32 +160,72 @@ class LoginViewController: UIViewController {
 		}
 	}
 	
-	private func doAllLogin() {
-		ServiceHelper.shared.loginEachNode {[weak self] in
-			self?.getAllVersion()
+	private func handleNeighborhoodLogin(neighborhoods: [Neighborhood]) {
+		BaseRequest.shared.setupSession(with: neighborhoods)
+		var isLoginSuccess: Bool? = nil
+		var isVersionRequestSuccess: Bool? = nil
+		var isStatusRequestSuccess: Bool? = nil
+		
+		let onAllComplete: () -> Void = {
+			guard let login = isLoginSuccess,
+				  let version = isVersionRequestSuccess,
+				  let status = isStatusRequestSuccess else {
+				return
+			}
+			
+			let safeToLogin = login && version && status
+			
+			if safeToLogin {
+				self.hideLoading()
+				self.presentNodeListDashboard()
+			}
+		}
+		
+		doAllLogin(onComplete: { isSuccess in
+			isLoginSuccess = isSuccess
+			onAllComplete()
+		})
+		
+		getAllVersion { isSuccess in
+			isVersionRequestSuccess = isSuccess
+			onAllComplete()
+		}
+		
+		getAllNodeStatus { isSuccess in
+			isStatusRequestSuccess = isSuccess
+			onAllComplete()
+			
+		}
+	}
+	
+	private func doAllLogin(onComplete: @escaping (Bool) -> Void) {
+		ServiceHelper.shared.loginEachNode {
 			ServiceHelper.shared.saveCredential()
+			onComplete(true)
 		} onError: { [weak self] (message) in
 			self?.hideLoading()
 			self?.showAlert(message: message)
+			onComplete(false)
 		}
 	}
 	
-	private func getAllVersion() {
-		ServiceHelper.shared.getAllVersions { [weak self] in
-			self?.getAllNodeStatus()
+	private func getAllVersion(onComplete: @escaping (Bool) -> Void) {
+		ServiceHelper.shared.getAllVersions {
+			onComplete(true)
 		} onError: { [weak self] (message) in
 			self?.hideLoading()
 			self?.showAlert(message: message)
+			onComplete(false)
 		}
 	}
 	
-	private func getAllNodeStatus() {
-		ServiceHelper.shared.fetchAllStatusNode { [weak self] in
-			self?.hideLoading()
-			self?.presentNodeListDashboard()
+	private func getAllNodeStatus(onComplete: @escaping (Bool) -> Void) {
+		ServiceHelper.shared.fetchAllStatusNode {
+			onComplete(true)
 		} onError: { [weak self] (message) in
 			self?.hideLoading()
 			self?.showAlert(message: message)
+			onComplete(false)
 		}
 	}
 	
