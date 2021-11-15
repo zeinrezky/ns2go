@@ -90,7 +90,6 @@ class ServiceHelper {
 					}
 				}
 			}
-
 		}
 	}
 	
@@ -216,6 +215,7 @@ class ServiceHelper {
 			
 			return filteredNodename.contains(nodename)
 		})
+		self.nodeStatuses = nodeStatuses.filter({filteredNodename.contains($0.nodename ?? "")})
 	}
 	
 }
