@@ -15,7 +15,7 @@ class LoginService {
 			   port: String?,
 			   username: String,
 			   password: String,
-			   onComplete : @escaping([String: Any]?,Node) -> Void,
+			   onComplete : @escaping(Node) -> Void,
 			   onFailed : ((String) -> Void)?) {
 		
 		var baseUrl = BaseURL.shared.vpnBaseURL
@@ -43,9 +43,14 @@ class LoginService {
 			
 			let json = JSON(data)
 			let node = Node(json: json)
-			var dict = json.dictionaryObject
-			dict?["response_name"] = "Do Logon (Alert Limits)"
-			onComplete(dict, node)
+			
+			if let errorMessage = node.errorMessage,
+			   errorMessage == "48"{
+				onFailed?("Invalid Logon")
+				return
+			}
+			
+			onComplete(node)
 			
 		}) { (message) in
 			onFailed?(message)

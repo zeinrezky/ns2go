@@ -97,7 +97,7 @@ class ServiceHelper {
 				   port: String?,
 				   completion: @escaping () -> Void,
 				   onError: ((String) -> Void)?) {
-		loginService.login(ip: ip, port: port, username: username, password: password) { (response, nodeAlert) in
+		loginService.login(ip: ip, port: port, username: username, password: password) { (nodeAlert) in
 			self.nodeAlert.append(nodeAlert)
 			completion()
 		} onFailed: { (message) in

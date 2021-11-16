@@ -14,6 +14,7 @@ class Node {
 	let serialnumberError: Int
 	let sysnum: String
 	let command: String
+	let errorMessage: String?
 	let status: String
 	let tokencode: String
 	let tnsVersion: String
@@ -41,7 +42,7 @@ class Node {
 		processorcount = json["processorcount"].stringValue
 		wasap = json["wasap"].intValue
 		pathway = json["pathway"].intValue
-		
+		errorMessage = json["errormessage"].string
 		
 		var alerts: [AlertLimit] = []
 		for object in json["alertlimits"].arrayValue {
