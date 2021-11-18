@@ -33,7 +33,7 @@ class LoginService {
 		let parameter: [String: Any] = [
 			"requestor" : "WVP",
 			"command" : "DO_LOGON",
-			"LOGONINFO" : hexLogonInfo,
+			"LOGONINFO" : hexLogonInfo.uppercased(),
 			"lite" : 0
 		]
 		
@@ -47,6 +47,11 @@ class LoginService {
 			if let errorMessage = node.errorMessage,
 			   errorMessage == "48"{
 				onFailed?("Invalid Logon")
+				return
+			}
+		
+			if node.status == "ERROR" || node.alertlimits.count == 0 {
+				onFailed?(json["message"].string ?? "Failed to logon")
 				return
 			}
 			

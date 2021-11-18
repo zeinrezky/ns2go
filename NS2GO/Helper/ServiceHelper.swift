@@ -74,20 +74,28 @@ class ServiceHelper {
 		var waitResponseCount = neighborhood.count
 		var haveSuccess: Bool = false
 		for node in neighborhood {
-			loginNode(ip: node.ipAddress, port: node.port) {
+			loginNode(ip: node.ipAddress, port: node.port) { [weak self] in
 				waitResponseCount -= 1
 				haveSuccess = true
-				if waitResponseCount == 0 {
-					completion()
+				guard waitResponseCount == 0,
+					  let self = self else {
+					return
 				}
-			} onError: { (message) in
+				
+				self.nodeAlert = self.nodeAlert.filter({$0.alertlimits.count > 0})
+				completion()
+			} onError: {  [weak self] (message) in
 				waitResponseCount -= 1
-				if waitResponseCount == 0 {
-					if haveSuccess {
-						completion()
-					} else {
-						onError?(message)
-					}
+				guard waitResponseCount == 0,
+					  let self = self else {
+					return
+				}
+				
+				if haveSuccess {
+					self.nodeAlert = self.nodeAlert.filter({$0.alertlimits.count > 0})
+					completion()
+				} else {
+					onError?(message)
 				}
 			}
 		}
