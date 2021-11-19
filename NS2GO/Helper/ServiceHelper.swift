@@ -68,12 +68,21 @@ class ServiceHelper {
 		}
 	}
 	
-	func loginEachNode(completion: @escaping () -> Void,
+	func loginEachNode(shouldRemoveAll: Bool,
+					   completion: @escaping () -> Void,
 					   onError: ((String) -> Void)?) {
-		nodeAlert.removeAll()
+		if shouldRemoveAll {
+			nodeAlert.removeAll()
+		}
+		
 		var waitResponseCount = neighborhood.count
 		var haveSuccess: Bool = false
 		for node in neighborhood {
+			guard node.ipAddress != BaseURL.shared.vpnBaseAddress,
+				  node.port != BaseURL.shared.vpnBasePort else {
+				continue
+			}
+			
 			loginNode(ip: node.ipAddress, port: node.port) { [weak self] in
 				waitResponseCount -= 1
 				haveSuccess = true

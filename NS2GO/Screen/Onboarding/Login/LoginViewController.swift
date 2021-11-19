@@ -142,7 +142,16 @@ class LoginViewController: UIViewController {
 		ServiceHelper.shared.username = loginID
 		ServiceHelper.shared.password = password
 		self.view.endEditing(true)
+		
+		ServiceHelper.shared.loginNode(ip: nil, port: nil) { [weak self] in
+			self?.checkNeighborhood()
+		} onError: { [weak self] (message) in
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+	}
 	
+	private func checkNeighborhood() {
 		ServiceHelper.shared.getNeighborhood {[weak self] (neighborhoods) in
 			if neighborhoods.count > 0 {
 				self?.handleNeighborhoodLogin(neighborhoods: neighborhoods)
@@ -189,15 +198,17 @@ class LoginViewController: UIViewController {
 			self?.showAlert(message: message)
 		}
 		
-		doAllLogin(onComplete: {
+		ServiceHelper.shared.loginEachNode(shouldRemoveAll: false) {
+			
+			ServiceHelper.shared.saveCredential()
 			isLoginSuccess = true
 			onAllComplete()
-		}, onError: { message in
+		} onError: { (message) in
 			isLoginSuccess = false
 			onError(message)
-		})
+		}
 		
-		getAllVersion(onComplete: {
+		ServiceHelper.shared.getAllVersions(onComplete: {
 			isVersionRequestSuccess = true
 			onAllComplete()
 		}, onError: { message in
@@ -205,7 +216,7 @@ class LoginViewController: UIViewController {
 			onError(message)
 		})
 		
-		getAllNodeStatus(onComplete: {
+		ServiceHelper.shared.fetchAllStatusNode(onComplete: {
 			isStatusRequestSuccess = true
 			onAllComplete()
 		}, onError: { message in
@@ -214,50 +225,20 @@ class LoginViewController: UIViewController {
 		})
 	}
 	
-	private func doAllLogin(onComplete: @escaping () -> Void,
-							onError: @escaping (String) -> Void) {
-		ServiceHelper.shared.loginEachNode {
-			ServiceHelper.shared.saveCredential()
-			onComplete()
-		 } onError: { (message) in
-			 onError(message)
-		 }
-	}
-	
-	private func getAllVersion(onComplete: @escaping () -> Void,
-							   onError: @escaping (String) -> Void ) {
-		ServiceHelper.shared.getAllVersions {
-			onComplete()
-		} onError: { (message) in
-			onError(message)
-		}
-	}
-	
-	private func getAllNodeStatus(onComplete: @escaping () -> Void,
-								  onError: @escaping (String) -> Void) {
-		ServiceHelper.shared.fetchAllStatusNode {
-			onComplete()
-		} onError: { (message) in
-			onError(message)
-		}
-	}
-	
 	private func handleSingleLogin() {
 		
-		var isLoginSuccess: Bool? = nil
 		var isVersionRequestSuccess: Bool? = nil
 		var isStatusRequestSuccess: Bool? = nil
 		
 		var isAlreadyShowingError: Bool = false
 		
 		let onAllComplete: () -> Void = {
-			guard let login = isLoginSuccess,
-				  let version = isVersionRequestSuccess,
+			guard let version = isVersionRequestSuccess,
 				  let status = isStatusRequestSuccess else {
 				return
 			}
 			
-			let safeToLogin = login && version && status
+			let safeToLogin = version && status
 			
 			if safeToLogin {
 				ServiceHelper.shared.filterWhitelist()
@@ -276,45 +257,19 @@ class LoginViewController: UIViewController {
 			self?.showAlert(message: message)
 		}
 		
-		ServiceHelper.shared.loginNode(ip: nil, port: nil, completion: {
-			isLoginSuccess = true
-			onAllComplete()
-		}, onError: { (message) in
-			isLoginSuccess = false
-			onError(message)
-		})
-		
-		getSingleVersion(onComplete: {
+		ServiceHelper.shared.getVersion {
 			isVersionRequestSuccess = true
 			onAllComplete()
-		}, onError: { message in
+		} onError: { (message) in
 			isVersionRequestSuccess = false
 			onError(message)
-		})
+		}
 		
-		getSingleNodeStatus(onComplete: {
+		ServiceHelper.shared.fetchStatusData {
 			isStatusRequestSuccess = true
 			onAllComplete()
-		}, onError: { message in
+		} onError: { (message) in
 			isStatusRequestSuccess = false
-			onError(message)
-		})
-	}
-	
-	private func getSingleVersion(onComplete: @escaping () -> Void,
-								  onError: @escaping (String) -> Void ) {
-		ServiceHelper.shared.getVersion {
-			onComplete()
-		} onError: { (message) in
-			onError(message)
-		}
-	}
-	
-	private func getSingleNodeStatus(onComplete: @escaping () -> Void,
-									 onError: @escaping (String) -> Void ) {
-		ServiceHelper.shared.fetchStatusData {
-			onComplete()
-		} onError: { (message) in
 			onError(message)
 		}
 	}

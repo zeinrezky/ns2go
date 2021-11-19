@@ -50,7 +50,7 @@ class LoginService {
 				return
 			}
 		
-			if node.status == "ERROR" || node.alertlimits.count == 0 {
+			if node.status != "OK" || node.alertlimits.count == 0 {
 				onFailed?(json["message"].string ?? "Failed to logon")
 				return
 			}
