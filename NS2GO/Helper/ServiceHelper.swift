@@ -76,16 +76,15 @@ class ServiceHelper {
 		}
 		
 		var waitResponseCount = neighborhood.count
-		var haveSuccess: Bool = false
 		for node in neighborhood {
-			guard node.ipAddress != BaseURL.shared.vpnBaseAddress,
+			guard node.ipAddress != BaseURL.shared.vpnBaseAddress ||
 				  node.port != BaseURL.shared.vpnBasePort else {
+				waitResponseCount -= 1
 				continue
 			}
 			
 			loginNode(ip: node.ipAddress, port: node.port) { [weak self] in
 				waitResponseCount -= 1
-				haveSuccess = true
 				guard waitResponseCount == 0,
 					  let self = self else {
 					return
@@ -100,7 +99,7 @@ class ServiceHelper {
 					return
 				}
 				
-				if haveSuccess {
+				if self.nodeAlert.count > 0 {
 					self.nodeAlert = self.nodeAlert.filter({$0.alertlimits.count > 0})
 					completion()
 				} else {
@@ -136,26 +135,30 @@ class ServiceHelper {
 				onComplete: { [weak self] in
 					waitResponseCount -= 1
 					haveSuccess = true
-					if waitResponseCount == 0 {
-						self?.successCompletions.forEach { (completion) in
-							completion()
-						}
-						onComplete?()
+					guard waitResponseCount == 0 else {
+						return
 					}
+					
+					self?.successCompletions.forEach { (completion) in
+						completion()
+					}
+					onComplete?()
 			}, onError: { [weak self] message in
 				waitResponseCount -= 1
 				
-				if waitResponseCount == 0 {
-					if haveSuccess {
-						onComplete?()
-						self?.successCompletions.forEach { (completion) in
-							completion()
-						}
-					} else {
-						onError?(message)
-						self?.errorCompletions.forEach { (completion) in
-							completion(message)
-						}
+				guard waitResponseCount == 0 else {
+					return
+				}
+				
+				if haveSuccess {
+					onComplete?()
+					self?.successCompletions.forEach { (completion) in
+						completion()
+					}
+				} else {
+					onError?(message)
+					self?.errorCompletions.forEach { (completion) in
+						completion(message)
 					}
 				}
 			})

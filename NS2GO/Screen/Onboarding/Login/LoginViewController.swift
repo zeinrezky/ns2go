@@ -172,6 +172,16 @@ class LoginViewController: UIViewController {
 		
 		var isAlreadyShowingError: Bool = false
 		
+		let onError: (String) -> Void = { [weak self] message in
+			guard !isAlreadyShowingError else {
+				return
+			}
+			
+			isAlreadyShowingError = true
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+		
 		let onAllComplete: () -> Void = {
 			guard let login = isLoginSuccess,
 				  let version = isVersionRequestSuccess,
@@ -185,17 +195,9 @@ class LoginViewController: UIViewController {
 				ServiceHelper.shared.filterWhitelist()
 				self.hideLoading()
 				self.presentNodeListDashboard()
+			} else {
+				onError("Something went wrong")
 			}
-		}
-		
-		let onError: (String) -> Void = { [weak self] message in
-			guard !isAlreadyShowingError else {
-				return
-			}
-			
-			isAlreadyShowingError = true
-			self?.hideLoading()
-			self?.showAlert(message: message)
 		}
 		
 		ServiceHelper.shared.loginEachNode(shouldRemoveAll: false) {
@@ -232,6 +234,16 @@ class LoginViewController: UIViewController {
 		
 		var isAlreadyShowingError: Bool = false
 		
+		let onError: (String) -> Void = { [weak self] message in
+			guard !isAlreadyShowingError else {
+				return
+			}
+			
+			isAlreadyShowingError = true
+			self?.hideLoading()
+			self?.showAlert(message: message)
+		}
+		
 		let onAllComplete: () -> Void = {
 			guard let version = isVersionRequestSuccess,
 				  let status = isStatusRequestSuccess else {
@@ -244,17 +256,9 @@ class LoginViewController: UIViewController {
 				ServiceHelper.shared.filterWhitelist()
 				self.hideLoading()
 				self.presentNodeDashboard()
+			} else {
+				onError("Something went wrong")
 			}
-		}
-		
-		let onError: (String) -> Void = { [weak self] message in
-			guard !isAlreadyShowingError else {
-				return
-			}
-			
-			isAlreadyShowingError = true
-			self?.hideLoading()
-			self?.showAlert(message: message)
 		}
 		
 		ServiceHelper.shared.getVersion {
