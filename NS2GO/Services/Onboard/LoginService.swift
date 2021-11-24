@@ -27,8 +27,8 @@ class LoginService {
 		
 		let url = baseUrl + "homepage"
 		
-		let logonInfo = password + ";" + username
-		let hexLogonInfo = "V" + logonInfo.hexString()
+		let logonInfo = "0000" + password + ";" + username
+		let hexLogonInfo = "V0X" + logonInfo.hexString()
 		
 		let parameter: [String: Any] = [
 			"requestor" : "WVP",

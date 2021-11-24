@@ -61,8 +61,9 @@ class ServiceHelper {
 	func getNeighborhood(_ completion: @escaping ([Neighborhood]) -> Void,
 						 onError: ((String) -> Void)?) {
 		loginService.getNeighborhood { [weak self] (response) in
-			self?.neighborhood = response.neighborhoods
-			completion(response.neighborhoods)
+			let filtered = response.neighborhoods.filter({!$0.ipAddress.isEmpty})
+			self?.neighborhood = filtered
+			completion(filtered)
 		} onFailed: { (message) in
 			onError?(message)
 		}
