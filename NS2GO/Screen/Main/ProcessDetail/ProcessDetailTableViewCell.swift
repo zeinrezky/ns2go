@@ -44,9 +44,16 @@ class ProcessDetailTableViewCell: UITableViewCell {
 		cpuLabel.text = "\(cpuInstance.cpuDisplayName)"
 		pinLabel.text = "\(cpuInstance.pin ?? 0)"
 		
-		let busyIndicator = cpuInstance.getBusyIndicator(alertLimits: alertLimits)
-		let qlengthIndicator = cpuInstance.getQLenghtIndicator(alertLimits: alertLimits)
-		setupViewFor(busy: busyIndicator, qlength: qlengthIndicator)
+		let indicator = cpuInstance.getIndicator(alertLimits: alertLimits)
+		
+		var entity: AlertLimit.EntityType? = nil
+		
+		if alertLimits.count == 1, let alert = alertLimits.first {
+			entity = alert.entity
+		}
+		
+		setupViewFor(indicator: indicator, for: entity)
+
 	}
 	
 	private func setupViewFor(indicator: StatusIndicator, for entity: AlertLimit.EntityType?) {

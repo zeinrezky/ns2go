@@ -36,9 +36,15 @@ class StatusDetailTableViewCell: UITableViewCell {
 		busyLabel.text = "\(numberFormatter.string(from: NSNumber(value: diskInstance.dp2Busy ?? 0)) ?? "")%"
 		lengthLabel.text = "\(numberFormatter.string(from: NSNumber(value: diskInstance.queueLength ?? 0)) ?? "")"
 		
-		let busyIndicator = diskInstance.getBusyIndicator(alertLimits: alertLimits)
-		let qlengthIndicator = diskInstance.getQLengthIndicator(alertLimits: alertLimits)
-		setupViewFor(busy: busyIndicator, qlength: qlengthIndicator)
+		let indicator = diskInstance.getIndicator(alertLimits: alertLimits)
+		
+		var entity: AlertLimit.EntityType? = nil
+		
+		if alertLimits.count == 1, let alert = alertLimits.first {
+			entity = alert.entity
+		}
+		
+		setupViewFor(indicator: indicator, for: entity)
 	}
 	
 	func configureCell(alertLimits: [AlertLimit], cpuInstance: CPUProcessInstance) {
