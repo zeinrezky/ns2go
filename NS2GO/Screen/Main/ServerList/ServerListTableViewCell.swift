@@ -14,6 +14,8 @@ class ServerListTableViewCell: UITableViewCell {
 	@IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var iconRightArrow: UIImageView!
 	@IBOutlet weak var serverNameLabel: UILabel!
+	@IBOutlet weak var noAccessLabel: UILabel!
+	
 	
 	var nodename: String = ""
 	
@@ -31,18 +33,23 @@ class ServerListTableViewCell: UITableViewCell {
 	func configureCell(neighborhood: Neighborhood) {
 		self.nodename = neighborhood.sysName
 		serverNameLabel.text = neighborhood.sysName
-		serverNameLabel.textColor = .white
 		
-		containerView.backgroundColor = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1)
+		containerView.backgroundColor = UIColor.white
 		containerView.layer.shadowOpacity = 0
+		containerView.layer.borderColor = UIColor.lightGray.cgColor
+		containerView.layer.borderWidth = 1
 		
-		iconRightArrow.image = nil
+		iconRightArrow.isHidden = true
+		noAccessLabel.isHidden = false
 	}
 	
 	func configureCell(node: NodeStatus) {
 		self.nodename = node.nodename ?? ""
 		containerView.layer.shadowOpacity = 0.1
+		containerView.layer.borderWidth = 0
 		serverNameLabel.text = node.nodename
+		iconRightArrow.isHidden = false
+		noAccessLabel.isHidden = true
 		
 		if node.indicator == .red {
 			containerView.backgroundColor = AppColor.darkRed

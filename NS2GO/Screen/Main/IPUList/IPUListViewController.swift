@@ -133,7 +133,7 @@ class IPUListViewController: UIViewController {
 		}
 		
 		controller.navTitle = "IPU \(ipu.displayName) Busiest Processes"
-		controller.alert = self.alert
+		controller.alert = self.alert.filter({$0.object == .Process})
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.navigationController?.pushViewController(controller, animated: true)
@@ -160,6 +160,7 @@ extension IPUListViewController: UITableViewDataSource {
 		}
 		
 		let instance: IPU = ipus[indexPath.section]
+		let ipuAlert = alert.filter({$0.object == .IPU})
 		
 		cell.configureCell(alertLimits: alert, instance: instance)
 		cell.selectionStyle = .none

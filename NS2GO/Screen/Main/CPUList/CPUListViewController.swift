@@ -93,7 +93,7 @@ class CPUListViewController: UIViewController {
 			})
 		}
 		
-		controller.alert = self.alert
+		controller.alert = self.alert.filter({$0.object == .Process})
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.navigationController?.pushViewController(controller, animated: true)
@@ -120,7 +120,9 @@ extension CPUListViewController: UITableViewDataSource {
 			return UITableViewCell()
 		}
 		
-		cell.configureCell(alertLimits: alert, instance: instance)
+		let cpuAlert = alert.filter({$0.object == .CPU})
+		
+		cell.configureCell(alertLimits: cpuAlert, instance: instance)
 		cell.selectionStyle = .none
 		
 		return cell

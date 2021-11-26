@@ -22,28 +22,38 @@
                         <rect key="frame" x="40" y="0.0" width="370" height="90"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/MAINNODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEU-YB-50z">
-                                <rect key="frame" x="40" y="34.5" width="278" height="21"/>
+                                <rect key="frame" x="40" y="34.5" width="101.5" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="dHJ-Fv-xhr">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibS-kw-WyA">
                                 <rect key="frame" x="330" y="35" width="20" height="20"/>
-                                <color key="tintColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="dHJ-Fv-xhr" secondAttribute="height" id="OCe-fE-MBY"/>
-                                    <constraint firstAttribute="width" constant="20" id="isC-Te-bw9"/>
-                                </constraints>
-                            </imageView>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqy-QB-eSd">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <color key="textColor" red="0.62745098039215685" green="0.62352941176470589" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="dHJ-Fv-xhr">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <color key="tintColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dHJ-Fv-xhr" secondAttribute="height" id="OCe-fE-MBY"/>
+                                            <constraint firstAttribute="width" constant="20" id="isC-Te-bw9"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZEU-YB-50z" firstAttribute="centerY" secondItem="kwz-DV-DCV" secondAttribute="centerY" id="2In-HF-cAI"/>
-                            <constraint firstItem="dHJ-Fv-xhr" firstAttribute="leading" secondItem="ZEU-YB-50z" secondAttribute="trailing" constant="12" id="EAV-UO-O6K"/>
                             <constraint firstAttribute="height" constant="90" id="Fl2-Lj-JsN"/>
+                            <constraint firstItem="ibS-kw-WyA" firstAttribute="centerY" secondItem="kwz-DV-DCV" secondAttribute="centerY" id="PIS-nm-OJL"/>
+                            <constraint firstAttribute="trailing" secondItem="ibS-kw-WyA" secondAttribute="trailing" constant="20" id="d5n-VW-tJ4"/>
                             <constraint firstItem="ZEU-YB-50z" firstAttribute="leading" secondItem="kwz-DV-DCV" secondAttribute="leading" constant="40" id="fHx-qN-X0y"/>
-                            <constraint firstItem="dHJ-Fv-xhr" firstAttribute="centerY" secondItem="kwz-DV-DCV" secondAttribute="centerY" id="fn7-EH-2Sm"/>
-                            <constraint firstAttribute="trailing" secondItem="dHJ-Fv-xhr" secondAttribute="trailing" constant="20" id="mUs-Vj-iAn"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -61,6 +71,7 @@
                 <outlet property="backgroundView" destination="H2p-sc-9uM" id="AAV-2a-Jb7"/>
                 <outlet property="containerView" destination="kwz-DV-DCV" id="fL0-1P-EWN"/>
                 <outlet property="iconRightArrow" destination="dHJ-Fv-xhr" id="Lef-la-MdS"/>
+                <outlet property="noAccessLabel" destination="vqy-QB-eSd" id="iIs-Xe-bAB"/>
                 <outlet property="serverNameLabel" destination="ZEU-YB-50z" id="ko0-E9-OGR"/>
             </connections>
             <point key="canvasLocation" x="-60.869565217391312" y="101.45089285714285"/>
