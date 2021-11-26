@@ -250,9 +250,10 @@ class NodeViewController: UIViewController {
 		controller.busy = busy
 		controller.qLength = qLength
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
-			return limit.object == .CPU &&
+			return (limit.object == .CPU ||
+						limit.object == .Process) &&
 				(limit.entity == .busy ||
-				limit.entity == .queueLength)
+					limit.entity == .queueLength)
 		}) {
 			controller.alert = alertLimit
 		}
@@ -268,9 +269,10 @@ class NodeViewController: UIViewController {
 		controller.busy = busy
 		controller.qLength = qLength
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
-			return limit.object == .IPU &&
+			return (limit.object == .IPU ||
+						limit.object == .Process) &&
 				(limit.entity == .busy ||
-				limit.entity == .queueLength)
+					limit.entity == .queueLength)
 		}) {
 			controller.alert = alertLimit
 		}
