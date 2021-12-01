@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-NS2GO/Pods-NS2GO-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/CountryPicker/CountryPicker.framework
+${BUILT_PRODUCTS_DIR}/KBNumberPad/KBNumberPad.framework
 ${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
