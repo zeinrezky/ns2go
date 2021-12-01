@@ -102,7 +102,9 @@ class CPUListViewController: UIViewController {
 }
 
 extension CPUListViewController: UITableViewDelegate {
-	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		pushToDetail(section: indexPath.section)
+	}
 }
 
 extension CPUListViewController: UITableViewDataSource {

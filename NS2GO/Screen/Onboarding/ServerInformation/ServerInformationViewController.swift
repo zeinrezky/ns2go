@@ -7,6 +7,7 @@
 
 import UIKit
 import NetworkExtension
+import KBNumberPad
 
 class ServerInformationViewController: UIViewController {
 	
@@ -76,13 +77,16 @@ class ServerInformationViewController: UIViewController {
 		saveButton.layer.cornerRadius = 4
 		setupTextFieldContanier()
 		ipAddressTextField.addDoneButtonKeyboard()
-		portTextField.addDoneButtonKeyboard()
 		
 		ipAddressTextField.text = BaseURL.shared.vpnBaseAddress
 		portTextField.text = BaseURL.shared.vpnBasePort
 		
 		ipAddressTextField.delegate = self
 		portTextField.delegate = self
+		
+		let numberPad = KBNumberPad()
+		numberPad.delegate = self
+		portTextField.inputView = numberPad
 	}
 	
 	private func setupNavigationBar() {
@@ -125,6 +129,24 @@ class ServerInformationViewController: UIViewController {
 				window.rootViewController = navVC
 			}
 		}		
+	}
+}
+
+extension ServerInformationViewController: KBNumberPadDelegate {
+	func onNumberClicked(numberPad: KBNumberPad, number: Int) {
+		portTextField.text = (portTextField.text ?? "") + "\(number)"
+	}
+	
+	func onDoneClicked(numberPad: KBNumberPad) {
+		view.endEditing(true)
+	}
+	
+	func onClearClicked(numberPad: KBNumberPad) {
+		let text = portTextField.text ?? ""
+		guard text.count > 0 else {
+			return
+		}
+		portTextField.text = String(text.prefix(text.count - 1))
 	}
 }
 

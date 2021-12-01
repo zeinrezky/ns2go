@@ -10,5 +10,6 @@ pod 'Alamofire', '5.0.0'
 pod 'SwiftyJSON'
 pod 'CountryPicker'
 pod 'KeychainAccess'
+pod 'KBNumberPad', '~> 1.0.1'
 
 end

@@ -142,7 +142,9 @@ class IPUListViewController: UIViewController {
 }
 
 extension IPUListViewController: UITableViewDelegate {
-
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		pushToDetail(section: indexPath.section)
+	}
 }
 
 extension IPUListViewController: UITableViewDataSource {

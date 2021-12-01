@@ -1,12 +1,14 @@
 PODS:
   - Alamofire (5.0.0)
   - CountryPicker (1.3)
+  - KBNumberPad (1.0.1)
   - KeychainAccess (4.2.2)
   - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (= 5.0.0)
   - CountryPicker
+  - KBNumberPad (~> 1.0.1)
   - KeychainAccess
   - SwiftyJSON
 
@@ -14,15 +16,17 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - CountryPicker
+    - KBNumberPad
     - KeychainAccess
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 58ff2bfb8daaacaa233d5c36e37b10a5248f59b1
   CountryPicker: 664c26411d833bb068c80beb15dc951eadde2911
+  KBNumberPad: 37f5ebdd1065575afbe2a95c5a2084562d3f28d8
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: c3d552ada3688312eea2159ea123c1d42e612984
+PODFILE CHECKSUM: a593b3bb2be5432c81157c9e05fa78c45244f079
 
 COCOAPODS: 1.11.2
