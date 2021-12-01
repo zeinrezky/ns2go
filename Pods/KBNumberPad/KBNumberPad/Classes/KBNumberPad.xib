@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -36,7 +35,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pda-Pk-GKq">
                             <rect key="frame" x="0.0" y="0.0" width="423" height="70.5"/>
                             <subviews>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54j-dM-5ze">
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54j-dM-5ze">
                                     <rect key="frame" x="0.0" y="0.0" width="140.5" height="70.5"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -47,7 +46,7 @@
                                         <action selector="onNumberClicked:" destination="-1" eventType="touchDown" id="XBM-Zr-jev"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvb-02-Lsm">
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvb-02-Lsm">
                                     <rect key="frame" x="141.5" y="0.0" width="140" height="70.5"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -58,7 +57,7 @@
                                         <action selector="onNumberClicked:" destination="-1" eventType="touchDown" id="Sdt-5R-3Q4"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNr-Eq-P34">
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNr-Eq-P34">
                                     <rect key="frame" x="282.5" y="0.0" width="140.5" height="70.5"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -75,7 +74,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="hGk-dl-OSK">
                             <rect key="frame" x="0.0" y="71.5" width="423" height="70"/>
                             <subviews>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0g-lA-S4l">
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0g-lA-S4l">
                                     <rect key="frame" x="0.0" y="0.0" width="140.5" height="70"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -86,7 +85,7 @@
                                         <action selector="onNumberClicked:" destination="-1" eventType="touchDown" id="rnt-xb-B1Z"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1e-W0-ig7">
+                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1e-W0-ig7">
                                     <rect key="frame" x="141.5" y="0.0" width="140" height="70"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -97,7 +96,7 @@
                                         <action selector="onNumberClicked:" destination="-1" eventType="touchDown" id="GxN-Sf-786"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYk-GJ-8Yo">
+                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYk-GJ-8Yo">
                                     <rect key="frame" x="282.5" y="0.0" width="140.5" height="70"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -114,7 +113,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="gRe-OE-ecg">
                             <rect key="frame" x="0.0" y="142.5" width="423" height="70.5"/>
                             <subviews>
-                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZd-3K-p6B">
+                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZd-3K-p6B">
                                     <rect key="frame" x="0.0" y="0.0" width="140.5" height="70.5"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -125,7 +124,7 @@
                                         <action selector="onNumberClicked:" destination="-1" eventType="touchDown" id="cwc-kg-bMJ"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doL-Wz-x76">
+                                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doL-Wz-x76">
                                     <rect key="frame" x="141.5" y="0.0" width="140" height="70.5"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -136,7 +135,7 @@
                                         <action selector="onNumberClicked:" destination="-1" eventType="touchDown" id="zJm-JM-diV"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83x-NG-ifX">
+                                <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83x-NG-ifX">
                                     <rect key="frame" x="282.5" y="0.0" width="140.5" height="70.5"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -153,18 +152,17 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="WTZ-qZ-wuH">
                             <rect key="frame" x="0.0" y="214" width="423" height="70"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Dn-gJ-EXR">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVh-hr-Ule">
                                     <rect key="frame" x="0.0" y="0.0" width="140.5" height="70"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" title="Done"/>
+                                    <state key="normal" image="ClearSymbolIcon"/>
                                     <connections>
-                                        <action selector="onDoneClicked:" destination="-1" eventType="touchDown" id="W9d-85-MX2"/>
+                                        <action selector="onClearClicked:" destination="-1" eventType="touchDown" id="B50-V2-0mx"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpW-FY-IsA">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpW-FY-IsA">
                                     <rect key="frame" x="141.5" y="0.0" width="140" height="70"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
@@ -175,14 +173,15 @@
                                         <action selector="onNumberClicked:" destination="-1" eventType="touchDown" id="etk-a8-YIF"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVh-hr-Ule">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Dn-gJ-EXR">
                                     <rect key="frame" x="282.5" y="0.0" width="140.5" height="70"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" image="ClearSymbolIcon"/>
+                                    <state key="normal" title="Next"/>
                                     <connections>
-                                        <action selector="onClearClicked:" destination="-1" eventType="touchDown" id="B50-V2-0mx"/>
+                                        <action selector="onDoneClicked:" destination="-1" eventType="touchDown" id="W9d-85-MX2"/>
                                     </connections>
                                 </button>
                             </subviews>
