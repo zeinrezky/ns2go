@@ -76,7 +76,6 @@ class ServerInformationViewController: UIViewController {
 	private func setupView() {
 		saveButton.layer.cornerRadius = 4
 		setupTextFieldContanier()
-		ipAddressTextField.addDoneButtonKeyboard()
 		
 		ipAddressTextField.text = BaseURL.shared.vpnBaseAddress
 		portTextField.text = BaseURL.shared.vpnBasePort
@@ -84,9 +83,15 @@ class ServerInformationViewController: UIViewController {
 		ipAddressTextField.delegate = self
 		portTextField.delegate = self
 		
-		let numberPad = KBNumberPad()
-		numberPad.delegate = self
-		portTextField.inputView = numberPad
+//		let numberPad = KBNumberPad()
+//		numberPad.delegate = self
+//		portTextField.inputView = numberPad
+		portTextField.keyboardType = .asciiCapableNumberPad
+		portTextField.returnKeyType = .go
+		
+		if UIDevice.current.userInterfaceIdiom == .phone {
+			portTextField.addDoneButtonKeyboard()
+		}
 	}
 	
 	private func setupNavigationBar() {
@@ -162,5 +167,14 @@ extension ServerInformationViewController: UITextFieldDelegate {
 		}
 		
 		return true
+	}
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		guard textField == portTextField,
+			  UIDevice.current.userInterfaceIdiom == .pad else {
+			return true
+		}
+		
+		return string.rangeOfCharacter(from: NSCharacterSet.decimalDigits.inverted) == nil
 	}
 }

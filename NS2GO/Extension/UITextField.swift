@@ -24,6 +24,16 @@ extension UITextField {
 		toolbar.items = items
         self.inputAccessoryView = toolbar
     }
+	
+	func addCustomButton(custom: UIBarButtonItem){
+		let toolbar = UIToolbar()
+		toolbar.sizeToFit()
+		let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+		var items = [flexible, custom]
+		
+		toolbar.items = items
+		self.inputAccessoryView = toolbar
+	}
     
     @objc func didTapDone(){
         self.endEditing(true)

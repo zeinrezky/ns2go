@@ -38,8 +38,6 @@ class LoginViewController: UIViewController {
 		
 		setupTextFieldContanier()
 		loginButton.layer.cornerRadius = 4
-		loginIDTextField.addDoneButtonKeyboard()
-		passwordTextField.addDoneButtonKeyboard()
 		loginIDTextField.delegate = self
 		passwordTextField.delegate = self
 		addGradientLayer()

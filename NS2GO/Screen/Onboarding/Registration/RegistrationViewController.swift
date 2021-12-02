@@ -135,12 +135,7 @@ class RegistrationViewController: UIViewController {
 	}
 	
 	private func setupTextField() {
-		firstNameTextField.addDoneButtonKeyboard()
-		lastNameTextField.addDoneButtonKeyboard()
-		emailTextField.addDoneButtonKeyboard()
-		companyTextField.addDoneButtonKeyboard()
 		countryTextField.addDoneButtonKeyboard()
-		cityTextField.addDoneButtonKeyboard()
 		
 		countryPicker.delegate = self
 		countryPicker.selectedCountryName = "United States"
@@ -150,7 +145,7 @@ class RegistrationViewController: UIViewController {
 		
 		emailTextField.keyboardType = .emailAddress
 		let comButtonItem = UIBarButtonItem(title: ".com", style: .plain, target: self, action: #selector(didTapDotCom))
-		emailTextField.addDoneButtonKeyboard(additionalButton: comButtonItem)
+		emailTextField.addCustomButton(custom: comButtonItem)
 	}
 	
 	@objc private func didTapDotCom() {
@@ -286,9 +281,9 @@ extension RegistrationViewController: UITextFieldDelegate {
 		case emailTextField:
 			companyTextField.becomeFirstResponder()
 		case companyTextField:
-			countryTextField.becomeFirstResponder()
+			cityTextField.becomeFirstResponder()
 		case cityTextField:
-			self.view.endEditing(true)
+			countryTextField.becomeFirstResponder()
 		default:
 			break
 		}
