@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,14 +30,14 @@
             <rect key="frame" x="0.0" y="0.0" width="423" height="285"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="4cX-Cr-x05">
-                    <rect key="frame" x="0.0" y="1" width="423" height="284"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4cX-Cr-x05">
+                    <rect key="frame" x="5" y="5" width="413" height="275"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pda-Pk-GKq">
-                            <rect key="frame" x="0.0" y="0.0" width="423" height="70.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Pda-Pk-GKq">
+                            <rect key="frame" x="0.0" y="0.0" width="413" height="65"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54j-dM-5ze">
-                                    <rect key="frame" x="0.0" y="0.0" width="140.5" height="70.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="134.5" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -47,7 +48,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvb-02-Lsm">
-                                    <rect key="frame" x="141.5" y="0.0" width="140" height="70.5"/>
+                                    <rect key="frame" x="139.5" y="0.0" width="134" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -58,7 +59,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNr-Eq-P34">
-                                    <rect key="frame" x="282.5" y="0.0" width="140.5" height="70.5"/>
+                                    <rect key="frame" x="278.5" y="0.0" width="134.5" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -69,13 +70,13 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="hGk-dl-OSK">
-                            <rect key="frame" x="0.0" y="71.5" width="423" height="70"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hGk-dl-OSK">
+                            <rect key="frame" x="0.0" y="70" width="413" height="65"/>
                             <subviews>
                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0g-lA-S4l">
-                                    <rect key="frame" x="0.0" y="0.0" width="140.5" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="134.5" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -86,7 +87,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1e-W0-ig7">
-                                    <rect key="frame" x="141.5" y="0.0" width="140" height="70"/>
+                                    <rect key="frame" x="139.5" y="0.0" width="134" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -97,7 +98,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYk-GJ-8Yo">
-                                    <rect key="frame" x="282.5" y="0.0" width="140.5" height="70"/>
+                                    <rect key="frame" x="278.5" y="0.0" width="134.5" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -108,13 +109,13 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="gRe-OE-ecg">
-                            <rect key="frame" x="0.0" y="142.5" width="423" height="70.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gRe-OE-ecg">
+                            <rect key="frame" x="0.0" y="140" width="413" height="65"/>
                             <subviews>
                                 <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZd-3K-p6B">
-                                    <rect key="frame" x="0.0" y="0.0" width="140.5" height="70.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="134.5" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -125,7 +126,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doL-Wz-x76">
-                                    <rect key="frame" x="141.5" y="0.0" width="140" height="70.5"/>
+                                    <rect key="frame" x="139.5" y="0.0" width="134" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -136,7 +137,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83x-NG-ifX">
-                                    <rect key="frame" x="282.5" y="0.0" width="140.5" height="70.5"/>
+                                    <rect key="frame" x="278.5" y="0.0" width="134.5" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -147,14 +148,14 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="WTZ-qZ-wuH">
-                            <rect key="frame" x="0.0" y="214" width="423" height="70"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="WTZ-qZ-wuH">
+                            <rect key="frame" x="0.0" y="210" width="413" height="65"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVh-hr-Ule">
-                                    <rect key="frame" x="0.0" y="0.0" width="140.5" height="70"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="134.5" height="65"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <gestureRecognizers/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <state key="normal" image="ClearSymbolIcon"/>
@@ -163,7 +164,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpW-FY-IsA">
-                                    <rect key="frame" x="141.5" y="0.0" width="140" height="70"/>
+                                    <rect key="frame" x="139.5" y="0.0" width="134" height="65"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
@@ -174,29 +175,31 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Dn-gJ-EXR">
-                                    <rect key="frame" x="282.5" y="0.0" width="140.5" height="70"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <rect key="frame" x="278.5" y="0.0" width="134.5" height="65"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" title="Next"/>
+                                    <state key="normal" title="go">
+                                        <color key="titleColor" systemColor="systemBlueColor"/>
+                                    </state>
                                     <connections>
                                         <action selector="onDoneClicked:" destination="-1" eventType="touchDown" id="W9d-85-MX2"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.83921568627450982" green="0.84705882352941175" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="4cX-Cr-x05" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WRX-k8-TwI"/>
-                <constraint firstAttribute="trailing" secondItem="4cX-Cr-x05" secondAttribute="trailing" id="l9G-bg-vjq"/>
-                <constraint firstItem="4cX-Cr-x05" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="rrp-tZ-UUe"/>
-                <constraint firstAttribute="bottom" secondItem="4cX-Cr-x05" secondAttribute="bottom" id="xPr-nt-uhn"/>
+                <constraint firstItem="4cX-Cr-x05" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="WRX-k8-TwI"/>
+                <constraint firstAttribute="trailing" secondItem="4cX-Cr-x05" secondAttribute="trailing" constant="5" id="l9G-bg-vjq"/>
+                <constraint firstItem="4cX-Cr-x05" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="rrp-tZ-UUe"/>
+                <constraint firstAttribute="bottom" secondItem="4cX-Cr-x05" secondAttribute="bottom" constant="5" id="xPr-nt-uhn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -205,5 +208,8 @@
     </objects>
     <resources>
         <image name="ClearSymbolIcon" width="32" height="32"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

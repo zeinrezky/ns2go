@@ -63,6 +63,8 @@ public class KBNumberPad: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
+		
+		numberButtons.forEach({$0.layer.cornerRadius = 6})
     }
     
     fileprivate func loadIcon(name: String) -> UIImage? {
