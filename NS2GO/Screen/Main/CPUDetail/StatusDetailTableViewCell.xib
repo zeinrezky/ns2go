@@ -68,13 +68,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="8fU-Mh-RIW" secondAttribute="trailing" constant="30" id="3Bd-gV-gvr">
-                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                        <variation key="heightClass=regular-widthClass=regular" constant="110"/>
                     </constraint>
                     <constraint firstItem="j5g-IK-DDA" firstAttribute="trailing" secondItem="8fU-Mh-RIW" secondAttribute="trailing" id="Ybj-ie-z8i"/>
                     <constraint firstItem="8fU-Mh-RIW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="agP-Ba-Gr4"/>
                     <constraint firstItem="j5g-IK-DDA" firstAttribute="leading" secondItem="8fU-Mh-RIW" secondAttribute="leading" id="fWp-mF-QF5"/>
                     <constraint firstItem="8fU-Mh-RIW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="lnh-sH-cQ1">
-                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                        <variation key="heightClass=regular-widthClass=regular" constant="110"/>
                     </constraint>
                     <constraint firstAttribute="bottom" secondItem="8fU-Mh-RIW" secondAttribute="bottom" id="mrj-Iu-ncZ"/>
                 </constraints>

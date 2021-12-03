@@ -334,7 +334,7 @@ extension LoginViewController: UITextFieldDelegate {
 		case loginIDTextField:
 			passwordTextField.becomeFirstResponder()
 		case passwordTextField:
-			view.endEditing(true)
+			login()
 		default:
 			break
 		}

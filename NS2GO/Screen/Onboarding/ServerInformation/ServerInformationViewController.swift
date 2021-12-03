@@ -20,24 +20,7 @@ class ServerInformationViewController: UIViewController {
 	@IBOutlet weak var saveButton: UIButton!
 	
 	@IBAction func saveButtonTapped(_ sender: Any) {
-		
-		guard let ipAddress = ipAddressTextField.text, !ipAddress.isEmpty else {
-			showAlert(message: "IP Address server cannot be empty")
-			return
-		}
-		
-		guard let port = portTextField.text, !port.isEmpty else {
-			showAlert(message: "Port cannot be empty")
-			return
-		}
-		
-		let ipAddressFormatted = ipAddress.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "")
-		
-		BaseURL.shared.vpnBaseAddress = ipAddressFormatted
-		BaseURL.shared.vpnBasePort = port
-		BaseURL.shared.saveIPServer()
-		BaseRequest.shared.setupSession()
-		redirectToLogin()
+		saveServerInformation()
 	}
 	
 	override func viewDidLoad() {
@@ -135,6 +118,27 @@ class ServerInformationViewController: UIViewController {
 			}
 		}		
 	}
+	
+	private func saveServerInformation() {
+		
+		guard let ipAddress = ipAddressTextField.text, !ipAddress.isEmpty else {
+			showAlert(message: "IP Address server cannot be empty")
+			return
+		}
+		
+		guard let port = portTextField.text, !port.isEmpty else {
+			showAlert(message: "Port cannot be empty")
+			return
+		}
+		
+		let ipAddressFormatted = ipAddress.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "")
+		
+		BaseURL.shared.vpnBaseAddress = ipAddressFormatted
+		BaseURL.shared.vpnBasePort = port
+		BaseURL.shared.saveIPServer()
+		BaseRequest.shared.setupSession()
+		redirectToLogin()
+	}
 }
 
 extension ServerInformationViewController: KBNumberPadDelegate {
@@ -143,7 +147,7 @@ extension ServerInformationViewController: KBNumberPadDelegate {
 	}
 	
 	func onDoneClicked(numberPad: KBNumberPad) {
-		view.endEditing(true)
+		saveServerInformation()
 	}
 	
 	func onClearClicked(numberPad: KBNumberPad) {
@@ -161,7 +165,7 @@ extension ServerInformationViewController: UITextFieldDelegate {
 		case ipAddressTextField:
 			portTextField.becomeFirstResponder()
 		case portTextField:
-			view.endEditing(true)
+			saveServerInformation()
 		default:
 			break
 		}

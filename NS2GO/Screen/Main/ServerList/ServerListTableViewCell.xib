@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwz-DV-DCV">
-                        <rect key="frame" x="20" y="0.0" width="410" height="90"/>
+                        <rect key="frame" x="40" y="0.0" width="370" height="90"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/MAINNODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEU-YB-50z">
                                 <rect key="frame" x="20" y="34.5" width="101.5" height="21"/>
@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibS-kw-WyA">
-                                <rect key="frame" x="370" y="35" width="20" height="20"/>
+                                <rect key="frame" x="330" y="35" width="20" height="20"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqy-QB-eSd">
                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
@@ -60,8 +60,8 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="kwz-DV-DCV" secondAttribute="bottom" constant="30" id="824-qr-F5N"/>
-                    <constraint firstItem="kwz-DV-DCV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="HAY-2F-kvB"/>
-                    <constraint firstAttribute="trailing" secondItem="kwz-DV-DCV" secondAttribute="trailing" constant="20" id="WNG-tx-WtJ"/>
+                    <constraint firstItem="kwz-DV-DCV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="HAY-2F-kvB"/>
+                    <constraint firstAttribute="trailing" secondItem="kwz-DV-DCV" secondAttribute="trailing" constant="40" id="WNG-tx-WtJ"/>
                     <constraint firstItem="kwz-DV-DCV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="g9s-Un-c45"/>
                 </constraints>
             </tableViewCellContentView>
