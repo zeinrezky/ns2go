@@ -25,8 +25,6 @@ class ServiceHelper {
 	var successCompletions: [(() -> Void)] = []
 	var errorCompletions: [((String) -> Void)] = []
 	
-	private let service = DashboardService()
-	private let loginService = LoginService()
 	
 	var nodeConnectionStatuses: [String: NodeConnectionStatus] = [:] {
 		didSet {
@@ -37,6 +35,10 @@ class ServiceHelper {
 	
 	var onChangeConnectionStatus: (() -> Void)?
 	
+	private var whitelistedNeighborhood: [Neighborhood] = []
+	
+	private let service = DashboardService()
+	private let loginService = LoginService()
 	init() {
 		
 	}
@@ -91,8 +93,8 @@ class ServiceHelper {
 			nodeAlert.removeAll()
 		}
 		
-		var waitResponseCount = neighborhood.count
-		for node in neighborhood {
+		var waitResponseCount = whitelistedNeighborhood.count
+		for node in whitelistedNeighborhood {
 			guard node.ipAddress != BaseURL.shared.vpnBaseAddress ||
 				  node.port != BaseURL.shared.vpnBasePort else {
 				waitResponseCount -= 1
@@ -145,10 +147,10 @@ class ServiceHelper {
 							onError: ((String) -> Void)?) {
 		self.nodeStatuses.removeAll()
 		
-		var waitResponseCount = neighborhood.count
+		var waitResponseCount = whitelistedNeighborhood.count
 		var haveSuccess: Bool = false
 		
-		for node in neighborhood {
+		for node in whitelistedNeighborhood {
 			fetchStatusData(
 				ip: node.ipAddress,
 				port: node.port,
@@ -256,7 +258,7 @@ class ServiceHelper {
 		
 		let whitelistedNode = neighborhood.filter({filteredNodename.contains($0.sysName)})
 		let blacklistedNode = neighborhood.filter({!filteredNodename.contains($0.sysName)})
-		self.neighborhood = whitelistedNode
+		self.whitelistedNeighborhood = whitelistedNode
 		self.nodeAlert = nodeAlert.filter({ (node) -> Bool in
 			var nodename = node.nodename
 			if !nodename.starts(with: "\\") {

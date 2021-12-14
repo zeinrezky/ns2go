@@ -226,7 +226,7 @@ class LoginViewController: UIViewController {
 			if safeToLogin {
 				self.presentNodeListDashboard()
 			} else {
-				onError("Something went wrong")
+				onError("Failed to Logon")
 			}
 		}
 		
@@ -265,7 +265,6 @@ class LoginViewController: UIViewController {
 			let safeToLogin = version && status
 			
 			if safeToLogin {
-				ServiceHelper.shared.filterWhitelist()
 				self.hideLoading()
 				self.presentNodeDashboard()
 			} else {
