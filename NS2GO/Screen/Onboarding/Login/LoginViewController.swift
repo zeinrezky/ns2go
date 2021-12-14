@@ -176,7 +176,6 @@ class LoginViewController: UIViewController {
 			}
 			
 			isAlreadyShowingError = true
-			self?.hideLoading()
 			self?.showAlert(message: message)
 		}
 		
@@ -187,41 +186,56 @@ class LoginViewController: UIViewController {
 				return
 			}
 			
+			for nodeStatus in ServiceHelper.shared.nodeConnectionStatuses {
+				if nodeStatus.value == .connecting {
+					ServiceHelper.shared.nodeConnectionStatuses[nodeStatus.key] = .success
+				}
+			}
+		}
+		
+		let onSuccessGetVersion: () -> Void = {
+			ServiceHelper.shared.loginEachNode(shouldRemoveAll: false) {
+				ServiceHelper.shared.saveCredential()
+				isLoginSuccess = true
+				onAllComplete()
+			} onError: { (message) in
+				isLoginSuccess = false
+//				onError(message)
+			}
+			
+			ServiceHelper.shared.fetchAllStatusNode(onComplete: {
+				isStatusRequestSuccess = true
+				onAllComplete()
+			}, onError: { message in
+				isStatusRequestSuccess = false
+//				onError(message)
+			})
+		}
+		
+		self.hideLoading()
+		
+		self.presentPopupConnectionStatus {
+			guard let login = isLoginSuccess,
+				  let version = isVersionRequestSuccess,
+				  let status = isStatusRequestSuccess else {
+				return
+			}
+			
 			let safeToLogin = login && version && status
 			
 			if safeToLogin {
-				ServiceHelper.shared.filterWhitelist()
-				self.hideLoading()
 				self.presentNodeListDashboard()
 			} else {
 				onError("Something went wrong")
 			}
 		}
 		
-		ServiceHelper.shared.loginEachNode(shouldRemoveAll: false) {
-			
-			ServiceHelper.shared.saveCredential()
-			isLoginSuccess = true
-			onAllComplete()
-		} onError: { (message) in
-			isLoginSuccess = false
-			onError(message)
-		}
-		
 		ServiceHelper.shared.getAllVersions(onComplete: {
 			isVersionRequestSuccess = true
-			onAllComplete()
+			onSuccessGetVersion()
 		}, onError: { message in
 			isVersionRequestSuccess = false
-			onError(message)
-		})
-		
-		ServiceHelper.shared.fetchAllStatusNode(onComplete: {
-			isStatusRequestSuccess = true
-			onAllComplete()
-		}, onError: { message in
-			isStatusRequestSuccess = false
-			onError(message)
+//			onError(message)
 		})
 	}
 	
@@ -315,6 +329,14 @@ class LoginViewController: UIViewController {
 		}
 		
 		window.rootViewController = navVC
+	}
+	
+	private func presentPopupConnectionStatus(onContinue: (() -> Void)?) {
+		let controller = PopupNodeConnectionStatusViewController()
+		controller.modalTransitionStyle = .crossDissolve
+		controller.modalPresentationStyle = .overFullScreen
+		controller.onTapContinue = onContinue
+		self.present(controller, animated: true, completion: nil)
 	}
 }
 

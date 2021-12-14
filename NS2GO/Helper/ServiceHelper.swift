@@ -28,6 +28,15 @@ class ServiceHelper {
 	private let service = DashboardService()
 	private let loginService = LoginService()
 	
+	var nodeConnectionStatuses: [String: NodeConnectionStatus] = [:] {
+		didSet {
+			onChangeConnectionStatus?()
+		}
+	}
+	
+	
+	var onChangeConnectionStatus: (() -> Void)?
+	
 	init() {
 		
 	}
@@ -63,6 +72,12 @@ class ServiceHelper {
 		loginService.getNeighborhood { [weak self] (response) in
 			let filtered = response.neighborhoods.filter({!$0.ipAddress.isEmpty})
 			self?.neighborhood = filtered
+			var nodeStatusDict: [String: NodeConnectionStatus] = [:]
+			for node in filtered {
+				nodeStatusDict[node.sysName] = .connecting
+			}
+			
+			self?.nodeConnectionStatuses = nodeStatusDict
 			completion(filtered)
 		} onFailed: { (message) in
 			onError?(message)
@@ -118,6 +133,10 @@ class ServiceHelper {
 			self.nodeAlert.append(nodeAlert)
 			completion()
 		} onFailed: { (message) in
+			if let ip = ip, let port = port {
+				let nodeStatus: NodeConnectionStatus = message.contains("timed out") ? .timeOut : .failed
+				self.updateNodeConnection(ip: ip, port: port, status: nodeStatus)
+			}
 			onError?(message)
 		}
 	}
@@ -182,6 +201,10 @@ class ServiceHelper {
 				
 				onComplete?()
 			}, onFailed: { message in
+				if let ip = ip, let port = port {
+					let nodeStatus: NodeConnectionStatus = message.contains("timed out") ? .timeOut : .failed
+					self.updateNodeConnection(ip: ip, port: port, status: nodeStatus)
+				}
 				onError?(message)
 			})
 	}
@@ -219,6 +242,10 @@ class ServiceHelper {
 			self.versions.append(version)
 			onComplete()
 		} onFailed: { (message) in
+			if let ip = ip, let port = port {
+				let nodeStatus: NodeConnectionStatus = message.contains("timed out") ? .timeOut : .failed
+				self.updateNodeConnection(ip: ip, port: port, status: nodeStatus)
+			}
 			onError?(message)
 		}
 	}
@@ -227,7 +254,9 @@ class ServiceHelper {
 		let filteredVersion = versions.filter({whitelistVersion.contains($0.version)})
 		let filteredNodename = filteredVersion.map({$0.systemname})
 		
-		self.neighborhood = neighborhood.filter({filteredNodename.contains($0.sysName)})
+		let whitelistedNode = neighborhood.filter({filteredNodename.contains($0.sysName)})
+		let blacklistedNode = neighborhood.filter({!filteredNodename.contains($0.sysName)})
+		self.neighborhood = whitelistedNode
 		self.nodeAlert = nodeAlert.filter({ (node) -> Bool in
 			var nodename = node.nodename
 			if !nodename.starts(with: "\\") {
@@ -237,6 +266,31 @@ class ServiceHelper {
 			return filteredNodename.contains(nodename)
 		})
 		self.nodeStatuses = nodeStatuses.filter({filteredNodename.contains($0.nodename ?? "")})
+		
+		for node in blacklistedNode {
+			guard nodeConnectionStatuses.keys.contains(node.sysName),
+				  nodeConnectionStatuses[node.sysName] == .connecting else {
+				continue
+			}
+			
+			nodeConnectionStatuses[node.sysName] = .blacklist
+		}
 	}
 	
+	private func updateNodeConnection(ip: String, port: String, status: NodeConnectionStatus) {
+		guard let node = neighborhood.first(where: {$0.ipAddress == ip && $0.port == port}),
+			  nodeConnectionStatuses[node.sysName] == .connecting else {
+			return
+		}
+		
+		nodeConnectionStatuses[node.sysName] = status
+	}
+}
+
+enum NodeConnectionStatus: String {
+	case connecting = "Connecting"
+	case timeOut = "Timed Out"
+	case failed = "Failed"
+	case blacklist = "Unsupported Version"
+	case success = "Success"
 }

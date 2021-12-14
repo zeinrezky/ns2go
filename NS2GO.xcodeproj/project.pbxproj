@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		669E09F927683C6B00B104FB /* PopupNodeConnectionStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E09F727683C6B00B104FB /* PopupNodeConnectionStatusViewController.swift */; };
+		669E09FA27683C6B00B104FB /* PopupNodeConnectionStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669E09F827683C6B00B104FB /* PopupNodeConnectionStatusViewController.xib */; };
+		669E09FD27683D8400B104FB /* PopupNodeConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E09FB27683D8400B104FB /* PopupNodeConnectionCell.swift */; };
+		669E09FE27683D8400B104FB /* PopupNodeConnectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669E09FC27683D8400B104FB /* PopupNodeConnectionCell.xib */; };
 		ABEA9034903337B482825645 /* Pods_NS2GO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981314274B5968299146F88F /* Pods_NS2GO.framework */; };
 		DB084EBA2723AE190060606A /* AlertCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB084EB82723AE190060606A /* AlertCriteriaViewController.swift */; };
 		DB084EBB2723AE190060606A /* AlertCriteriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB084EB92723AE190060606A /* AlertCriteriaViewController.xib */; };
@@ -113,6 +117,10 @@
 
 /* Begin PBXFileReference section */
 		15D2A2135945290C4A035723 /* Pods-NS2GO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NS2GO.debug.xcconfig"; path = "Target Support Files/Pods-NS2GO/Pods-NS2GO.debug.xcconfig"; sourceTree = "<group>"; };
+		669E09F727683C6B00B104FB /* PopupNodeConnectionStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNodeConnectionStatusViewController.swift; sourceTree = "<group>"; };
+		669E09F827683C6B00B104FB /* PopupNodeConnectionStatusViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupNodeConnectionStatusViewController.xib; sourceTree = "<group>"; };
+		669E09FB27683D8400B104FB /* PopupNodeConnectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNodeConnectionCell.swift; sourceTree = "<group>"; };
+		669E09FC27683D8400B104FB /* PopupNodeConnectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupNodeConnectionCell.xib; sourceTree = "<group>"; };
 		981314274B5968299146F88F /* Pods_NS2GO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NS2GO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB084EB82723AE190060606A /* AlertCriteriaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCriteriaViewController.swift; sourceTree = "<group>"; };
 		DB084EB92723AE190060606A /* AlertCriteriaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertCriteriaViewController.xib; sourceTree = "<group>"; };
@@ -227,6 +235,17 @@
 				DB609A54271ADCCC00E125C7 /* NetworkExtension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		669E09F627683C5200B104FB /* PopupNodeConnectionStatus */ = {
+			isa = PBXGroup;
+			children = (
+				669E09F727683C6B00B104FB /* PopupNodeConnectionStatusViewController.swift */,
+				669E09F827683C6B00B104FB /* PopupNodeConnectionStatusViewController.xib */,
+				669E09FB27683D8400B104FB /* PopupNodeConnectionCell.swift */,
+				669E09FC27683D8400B104FB /* PopupNodeConnectionCell.xib */,
+			);
+			path = PopupNodeConnectionStatus;
 			sourceTree = "<group>";
 		};
 		C61E5D2C43904D0B4282B8EB /* Pods */ = {
@@ -428,6 +447,7 @@
 		DBC7AAB927127F32002EB696 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				669E09F627683C5200B104FB /* PopupNodeConnectionStatus */,
 				DBC7AAC1271284F8002EB696 /* ServerInformation */,
 				DBC7AABA27127F3D002EB696 /* ActivationSuccess */,
 				DBC7AAB227127CCF002EB696 /* OTPVerification */,
@@ -677,11 +697,13 @@
 				DBBC027D2711E4B40033D364 /* RegistrationViewController.xib in Resources */,
 				DB3495282728455A00CD99A9 /* PopupNodeMenuViewController.xib in Resources */,
 				DBC7AAF827147B07002EB696 /* CPUListViewController.xib in Resources */,
+				669E09FA27683C6B00B104FB /* PopupNodeConnectionStatusViewController.xib in Resources */,
 				DBC7AAE42713212B002EB696 /* NodeTableViewCell.xib in Resources */,
 				DB32C3A82722723700A592E5 /* ResponseDetailViewController.xib in Resources */,
 				DBBC026D2711E3AF0033D364 /* LaunchScreen.storyboard in Resources */,
 				DB609B26271E912000E125C7 /* ProcessDetailTableViewCell.xib in Resources */,
 				DBC7AAFD27147B7D002EB696 /* StatusListTableViewCell.xib in Resources */,
+				669E09FE27683D8400B104FB /* PopupNodeConnectionCell.xib in Resources */,
 				DBC7AB1827148AE3002EB696 /* ProcessListViewController.xib in Resources */,
 				DBC7AB1227148A40002EB696 /* DiskListViewController.xib in Resources */,
 				DBC7AADE2713189F002EB696 /* ServerListTableViewCell.xib in Resources */,
@@ -754,6 +776,7 @@
 				DBBC027C2711E4B40033D364 /* RegistrationViewController.swift in Sources */,
 				DBA4A3D52719CBB800BA4427 /* LoadingIndicator.swift in Sources */,
 				DB609A72271BC36800E125C7 /* AlertLimit.swift in Sources */,
+				669E09FD27683D8400B104FB /* PopupNodeConnectionCell.swift in Sources */,
 				DBA4A3B52719ACB800BA4427 /* UITextField.swift in Sources */,
 				DB609A80271C5E8000E125C7 /* BaseInstance.swift in Sources */,
 				DB609A97271C6E9A00E125C7 /* DashboardService.swift in Sources */,
@@ -798,6 +821,7 @@
 				DB609A75271BCA2D00E125C7 /* NS2GOConstant.swift in Sources */,
 				DBC7AB1127148A40002EB696 /* DiskListViewController.swift in Sources */,
 				DBC7AAC42712850A002EB696 /* ServerInformationViewController.swift in Sources */,
+				669E09F927683C6B00B104FB /* PopupNodeConnectionStatusViewController.swift in Sources */,
 				DB32C3A72722723700A592E5 /* ResponseDetailViewController.swift in Sources */,
 				DBC7AAB527127D77002EB696 /* OTPVerificationViewController.swift in Sources */,
 			);
