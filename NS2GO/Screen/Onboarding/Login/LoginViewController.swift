@@ -226,7 +226,7 @@ class LoginViewController: UIViewController {
 			if safeToLogin {
 				self.presentNodeListDashboard()
 			} else {
-				onError("Something went wrong")
+				onError("Failed to Logon")
 			}
 		}
 		
