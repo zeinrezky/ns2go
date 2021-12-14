@@ -20,8 +20,8 @@ class BaseRequest {
 	
 	func setupSession() {
 		let configuration = URLSessionConfiguration.default
-		configuration.timeoutIntervalForResource = 30
-		configuration.timeoutIntervalForRequest = 30
+		configuration.timeoutIntervalForResource = 10
+		configuration.timeoutIntervalForRequest = 10
 		let serverTrustPolicies: [String: ServerTrustEvaluating] = [
 			BaseURL.shared.vpnBaseURL: DisabledEvaluator(),
 			(BaseURL.shared.vpnBaseAddress ?? ""): DisabledEvaluator()
@@ -38,8 +38,8 @@ class BaseRequest {
 	
 	func setupSession(with neighborhood: [Neighborhood]) {
 		let configuration = URLSessionConfiguration.default
-		configuration.timeoutIntervalForResource = 30
-		configuration.timeoutIntervalForRequest = 30
+		configuration.timeoutIntervalForResource = 10
+		configuration.timeoutIntervalForRequest = 10
 		var serverTrustPolicies: [String: ServerTrustEvaluating] = [
 			BaseURL.shared.vpnBaseURL: DisabledEvaluator(),
 			(BaseURL.shared.vpnBaseAddress ?? ""): DisabledEvaluator()
@@ -82,8 +82,8 @@ class BaseRequest {
 		if let encodedString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed),
 			let url = URL(string: encodedString) {
 			
-			AF.session.configuration.timeoutIntervalForRequest = 30
-			AF.session.configuration.timeoutIntervalForResource = 30
+			AF.session.configuration.timeoutIntervalForRequest = 10
+			AF.session.configuration.timeoutIntervalForResource = 10
 			
 			AF.request(
 				url,

@@ -13,7 +13,7 @@ class BaseURL {
 	static let shared = BaseURL()
 	
 	let tncURL = "https://www.idelji.com/privacy-policy/"
-	let guestBaseURL = "https://studio.hpremoteanalyst.com/api/ns2go/"
+	let guestBaseURL = "https://studio.remoteanalyst.com/api/ns2go/"
 	var vpnBaseURL: String{
 		return "https://\(vpnBaseAddress ?? ""):\(vpnBasePort ?? "")/"
 	}
