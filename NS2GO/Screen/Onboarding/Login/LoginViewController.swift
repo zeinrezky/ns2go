@@ -265,7 +265,6 @@ class LoginViewController: UIViewController {
 			let safeToLogin = version && status
 			
 			if safeToLogin {
-				ServiceHelper.shared.filterWhitelist()
 				self.hideLoading()
 				self.presentNodeDashboard()
 			} else {

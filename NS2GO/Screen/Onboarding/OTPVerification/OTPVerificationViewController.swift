@@ -18,7 +18,7 @@ class OTPVerificationViewController: UIViewController {
 	@IBOutlet weak var continueButton: UIButton!
 	@IBOutlet weak var resentCodeButton: UIButton!
 	@IBOutlet weak var lbExpiredCode: UILabel!
-	
+	@IBOutlet weak var lbUserRegistered: UILabel!
 	
 	private var otpTextFields: [OTPTextField] = []
 	private let request = RegisterService()
@@ -45,6 +45,7 @@ class OTPVerificationViewController: UIViewController {
         super.viewDidLoad()
 		setupTextFields()
 		continueButton.layer.cornerRadius = 4
+		lbUserRegistered.isHidden = !willResentCode
 		
 		if willResentCode {
 			resentCode()
