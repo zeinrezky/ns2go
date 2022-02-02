@@ -23,6 +23,11 @@ class PopupNodeConnectionStatusViewController: UIViewController {
 		return nodeConnectionStatuses.map({$0.key})
 	}
 	
+	@IBAction func didTapClose(_ sender: Any) {
+		self.dismiss(animated: true, completion: nil)
+		BaseRequest.shared.cancelAllRequest()
+	}
+	
 	private var isCanContinue: Bool = false {
 		didSet {
 			let disableColor = UIColor.lightGray.withAlphaComponent(0.5)

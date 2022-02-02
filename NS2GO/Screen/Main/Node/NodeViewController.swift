@@ -249,6 +249,7 @@ class NodeViewController: UIViewController {
 		controller.cpu = cpu
 		controller.busy = busy
 		controller.qLength = qLength
+		controller.nodename = nodeStatus?.nodename
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return (limit.object == .CPU ||
 						limit.object == .Process) &&
@@ -268,6 +269,7 @@ class NodeViewController: UIViewController {
 		controller.cpu = cpu
 		controller.busy = busy
 		controller.qLength = qLength
+		controller.nodename = nodeStatus?.nodename
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return (limit.object == .IPU ||
 						limit.object == .Process) &&
@@ -285,6 +287,7 @@ class NodeViewController: UIViewController {
 		let qLength = nodeStatus?.monitors.first(where: {$0.category == .DiskQueueLength})
 		controller.busy = busy
 		controller.qLength = qLength
+		controller.nodename = nodeStatus?.nodename
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return limit.object == .Disk &&
 				(limit.entity == .busy ||
@@ -301,6 +304,7 @@ class NodeViewController: UIViewController {
 		let qLength = nodeStatus?.monitors.first(where: {$0.category == .QueueLength})
 		controller.busy = busy
 		controller.qLength = qLength
+		controller.nodename = nodeStatus?.nodename
 		if let alertLimit = nodeAlert?.alertlimits.filter({ (limit) -> Bool in
 			return limit.object == .Process &&
 				(limit.entity == .busy ||
