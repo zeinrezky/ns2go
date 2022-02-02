@@ -15,6 +15,7 @@ class IPUListViewController: UIViewController {
 	var cpu: ObjectMonitored?
 	var busy: ObjectMonitored?
 	var qLength: ObjectMonitored?
+	var nodename: String?
 	
 	var alert: [AlertLimit] = []
 	
@@ -40,7 +41,7 @@ class IPUListViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "IPU"
+		self.title = (nodename ?? "").isEmpty ? "IPU" : "\(nodename ?? ""): IPU"
 	}
 	
 	private func setupTableView() {
@@ -132,7 +133,8 @@ class IPUListViewController: UIViewController {
 			}
 		}
 		
-		controller.navTitle = "IPU \(ipu.displayName) Busiest Processes"
+		let nodenameString = (nodename ?? "").isEmpty ? "" : "\(nodename ?? ""): "
+		controller.navTitle = "\(nodenameString)IPU \(ipu.displayName) Busiest Processes"
 		controller.alert = self.alert.filter({$0.object == .Process})
 		
 		DispatchQueue.main.async { [weak self] in

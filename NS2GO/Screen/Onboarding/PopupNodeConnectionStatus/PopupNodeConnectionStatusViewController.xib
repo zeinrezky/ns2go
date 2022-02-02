@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,17 +28,17 @@
                     <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0u-e3-Kfe">
-                    <rect key="frame" x="40" y="383" width="334" height="140"/>
+                    <rect key="frame" x="40" y="367" width="334" height="172"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Qf-Ii-hoH">
-                            <rect key="frame" x="0.0" y="12" width="334" height="60"/>
+                            <rect key="frame" x="0.0" y="44" width="334" height="60"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="DDw-CF-csj"/>
                             </constraints>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcy-f4-GNW">
-                            <rect key="frame" x="12" y="84" width="310" height="44"/>
+                            <rect key="frame" x="12" y="116" width="310" height="44"/>
                             <color key="backgroundColor" red="0.29411764705882354" green="0.44705882352941173" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="t91-21-pEv"/>
@@ -51,14 +51,29 @@
                                 <action selector="didTapContinue:" destination="-1" eventType="touchUpInside" id="vNr-Iv-YL4"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPd-rA-qwg">
+                            <rect key="frame" x="300" y="4" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="QcW-eW-Qs3"/>
+                                <constraint firstAttribute="width" secondItem="NPd-rA-qwg" secondAttribute="height" id="S9v-EA-d9A"/>
+                            </constraints>
+                            <color key="tintColor" red="0.39696329829999999" green="0.5267081857" blue="0.81571823359999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="xmark" catalog="system"/>
+                            <connections>
+                                <action selector="didTapClose:" destination="-1" eventType="touchUpInside" id="Zym-9T-2Qk"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="mcy-f4-GNW" firstAttribute="leading" secondItem="x0u-e3-Kfe" secondAttribute="leading" constant="12" id="16H-mb-hMj"/>
                         <constraint firstItem="2Qf-Ii-hoH" firstAttribute="leading" secondItem="x0u-e3-Kfe" secondAttribute="leading" id="5y9-hG-yoj"/>
-                        <constraint firstItem="2Qf-Ii-hoH" firstAttribute="top" secondItem="x0u-e3-Kfe" secondAttribute="top" constant="12" id="A8T-Qq-yMZ"/>
+                        <constraint firstItem="2Qf-Ii-hoH" firstAttribute="top" secondItem="x0u-e3-Kfe" secondAttribute="top" constant="44" id="A8T-Qq-yMZ"/>
                         <constraint firstAttribute="trailing" secondItem="mcy-f4-GNW" secondAttribute="trailing" constant="12" id="I1G-Qc-Ekf"/>
+                        <constraint firstItem="NPd-rA-qwg" firstAttribute="top" secondItem="x0u-e3-Kfe" secondAttribute="top" constant="4" id="PVM-6z-G3C"/>
                         <constraint firstAttribute="trailing" secondItem="2Qf-Ii-hoH" secondAttribute="trailing" id="gm9-sP-zz5"/>
+                        <constraint firstAttribute="trailing" secondItem="NPd-rA-qwg" secondAttribute="trailing" constant="4" id="i9l-RR-kGC"/>
                         <constraint firstAttribute="bottom" secondItem="mcy-f4-GNW" secondAttribute="bottom" constant="12" id="jF9-x9-imk"/>
                         <constraint firstItem="mcy-f4-GNW" firstAttribute="top" secondItem="2Qf-Ii-hoH" secondAttribute="bottom" constant="12" id="qir-bF-o4l"/>
                     </constraints>
@@ -83,6 +98,7 @@
         </view>
     </objects>
     <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

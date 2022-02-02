@@ -13,6 +13,7 @@ class DiskListViewController: UIViewController {
 	
 	var busy: ObjectMonitored?
 	var qLength: ObjectMonitored?
+	var nodename: String?
 	
 	var alert: [AlertLimit] = []
 	
@@ -31,7 +32,7 @@ class DiskListViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "DISK"
+		self.title = (nodename ?? "").isEmpty ? "DISK" : "\(nodename ?? ""): DISK"
 	}
 	
 	private func setupTableView() {

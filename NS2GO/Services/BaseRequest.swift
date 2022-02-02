@@ -18,6 +18,12 @@ class BaseRequest {
 		setupSession()
 	}
 	
+	func cancelAllRequest() {
+		session.session.getAllTasks { task in
+			task.forEach({$0.cancel()})
+		}
+	}
+	
 	func setupSession() {
 		let configuration = URLSessionConfiguration.default
 		configuration.timeoutIntervalForResource = 10

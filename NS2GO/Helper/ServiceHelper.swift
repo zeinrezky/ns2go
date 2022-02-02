@@ -96,10 +96,13 @@ class ServiceHelper {
 		var waitResponseCount = whitelistedNeighborhood.count
 		for node in whitelistedNeighborhood {
 			guard node.ipAddress != BaseURL.shared.vpnBaseAddress ||
-				  node.port != BaseURL.shared.vpnBasePort else {
-				waitResponseCount -= 1
-				continue
-			}
+					node.port != BaseURL.shared.vpnBasePort else {
+						waitResponseCount -= 1
+						if waitResponseCount == 0 {
+							completion()
+						}
+						continue
+					}
 			
 			loginNode(ip: node.ipAddress, port: node.port) { [weak self] in
 				waitResponseCount -= 1

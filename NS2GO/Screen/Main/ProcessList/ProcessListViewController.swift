@@ -13,6 +13,7 @@ class ProcessListViewController: UIViewController {
 	
 	var busy: ObjectMonitored?
 	var qLength: ObjectMonitored?
+	var nodename: String?
 	
 	var alert: [AlertLimit] = []
 	
@@ -31,7 +32,7 @@ class ProcessListViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "PROCESS"
+		self.title = (nodename ?? "").isEmpty ? "PROCESS" : "\(nodename ?? ""): PROCESS"
 	}
 	
 	private func setupTableView() {

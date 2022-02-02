@@ -14,6 +14,7 @@ class CPUListViewController: UIViewController {
 	var cpu: ObjectMonitored?
 	var busy: ObjectMonitored?
 	var qLength: ObjectMonitored?
+	var nodename: String?
 	
 	var alert: [AlertLimit] = []
 	
@@ -29,7 +30,7 @@ class CPUListViewController: UIViewController {
  
 	private func setupNavigationBar() {
 		self.setupDefaultNavigationBar()
-		self.title = "CPU"
+		self.title = (nodename ?? "").isEmpty ? "CPU" : "\(nodename ?? ""): CPU"
 	}
 	
 	private func setupTableView() {
@@ -83,7 +84,8 @@ class CPUListViewController: UIViewController {
 		let cpuName = cpu?.instance[section].name ?? ""
 		
 		if let cpu = cpu?.instance[section] as? CPU {
-			controller.navTitle = "CPU \(cpu.displayName) Busiest Processes"
+			let nodenameString = (nodename ?? "").isEmpty ? "" : "\(nodename ?? ""): "
+			controller.navTitle = "\(nodenameString)CPU \(cpu.displayName) Busiest Processes"
 		}
 		
 		if let instances = busy?.instance as? [CPUProcessInstance] {
