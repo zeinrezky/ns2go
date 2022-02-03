@@ -50,8 +50,9 @@ class DiskListViewController: UIViewController {
 extension DiskListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let controller = DiskDetailViewController()
+		let nodenameString = (nodename ?? "").isEmpty ? "" : "\(nodename ?? ""): "
 		if indexPath.row == 0 {
-			controller.title = "DISK DP2 BUSY %"
+			controller.title = "\(nodenameString)DISK DP2 BUSY %"
 			
 			if let instances = busy?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
@@ -63,7 +64,7 @@ extension DiskListViewController: UITableViewDelegate {
 				controller.alert = [busyAlert]
 			}
 		} else {
-			controller.title = "DISK Q. LENGTH"
+			controller.title = "\(nodenameString)DISK Q. LENGTH"
 			if let instances = qLength?.instance as? [DiskProcessInstance] {
 				controller.instances = instances.sorted(by: { (left, right) -> Bool in
 					return (left.queueLength ?? 0) > (right.queueLength ?? 0)

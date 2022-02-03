@@ -32,7 +32,9 @@ class ServerListTableViewCell: UITableViewCell {
 	
 	func configureCell(neighborhood: Neighborhood) {
 		self.nodename = neighborhood.sysName
+		let fontColor = UIColor(red: 131.0/255.0, green: 131.0/255.0, blue: 131.0/255.0, alpha: 1)
 		serverNameLabel.text = neighborhood.sysName
+		serverNameLabel.textColor = fontColor
 		
 		containerView.backgroundColor = UIColor.white
 		containerView.layer.shadowOpacity = 0
